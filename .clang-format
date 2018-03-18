@@ -1,0 +1,7 @@
+ColumnLimit: 0
+IndentWidth: 4
+AccessModifierOffset: -4
+UseTab: Never
+#BreakBeforeBraces: Allman
+#IndentCaseLabels: false
+#AllowShortIfStatementsOnASingleLine: false

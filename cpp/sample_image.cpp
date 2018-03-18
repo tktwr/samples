@@ -1,6 +1,6 @@
-#include <vector>
 #include <functional>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -21,7 +21,7 @@ private:
     std::vector<int> m_data;
 };
 
-void f_image_foreach(Image& image, const std::function<void(Image&, int, int)>& func) {
+void f_image_foreach(Image &image, const std::function<void(Image &, int, int)> &func) {
     for (int y = 0; y < image.h(); y++) {
         for (int x = 0; x < image.w(); x++) {
             func(image, x, y);
@@ -29,10 +29,11 @@ void f_image_foreach(Image& image, const std::function<void(Image&, int, int)>& 
     }
 }
 
-void f_image_print(Image& image) {
-    f_image_foreach(image, [](Image& image, int x, int y) {
+void f_image_print(Image &image) {
+    f_image_foreach(image, [](Image &image, int x, int y) {
         cout << image.getValue(x, y) << " ";
-        if (x == image.w()-1) cout << endl;
+        if (x == image.w() - 1)
+            cout << endl;
     });
     cout << flush;
 }
@@ -40,13 +41,13 @@ void f_image_print(Image& image) {
 int main(int argc, char *argv[]) {
     Image image(10, 5);
 
-    f_image_foreach(image, [](Image& image, int x, int y) {
+    f_image_foreach(image, [](Image &image, int x, int y) {
         image.setValue(x, y, x);
     });
     f_image_print(image);
     cout << endl;
 
-    f_image_foreach(image, [](Image& image, int x, int y) {
+    f_image_foreach(image, [](Image &image, int x, int y) {
         int val = image.getValue(x, y);
         val++;
         image.setValue(x, y, val);
@@ -56,4 +57,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
