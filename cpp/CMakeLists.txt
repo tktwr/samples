@@ -27,3 +27,6 @@ target_link_libraries(sample_c++11 -static)
 add_executable(sample_thread sample_thread.cpp)
 target_link_libraries(sample_thread -static)
 
+add_executable(sample_glm sample_glm.cpp)
+target_link_libraries(sample_glm -static)
+
