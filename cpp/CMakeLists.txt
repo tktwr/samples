@@ -9,6 +9,9 @@ add_definitions("-static -Wall -std=c++11")
 add_executable(sample sample.cpp)
 target_link_libraries(sample -static)
 
+add_executable(sample_chrono sample_chrono.cpp)
+target_link_libraries(sample_chrono -static)
+
 add_executable(sample_fstream sample_fstream.cpp)
 target_link_libraries(sample_fstream -static)
 
