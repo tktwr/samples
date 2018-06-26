@@ -1,3 +1,4 @@
+// *memo_sample_cstdio*
 #include <stdio.h>
 
 #define BUFFER_SIZE 1024

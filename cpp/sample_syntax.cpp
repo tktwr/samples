@@ -1,3 +1,4 @@
+// *memo_sample_syntax*
 #include <iostream>
 
 using namespace std;

@@ -1,3 +1,4 @@
+// *memo_sample*
 #include <iostream>
 #include <stdio.h>
 

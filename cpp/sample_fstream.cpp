@@ -1,3 +1,4 @@
+// *memo_sample_fstream*
 #include <fstream>
 #include <iostream>
 #include <string>

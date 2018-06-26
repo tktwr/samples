@@ -1,3 +1,4 @@
+// *memo_sample_image*
 #include <functional>
 #include <iostream>
 #include <vector>
