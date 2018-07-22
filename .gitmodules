@@ -16,3 +16,6 @@
 [submodule "lib/nativefiledialog"]
 	path = lib/nativefiledialog
 	url = https://github.com/mlabbe/nativefiledialog.git
+[submodule "lib/cereal"]
+	path = lib/cereal
+	url = https://github.com/USCiLab/cereal.git
