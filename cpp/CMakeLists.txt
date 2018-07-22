@@ -16,7 +16,7 @@ else(WIN32)
 endif(WIN32)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-include_directories(.. ../lib/glm ../lib/stb ../lib/spdlog/include)
+include_directories(.. ../lib/glm ../lib/stb ../lib/spdlog/include ../lib/cereal/include)
 link_directories(../lib)
 
 add_executable(sample sample.cpp)
@@ -48,6 +48,9 @@ target_link_libraries(sample_thread)
 
 add_executable(sample_spdlog sample_spdlog.cpp)
 target_link_libraries(sample_spdlog)
+
+add_executable(sample_cereal sample_cereal.cpp)
+target_link_libraries(sample_cereal)
 
 message(STATUS "PROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR}")
 message(STATUS "PROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}")

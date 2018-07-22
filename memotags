@@ -1,7 +1,8 @@
 !_TAG_FILE_ENCODING	utf-8	//
+memo_array	cpp/sample_array.cpp	/*memo_array*
+memo_py_sample_syntax	py/sample_syntax.py	/*memo_py_sample_syntax*
 memo_sample	cpp/sample.cpp	/*memo_sample*
 memo_sample_c++	cpp/sample_c++11.cpp	/*memo_sample_c++*
-memo_sample_chrono	cpp/sample_chrono.cpp	/*memo_sample_chrono*
 memo_sample_cstdio	cpp/sample_cstdio.cpp	/*memo_sample_cstdio*
 memo_sample_fstream	cpp/sample_fstream.cpp	/*memo_sample_fstream*
 memo_sample_glm	cpp/sample_glm.cpp	/*memo_sample_glm*

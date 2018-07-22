@@ -1,17 +1,26 @@
 LANG=C
 
+.PHONY: build build.vs2017
+
 all:
-	cd build && make
+	cd build && cmake --build . --config release
 
-clean:
-	cd build && make clean
-
-mkbuild:
+build:
 	mkdir -p build
 	cd build && cmake -G "Unix Makefiles" ..
 
-rmbuild:
-	rm -rf build
+build.vs2017:
+	mkdir -p build.vs2017
+	cd build.vs2017 && cmake -G "Visual Studio 15 2017" ..
+
+install:
+	cd build && cmake --build . --target install
+
+clean:
+	cd build && cmake --build . --target clean
+
+cleanall:
+	rm -rf build lib
 
 format:
 	clang-format -i *.cpp

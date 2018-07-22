@@ -6,10 +6,10 @@
 using namespace std;
 
 void f_print(const std::string& s, const float v) {
-    cout << s << v << endl;
+    cout << s.c_str() << v << endl;
 }
 void f_print(const std::string& s, const glm::vec3& v) {
-    cout << s << v.x << " " << v.y << " " << v.z << endl;
+    cout << s.c_str() << v.x << " " << v.y << " " << v.z << endl;
 }
 
 int main(int argc, char *argv[]) {
