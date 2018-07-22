@@ -19,3 +19,6 @@
 [submodule "lib/cereal"]
 	path = lib/cereal
 	url = https://github.com/USCiLab/cereal.git
+[submodule "lib/cmdline"]
+	path = lib/cmdline
+	url = https://github.com/tanakh/cmdline.git
