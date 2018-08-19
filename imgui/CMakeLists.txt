@@ -11,8 +11,12 @@ set(IMGUI ${PROJECT_SOURCE_DIR}/../lib/imgui)
 set(GLFW ${PROJECT_SOURCE_DIR}/../lib/imgui/examples/libs/glfw)
 set(3RDPARTY ${PROJECT_SOURCE_DIR}/../3rdparty)
 
-include_directories(${IMGUI})
-include_directories(${3RDPARTY}/include)
+include_directories(
+  ..
+  ../lib/stb
+  ${IMGUI}
+  ${3RDPARTY}/include
+)
 link_directories(${3RDPARTY}/lib)
 
 if(MSVC)
@@ -24,14 +28,8 @@ endif(MSVC)
 
 if(MINGW)
   message(STATUS "MINGW")
-  set(CMAKE_C_COMPILER clang)
-  set(CMAKE_CXX_COMPILER clang++)
   set(CMAKE_C_FLAGS "-static -Wall")
   set(CMAKE_CXX_FLAGS "-static -Wall -std=c++11")
-  #add_definitions("-static -Wall -std=c++11")
-  #add_definitions("-static -Wall -std=c++14")
-  #add_definitions("-static -Wall -std=c++17")
-  #add_definitions("-static -Wall -std=c++2a")
   set(GLFW_LIBS glfw3)
 endif(MINGW)
 
@@ -45,24 +43,18 @@ if(UNIX)
   set(OPENGL_LIBS GLU GL)
 endif(UNIX)
 
-add_executable(sample_imgui
-  sample_imgui.cpp
-  imgui_impl_glfw.cpp
-  imgui_impl_opengl3.cpp
-  ${IMGUI}/imgui.cpp
-  ${IMGUI}/imgui_draw.cpp
-)
-target_link_libraries(sample_imgui 3rdparty ${GLFW_LIBS} ${OPENGL_LIBS})
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
 
-add_executable(example_glfw_opengl3
-  example_glfw_opengl3.cpp
-  imgui_impl_glfw.cpp
-  imgui_impl_opengl3.cpp
+add_executable(sample_imgui
+  main.cpp
+  gl_frame.cpp
+  gl_app.cpp
+  image_util.cpp
   ${IMGUI}/imgui.cpp
-  ${IMGUI}/imgui_demo.cpp
   ${IMGUI}/imgui_draw.cpp
 )
-target_link_libraries(example_glfw_opengl3 3rdparty ${GLFW_LIBS} ${OPENGL_LIBS})
+target_link_libraries(sample_imgui 3rdparty ${OpenCV_LIBS} ${GLFW_LIBS} ${OPENGL_LIBS})
 
 message(STATUS "PROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR}")
 message(STATUS "PROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}")

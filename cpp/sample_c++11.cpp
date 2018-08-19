@@ -14,12 +14,14 @@ void initializer() {
         int a[]{1, 2, 3, 4};
         std::vector<int> vec{1, 2, 3, 4};
         std::map<string, int> m{{"aaa", 10}, {"bbb", 20}, {"ccc", 30}};
+        cout << "sizeof(a) : " << sizeof(a) << endl;
     }
 
     {
         int a[] = {1, 2, 3, 4};
         std::vector<int> vec = {1, 2, 3, 4};
         std::map<string, int> m = {{"aaa", 10}, {"bbb", 20}, {"ccc", 30}};
+        cout << "sizeof(a) : " << sizeof(a) << endl;
     }
 
     {
@@ -58,24 +60,25 @@ void range_based_for_loop() {
 }
 
 void pointer() {
+    cout << "pointer()" << endl;
+
     int *p = nullptr;
 
     {
+        cout << "unique_ptr" << endl;
         unique_ptr<int> ptr(new int(1));
         unique_ptr<int> ptr2 = std::move(ptr);
 
-        cout << "ptr" << endl;
         if (ptr) {
-            cout << "true" << endl;
+            cout << "ptr : true" << endl;
         } else {
-            cout << "false" << endl;
+            cout << "ptr : false" << endl;
         }
 
-        cout << "ptr2" << endl;
         if (ptr2) {
-            cout << "true" << endl;
+            cout << "ptr2 : true" << endl;
         } else {
-            cout << "false" << endl;
+            cout << "ptr2 : false" << endl;
         }
 
         int *p = ptr2.get();
@@ -84,11 +87,23 @@ void pointer() {
         ptr2.reset();
     }
 
-    /*
     {
-        shared_ptr<int> ptr(new int(1));
+        unique_ptr<int[]> ptr(new int[10]);
     }
 
+    {
+        cout << "shared_ptr" << endl;
+        shared_ptr<int> ptr(new int(1));
+        {
+            shared_ptr<int> ptr2 = ptr;
+            cout << "value : " << *ptr2 << endl;
+            cout << "use_count : " << ptr2.use_count() << endl;
+        }
+        cout << "value : " << *ptr << endl;
+        cout << "use_count : " << ptr.use_count() << endl;
+    }
+
+    /*
     {
         weak_ptr<int> ptr(new int(1));
     }

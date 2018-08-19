@@ -3,19 +3,19 @@
 #include <iostream>
 #include <string>
 
-const char *g_text[] = {
-    "example program.\n",
-    "\n",
-    "data 0\n",
-    "data 1\n",
-    "data 2.0\n",
-    "\0"};
+#define ARRAY_SIZE 3
+
+const std::string g_text = R"(example program.
+
+data 0
+data 1
+data 2.0
+)";
+const int g_binary[ARRAY_SIZE] = {1, 2, 3};
 
 void f_write_text_file(const char *fname) {
     std::ofstream ofs(fname);
-    for (int i = 0; g_text[i][0]; i++) {
-        ofs << g_text[i];
-    }
+    ofs << g_text;
 }
 
 void f_read_text_file(const char *fname) {
@@ -27,18 +27,28 @@ void f_read_text_file(const char *fname) {
 }
 
 void f_write_binary_file(const char *fname) {
-    std::ofstream ofs(fname, std::ios::out | std::ios::binary);
+    std::ofstream ofs(fname, std::ios::binary);
+    ofs.write(reinterpret_cast<const char*>(g_binary), sizeof(g_binary));
 }
 
 void f_read_binary_file(const char *fname) {
-    std::ifstream ifs(fname, std::ios::in | std::ios::binary);
+    std::ifstream ifs(fname, std::ios::binary);
+    int data[ARRAY_SIZE];
+    ifs.read(reinterpret_cast<char*>(data), sizeof(data));
+    for (int i=0; i<ARRAY_SIZE; i++) {
+        std::cout << data[i] << " ";
+    }
+    std::cout << std::endl;
 }
 
 int main(int argc, char *argv[]) {
-    std::string fname = "data_fstream.txt";
+    std::string fname_text = "data_fstream.txt";
+    std::string fname_binary = "data_fstream.bin";
 
-    f_write_text_file(fname.c_str());
-    f_read_text_file(fname.c_str());
+    f_write_text_file(fname_text.c_str());
+    f_read_text_file(fname_text.c_str());
+    f_write_binary_file(fname_binary.c_str());
+    f_read_binary_file(fname_binary.c_str());
 
     return 0;
 }

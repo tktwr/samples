@@ -3,9 +3,9 @@
 #include <fstream>
 #include <string>
 
-void f_compile_shader_source(GLuint program, GLuint shader, GLenum type, const char* fname) {
+GLuint f_compile_shader_source(GLuint program, GLenum type, const char* fname) {
+	GLuint shader = glCreateShader(type);
 	GLint compiled;
-	shader = glCreateShader(type);
 
 	std::ifstream ifile(fname);
 	std::istreambuf_iterator<char> ifile_begin(ifile);
@@ -16,11 +16,12 @@ void f_compile_shader_source(GLuint program, GLuint shader, GLenum type, const c
 	glShaderSource(shader, 1, &source_c_str, NULL);
 	glCompileShader(shader);
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
-	if (!compiled)
-	{
+	if (!compiled) {
 		std::cerr << "[GLSL] compile error" << std::endl;
 	}
 	glAttachShader(program, shader);
+
+    return shader;
 }
 
 GLSLProgram::GLSLProgram() {
@@ -40,19 +41,18 @@ void GLSLProgram::createProgram() {
 }
 
 void GLSLProgram::compileVertexShader(const char* fname) {
-	f_compile_shader_source(m_program, m_vert_shader, GL_VERTEX_SHADER, fname);
+	m_vert_shader = f_compile_shader_source(m_program, GL_VERTEX_SHADER, fname);
 }
 
 void GLSLProgram::compileFragmentShader(const char* fname) {
-	f_compile_shader_source(m_program, m_frag_shader, GL_FRAGMENT_SHADER, fname);
+	m_frag_shader = f_compile_shader_source(m_program, GL_FRAGMENT_SHADER, fname);
 }
 
 void GLSLProgram::linkProgram() {
 	GLint linked;
 	glLinkProgram(m_program);
 	glGetProgramiv(m_program, GL_LINK_STATUS, &linked);
-	if(!linked)
-	{
+	if(!linked) {
 		std::cerr << "[GLSL] link error" << std::endl;
 	}
 }

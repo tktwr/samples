@@ -6,6 +6,7 @@ set(CMAKE_BUILD_TYPE Release)
 #set(CMAKE_BUILD_TYPE Debug)
 
 include_directories(include)
+include_directories(../lib/imgui)
 
 if(MSVC)
   message(STATUS "MSVC")
@@ -25,6 +26,8 @@ set(3rdparty_SRCS
   src/gl3w/gl3w.c
   src/nfd/nfd_common.c
   src/nfd/nfd_win.cpp
+  src/imgui/imgui_impl_glfw.cpp
+  src/imgui/imgui_impl_opengl3.cpp
 )
 add_library(3rdparty STATIC ${3rdparty_SRCS})
 install(TARGETS 3rdparty ARCHIVE DESTINATION lib)
