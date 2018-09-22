@@ -19,6 +19,9 @@ include_directories(
 )
 link_directories(${3RDPARTY}/lib)
 
+#-------------------------------------------------
+# compiler
+
 if(MSVC)
   message(STATUS "MSVC")
   include_directories(${GLFW}/include)
@@ -33,6 +36,9 @@ if(MINGW)
   set(GLFW_LIBS glfw3)
 endif(MINGW)
 
+#-------------------------------------------------
+# os
+
 if(WIN32)
   message(STATUS "WIN32")
   set(OPENGL_LIBS glu32 opengl32 winmm gdi32)
@@ -43,13 +49,16 @@ if(UNIX)
   set(OPENGL_LIBS GLU GL)
 endif(UNIX)
 
+#-------------------------------------------------
+
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_executable(sample_imgui
   main.cpp
-  gl_frame.cpp
   gl_app.cpp
+  gl_fbo.cpp
+  gl_frame.cpp
   image_util.cpp
   ${IMGUI}/imgui.cpp
   ${IMGUI}/imgui_draw.cpp

@@ -56,7 +56,7 @@ void GLFrame::setTexture(const tt::Image<tt::RGBA8>& image) {
 
     tt::Image<tt::RGBA8> tmp;
     f_image_copy(tmp, image);
-    f_image_flip(tmp);
+    //f_image_flip(tmp);
     m_texid = f_create_texture(tmp);
 }
 
@@ -135,8 +135,10 @@ void GLFrame::draw(float& scale, bool fit) {
     glm::vec2 o = glm::vec2(m_ww, m_wh) * 0.5f - ssize * 0.5f;
 
     glm::mat4 mat = glm::ortho<float>(0, m_ww, 0, m_wh);
-    mat = glm::translate(mat, glm::vec3(o, 1));
+    mat = glm::translate(mat, glm::vec3(o, 0));
     mat = glm::scale(mat, glm::vec3(ssize, 1));
+    mat = glm::translate(mat, glm::vec3(0, 1, 0));
+    mat = glm::scale(mat, glm::vec3(1, -1, 1));
 
     GLint loc_xform = glGetUniformLocation(m_programId, "transform");
     glUniformMatrix4fv(loc_xform, 1, GL_FALSE, &(mat[0][0]));

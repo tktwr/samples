@@ -15,6 +15,10 @@ public:
     void setWindowSize(int w, int h) { m_ww = w; m_wh = h; }
     void setTexture(const tt::Image<tt::RGBA8>& image);
 
+    GLuint getTexId() const { return m_texid; }
+    int w() const { return m_w; }
+    int h() const { return m_h; }
+
 private:
     GLuint m_programId;
     GLuint m_vao;

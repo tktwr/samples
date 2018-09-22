@@ -6,8 +6,9 @@
 #include <thread>
 #include <atomic>
 #include <functional>
-#include "array.h"
 #include <string.h>
+#include "array.h"
+#include "util.h"
 
 namespace tt {
 
@@ -175,36 +176,22 @@ void f_image_foreach_col(Image<T>& image, const std::function<void(Image<T>&, in
 
 template<class T>
 void f_image_print(Image<T>& image) {
-    f_image_foreach<T>(image, [](Image<T>& _image, int x, int y) {
-        std::cout << _image.getValue(x, y) << " ";
-        if (x == _image.w() - 1) std::cout << std::endl;
+    image.foreach([&](T& val, int x, int y) {
+        std::cout << val << " ";
+        if (x == image.w() - 1) std::cout << std::endl;
     }, 0);
     std::cout << std::flush;
+}
+
+template<class T>
+void f_image_same_size(const Image<T>& img0, const Image<T>& img1) {
+    return (img0.w() == img1.w()) && (img0.h() == img1.h());
 }
 
 template<class T>
 void f_image_copy(Image<T>& dst, const Image<T>& src) {
     dst.alloc(src.w(), src.h());
     memcpy(dst.data(), src.data(), src.size() * src.sizeOfDataType());
-}
-
-template<class T>
-void f_image_flip(Image<T>& img) {
-	int w = img.w();
-	int h = img.h();
-	int lsize = w * img.sizeOfDataType();
-
-	char* tmp = new char[lsize];
-
-	for (int i=0; i<h/2; i++) {
-		char* p1 = reinterpret_cast<char*>(img.data()) + i * lsize;
-		char* p2 = reinterpret_cast<char*>(img.data()) + (h-1-i) * lsize;
-		memcpy(tmp, p1, lsize);
-		memcpy(p1, p2, lsize);
-		memcpy(p2, tmp, lsize);
-	}
-
-	delete [] tmp;
 }
 
 template<typename T>
@@ -230,14 +217,7 @@ public:
 	T x, y, z, w;
 };
 
-typedef unsigned char  uchar;
-typedef unsigned short ushort;
 typedef RGBA<ushort> RGBA16;
-
-template<typename T>
-T f_clamp(T v, T l, T h) {
-    return (v < l) ? l : (v > h) ? h : v;
-}
 
 class RGBA8 : public RGBA<uchar> {
 public:

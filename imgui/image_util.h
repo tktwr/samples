@@ -17,5 +17,28 @@ GLuint f_create_texture(GLsizei width, GLsizei height, const GLvoid* data);
 void   f_image_to_cvmat(const tt::Image<tt::RGBA8>& image, cv::Mat& mat);
 void   f_cvmat_to_image(const cv::Mat& mat, tt::Image<tt::RGBA8>& image);
 
+namespace tt {
+
+template<class T>
+void f_image_flip(Image<T>& img) {
+	int w = img.w();
+	int h = img.h();
+	int lsize = w * img.sizeOfDataType();
+
+	char* tmp = new char[lsize];
+
+	for (int i=0; i<h/2; i++) {
+		char* p1 = reinterpret_cast<char*>(img.data()) + i * lsize;
+		char* p2 = reinterpret_cast<char*>(img.data()) + (h-1-i) * lsize;
+		memcpy(tmp, p1, lsize);
+		memcpy(p1, p2, lsize);
+		memcpy(p2, tmp, lsize);
+	}
+
+	delete [] tmp;
+}
+
+}  // namespace tt
+
 #endif  // image_util_h
 

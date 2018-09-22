@@ -58,6 +58,9 @@ target_link_libraries(sample_spdlog)
 add_executable(sample_syntax sample_syntax.cpp)
 target_link_libraries(sample_syntax)
 
+add_executable(sample_util sample_util.cpp)
+target_link_libraries(sample_util)
+
 add_executable(sample_thread sample_thread.cpp)
 target_link_libraries(sample_thread)
 

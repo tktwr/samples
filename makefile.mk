@@ -25,3 +25,11 @@ cleanall:
 format:
 	clang-format -i *.cpp
 
+help:
+	@echo "make all"
+	@echo "make build"
+	@echo "make build.vs2017"
+	@echo "make install"
+	@echo "make clean"
+	@echo "make cleanall"
+	@echo "make format"

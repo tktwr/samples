@@ -1,5 +1,6 @@
 #include "gl_app.h"
 #include "gl_frame.h"
+#include "gl_fbo.h"
 #include <string>
 #include <GL/gl.h>
 #include <opencv2/opencv.hpp>
@@ -20,25 +21,29 @@ public:
         m_fit = true;
 
         m_commands = {
-            {"set_color0", "r g b a",     "set color0"},
-            {"set_color1", "r g b a",     "set color1"},
-            {"image",     "w h",     "create an image"},
-            {"rect",      "ox oy sx sy",  "fill a rectangle"},
-            {"vstripe",   "n",       "create a vertical stripe image"},
-            {"hstripe",   "n",       "create a horizontal stripe image"},
-            {"checker",   "nx ny",   "create a checker image"},
-            {"blur",      "kx ky",   "blur an image"},
-            {"bilateral", "",        "bilateral filter an image"},
-            {"erode",     "i",       "erode an image"},
-            {"dilate",    "i",       "dilate an image"},
-            {"detect_face", "",      "detect faces"},
-            {"load",      "",        "load an image"},
-            {"save",      "",        "save an image"},
-            {"scale",     "f",       "set scale"},
-            {"fit",       "",        "set fit"},
-            {"help",      "",        "print help"},
-            {"clear",     "",        "clear console"},
-            {"quit",      "",        "exit the program"},
+            {"set_color0",  "r g b a",     "set color0"},
+            {"set_color1",  "r g b a",     "set color1"},
+            {"image",       "w h",         "create an image"},
+            {"get_value",   "x y",         "get a value"},
+            {"set_value",   "x y",         "set a value"},
+            {"rect",        "ox oy sx sy", "draw a rectangle"},
+            {"rect_fill",   "ox oy sx sy", "fill a rectangle"},
+            {"vstripe",     "n",           "create a vertical stripe image"},
+            {"hstripe",     "n",           "create a horizontal stripe image"},
+            {"checker",     "nx ny",       "create a checker image"},
+            {"flip",        "",            "flip an image"},
+            {"blur",        "kx ky",       "blur an image"},
+            {"bilateral",   "",            "bilateral filter an image"},
+            {"erode",       "i",           "erode an image"},
+            {"dilate",      "i",           "dilate an image"},
+            {"detect_face", "",            "detect faces"},
+            {"load",        "",            "load an image"},
+            {"save",        "",            "save an image"},
+            {"scale",       "f",           "set scale"},
+            {"fit",         "",            "set fit"},
+            {"help",        "",            "print help"},
+            {"clear",       "",            "clear console"},
+            {"quit",        "",            "exit the program"},
         };
         int sz = m_commands.size();
         for (int i=0; i<sz; i++) {
@@ -65,7 +70,24 @@ public:
         m_image.alloc(size[0], size[1]);
         m_image.fill(rgba);
     }
-    void cmd_rect(const std::array<int, 2>& o, const std::array<int, 2>& size) {
+    void cmd_get_value(int x, int y) {
+        tt::RGBA8 rgba = m_image.getValue(x, y);
+        m_console.output("%d %d %d %d", rgba[0], rgba[1], rgba[2], rgba[3]);
+    }
+    void cmd_set_value(int x, int y) {
+        tt::RGBA8 rgba(m_color0.data());
+        m_image.setValue(x, y, rgba);
+    }
+    void cmd_rect(const std::array<int, 2>& _o, const std::array<int, 2>& _size) {
+        cv::Mat mat;
+        f_image_to_cvmat(m_image, mat);
+        cv::Point o(_o[0], _o[1]);
+        cv::Point size(_size[0], _size[1]);
+        cv::Scalar color(m_color0[0] * 255.f, m_color0[1] * 255.f, m_color0[2] * 255.f);
+        cv::rectangle(mat, o, o+size, color);
+        f_cvmat_to_image(mat, m_image);
+    }
+    void cmd_rect_fill(const std::array<int, 2>& o, const std::array<int, 2>& size) {
         f_fill_rect(m_image, o, size, tt::RGBA8(m_color0.data()));
     }
     void cmd_vstripe(int nw) {
@@ -76,6 +98,9 @@ public:
     }
     void cmd_checker(const std::array<int, 2>& n) {
         f_create_checker_image(m_image, n[0], n[1], tt::RGBA8(m_color0.data()), tt::RGBA8(m_color1.data()));
+    }
+    void cmd_flip() {
+        tt::f_image_flip(m_image);
     }
     void cmd_blur(const std::array<int, 2>& ksize) {
         cv::Mat src, dst;
@@ -141,11 +166,28 @@ public:
             istr >> size;
             cmd_image(size);
             gl_frame.setTexture(m_image);
+        } else if (token == "get_value") {
+            int x = 0;
+            int y = 0;
+            istr >> x >> y;
+            cmd_get_value(x, y);
+        } else if (token == "set_value") {
+            int x = 0;
+            int y = 0;
+            istr >> x >> y;
+            cmd_set_value(x, y);
+            gl_frame.setTexture(m_image);
         } else if (token == "rect") {
             std::array<int, 2> o = {0, 0};
             std::array<int, 2> size = {128, 128};
             istr >> o >> size;
             cmd_rect(o, size);
+            gl_frame.setTexture(m_image);
+        } else if (token == "rect_fill") {
+            std::array<int, 2> o = {0, 0};
+            std::array<int, 2> size = {128, 128};
+            istr >> o >> size;
+            cmd_rect_fill(o, size);
             gl_frame.setTexture(m_image);
         } else if (token == "vstripe") {
             int n = 8;
@@ -161,6 +203,9 @@ public:
             std::array<int, 2> n = {8, 8};
             istr >> n;
             cmd_checker(n);
+            gl_frame.setTexture(m_image);
+        } else if (token == "flip") {
+            cmd_flip();
             gl_frame.setTexture(m_image);
         } else if (token == "blur") {
             std::array<int, 2> ksize = {10, 10};
@@ -192,6 +237,9 @@ public:
             std::string fname;
             istr >> fname;
             f_save_image(fname, m_image);
+        } else if (token == "flop") {
+        } else if (token == "crop") {
+        } else if (token == "resize") {
         } else if (token == "quit") {
             glfwSetWindowShouldClose(m_window, 1);
         } else {
@@ -245,6 +293,12 @@ public:
             m_show_console_panel = !m_show_console_panel;
         }
         ImGui::LabelText("window size", "%d, %d", w(), h());
+
+        ImVec2 pos = ImGui::GetCursorScreenPos();
+        ImGui::LabelText("cursor", "%f, %f", pos.x, pos.y);
+        ImGuiIO& io = ImGui::GetIO();
+        ImGui::LabelText("mouse", "%f, %f", io.MousePos.x, io.MousePos.y);
+
         ImGui::LabelText("image size", "%d, %d", m_image.w(), m_image.h());
         ImGui::ColorEdit4("color0", m_color0.data());
         ImGui::ColorEdit4("color1", m_color1.data());
@@ -252,6 +306,15 @@ public:
         ImGui::ColorEdit4("clear color", m_clear_color.data());
         ImGui::DragFloat("scale", &m_scale, 0.01f);
         ImGui::Checkbox("fit", &m_fit);
+
+        {
+            static GLuint tex = gl_frame.getTexId();
+            ImTextureID imtex = (ImTextureID)tex;
+            float scale = float(gl_frame.w()) / gl_frame.h();
+            ImVec2 size(scale * 200, 200);
+            ImGui::Image(imtex, size, ImVec2(0,0), ImVec2(1,1), ImColor(255,255,255,255), ImColor(255,255,255,127));
+        }
+
         ImGui::End();
     }
     void guiConsolePanel() {
@@ -266,6 +329,7 @@ public:
         exec("image");
         exec("checker");
         gl_frame.init();
+        GLFBO::check();
     }
     void gui() {
         if (m_show_main_menu_bar) guiMainMenuBar();
