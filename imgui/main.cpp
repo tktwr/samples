@@ -4,7 +4,7 @@
 #include <string>
 #include <GL/gl.h>
 #include <opencv2/opencv.hpp>
-#include <util/array_util.h>
+#include <util/type.h>
 #include "image_util.h"
 #include "imgui_console.h"
 
@@ -19,10 +19,13 @@ public:
         m_clear_color = {0.5f, 0.5f, 0.5f, 1.f};
         m_scale = 1.f;
         m_fit = true;
+        //m_face_detector = "haarcascade_frontalface_default.xml";
+        m_face_detector = "lbpcascade_animeface.xml";
 
         m_commands = {
             {"set_color0",  "r g b a",     "set color0"},
             {"set_color1",  "r g b a",     "set color1"},
+            {"set_face_detector", "",            "set face detector"},
             {"image",       "w h",         "create an image"},
             {"get_value",   "x y",         "get a value"},
             {"set_value",   "x y",         "set a value"},
@@ -31,7 +34,10 @@ public:
             {"vstripe",     "n",           "create a vertical stripe image"},
             {"hstripe",     "n",           "create a horizontal stripe image"},
             {"checker",     "nx ny",       "create a checker image"},
+            {"hgrad",       "",            "create a horizontal gradation image"},
+            {"vgrad",       "",            "create a vertical gradation image"},
             {"flip",        "",            "flip an image"},
+            {"flop",        "",            "flop an image"},
             {"blur",        "kx ky",       "blur an image"},
             {"bilateral",   "",            "bilateral filter an image"},
             {"erode",       "i",           "erode an image"},
@@ -54,6 +60,7 @@ public:
             exec(line);
         });
     }
+
     void cmd_help() {
         int sz = m_commands.size();
         for (int i=0; i<sz; i++) {
@@ -66,16 +73,16 @@ public:
     }
 
     void cmd_image(const std::array<int, 2>& size) {
-        tt::RGBA8 rgba(m_color0.data());
+        tt::Color4uc rgba = tt::float2uchar(m_color0);
         m_image.alloc(size[0], size[1]);
         m_image.fill(rgba);
     }
     void cmd_get_value(int x, int y) {
-        tt::RGBA8 rgba = m_image.getValue(x, y);
+        tt::Color4uc rgba = m_image.getValue(x, y);
         m_console.output("%d %d %d %d", rgba[0], rgba[1], rgba[2], rgba[3]);
     }
     void cmd_set_value(int x, int y) {
-        tt::RGBA8 rgba(m_color0.data());
+        tt::Color4uc rgba = tt::float2uchar(m_color0);
         m_image.setValue(x, y, rgba);
     }
     void cmd_rect(const std::array<int, 2>& _o, const std::array<int, 2>& _size) {
@@ -88,19 +95,39 @@ public:
         f_cvmat_to_image(mat, m_image);
     }
     void cmd_rect_fill(const std::array<int, 2>& o, const std::array<int, 2>& size) {
-        f_fill_rect(m_image, o, size, tt::RGBA8(m_color0.data()));
+        tt::Color4uc rgba = tt::float2uchar(m_color0);
+        f_fill_rect(m_image, o, size, rgba);
     }
     void cmd_vstripe(int nw) {
-        f_create_vstripe_image(m_image, nw, tt::RGBA8(m_color0.data()), tt::RGBA8(m_color1.data()));
+        tt::Color4uc rgba0 = tt::float2uchar(m_color0);
+        tt::Color4uc rgba1 = tt::float2uchar(m_color1);
+        f_create_vstripe_image(m_image, nw, rgba0, rgba1);
     }
     void cmd_hstripe(int nh) {
-        f_create_hstripe_image(m_image, nh, tt::RGBA8(m_color0.data()), tt::RGBA8(m_color1.data()));
+        tt::Color4uc rgba0 = tt::float2uchar(m_color0);
+        tt::Color4uc rgba1 = tt::float2uchar(m_color1);
+        f_create_hstripe_image(m_image, nh, rgba0, rgba1);
     }
     void cmd_checker(const std::array<int, 2>& n) {
-        f_create_checker_image(m_image, n[0], n[1], tt::RGBA8(m_color0.data()), tt::RGBA8(m_color1.data()));
+        tt::Color4uc rgba0 = tt::float2uchar(m_color0);
+        tt::Color4uc rgba1 = tt::float2uchar(m_color1);
+        f_create_checker_image(m_image, n[0], n[1], rgba0, rgba1);
+    }
+    void cmd_hgrad() {
+        tt::Color4uc rgba0 = tt::float2uchar(m_color0);
+        tt::Color4uc rgba1 = tt::float2uchar(m_color1);
+        tt::f_image_hgrad(m_image, rgba0, rgba1);
+    }
+    void cmd_vgrad() {
+        tt::Color4uc rgba0 = tt::float2uchar(m_color0);
+        tt::Color4uc rgba1 = tt::float2uchar(m_color1);
+        tt::f_image_vgrad(m_image, rgba0, rgba1);
     }
     void cmd_flip() {
         tt::f_image_flip(m_image);
+    }
+    void cmd_flop() {
+        tt::f_image_flop(m_image);
     }
     void cmd_blur(const std::array<int, 2>& ksize) {
         cv::Mat src, dst;
@@ -128,8 +155,7 @@ public:
     }
     void cmd_detect_face() {
         cv::CascadeClassifier cascade;
-        //cascade.load("haarcascade_frontalface_default.xml");
-        cascade.load("lbpcascade_animeface.xml");
+        cascade.load(m_face_detector);
 
         cv::Mat mat;
         f_image_to_cvmat(m_image, mat);
@@ -156,6 +182,8 @@ public:
             istr >> m_color0;
         } else if (token == "set_color1") {
             istr >> m_color1;
+        } else if (token == "set_face_detector") {
+            istr >> m_face_detector;
         } else if (token == "scale") {
             istr >> m_scale;
             m_fit = false;
@@ -204,8 +232,17 @@ public:
             istr >> n;
             cmd_checker(n);
             gl_frame.setTexture(m_image);
+        } else if (token == "hgrad") {
+            cmd_hgrad();
+            gl_frame.setTexture(m_image);
+        } else if (token == "vgrad") {
+            cmd_vgrad();
+            gl_frame.setTexture(m_image);
         } else if (token == "flip") {
             cmd_flip();
+            gl_frame.setTexture(m_image);
+        } else if (token == "flop") {
+            cmd_flop();
             gl_frame.setTexture(m_image);
         } else if (token == "blur") {
             std::array<int, 2> ksize = {10, 10};
@@ -237,7 +274,6 @@ public:
             std::string fname;
             istr >> fname;
             f_save_image(fname, m_image);
-        } else if (token == "flop") {
         } else if (token == "crop") {
         } else if (token == "resize") {
         } else if (token == "quit") {
@@ -352,13 +388,14 @@ private:
 
     Console m_console;
     GLFrame gl_frame;
-    std::array<float, 4> m_clear_color;
     float m_scale;
     bool m_fit;
 
-    tt::Image<tt::RGBA8> m_image;
-    std::array<float, 4> m_color0;
-    std::array<float, 4> m_color1;
+    tt::Image4uc m_image;
+    tt::Color4f m_color0;
+    tt::Color4f m_color1;
+    tt::Color4f m_clear_color;
+    std::string m_face_detector;
 };
 
 int main(int, char**)

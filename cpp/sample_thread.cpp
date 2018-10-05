@@ -14,6 +14,8 @@ void print(const std::string &str, int val) {
 }
 
 int main() {
+    cout << "hardware_concurrency: " << std::thread::hardware_concurrency() << endl;
+
     std::thread th1([]() {
         int x = 0;
         for (int i = 0; i < 15; i++) {

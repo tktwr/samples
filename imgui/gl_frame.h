@@ -13,7 +13,7 @@ public:
     void draw(float& scale, bool fit);
 
     void setWindowSize(int w, int h) { m_ww = w; m_wh = h; }
-    void setTexture(const tt::Image<tt::RGBA8>& image);
+    void setTexture(const tt::Image4uc& image);
 
     GLuint getTexId() const { return m_texid; }
     int w() const { return m_w; }

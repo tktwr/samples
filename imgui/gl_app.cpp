@@ -56,7 +56,7 @@ GLApp::~GLApp() {
 }
 
 void GLApp::setIcon(const std::string& fname) {
-    tt::Image<tt::RGBA8> image;
+    tt::Image4uc image;
     f_load_image(fname, image);
 
     GLFWimage glfw_image;

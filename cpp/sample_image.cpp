@@ -3,21 +3,14 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb_image.h>
 #include <stb_image_write.h>
-#include <iostream>
-#include <util/image.h>
-#include <util/time.h>
 #include <glm/glm.hpp>
 #include <spdlog/spdlog.h>
+#include <iostream>
+#include <util/util.h>
+#include <util/time.h>
+#include <util/image.h>
 
 using namespace std;
-
-inline float bytes2kb(std::size_t bytes) {
-    return bytes / 1024.f;
-}
-
-inline float bytes2mb(std::size_t bytes) {
-    return bytes / 1024.f / 1024.f;
-}
 
 void f_image_save(const char* fname, std::size_t w, std::size_t h, int comp, const float* data) {
     unsigned char* dst_data = new unsigned char[w * h * 3];
@@ -51,7 +44,7 @@ void f_image_time() {
         image.resize(width, height);
         t.end();
         console->info("Image<glm::vec3>::resize() {} ms", t.getElapsedMSec());
-        console->info("w={} h={} size={:.1f} MB", image.w(), image.h(), bytes2mb(image.size() * image.sizeOfDataType()));
+        console->info("w={} h={} size={:.1f} MB", image.w(), image.h(), tt::Bytes_to_MB(image.size() * image.sizeOfDataType()));
 
         t.start();
         image.clear();

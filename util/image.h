@@ -8,7 +8,7 @@
 #include <functional>
 #include <string.h>
 #include "array.h"
-#include "util.h"
+#include "type.h"
 
 namespace tt {
 
@@ -76,6 +76,33 @@ public:
                         T& val = m_data[y * m_w + x];
                         func(val, x, y);
                     }
+                }
+            }));
+        }
+        for (auto& t : th) {
+            t.join();
+        }
+    }
+    void foreach_row_nothread(const std::function<void(int)>& func) {
+        for (int y = 0; y < m_h; y++) {
+            func(y);
+        }
+    }
+    void foreach_row(const std::function<void(int)>& func, int nthreads = -1) {
+        if (nthreads == 0) {
+            foreach_row_nothread(func);
+            return;
+        }
+        if (nthreads == -1) {
+            nthreads = std::thread::hardware_concurrency();
+        }
+        std::vector<std::thread> th;
+        std::atomic<int> i(0);
+        for (int t=0; t<nthreads; t++) {
+            th.push_back(std::thread([&]() {
+                int y = 0;
+                while ((y = i++) < m_h) {
+                    func(y);
                 }
             }));
         }
@@ -194,37 +221,17 @@ void f_image_copy(Image<T>& dst, const Image<T>& src) {
     memcpy(dst.data(), src.data(), src.size() * src.sizeOfDataType());
 }
 
-template<typename T>
-class RGBA {
-public:
-    RGBA() {}
-	RGBA(T _x, T _y, T _z, T _w) { x=_x; y=_y; z=_z; w=_w; }
-	RGBA(const T v[4]) { x=v[0]; y=v[1]; z=v[2]; w=v[3]; }
-	// use default copy constructor
-	// use default operator =()
+typedef Image<Color1uc> Image1uc;
+typedef Image<Color1us> Image1us;
+typedef Image<Color1f>  Image1f;
 
-	RGBA<T>& assign(T _x, T _y, T _z, T _w) { x=_x; y=_y; z=_z; w=_w; return *this; }
-	RGBA<T>& assign(const T v[4]) { x=v[0]; y=v[1]; z=v[2]; w=v[3]; return *this; }
+typedef Image<Color3uc> Image3uc;
+typedef Image<Color3us> Image3us;
+typedef Image<Color3f>  Image3f;
 
-	      T* ptr()       { return &x; }
-	const T* ptr() const { return &x; }
-	      T& operator [](int i)       { return (&x)[i]; }
-	const T& operator [](int i) const { return (&x)[i]; }
-
-	bool operator==(const RGBA<T>& v) const { return x == v.x && y == v.y && z == v.z && w == v.w; }
-	bool operator!=(const RGBA<T>& v) const { return !(*this == v); }
-
-	T x, y, z, w;
-};
-
-typedef RGBA<ushort> RGBA16;
-
-class RGBA8 : public RGBA<uchar> {
-public:
-	RGBA8(uchar x, uchar y, uchar z, uchar w) : RGBA<uchar>(x, y, z, w) {}
-	RGBA8(const uchar v[4]) : RGBA<uchar>(v) {}
-    RGBA8(const float v[4]) { for (int i=0; i<4; i++) (*this)[i] = (uchar)(255.f * f_clamp(v[i], 0.f, 1.f)); }
-};
+typedef Image<Color4uc> Image4uc;
+typedef Image<Color4us> Image4us;
+typedef Image<Color4f>  Image4f;
 
 }  // namespace tt
 

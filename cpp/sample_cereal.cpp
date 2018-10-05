@@ -1,5 +1,6 @@
 #include <cereal/cereal.hpp>
 #include <cereal/archives/json.hpp>
+#include <cereal/types/vector.hpp>
 #include <fstream>
 #include <string>
 
@@ -13,7 +14,8 @@ public:
             cereal::make_nvp("int0", m_int0),
             cereal::make_nvp("int1", m_int1),
             cereal::make_nvp("float0", m_float0),
-            cereal::make_nvp("float1", m_float1)
+            cereal::make_nvp("float1", m_float1),
+            cereal::make_nvp("vec", m_vec)
         );
     }
 
@@ -23,6 +25,7 @@ public:
     int m_int1;
     float m_float0;
     float m_float1;
+    std::vector<int> m_vec;
 };
 
 void f_load(const std::string& fname, Config& cfg) {
@@ -46,6 +49,7 @@ int main() {
         cfg.m_int1 = 1;
         cfg.m_float0 = 0.5;
         cfg.m_float1 = 1.0;
+        cfg.m_vec = {1, 2, 3, 4, 5};
 
         f_save("test0.json", cfg);
     }
@@ -59,6 +63,10 @@ int main() {
         cfg.m_int1 += 1;
         cfg.m_float0 += 1;
         cfg.m_float1 += 1;
+        int sz = cfg.m_vec.size();
+        for (int i=0; i<sz; i++) {
+            cfg.m_vec[i] += 1;
+        }
 
         f_save("test1.json", cfg);
     }

@@ -48,16 +48,13 @@ GLuint createShader(const char* vs, const char* fs) {
     return prg_id;
 }
 
-void GLFrame::setTexture(const tt::Image<tt::RGBA8>& image) {
+void GLFrame::setTexture(const tt::Image4uc& image) {
     m_w = image.w();
     m_h = image.h();
 
 	if (m_texid) glDeleteTextures(1, &m_texid);
 
-    tt::Image<tt::RGBA8> tmp;
-    f_image_copy(tmp, image);
-    //f_image_flip(tmp);
-    m_texid = f_create_texture(tmp);
+    m_texid = f_create_texture(image);
 }
 
 void GLFrame::init() {

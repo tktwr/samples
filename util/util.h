@@ -1,21 +1,23 @@
-#ifndef util_h
-#define util_h
+#ifndef tt_util_h
+#define tt_util_h
 
 #include <string>
 
 namespace tt {
 
-typedef unsigned char  uchar;
-typedef unsigned short ushort;
-typedef unsigned int   uint;
-typedef unsigned long  ulong;
-
-template<typename T>
-T f_clamp(T v, T l, T h) {
-    return (v < l) ? l : (v > h) ? h : v;
+inline float Bytes_to_KB(std::size_t bytes) {
+    return bytes / 1024.f;
 }
 
-void f_replace(std::string& str, const std::string& src, const std::string& dst) {
+inline float Bytes_to_MB(std::size_t bytes) {
+    return bytes / 1024.f / 1024.f;
+}
+
+inline float Bytes_to_GB(std::size_t bytes) {
+    return bytes / 1024.f / 1024.f / 1024.f;
+}
+
+inline void f_replace(std::string& str, const std::string& src, const std::string& dst) {
     auto pos = str.find(src);
     auto len = src.length();
     if (pos != std::string::npos) {
@@ -25,5 +27,5 @@ void f_replace(std::string& str, const std::string& src, const std::string& dst)
 
 }  // namespace tt
 
-#endif  // util_h
+#endif  // tt_util_h
 
