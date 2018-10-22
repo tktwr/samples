@@ -48,13 +48,43 @@ GLuint createShader(const char* vs, const char* fs) {
     return prg_id;
 }
 
-void GLFrame::setTexture(const tt::Image4uc& image) {
+//////////////////////////////////////////////////
+
+void GLTexture2D::setImage(const tt::Image4uc& image) {
+    int w = image.w();
+    int h = image.h();
+    const uchar* data = reinterpret_cast<const uchar*>(image.data());
+    setImage(w, h, data);
+}
+
+void GLTexture2D::setImage(GLsizei width, GLsizei height, const GLvoid* data) {
+    release();
+    glGenTextures(1, &m_id);
+    glBindTexture(GL_TEXTURE_2D, m_id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+}
+
+void GLTexture2D::release() {
+    if (m_id) {
+        glDeleteTextures(1, &m_id);
+        m_id = 0;
+    }
+}
+
+void GLTexture2D::bind() {
+    glBindTexture(GL_TEXTURE_2D, m_id);
+}
+
+//////////////////////////////////////////////////
+
+void GLFrame::setImage(const tt::Image4uc& image) {
     m_w = image.w();
     m_h = image.h();
-
-	if (m_texid) glDeleteTextures(1, &m_texid);
-
-    m_texid = f_create_texture(image);
+    m_tex.setImage(image);
 }
 
 void GLFrame::init() {
@@ -123,13 +153,14 @@ void GLFrame::init() {
 void GLFrame::draw(float& scale, bool fit) {
     glUseProgram(m_programId);
 
-    float sw = float(m_ww) / m_w;
-    float sh = float(m_wh) / m_h;
+    glm::vec2 src_win(m_w, m_h);
+    glm::vec2 dst_win(m_ww, m_wh);
     if (fit) {
-        scale = sh;
+        glm::vec2 scale_win = dst_win / src_win;
+        scale = std::min(std::abs(scale_win[0]), std::abs(scale_win[1]));
     }
-    glm::vec2 ssize = glm::vec2(m_w, m_h) * scale;
-    glm::vec2 o = glm::vec2(m_ww, m_wh) * 0.5f - ssize * 0.5f;
+    glm::vec2 ssize = src_win * scale;
+    glm::vec2 o = dst_win * 0.5f - ssize * 0.5f;
 
     glm::mat4 mat = glm::ortho<float>(0, m_ww, 0, m_wh);
     mat = glm::translate(mat, glm::vec3(o, 0));

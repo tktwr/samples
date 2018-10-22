@@ -13,6 +13,15 @@ typedef unsigned long  ulong;
 
 namespace tt {
 
+    typedef std::array<int,    2> Vec2i;
+    typedef std::array<float,  2> Vec2f;
+
+    typedef std::array<int,    3> Vec3i;
+    typedef std::array<float,  3> Vec3f;
+
+    typedef std::array<int,    4> Vec4i;
+    typedef std::array<float,  4> Vec4f;
+
     typedef std::array<uchar,  1> Color1uc;
     typedef std::array<ushort, 1> Color1us;
     typedef std::array<float,  1> Color1f;
@@ -24,15 +33,6 @@ namespace tt {
     typedef std::array<uchar,  4> Color4uc;
     typedef std::array<ushort, 4> Color4us;
     typedef std::array<float,  4> Color4f;
-
-    typedef std::array<int,    2> Vec2i;
-    typedef std::array<float,  2> Vec2f;
-
-    typedef std::array<int,    3> Vec3i;
-    typedef std::array<float,  3> Vec3f;
-
-    typedef std::array<int,    4> Vec4i;
-    typedef std::array<float,  4> Vec4f;
 
     //==================================================
     // clamp

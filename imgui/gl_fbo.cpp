@@ -1,8 +1,9 @@
 #include "gl_fbo.h"
 #include <iostream>
-using namespace std;
 
 #define USE_DEPTH_TEXTURE 1
+
+using namespace std;
 
 void GLFBO::push() {
 	glGetIntegerv(GL_VIEWPORT, m_viewport);

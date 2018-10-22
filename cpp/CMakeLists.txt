@@ -1,29 +1,10 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.8)
 
 project(sample CXX)
 
-set(CMAKE_BUILD_TYPE Release)
-#set(CMAKE_BUILD_TYPE Debug)
+include(../config.cmake)
 
-if(WIN32)
-else(WIN32)
-  set(CMAKE_C_COMPILER clang)
-  set(CMAKE_CXX_COMPILER clang++)
-  add_definitions("-static -Wall -std=c++11")
-  #add_definitions("-static -Wall -std=c++14")
-  #add_definitions("-static -Wall -std=c++17")
-  #add_definitions("-static -Wall -std=c++2a")
-endif(WIN32)
-
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-include_directories(..
-  ../lib/glm
-  ../lib/stb
-  ../lib/spdlog/include
-  ../lib/cereal/include
-  ../lib/cmdline
-)
-link_directories(../lib)
+include_directories(..)
 
 add_executable(sample sample.cpp)
 target_link_libraries(sample)
@@ -63,9 +44,4 @@ target_link_libraries(sample_util)
 
 add_executable(sample_thread sample_thread.cpp)
 target_link_libraries(sample_thread)
-
-message(STATUS "PROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR}")
-message(STATUS "PROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}")
-message(STATUS "INCLUDE_DIRECTORIES=${INCLUDE_DIRECTORIES}")
-message(STATUS "LINK_DIRECTORIES=${LINK_DIRECTORIES}")
 

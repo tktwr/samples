@@ -10,6 +10,7 @@ int main(int argc, char *argv[]) {
     a.add<int>("port", 'p', "port number", false, 80, cmdline::range(1, 65535));
     a.add<string>("type", 't', "protocol type", false, "http", cmdline::oneof<string>("http", "https", "ssh", "ftp"));
     a.add("gzip", '\0', "gzip when transfer");
+    a.set_program_name("sample_cmdline");
 
     a.parse_check(argc, argv);
 
