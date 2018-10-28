@@ -9,6 +9,7 @@ MyGLApp::MyGLApp() : GLApp() {
     m_show_main_menu_bar = true;
     m_show_control_panel = true;
     m_show_console_panel = true;
+    m_show_screen_panel  = true;
     m_color0 = {1.f, 1.f, 1.f, 1.f};
     m_color1 = {0.f, 0.f, 0.f, 1.f};
     m_clear_color = {0.5f, 0.5f, 0.5f, 1.f};
@@ -39,8 +40,8 @@ MyGLApp::MyGLApp() : GLApp() {
         {"erode",             "int itr",            "erode an image"},
         {"dilate",            "int itr",            "dilate an image"},
         {"detect_face",       "",                   "detect faces"},
-        {"load",              "",                   "load an image"},
-        {"save",              "",                   "save an image"},
+        {"load",              "",                   "load a file (config, image)"},
+        {"save",              "",                   "save a file (config, image)"},
         {"scale",             "float f",            "set scale"},
         {"fit",               "",                   "set fit"},
         {"info",              "",                   "print info"},
@@ -94,9 +95,8 @@ void MyGLApp::cmd_clear() {
 }
 
 void MyGLApp::cmd_image(const tt::Vec2i& size) {
-    tt::Color4uc rgba = tt::float2uchar(m_color0);
     m_image.alloc(size[0], size[1]);
-    m_image.fill(rgba);
+    m_image.fill(tt::toColor4uc(m_color0));
 }
 
 void MyGLApp::cmd_get_value(int x, int y) {
@@ -105,8 +105,7 @@ void MyGLApp::cmd_get_value(int x, int y) {
 }
 
 void MyGLApp::cmd_set_value(int x, int y) {
-    tt::Color4uc rgba = tt::float2uchar(m_color0);
-    m_image.setValue(x, y, rgba);
+    m_image.setValue(x, y, tt::toColor4uc(m_color0));
 }
 
 void MyGLApp::cmd_rect(const tt::Vec2i& _o, const tt::Vec2i& _size) {
@@ -120,38 +119,27 @@ void MyGLApp::cmd_rect(const tt::Vec2i& _o, const tt::Vec2i& _size) {
 }
 
 void MyGLApp::cmd_rect_fill(const tt::Vec2i& o, const tt::Vec2i& size) {
-    tt::Color4uc rgba = tt::float2uchar(m_color0);
-    f_fill_rect(m_image, o, size, rgba);
+    f_fill_rect(m_image, o, size, tt::toColor4uc(m_color0));
 }
 
 void MyGLApp::cmd_vstripe(int nw) {
-    tt::Color4uc rgba0 = tt::float2uchar(m_color0);
-    tt::Color4uc rgba1 = tt::float2uchar(m_color1);
-    f_create_vstripe_image(m_image, nw, rgba0, rgba1);
+    f_create_vstripe_image(m_image, nw, tt::toColor4uc(m_color0), tt::toColor4uc(m_color1));
 }
 
 void MyGLApp::cmd_hstripe(int nh) {
-    tt::Color4uc rgba0 = tt::float2uchar(m_color0);
-    tt::Color4uc rgba1 = tt::float2uchar(m_color1);
-    f_create_hstripe_image(m_image, nh, rgba0, rgba1);
+    f_create_hstripe_image(m_image, nh, tt::toColor4uc(m_color0), tt::toColor4uc(m_color1));
 }
 
 void MyGLApp::cmd_checker(const tt::Vec2i& n) {
-    tt::Color4uc rgba0 = tt::float2uchar(m_color0);
-    tt::Color4uc rgba1 = tt::float2uchar(m_color1);
-    f_create_checker_image(m_image, n[0], n[1], rgba0, rgba1);
+    f_create_checker_image(m_image, n[0], n[1], tt::toColor4uc(m_color0), tt::toColor4uc(m_color1));
 }
 
 void MyGLApp::cmd_hgrad() {
-    tt::Color4uc rgba0 = tt::float2uchar(m_color0);
-    tt::Color4uc rgba1 = tt::float2uchar(m_color1);
-    tt::f_image_hgrad(m_image, rgba0, rgba1);
+    tt::f_image_hgrad(m_image, tt::toColor4uc(m_color0), tt::toColor4uc(m_color1));
 }
 
 void MyGLApp::cmd_vgrad() {
-    tt::Color4uc rgba0 = tt::float2uchar(m_color0);
-    tt::Color4uc rgba1 = tt::float2uchar(m_color1);
-    tt::f_image_vgrad(m_image, rgba0, rgba1);
+    tt::f_image_vgrad(m_image, tt::toColor4uc(m_color0), tt::toColor4uc(m_color1));
 }
 
 void MyGLApp::cmd_flip() {
@@ -232,6 +220,8 @@ void MyGLApp::exec(const std::string& line) {
         istr >> m_clear_color;
     } else if (token == "set_face_detector") {
         istr >> m_face_detector;
+    } else if (token == "set_screen_size") {
+        istr >> m_screen_size;
     } else if (token == "scale") {
         istr >> m_scale;
         m_fit = false;
@@ -365,6 +355,8 @@ void MyGLApp::guiMainMenuBar() {
         }
         if (ImGui::BeginMenu("View")) {
             ImGui::MenuItem("Main Menu Bar", "CTRL+M", &m_show_main_menu_bar);
+            ImGui::MenuItem("Screen", NULL, &m_show_screen_panel);
+            ImGui::MenuItem("Control", NULL, &m_show_control_panel);
             ImGui::MenuItem("Console", NULL, &m_show_console_panel);
             ImGui::EndMenu();
         }
@@ -373,6 +365,28 @@ void MyGLApp::guiMainMenuBar() {
         }
         ImGui::EndMainMenuBar();
     }
+}
+
+void MyGLApp::guiScreenPanel() {
+    ImGui::SetNextWindowSize(ImVec2(m_screen_size[0] + 50, m_screen_size[1] + 150), ImGuiCond_Always);
+    ImGui::SetNextWindowPos(ImVec2(100, 100), ImGuiCond_FirstUseEver);
+    ImGui::Begin("Screen Panel", &m_show_screen_panel);
+    {
+        GLuint tex = m_glframe.getColorTexId();
+        ImTextureID imtex = (ImTextureID)tex;
+        ImGui::Image(imtex, ImVec2(m_screen_size[0], m_screen_size[1]), ImVec2(0,0), ImVec2(1,1), ImVec4(1.f, 1.f, 1.f, 1.f), ImVec4(1.f, 1.f, 1.f, 0.5f));
+    }
+    ImGuiIO& io = ImGui::GetIO();
+    ImGui::LabelText("mouse", "%d, %d", int(io.MousePos.x), int(io.MousePos.y));
+    {
+        tt::Vec2i size = m_glframe.getImageSize();
+        ImGui::LabelText("image size", "%d, %d", size[0], size[1]);
+    }
+    {
+        tt::Vec2i size = m_glframe.getScreenSize();
+        ImGui::LabelText("screen size", "%d, %d", size[0], size[1]);
+    }
+    ImGui::End();
 }
 
 void MyGLApp::guiControlPanel() {
@@ -390,7 +404,7 @@ void MyGLApp::guiControlPanel() {
     ImVec2 pos = ImGui::GetCursorScreenPos();
     ImGui::LabelText("cursor", "%f, %f", pos.x, pos.y);
     ImGuiIO& io = ImGui::GetIO();
-    ImGui::LabelText("mouse", "%f, %f", io.MousePos.x, io.MousePos.y);
+    ImGui::LabelText("mouse", "%d, %d", int(io.MousePos.x), int(io.MousePos.y));
 
     ImGui::LabelText("image size", "%d, %d", m_image.w(), m_image.h());
     ImGui::ColorEdit4("color0", m_color0.data());
@@ -401,17 +415,20 @@ void MyGLApp::guiControlPanel() {
     ImGui::Checkbox("fit", &m_fit);
 
     {
-        static GLuint tex = m_glframe.getTexId();
+        GLuint tex = m_glframe.getTexId();
         ImTextureID imtex = (ImTextureID)tex;
-        float scale = float(m_glframe.w()) / m_glframe.h();
-        ImVec2 size(scale * 200, 200);
-        ImGui::Image(imtex, size, ImVec2(0,0), ImVec2(1,1), ImColor(255,255,255,255), ImColor(255,255,255,127));
+        tt::Vec2i size = m_glframe.getImageSize();
+        float scale = float(size[0]) / size[1];
+        ImVec2 ssize(scale * 200, 200);
+        ImGui::Image(imtex, ssize, ImVec2(0,0), ImVec2(1,1), ImVec4(1.f, 1.f, 1.f, 1.f), ImVec4(1.f, 1.f, 1.f, 0.5f));
     }
 
     ImGui::End();
 }
 
 void MyGLApp::guiConsolePanel() {
+    ImGui::SetNextWindowSize(ImVec2(m_console_size[0], m_console_size[1]), ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
     ImGui::Begin("Console", &m_show_console_panel);
     m_console.draw();
     ImGui::End();
@@ -431,14 +448,15 @@ void MyGLApp::gui() {
     if (m_show_main_menu_bar) guiMainMenuBar();
     if (m_show_control_panel) guiControlPanel();
     if (m_show_console_panel) guiConsolePanel();
+    if (m_show_screen_panel)  guiScreenPanel();
 }
 
 void MyGLApp::draw() {
     glViewport(0, 0, m_w, m_h);
-    glClearColor(m_clear_color.data());
+    glClearColor_tt(m_clear_color.data());
     glClear(GL_COLOR_BUFFER_BIT);
 
-    m_glframe.setWindowSize(m_w, m_h);
+    m_glframe.setScreenSize(m_screen_size[0], m_screen_size[1]);
 
     m_tm.end();
     static int x = 0;

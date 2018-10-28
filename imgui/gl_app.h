@@ -13,32 +13,26 @@
 #include <vector>
 #include <array>
 
+inline void glClearColor_tt(const float v[4]) {
+    glClearColor(v[0], v[1], v[2], v[3]);
+}
+
+inline ImVec2 toImVec2(const tt::Vec2i& v) {
+    return ImVec2(v[0], v[1]);
+}
+
 class GLApp {
 public:
     GLApp();
     virtual ~GLApp();
 
-    void setWindowTitle(const std::string& s) { m_window_title = s; }
-    void setWindowSize(int w, int h) { m_w = w; m_h = h; }
-    void setIcon(const std::string& fname);
-
-    void glClearColor(const float v[4]) {
-        ::glClearColor(v[0], v[1], v[2], v[3]);
-    }
-
-    virtual void exec(const std::string& line) {}
-
-    void run();
-
-    virtual void gui() {}
-    virtual void draw() {}
-
-    virtual void init();
-    virtual void mainLoop();
-    virtual void shutdown();
-
     int w() const { return m_w; }
     int h() const { return m_h; }
+
+    void setWindowTitle(const std::string& s) { m_window_title = s; }
+    void setWindowSize(int w, int h) { m_w = w; m_h = h; }
+
+    void run();
 
     struct Command {
         std::string name;
@@ -47,6 +41,17 @@ public:
     };
 
 protected:
+    void setIcon(const std::string& fname);
+
+    virtual void exec(const std::string& line) {}
+
+    virtual void init();
+    virtual void mainLoop();
+    virtual void shutdown();
+
+    virtual void gui() {}
+    virtual void draw() {}
+
     std::string m_window_title;
     GLFWwindow* m_window;
     int m_w, m_h;

@@ -74,6 +74,9 @@ namespace tt {
         }
         return a0;
     }
+    inline Color4uc toColor4uc(const Color4f& c) {
+        return float2uchar(c);
+    }
 
     //==================================================
     // IO

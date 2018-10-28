@@ -10,7 +10,6 @@ set(app_SRCS
   main.cpp
   myglapp.cpp
   gl_app.cpp
-  gl_fbo.cpp
   gl_frame.cpp
   image_util.cpp
   ../util/filename.cxx

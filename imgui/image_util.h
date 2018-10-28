@@ -7,7 +7,7 @@
 
 void   f_load_image(const std::string& fname, tt::Image4uc& image);
 void   f_save_image(const std::string& fname, const tt::Image4uc& image);
-void   f_rect(tt::Image4uc& image, const tt::Vec2i& o, const tt::Vec2i& size, const tt::Color4uc& color);
+void   f_draw_rect(tt::Image4uc& image, const tt::Vec2i& o, const tt::Vec2i& size, const tt::Color4uc& color);
 void   f_fill_rect(tt::Image4uc& image, const tt::Vec2i& o, const tt::Vec2i& size, const tt::Color4uc& color);
 void   f_create_vstripe_image(tt::Image4uc& image, int nw, const tt::Color4uc& color0, const tt::Color4uc& color1);
 void   f_create_hstripe_image(tt::Image4uc& image, int nh, const tt::Color4uc& color0, const tt::Color4uc& color1);

@@ -3,7 +3,6 @@
 
 #include "gl_app.h"
 #include "gl_frame.h"
-#include "gl_fbo.h"
 #include <util/type.h>
 #include <util/image.h>
 #include <util/time.h>
@@ -43,6 +42,7 @@ public:
     void guiMainMenuBar();
     void guiControlPanel();
     void guiConsolePanel();
+    void guiScreenPanel();
 
     void init();
     void gui();
@@ -52,6 +52,7 @@ private:
     bool m_show_main_menu_bar;
     bool m_show_control_panel;
     bool m_show_console_panel;
+    bool m_show_screen_panel;
 
     Console m_console;
     GLFrame m_glframe;
@@ -59,9 +60,16 @@ private:
     bool m_fit;
 
     tt::Image4uc m_image;
+
+    // color range: [0, 1]
     tt::Color4f m_color0;
     tt::Color4f m_color1;
     tt::Color4f m_clear_color;
+
+    //tt::Vec2i m_screen_size = {1080, 1920};
+    tt::Vec2i m_screen_size = {400, 711};
+    tt::Vec2i m_console_size = {600, 400};
+
     std::string m_face_detector;
     tt::Time m_tm;
 };
