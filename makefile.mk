@@ -30,6 +30,9 @@ clean:
 cleanall:
 	rm -rf build
 
+cleanout:
+	rm -f _*.png
+
 tags:
 	ctags -R .
 
@@ -38,11 +41,14 @@ format:
 
 help:
 	@echo "make all"
+	@echo "make all.unix"
+	@echo "make all.vs2017"
 	@echo "make cmake.unix"
 	@echo "make cmake.vs2017"
 	@echo "make build"
 	@echo "make install"
 	@echo "make clean"
 	@echo "make cleanall"
+	@echo "make tags"
 	@echo "make format"
 

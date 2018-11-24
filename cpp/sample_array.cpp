@@ -1,4 +1,4 @@
-// *memo_array*
+// *memo_cpp.array*
 #include <iostream>
 #include <vector>
 #include <glm/glm.hpp>

@@ -1,4 +1,4 @@
-// *memo_sample_glm*
+// *memo_cpp.glm*
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
 #include <iostream>

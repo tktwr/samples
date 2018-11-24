@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo_py_sample_syntax*
+# *memo_py.syntax*
 
 import sys
 import my

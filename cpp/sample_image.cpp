@@ -1,14 +1,14 @@
-// *memo_sample_image*
+// *memo_cpp.image*
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb_image.h>
 #include <stb_image_write.h>
 #include <glm/glm.hpp>
-#include <spdlog/spdlog.h>
-#include <iostream>
 #include <util/util.h>
 #include <util/time.h>
 #include <util/image.h>
+#include <util/log.h>
+#include <iostream>
 
 using namespace std;
 
@@ -25,15 +25,14 @@ void f_image_save(const char* fname, std::size_t w, std::size_t h, int comp, con
     delete [] dst_data;
 }
 
-void f_image_time() {
-    auto console = spdlog::get("console");
-
+void f_image() {
     tt::Image<glm::vec3> image;
     tt::Time t;
     tt::TimeCollection tc;
-    std::vector<int> nthreads{0, 1, 4, -1};
+    std::vector<int> nthreads{0, 1, 2, 4, -1};
     std::size_t width = 4000;
     std::size_t height = 4000;
+    cout << "hardware_concurrency: " << std::thread::hardware_concurrency() << endl;
 
     for (int i=0; i<3; i++) {
         cout << "=== " << i << " ===" << endl;
@@ -43,59 +42,34 @@ void f_image_time() {
         t.start();
         image.resize(width, height);
         t.end();
-        console->info("Image<glm::vec3>::resize() {} ms", t.getElapsedMSec());
-        console->info("w={} h={} size={:.1f} MB", image.w(), image.h(), tt::Bytes_to_MB(image.size() * image.sizeOfDataType()));
+        tt::Log::I("Image<glm::vec3>::resize() %.1f ms\n", t.getElapsedMSec());
+        tt::Log::I("w=%d h=%d size=%.1f MB\n", image.w(), image.h(), tt::BytesToMB(image.size() * image.sizeOfDataType()));
 
         t.start();
         image.clear();
         t.end();
-        console->info("Image<glm::vec3>::clear() {} ms", t.getElapsedMSec());
+        tt::Log::I("Image<glm::vec3>::clear() %.1f ms\n", t.getElapsedMSec());
 
         t.start();
         image.alloc(width, height);
         t.end();
-        console->info("Image<glm::vec3>::alloc() {} ms", t.getElapsedMSec());
+        tt::Log::I("Image<glm::vec3>::alloc() %.1f ms\n", t.getElapsedMSec());
 
         t.start();
         image.fill(glm::vec3(1, 1, 1));
         t.end();
-        console->info("Image<glm::vec3>::fill() {} ms", t.getElapsedMSec());
+        tt::Log::I("Image<glm::vec3>::fill() %.1f ms\n", t.getElapsedMSec());
 
         for (auto j : nthreads) {
             t.start();
-            tt::f_image_foreach<glm::vec3>(image, [](tt::Image<glm::vec3>& image, int x, int y) {
-                int w = image.w();
-                int h = image.h();
-                image.setValue(x, y, glm::vec3(float(x)/w, float(y)/h, 1));
+            image.foreach([&](glm::vec3& val, int x, int y) {
+                val = glm::vec3(float(x)/width, float(y)/height, 1);
             }, j);
             t.end();
-            console->info("f_image_foreach<glm::vec3>: nthreads={} {} ms", j, t.getElapsedMSec());
+            tt::Log::I("Image<glm::vec3>::foreach(): nthreads=%d %.1f ms\n", j, t.getElapsedMSec());
         }
+
         f_image_save("out.png", image.w(), image.h(), 3, (float*)(image.data()));
-
-        for (auto j : nthreads) {
-            t.start();
-            tt::f_image_foreach_row<glm::vec3>(image, [](tt::Image<glm::vec3>& image, int y) {
-                const int w = image.w();
-                for (int x=0; x<w; x++) {
-                    image.setValue(x, y, glm::vec3(x, y, 1));
-                }
-            }, j);
-            t.end();
-            console->info("f_image_foreach_row<glm::vec3>: nthreads={} {} ms", j, t.getElapsedMSec());
-        }
-
-        for (auto j : nthreads) {
-            t.start();
-            tt::f_image_foreach_col<glm::vec3>(image, [](tt::Image<glm::vec3>& image, int x) {
-                const int h = image.h();
-                for (int y=0; y<h; y++) {
-                    image.setValue(x, y, glm::vec3(x, y, 1));
-                }
-            }, j);
-            t.end();
-            console->info("f_image_foreach_col<glm::vec3>: nthreads={} {} ms", j, t.getElapsedMSec());
-        }
 
         t.start();
         glm::vec3* p = image.data();
@@ -106,73 +80,12 @@ void f_image_time() {
             }
         }
         t.end();
-        console->info("loop: {} ms", t.getElapsedMSec());
-    }
-}
-
-void f_image_usage() {
-    tt::Image<int> image(10, 5);
-    int nthreads = 0;
-
-    {
-        // explicit func
-        std::function<void(tt::Image<int>&, int, int)> func = [](tt::Image<int>& image, int x, int y) {
-            cout << x << " ";
-            if (x == image.w() - 1) cout << endl;
-        };
-        // no need to specify the template param
-        tt::f_image_foreach(image, func, nthreads);
-        cout << endl;
-    }
-
-    {
-        // auto func
-        auto func = [](tt::Image<int>& image, int x, int y) {
-            cout << x << " ";
-            if (x == image.w() - 1) cout << endl;
-        };
-        // need to specify the template param
-        tt::f_image_foreach<int>(image, func, nthreads);
-        cout << endl;
-    }
-
-    {
-        // lamda func
-        // need to specify the template param
-        tt::f_image_foreach<int>(image, [](tt::Image<int>& image, int x, int y) {
-            cout << x << " ";
-            if (x == image.w() - 1) cout << endl;
-        }, nthreads);
-        cout << endl;
-    }
-
-    {
-        // lamda func
-        tt::f_image_foreach<int>(image, [](tt::Image<int>& image, int x, int y) {
-            image.setValue(x, y, x);
-        }, nthreads);
-        tt::f_image_print(image);
-        cout << endl;
-    }
-
-    {
-        // lamda func
-        tt::f_image_foreach<int>(image, [](tt::Image<int>& image, int x, int y) {
-            int val = image.getValue(x, y);
-            val++;
-            image.setValue(x, y, val);
-        }, nthreads);
-        tt::f_image_print(image);
-        cout << endl;
+        tt::Log::I("loop: %.1f ms\n", t.getElapsedMSec());
     }
 }
 
 int main(int argc, char *argv[]) {
-    spdlog::set_pattern("[%l] %v");
-    auto console = spdlog::stdout_logger_mt("console");
-
-    f_image_usage();
-    f_image_time();
+    f_image();
 
     return 0;
 }

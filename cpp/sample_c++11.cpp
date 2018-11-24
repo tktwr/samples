@@ -1,4 +1,4 @@
-// *memo_sample_c++*
+// *memo_cpp.11*
 #include <iostream>
 #include <map>
 #include <memory>
@@ -8,6 +8,7 @@
 
 using namespace std;
 
+// *memo_cpp.initializer*
 void f_initializer() {
     cout << "[initializer]" << endl;
 
@@ -42,6 +43,7 @@ void f_initializer() {
     }
 }
 
+// *memo_cpp.auto*
 void f_auto_type() {
     cout << "[auto_type]" << endl;
 
@@ -58,6 +60,7 @@ void f_auto_type() {
     cout << endl;
 }
 
+// *memo_cpp.for*
 void f_range_based_for_loop() {
     cout << "[range_based_for_loop]" << endl;
 
@@ -69,6 +72,7 @@ void f_range_based_for_loop() {
     cout << endl;
 }
 
+// *memo_cpp.unique_ptr*
 void f_unique_ptr() {
     cout << "[unique_ptr]" << endl;
 
@@ -94,12 +98,14 @@ void f_unique_ptr() {
     ptr2.reset();
 }
 
+// *memo_cpp.unique_ptr_array*
 void f_unique_ptr_array() {
     cout << "[unique_ptr_array]" << endl;
 
     unique_ptr<int[]> ptr(new int[10]);
 }
 
+// *memo_cpp.shared_ptr*
 void f_shared_ptr() {
     cout << "[shared_ptr]" << endl;
 
@@ -113,6 +119,7 @@ void f_shared_ptr() {
     cout << "use_count : " << ptr.use_count() << endl;
 }
 
+// *memo_cpp.weak_ptr*
 void f_weak_ptr() {
     cout << "[weak_ptr]" << endl;
 }

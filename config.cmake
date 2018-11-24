@@ -1,3 +1,5 @@
+# config.cmake
+
 set(OPENCV Z:/opt/opencv-3.4.3/build)
 set(GLFW Z:/opt/glfw)
 set(GLAD Z:/opt/glfw/deps)
@@ -18,7 +20,7 @@ include_directories(${SPDLOG}/include)
 include_directories(${CEREAL}/include)
 include_directories(${CMDLINE})
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR})
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

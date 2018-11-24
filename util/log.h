@@ -10,15 +10,29 @@ class Log {
 public:
     Log() {}
 
-    void out(const char* fmt, ...) {
+    static void I(const char* fmt, ...) {
         char buf[buf_size];
         va_list args;
+
         va_start(args, fmt);
         vsnprintf(buf, buf_size, fmt, args);
         buf[buf_size-1] = 0;
         va_end(args);
 
-        fprintf(stdout, "%s", buf);
+        fprintf(stdout, "[I] %s", buf);
+        fflush(stdout);
+    }
+
+    static void E(const char* fmt, ...) {
+        char buf[buf_size];
+        va_list args;
+
+        va_start(args, fmt);
+        vsnprintf(buf, buf_size, fmt, args);
+        buf[buf_size-1] = 0;
+        va_end(args);
+
+        fprintf(stdout, "[E] %s", buf);
         fflush(stdout);
     }
 

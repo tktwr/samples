@@ -1,4 +1,4 @@
-// *memo_sample_opencv*
+// *memo_cpp.opencv*
 #include <stdio.h>
 #include <string>
 #include <iostream>

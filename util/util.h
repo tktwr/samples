@@ -5,15 +5,15 @@
 
 namespace tt {
 
-    inline float Bytes_to_KB(std::size_t bytes) {
+    inline float BytesToKB(std::size_t bytes) {
         return bytes / 1024.f;
     }
 
-    inline float Bytes_to_MB(std::size_t bytes) {
+    inline float BytesToMB(std::size_t bytes) {
         return bytes / 1024.f / 1024.f;
     }
 
-    inline float Bytes_to_GB(std::size_t bytes) {
+    inline float BytesToGB(std::size_t bytes) {
         return bytes / 1024.f / 1024.f / 1024.f;
     }
 

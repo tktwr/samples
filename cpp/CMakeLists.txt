@@ -18,8 +18,8 @@ target_link_libraries(sample_c++11)
 add_executable(sample_cereal sample_cereal.cpp)
 target_link_libraries(sample_cereal)
 
-add_executable(sample_cmdline sample_cmdline.cpp)
-target_link_libraries(sample_cmdline)
+#add_executable(sample_cmdline sample_cmdline.cpp)
+#target_link_libraries(sample_cmdline)
 
 add_executable(sample_cstdio sample_cstdio.cpp)
 target_link_libraries(sample_cstdio)
@@ -33,8 +33,8 @@ target_link_libraries(sample_glm)
 add_executable(sample_image sample_image.cpp)
 target_link_libraries(sample_image)
 
-add_executable(sample_spdlog sample_spdlog.cpp)
-target_link_libraries(sample_spdlog)
+#add_executable(sample_spdlog sample_spdlog.cpp)
+#target_link_libraries(sample_spdlog)
 
 add_executable(sample_syntax sample_syntax.cpp)
 target_link_libraries(sample_syntax)

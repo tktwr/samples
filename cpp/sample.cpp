@@ -1,4 +1,4 @@
-// *memo_sample*
+// *memo_cpp.hello*
 #include <iostream>
 #include <stdio.h>
 

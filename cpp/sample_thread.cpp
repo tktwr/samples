@@ -1,4 +1,4 @@
-// *memo_sample_thread*
+// *memo_cpp.thread*
 #include <chrono>
 #include <iostream>
 #include <mutex>

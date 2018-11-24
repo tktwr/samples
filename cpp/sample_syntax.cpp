@@ -1,4 +1,4 @@
-// *memo_sample_syntax*
+// *memo_cpp.syntax*
 #include <iostream>
 
 using namespace std;
