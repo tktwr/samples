@@ -3,31 +3,27 @@
 #include <util/filename.h>
 #include "image_util.h"
 
-const std::string DATA = "../data/";
+static void ShowHelp(const char* desc) {
+    ImGui::SameLine();
+    ImGui::TextDisabled("[?]");
+    if (ImGui::IsItemHovered()) {
+        ImGui::SetTooltip(desc);
+    }
+}
 
 MyGLApp::MyGLApp() : GLApp() {
-    m_show_main_menu_bar = true;
-    m_show_control_panel = true;
-    m_show_console_panel = true;
-    m_show_screen_panel  = true;
-    m_color0 = {1.f, 1.f, 1.f, 1.f};
-    m_color1 = {0.f, 0.f, 0.f, 1.f};
-    m_clear_color = {0.5f, 0.5f, 0.5f, 1.f};
-    m_scale = 1.f;
-    m_fit = true;
-    //m_face_detector = DATA + "haarcascade_frontalface_default.xml";
-    m_face_detector = DATA + "lbpcascade_animeface.xml";
-
     m_commands = {
         {"set_color0",        "color4f rgba",       "set color0"},
         {"set_color1",        "color4f rgba",       "set color1"},
         {"set_clear_color",   "color4f rgba",       "set clear color"},
         {"set_face_detector", "string file",        "set face detector"},
+        {"set_screen_size",   "vec2i wh",           "set screen size"},
         {"image",             "vec2i wh",           "create an image"},
         {"get_value",         "vec2i xy",           "get a value"},
         {"set_value",         "vec2i xy",           "set a value"},
-        {"rect",              "vec2i o vec2i size", "draw a rectangle"},
-        {"rect_fill",         "vec2i o vec2i size", "fill a rectangle"},
+        {"draw_line",         "vec2i p1 vec2i p2 int thickness",  "draw a line"},
+        {"draw_rect",         "vec2i o vec2i size", "draw a rectangle"},
+        {"fill_rect",         "vec2i o vec2i size", "fill a rectangle"},
         {"vstripe",           "int n",              "create a vertical stripe image"},
         {"hstripe",           "int n",              "create a horizontal stripe image"},
         {"checker",           "vec2i nxy",          "create a checker image"},
@@ -108,7 +104,17 @@ void MyGLApp::cmd_set_value(int x, int y) {
     m_image.setValue(x, y, tt::toColor4uc(m_color0));
 }
 
-void MyGLApp::cmd_rect(const tt::Vec2i& _o, const tt::Vec2i& _size) {
+void MyGLApp::cmd_draw_line(const tt::Vec2i& _p1, const tt::Vec2i& _p2, int thickness) {
+    cv::Mat mat;
+    f_image_to_cvmat(m_image, mat);
+    cv::Point p1(_p1[0], _p1[1]);
+    cv::Point p2(_p2[0], _p2[1]);
+    cv::Scalar color(m_color0[0] * 255.f, m_color0[1] * 255.f, m_color0[2] * 255.f);
+    cv::line(mat, p1, p2, color, thickness, 8);
+    f_cvmat_to_image(mat, m_image);
+}
+
+void MyGLApp::cmd_draw_rect(const tt::Vec2i& _o, const tt::Vec2i& _size) {
     cv::Mat mat;
     f_image_to_cvmat(m_image, mat);
     cv::Point o(_o[0], _o[1]);
@@ -118,7 +124,7 @@ void MyGLApp::cmd_rect(const tt::Vec2i& _o, const tt::Vec2i& _size) {
     f_cvmat_to_image(mat, m_image);
 }
 
-void MyGLApp::cmd_rect_fill(const tt::Vec2i& o, const tt::Vec2i& size) {
+void MyGLApp::cmd_fill_rect(const tt::Vec2i& o, const tt::Vec2i& size) {
     f_fill_rect(m_image, o, size, tt::toColor4uc(m_color0));
 }
 
@@ -180,7 +186,7 @@ void MyGLApp::cmd_dilate(int iterations) {
 
 void MyGLApp::cmd_detect_face() {
     cv::CascadeClassifier cascade;
-    cascade.load(m_face_detector);
+    cascade.load(getDataDir() + m_face_detector);
 
     cv::Mat mat;
     f_image_to_cvmat(m_image, mat);
@@ -243,17 +249,24 @@ void MyGLApp::exec(const std::string& line) {
         istr >> x >> y;
         cmd_set_value(x, y);
         updateTexture();
-    } else if (token == "rect") {
-        tt::Vec2i o = {0, 0};
-        tt::Vec2i size = {128, 128};
-        istr >> o >> size;
-        cmd_rect(o, size);
+    } else if (token == "draw_line") {
+        tt::Vec2i p1 = {0, 0};
+        tt::Vec2i p2 = {0, 0};
+        int thickness = 1;
+        istr >> p1 >> p2 >> thickness;
+        cmd_draw_line(p1, p2, thickness);
         updateTexture();
-    } else if (token == "rect_fill") {
+    } else if (token == "draw_rect") {
         tt::Vec2i o = {0, 0};
         tt::Vec2i size = {128, 128};
         istr >> o >> size;
-        cmd_rect_fill(o, size);
+        cmd_draw_rect(o, size);
+        updateTexture();
+    } else if (token == "fill_rect") {
+        tt::Vec2i o = {0, 0};
+        tt::Vec2i size = {128, 128};
+        istr >> o >> size;
+        cmd_fill_rect(o, size);
         updateTexture();
     } else if (token == "vstripe") {
         int n = 8;
@@ -358,6 +371,7 @@ void MyGLApp::guiMainMenuBar() {
             ImGui::MenuItem("Screen", NULL, &m_show_screen_panel);
             ImGui::MenuItem("Control", NULL, &m_show_control_panel);
             ImGui::MenuItem("Console", NULL, &m_show_console_panel);
+            ImGui::MenuItem("Sample", NULL, &m_show_sample_panel);
             ImGui::EndMenu();
         }
         if (ImGui::BeginMenu("Help")) {
@@ -368,30 +382,55 @@ void MyGLApp::guiMainMenuBar() {
 }
 
 void MyGLApp::guiScreenPanel() {
-    ImGui::SetNextWindowSize(ImVec2(m_screen_size[0] + 50, m_screen_size[1] + 150), ImGuiCond_Always);
+    ImGui::SetNextWindowSize(ImVec2(m_screen_size[0] + 50, m_screen_size[1] + 200), ImGuiCond_Once);
     ImGui::SetNextWindowPos(ImVec2(100, 100), ImGuiCond_FirstUseEver);
     ImGui::Begin("Screen Panel", &m_show_screen_panel);
     {
+        const char* items[] = { "400x711", "711x400", "1080x1920", "1920x1080" };
+        static int i = 0;
+        ImGui::Combo("screen", &i, items, IM_ARRAYSIZE(items));
+        int w, h;
+        sscanf(items[i], "%dx%d", &w, &h);
+        m_screen_size = {w, h};
+        ImGui::DragFloat("display scale", &m_display_scale, 0.01f);
+    }
+    ImVec2 org = ImGui::GetCursorScreenPos();
+    {
         GLuint tex = m_glframe.getColorTexId();
         ImTextureID imtex = (ImTextureID)tex;
-        ImGui::Image(imtex, ImVec2(m_screen_size[0], m_screen_size[1]), ImVec2(0,0), ImVec2(1,1), ImVec4(1.f, 1.f, 1.f, 1.f), ImVec4(1.f, 1.f, 1.f, 0.5f));
+        ImVec2 ssize = toImVec2(m_display_scale * m_screen_size);
+        ImGui::Image(imtex, ssize, ImVec2(0,0), ImVec2(1,1), ImVec4(1.f, 1.f, 1.f, 1.f), ImVec4(1.f, 1.f, 1.f, 0.5f));
     }
     ImGuiIO& io = ImGui::GetIO();
-    ImGui::LabelText("mouse", "%d, %d", int(io.MousePos.x), int(io.MousePos.y));
     {
-        tt::Vec2i size = m_glframe.getImageSize();
-        ImGui::LabelText("image size", "%d, %d", size[0], size[1]);
+        ImVec2 pos = io.MousePos;
+        int x = int((pos.x - org.x) / m_display_scale);
+        int y = int((pos.y - org.y) / m_display_scale);
+        ImGui::LabelText("mouse", "%d, %d", x, y);
     }
     {
-        tt::Vec2i size = m_glframe.getScreenSize();
-        ImGui::LabelText("screen size", "%d, %d", size[0], size[1]);
+        static ImVec2 pos = {0, 0};
+        if (ImGui::IsMouseClicked(0)) {
+            pos = io.MousePos;
+        }
+        int x = int((pos.x - org.x) / m_display_scale);
+        int y = int((pos.y - org.y) / m_display_scale);
+        ImGui::LabelText("clicked", "%d, %d", x, y);
     }
+    {
+        int button = 1;
+        if (ImGui::IsMouseDragging(button, 0.0f)) {
+            ImVec2 pos = io.MousePos;
+            int x = int((pos.x - org.x) / m_display_scale);
+            int y = int((pos.y - org.y) / m_display_scale);
+            ImGui::LabelText("dragging", "%d, %d", x, y);
+        }
+    }
+
     ImGui::End();
 }
 
 void MyGLApp::guiControlPanel() {
-    ImGuiStyle& style = ImGui::GetStyle();
-
     ImGui::Begin("Control Panel", &m_show_control_panel);
     if (ImGui::Button("Main Menu Bar Button")) {
         m_show_main_menu_bar = !m_show_main_menu_bar;
@@ -399,20 +438,18 @@ void MyGLApp::guiControlPanel() {
     if (ImGui::Button("Console Button")) {
         m_show_console_panel = !m_show_console_panel;
     }
+
     ImGui::LabelText("window size", "%d, %d", w(), h());
 
-    ImVec2 pos = ImGui::GetCursorScreenPos();
-    ImGui::LabelText("cursor", "%f, %f", pos.x, pos.y);
     ImGuiIO& io = ImGui::GetIO();
     ImGui::LabelText("mouse", "%d, %d", int(io.MousePos.x), int(io.MousePos.y));
 
-    ImGui::LabelText("image size", "%d, %d", m_image.w(), m_image.h());
+    ImGuiStyle& style = ImGui::GetStyle();
+    ImGui::SliderFloat("global alpha", &style.Alpha, 0.20f, 1.0f, "%.2f");
+
+    ImGui::ColorEdit4("clear color", m_clear_color.data());
     ImGui::ColorEdit4("color0", m_color0.data());
     ImGui::ColorEdit4("color1", m_color1.data());
-    ImGui::SliderFloat("global alpha", &style.Alpha, 0.20f, 1.0f, "%.2f");
-    ImGui::ColorEdit4("clear color", m_clear_color.data());
-    ImGui::DragFloat("scale", &m_scale, 0.01f);
-    ImGui::Checkbox("fit", &m_fit);
 
     {
         GLuint tex = m_glframe.getTexId();
@@ -422,6 +459,38 @@ void MyGLApp::guiControlPanel() {
         ImVec2 ssize(scale * 200, 200);
         ImGui::Image(imtex, ssize, ImVec2(0,0), ImVec2(1,1), ImVec4(1.f, 1.f, 1.f, 1.f), ImVec4(1.f, 1.f, 1.f, 0.5f));
     }
+    {
+        ImGui::LabelText("image size", "%d, %d", m_image.w(), m_image.h());
+        ImGui::DragFloat("scale", &m_scale, 0.01f);
+        ImGui::Checkbox("fit", &m_fit);
+    }
+
+    ImGui::End();
+}
+
+void MyGLApp::guiSamplePanel() {
+    ImGui::Begin("Sample Panel", &m_show_sample_panel);
+    ImGui::Separator();
+    {
+        if (ImGui::TreeNode("Tree")) {
+            ImGui::Text("tree0");
+            ImGui::Text("tree1");
+            ImGui::Text("tree2");
+            ImGui::TreePop();
+        }
+    }
+    {
+        static int e = 0;
+        ImGui::RadioButton("radio0", &e, 0); ImGui::SameLine();
+        ImGui::RadioButton("radio1", &e, 1); ImGui::SameLine();
+        ImGui::RadioButton("radio2", &e, 2);
+    }
+    {
+        static char str[256] = "Hello, world!";
+        ImGui::InputText("input text", str, IM_ARRAYSIZE(str));
+        ShowHelp("help");
+    }
+    ImGui::ColorEdit4("sample_color", m_sample_color.data());
 
     ImGui::End();
 }
@@ -436,7 +505,6 @@ void MyGLApp::guiConsolePanel() {
 
 void MyGLApp::init() {
     GLApp::init();
-    setIcon(DATA + "icon.png");
     exec("image");
     exec("checker");
     m_glframe.init();
@@ -446,35 +514,27 @@ void MyGLApp::init() {
 
 void MyGLApp::gui() {
     if (m_show_main_menu_bar) guiMainMenuBar();
+    if (m_show_screen_panel)  guiScreenPanel();
     if (m_show_control_panel) guiControlPanel();
     if (m_show_console_panel) guiConsolePanel();
-    if (m_show_screen_panel)  guiScreenPanel();
+    if (m_show_sample_panel)  guiSamplePanel();
 }
 
 void MyGLApp::draw() {
-    glViewport(0, 0, m_w, m_h);
-    glClearColor_tt(m_clear_color.data());
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    m_glframe.setScreenSize(m_screen_size[0], m_screen_size[1]);
-
     m_tm.end();
-    static int x = 0;
-    static int y = 0;
     const tt::Color4f colors[] = {
         {1.f, 0.f, 0.f, 1.f},
         {0.f, 1.f, 0.f, 1.f},
         {0.f, 0.f, 1.f, 1.f}};
     if (int i = m_tm.getElapsedMSec() / 1000) {
-        m_color0 = colors[i%3];
+        m_sample_color = colors[i%3];
     }
-    if (m_image.size() != 0) {
-        cmd_set_value(x++, y);
-        updateTexture();
-    }
-    if (x == m_image.w()) { x = 0; y++; }
-    if (y == m_image.h()) y = 0;
 
+    glViewport(0, 0, m_w, m_h);
+    glClearColor_tt(m_clear_color.data());
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    m_glframe.setScreenSize(m_screen_size[0], m_screen_size[1]);
     m_glframe.draw(m_scale, m_fit);
 }
 

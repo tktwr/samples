@@ -31,6 +31,9 @@ public:
 
     void setWindowTitle(const std::string& s) { m_window_title = s; }
     void setWindowSize(int w, int h) { m_w = w; m_h = h; }
+    void setIconFile(const std::string& fname) { m_icon_file = fname; }
+    void setDataDir(const std::string& dir) { m_data_dir = dir; }
+    std::string getDataDir() const { return m_data_dir; }
 
     void run();
 
@@ -52,9 +55,12 @@ protected:
     virtual void gui() {}
     virtual void draw() {}
 
+    std::string m_data_dir;
+    std::string m_icon_file;
     std::string m_window_title;
-    GLFWwindow* m_window;
     int m_w, m_h;
+
+    GLFWwindow* m_window;
     std::vector<Command> m_commands;
 };
 

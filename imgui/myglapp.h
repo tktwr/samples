@@ -9,6 +9,8 @@
 #include <string>
 #include "imgui_console.h"
 
+const std::string DATA = "../data/";
+
 class MyGLApp : public GLApp {
 public:
     MyGLApp();
@@ -21,8 +23,9 @@ public:
     void cmd_image(const tt::Vec2i& size);
     void cmd_get_value(int x, int y);
     void cmd_set_value(int x, int y);
-    void cmd_rect(const tt::Vec2i& _o, const tt::Vec2i& _size);
-    void cmd_rect_fill(const tt::Vec2i& o, const tt::Vec2i& size);
+    void cmd_draw_line(const tt::Vec2i& p1, const tt::Vec2i& p2, int thickness);
+    void cmd_draw_rect(const tt::Vec2i& o, const tt::Vec2i& size);
+    void cmd_fill_rect(const tt::Vec2i& o, const tt::Vec2i& size);
     void cmd_vstripe(int nw);
     void cmd_hstripe(int nh);
     void cmd_checker(const tt::Vec2i& n);
@@ -40,38 +43,43 @@ public:
     void exec(const std::string& line);
 
     void guiMainMenuBar();
+    void guiScreenPanel();
     void guiControlPanel();
     void guiConsolePanel();
-    void guiScreenPanel();
+    void guiSamplePanel();
 
     void init();
     void gui();
     void draw();
 
 private:
-    bool m_show_main_menu_bar;
-    bool m_show_control_panel;
-    bool m_show_console_panel;
-    bool m_show_screen_panel;
-
     Console m_console;
     GLFrame m_glframe;
-    float m_scale;
-    bool m_fit;
-
     tt::Image4uc m_image;
+    tt::Time m_tm;
 
-    // color range: [0, 1]
-    tt::Color4f m_color0;
-    tt::Color4f m_color1;
-    tt::Color4f m_clear_color;
+    bool m_show_main_menu_bar = true;
+    bool m_show_screen_panel = true;
+    bool m_show_control_panel = true;
+    bool m_show_console_panel = true;
+    bool m_show_sample_panel = true;
 
-    //tt::Vec2i m_screen_size = {1080, 1920};
     tt::Vec2i m_screen_size = {400, 711};
     tt::Vec2i m_console_size = {600, 400};
 
-    std::string m_face_detector;
-    tt::Time m_tm;
+    // color range: [0, 1]
+    tt::Color4f m_color0 = {1.f, 1.f, 1.f, 1.f};
+    tt::Color4f m_color1 = {0.f, 0.f, 0.f, 1.f};
+    tt::Color4f m_clear_color = {0.5f, 0.5f, 0.5f, 1.f};
+
+    float m_display_scale = 1.f;
+    float m_scale = 1.f;
+    bool m_fit = true;
+
+    //std::string m_face_detector = "haarcascade_frontalface_default.xml";
+    std::string m_face_detector = "lbpcascade_animeface.xml";
+
+    tt::Color4f m_sample_color = {1.f, 1.f, 1.f, 1.f};
 };
 
 #endif  // myglapp_h

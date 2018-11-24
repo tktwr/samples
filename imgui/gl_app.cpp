@@ -93,7 +93,7 @@ void GLApp::init() {
     // Setup Dear ImGui binding
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGuiIO& io = ImGui::GetIO();
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
 
@@ -103,6 +103,8 @@ void GLApp::init() {
     // Setup style
     ImGui::StyleColorsDark();
     //ImGui::StyleColorsClassic();
+
+    setIcon(getDataDir() + m_icon_file);
 }
 
 void GLApp::mainLoop() {
