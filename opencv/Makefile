@@ -1,2 +1,2 @@
-include ../makefile.mk
+include ../../libtt/config/makefile.mk
 

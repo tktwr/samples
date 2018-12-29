@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.8)
 
 project(opencv_samples CXX)
 
@@ -13,7 +13,4 @@ target_link_libraries(display_image opencv_highgui opencv_imgproc opencv_core -s
 
 add_executable(detect_face detect_face.cpp)
 target_link_libraries(detect_face ${OpenCV_LIBS} -static)
-
-message(STATUS "OpenCV_INCLUDE_DIRS=${OpenCV_INCLUDE_DIRS}")
-message(STATUS "OpenCV_LIBS=${OpenCV_LIBS}")
 

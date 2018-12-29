@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project(sample_cmake)
 
-include(../config.cmake)
+include(../../libtt/config/config.cmake)
 
 set(app_SRCS sample_cmake.cpp)
 

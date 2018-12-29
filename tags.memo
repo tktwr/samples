@@ -21,3 +21,5 @@ memo_cpp.unique_ptr_array	cpp/sample_c++11.cpp	/*memo_cpp.unique_ptr_array*
 memo_cpp.util	cpp/sample_util.cpp	/*memo_cpp.util*
 memo_cpp.weak_ptr	cpp/sample_c++11.cpp	/*memo_cpp.weak_ptr*
 memo_py.syntax	py/sample_syntax.py	/*memo_py.syntax*
+memo_sh.app	sh/sample_app.sh	/*memo_sh.app*
+memo_sh.syntax	sh/sample_syntax.sh	/*memo_sh.syntax*

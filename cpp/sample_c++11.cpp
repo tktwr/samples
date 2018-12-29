@@ -5,8 +5,20 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <limits>
 
 using namespace std;
+
+// *memo_cpp.limits*
+void f_limits() {
+    cout << "[limits]" << endl;
+
+    cout << "unsigned char  max: " << int(std::numeric_limits<unsigned char>::max()) << endl;
+    cout << "unsigned short max: " << std::numeric_limits<unsigned short>::max() << endl;
+    cout << "unsigned int   max: " << std::numeric_limits<unsigned int>::max() << endl;
+    cout << "float          max: " << std::numeric_limits<float>::max() << endl;
+    cout << "double         max: " << std::numeric_limits<double>::max() << endl;
+}
 
 // *memo_cpp.initializer*
 void f_initializer() {
@@ -125,6 +137,7 @@ void f_weak_ptr() {
 }
 
 int main(int argc, char *argv[]) {
+    f_limits();
     f_initializer();
     f_auto_type();
     f_range_based_for_loop();
