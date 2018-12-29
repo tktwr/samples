@@ -1,6 +1,5 @@
 !_TAG_FILE_ENCODING	utf-8	//
 memo_cpp.11	cpp/sample_c++11.cpp	/*memo_cpp.11*
-memo_cpp.array	cpp/sample_array.cpp	/*memo_cpp.array*
 memo_cpp.auto	cpp/sample_c++11.cpp	/*memo_cpp.auto*
 memo_cpp.cereal	cpp/sample_cereal.cpp	/*memo_cpp.cereal*
 memo_cpp.cmdline	cpp/sample_cmdline.cpp	/*memo_cpp.cmdline*
@@ -9,8 +8,8 @@ memo_cpp.for	cpp/sample_c++11.cpp	/*memo_cpp.for*
 memo_cpp.fstream	cpp/sample_fstream.cpp	/*memo_cpp.fstream*
 memo_cpp.glm	cpp/sample_glm.cpp	/*memo_cpp.glm*
 memo_cpp.hello	cpp/sample.cpp	/*memo_cpp.hello*
-memo_cpp.image	cpp/sample_image.cpp	/*memo_cpp.image*
 memo_cpp.initializer	cpp/sample_c++11.cpp	/*memo_cpp.initializer*
+memo_cpp.limits	cpp/sample_c++11.cpp	/*memo_cpp.limits*
 memo_cpp.opencv	opencv/display_image.cpp	/*memo_cpp.opencv*
 memo_cpp.shared_ptr	cpp/sample_c++11.cpp	/*memo_cpp.shared_ptr*
 memo_cpp.spdlog	cpp/sample_spdlog.cpp	/*memo_cpp.spdlog*
@@ -18,7 +17,6 @@ memo_cpp.syntax	cpp/sample_syntax.cpp	/*memo_cpp.syntax*
 memo_cpp.thread	cpp/sample_thread.cpp	/*memo_cpp.thread*
 memo_cpp.unique_ptr	cpp/sample_c++11.cpp	/*memo_cpp.unique_ptr*
 memo_cpp.unique_ptr_array	cpp/sample_c++11.cpp	/*memo_cpp.unique_ptr_array*
-memo_cpp.util	cpp/sample_util.cpp	/*memo_cpp.util*
 memo_cpp.weak_ptr	cpp/sample_c++11.cpp	/*memo_cpp.weak_ptr*
 memo_py.syntax	py/sample_syntax.py	/*memo_py.syntax*
 memo_sh.app	sh/sample_app.sh	/*memo_sh.app*
