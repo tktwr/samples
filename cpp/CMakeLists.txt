@@ -12,6 +12,9 @@ target_link_libraries(sample)
 add_executable(sample_c++11 sample_c++11.cpp)
 target_link_libraries(sample_c++11)
 
+add_executable(sample_class sample_class.cpp)
+target_link_libraries(sample_class)
+
 add_executable(sample_cereal sample_cereal.cpp)
 target_link_libraries(sample_cereal)
 
