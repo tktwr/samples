@@ -2,9 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project(app_imgui)
 
-set(LIBTT ../../libtt)
-
-include(${LIBTT}/config/config.cmake)
+include($ENV{MY_LIBTT}/config/config.cmake)
 
 set(app_SRCS
   main.cpp

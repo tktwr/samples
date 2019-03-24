@@ -2,9 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project(sample CXX)
 
-include(../../libtt/config/config.cmake)
-
-include_directories(../../libtt)
+include($ENV{MY_LIBTT}/config/config.cmake)
 
 add_executable(sample sample.cpp)
 target_link_libraries(sample)
@@ -18,8 +16,8 @@ target_link_libraries(sample_class)
 add_executable(sample_cereal sample_cereal.cpp)
 target_link_libraries(sample_cereal)
 
-#add_executable(sample_cmdline sample_cmdline.cpp)
-#target_link_libraries(sample_cmdline)
+add_executable(sample_cmdline sample_cmdline.cpp)
+target_link_libraries(sample_cmdline)
 
 add_executable(sample_cstdio sample_cstdio.cpp)
 target_link_libraries(sample_cstdio)
