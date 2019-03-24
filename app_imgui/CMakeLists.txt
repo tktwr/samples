@@ -15,7 +15,7 @@ set(app_SRCS
 add_executable(${PROJECT_NAME} ${app_SRCS})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${OPENGL_gl_LIBRARY} ${GLFW_LIBS})
 
-file(GLOB DATA_FILES ../../data/icons/app.png ${OpenCV_DLLS})
+file(GLOB DATA_FILES data/icon.png ${OpenCV_DLLS})
 
 if(NOT ("${DATA_FILES}" STREQUAL ""))
   add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
