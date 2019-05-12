@@ -1,40 +1,38 @@
-#include <iostream>
 #include <memory>
-
-using namespace std;
+#include <iostream>
 
 class ABase {
 public:
     ABase() {
-        cout << "ABase::ABase()" << endl;
+        std::cout << "ABase::ABase()" << std::endl;
     }
     virtual ~ABase() {
-        cout << "ABase::~ABase()" << endl;
+        std::cout << "ABase::~ABase()" << std::endl;
     }
     void hello() const {
-        cout << "ABase::hello() " << this << endl;
+        std::cout << "ABase::hello() " << this << std::endl;
     }
 };
 
 class A : public ABase {
 public:
     A() {
-        cout << "A::A()" << endl;
+        std::cout << "A::A()" << std::endl;
     }
     virtual ~A() {
-        cout << "A::~A()" << endl;
+        std::cout << "A::~A()" << std::endl;
     }
 };
 
 class B {
 public:
     void hello() const {
-        cout << "B::hello() " << this << endl;
+        std::cout << "B::hello() " << this << std::endl;
     }
 };
 
 void f_constructor() {
-    cout << "=== f_constructor()" << endl;
+    std::cout << "=== f_constructor()" << std::endl;
     A a;     // OK
     //A a(); // NG
     //A a{}; // OK
@@ -45,7 +43,7 @@ void f_constructor() {
 }
 
 void f_ptr() {
-    cout << "=== f_ptr()" << endl;
+    std::cout << "=== f_ptr()" << std::endl;
     {
         ABase* p0 = new A();
 
@@ -72,7 +70,10 @@ void f_ptr() {
 }
 
 void f_shared_ptr() {
-    cout << "=== f_shared_ptr()" << endl;
+    std::cout << "=== f_shared_ptr()" << std::endl;
+    {
+        std::shared_ptr<int> p = std::make_shared<int>(100);
+    }
     {
         std::shared_ptr<A> p = std::make_shared<A>();
         std::shared_ptr<A> p1 = p;

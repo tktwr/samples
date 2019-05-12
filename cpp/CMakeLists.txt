@@ -22,6 +22,9 @@ target_link_libraries(sample_cmdline)
 add_executable(sample_cstdio sample_cstdio.cpp)
 target_link_libraries(sample_cstdio)
 
+add_executable(sample_eigen sample_eigen.cpp)
+target_link_libraries(sample_eigen)
+
 add_executable(sample_fstream sample_fstream.cpp)
 target_link_libraries(sample_fstream)
 
