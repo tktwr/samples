@@ -1,6 +1,61 @@
 #include "myglapp.h"
+#include <json11.hpp>
 
 using namespace std;
+
+namespace ImGui {
+    void StyleColorsCustom(ImGuiStyle* dst = NULL);
+}
+
+void ImGui::StyleColorsCustom(ImGuiStyle* dst)
+{
+    ImGuiStyle* style = dst ? dst : &ImGui::GetStyle();
+    ImVec4* colors = style->Colors;
+
+    colors[ImGuiCol_Text]                   = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
+    colors[ImGuiCol_TextDisabled]           = ImVec4(0.50f, 0.50f, 0.50f, 1.00f);
+    colors[ImGuiCol_WindowBg]               = ImVec4(0.06f, 0.06f, 0.06f, 0.94f);
+    colors[ImGuiCol_ChildBg]                = ImVec4(1.00f, 1.00f, 1.00f, 0.00f);
+    colors[ImGuiCol_PopupBg]                = ImVec4(0.08f, 0.08f, 0.08f, 0.94f);
+    colors[ImGuiCol_Border]                 = ImVec4(0.43f, 0.43f, 0.50f, 0.50f);
+    colors[ImGuiCol_BorderShadow]           = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
+    colors[ImGuiCol_FrameBg]                = ImVec4(0.40f, 0.40f, 0.40f, 0.54f);
+    colors[ImGuiCol_FrameBgHovered]         = ImVec4(0.26f, 0.59f, 0.98f, 0.40f);
+    colors[ImGuiCol_FrameBgActive]          = ImVec4(0.26f, 0.59f, 0.98f, 0.67f);
+    colors[ImGuiCol_TitleBg]                = ImVec4(0.04f, 0.04f, 0.04f, 1.00f);
+    colors[ImGuiCol_TitleBgActive]          = ImVec4(0.30f, 0.30f, 0.30f, 1.00f);
+    colors[ImGuiCol_TitleBgCollapsed]       = ImVec4(0.00f, 0.00f, 0.00f, 0.51f);
+    colors[ImGuiCol_MenuBarBg]              = ImVec4(0.14f, 0.14f, 0.14f, 1.00f);
+    colors[ImGuiCol_ScrollbarBg]            = ImVec4(0.02f, 0.02f, 0.02f, 0.53f);
+    colors[ImGuiCol_ScrollbarGrab]          = ImVec4(0.31f, 0.31f, 0.31f, 1.00f);
+    colors[ImGuiCol_ScrollbarGrabHovered]   = ImVec4(0.41f, 0.41f, 0.41f, 1.00f);
+    colors[ImGuiCol_ScrollbarGrabActive]    = ImVec4(0.51f, 0.51f, 0.51f, 1.00f);
+    colors[ImGuiCol_CheckMark]              = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    colors[ImGuiCol_SliderGrab]             = ImVec4(0.24f, 0.52f, 0.88f, 1.00f);
+    colors[ImGuiCol_SliderGrabActive]       = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    colors[ImGuiCol_Button]                 = ImVec4(0.50f, 0.50f, 0.50f, 0.40f);
+    colors[ImGuiCol_ButtonHovered]          = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    colors[ImGuiCol_ButtonActive]           = ImVec4(0.06f, 0.53f, 0.98f, 1.00f);
+    colors[ImGuiCol_Header]                 = ImVec4(0.26f, 0.59f, 0.98f, 0.31f);
+    colors[ImGuiCol_HeaderHovered]          = ImVec4(0.26f, 0.59f, 0.98f, 0.80f);
+    colors[ImGuiCol_HeaderActive]           = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    colors[ImGuiCol_Separator]              = colors[ImGuiCol_Border];
+    colors[ImGuiCol_SeparatorHovered]       = ImVec4(0.10f, 0.40f, 0.75f, 0.78f);
+    colors[ImGuiCol_SeparatorActive]        = ImVec4(0.10f, 0.40f, 0.75f, 1.00f);
+    colors[ImGuiCol_ResizeGrip]             = ImVec4(0.26f, 0.59f, 0.98f, 0.25f);
+    colors[ImGuiCol_ResizeGripHovered]      = ImVec4(0.26f, 0.59f, 0.98f, 0.67f);
+    colors[ImGuiCol_ResizeGripActive]       = ImVec4(0.26f, 0.59f, 0.98f, 0.95f);
+    colors[ImGuiCol_PlotLines]              = ImVec4(0.61f, 0.61f, 0.61f, 1.00f);
+    colors[ImGuiCol_PlotLinesHovered]       = ImVec4(1.00f, 0.43f, 0.35f, 1.00f);
+    colors[ImGuiCol_PlotHistogram]          = ImVec4(0.90f, 0.70f, 0.00f, 1.00f);
+    colors[ImGuiCol_PlotHistogramHovered]   = ImVec4(1.00f, 0.60f, 0.00f, 1.00f);
+    colors[ImGuiCol_TextSelectedBg]         = ImVec4(0.26f, 0.59f, 0.98f, 0.35f);
+    colors[ImGuiCol_DragDropTarget]         = ImVec4(1.00f, 1.00f, 0.00f, 0.90f);
+    colors[ImGuiCol_NavHighlight]           = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    colors[ImGuiCol_NavWindowingHighlight]  = ImVec4(1.00f, 1.00f, 1.00f, 0.70f);
+    colors[ImGuiCol_NavWindowingDimBg]      = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
+    colors[ImGuiCol_ModalWindowDimBg]       = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
+}
 
 MyGLApp::MyGLApp() : GLApp() {
     m_commands = {
@@ -53,6 +108,7 @@ void MyGLApp::drawGuiMainMenuBar() {
         if (ImGui::BeginMenu("View")) {
             ImGui::MenuItem("Main Menu Bar", "CTRL+M", &m_show_main_menu_bar);
             ImGui::MenuItem("Sample", NULL, &m_show_sample_panel);
+            ImGui::MenuItem("Style", NULL, &m_show_style_panel);
             ImGui::MenuItem("Console", NULL, &m_show_console_panel);
             ImGui::EndMenu();
         }
@@ -77,13 +133,14 @@ void MyGLApp::drawGuiSamplePanel() {
         ImGui::BulletText("BulletText2");
     }
     {
-        const char* items[] = {"Classic", "Dark", "Light"};
+        const char* items[] = {"Classic", "Dark", "Light", "Custom"};
         static int i = 1;
         if (ImGui::Combo("Style", &i, items, IM_ARRAYSIZE(items))) {
             switch (i) {
                 case 0: ImGui::StyleColorsClassic(); break;
                 case 1: ImGui::StyleColorsDark(); break;
                 case 2: ImGui::StyleColorsLight(); break;
+                case 3: ImGui::StyleColorsCustom(); break;
             }
         }
     }
@@ -189,9 +246,70 @@ void MyGLApp::drawGuiSamplePanel() {
     ImGui::End();
 }
 
+void save_style() {
+}
+
+void color_gui(ImVec4* colors, ImGuiCol_ id, const char* name) {
+    ImVec4& val = colors[id];
+    //ImGui::DragFloat4(name, &val.x, 0.01f);
+    ImGui::ColorEdit4(name, &val.x);
+}
+
+void MyGLApp::drawGuiStylePanel() {
+    ImGuiStyle* style = &ImGui::GetStyle();
+    ImVec4* colors = style->Colors;
+
+    ImGui::Begin("Style Panel", &m_show_style_panel);
+    color_gui(colors, ImGuiCol_Text, "ImGuiCol_Text");
+    color_gui(colors, ImGuiCol_TextDisabled, "ImGuiCol_TextDisabled");
+    color_gui(colors, ImGuiCol_WindowBg, "ImGuiCol_WindowBg");
+    color_gui(colors, ImGuiCol_ChildBg, "ImGuiCol_ChildBg");
+    color_gui(colors, ImGuiCol_PopupBg, "ImGuiCol_PopupBg");
+    color_gui(colors, ImGuiCol_Border, "ImGuiCol_Border");
+    color_gui(colors, ImGuiCol_BorderShadow, "ImGuiCol_BorderShadow");
+    color_gui(colors, ImGuiCol_FrameBg, "ImGuiCol_FrameBg");
+    color_gui(colors, ImGuiCol_FrameBgHovered, "ImGuiCol_FrameBgHovered");
+    color_gui(colors, ImGuiCol_FrameBgActive, "ImGuiCol_FrameBgActive");
+    color_gui(colors, ImGuiCol_TitleBg, "ImGuiCol_TitleBg");
+    color_gui(colors, ImGuiCol_TitleBgActive, "ImGuiCol_TitleBgActive");
+    color_gui(colors, ImGuiCol_TitleBgCollapsed, "ImGuiCol_TitleBgCollapsed");
+    color_gui(colors, ImGuiCol_MenuBarBg, "ImGuiCol_MenuBarBg");
+    color_gui(colors, ImGuiCol_ScrollbarBg, "ImGuiCol_ScrollbarBg");
+    color_gui(colors, ImGuiCol_ScrollbarGrab, "ImGuiCol_ScrollbarGrab");
+    color_gui(colors, ImGuiCol_ScrollbarGrabHovered, "ImGuiCol_ScrollbarGrabHovered");
+    color_gui(colors, ImGuiCol_ScrollbarGrabActive, "ImGuiCol_ScrollbarGrabActive");
+    color_gui(colors, ImGuiCol_CheckMark, "ImGuiCol_CheckMark");
+    color_gui(colors, ImGuiCol_SliderGrab, "ImGuiCol_SliderGrab");
+    color_gui(colors, ImGuiCol_SliderGrabActive, "ImGuiCol_SliderGrabActive");
+    color_gui(colors, ImGuiCol_Button, "ImGuiCol_Button");
+    color_gui(colors, ImGuiCol_ButtonHovered, "ImGuiCol_ButtonHovered");
+    color_gui(colors, ImGuiCol_ButtonActive, "ImGuiCol_ButtonActive");
+    color_gui(colors, ImGuiCol_Header, "ImGuiCol_Header");
+    color_gui(colors, ImGuiCol_HeaderHovered, "ImGuiCol_HeaderHovered");
+    color_gui(colors, ImGuiCol_HeaderActive, "ImGuiCol_HeaderActive");
+    color_gui(colors, ImGuiCol_Separator, "ImGuiCol_Separator");
+    color_gui(colors, ImGuiCol_SeparatorHovered, "ImGuiCol_SeparatorHovered");
+    color_gui(colors, ImGuiCol_SeparatorActive, "ImGuiCol_SeparatorActive");
+    color_gui(colors, ImGuiCol_ResizeGrip, "ImGuiCol_ResizeGrip");
+    color_gui(colors, ImGuiCol_ResizeGripHovered, "ImGuiCol_ResizeGripHovered");
+    color_gui(colors, ImGuiCol_ResizeGripActive, "ImGuiCol_ResizeGripActive");
+    color_gui(colors, ImGuiCol_PlotLines, "ImGuiCol_PlotLines");
+    color_gui(colors, ImGuiCol_PlotLinesHovered, "ImGuiCol_PlotLinesHovered");
+    color_gui(colors, ImGuiCol_PlotHistogram, "ImGuiCol_PlotHistogram");
+    color_gui(colors, ImGuiCol_PlotHistogramHovered, "ImGuiCol_PlotHistogramHovered");
+    color_gui(colors, ImGuiCol_TextSelectedBg, "ImGuiCol_TextSelectedBg");
+    color_gui(colors, ImGuiCol_DragDropTarget, "ImGuiCol_DragDropTarget");
+    color_gui(colors, ImGuiCol_NavHighlight, "ImGuiCol_NavHighlight");
+    color_gui(colors, ImGuiCol_NavWindowingHighlight, "ImGuiCol_NavWindowingHighlight");
+    color_gui(colors, ImGuiCol_NavWindowingDimBg, "ImGuiCol_NavWindowingDimBg");
+    color_gui(colors, ImGuiCol_ModalWindowDimBg, "ImGuiCol_ModalWindowDimBg");
+    ImGui::End();
+}
+
 void MyGLApp::drawGui() {
     if (m_show_main_menu_bar) drawGuiMainMenuBar();
-    if (m_show_sample_panel) drawGuiSamplePanel();
+    if (m_show_sample_panel)  drawGuiSamplePanel();
+    if (m_show_style_panel)   drawGuiStylePanel();
     if (m_show_console_panel) drawGuiConsolePanel();
 }
 

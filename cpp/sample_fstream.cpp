@@ -21,7 +21,7 @@ void f_write_text_file(const char *fname) {
 void f_read_text_file(const char *fname) {
     std::ifstream ifs(fname);
     std::string line;
-    while (getline(ifs, line)) {
+    while (std::getline(ifs, line)) {
         std::cout << line << std::endl;
     }
 }

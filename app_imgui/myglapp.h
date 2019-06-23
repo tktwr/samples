@@ -20,6 +20,7 @@ public:
 
     void drawGuiMainMenuBar();
     void drawGuiSamplePanel();
+    void drawGuiStylePanel();
 
 private:
     tt::Time m_tm;
@@ -27,6 +28,7 @@ private:
 
     bool m_show_main_menu_bar = true;
     bool m_show_sample_panel = true;
+    bool m_show_style_panel = true;
 };
 
 #endif  // myglapp_h

@@ -3,39 +3,20 @@
 
 using namespace std;
 
-class SampleClass {
-public:
-    SampleClass() {}
-    ~SampleClass() {}
-
-private:
-    int i;
-    float f;
-};
-
-enum SampleEnum {
-    Type0 = 0,
-    Type1,
-    Type2,
-    Type3,
-    Type4,
-    NumTypes
-};
-
 void f_if() {
     cout << "[if]" << endl;
 
     int i = 0;
     if (i == 0) {
-        cout << i << endl;
+        cout << "i == 0" << endl;
     } else if (i == 1) {
-        cout << i << endl;
+        cout << "i == 1" << endl;
     } else {
-        cout << i << endl;
+        cout << "else" << endl;
     }
 }
 
-void f_for() {
+void f_for_i() {
     cout << "[for]" << endl;
 
     int i;
@@ -43,9 +24,12 @@ void f_for() {
         cout << i << " ";
     }
     cout << endl;
+}
 
+void f_for_xy() {
     cout << "[for xy]" << endl;
-    int nx = 5;
+
+    int nx = 4;
     int ny = 3;
     int x, y;
     for (y = 0; y < ny; y++) {
@@ -62,10 +46,10 @@ void f_switch() {
     int i = 0;
     switch (i) {
     case 0:
-        cout << i << endl;
+        cout << "i == 0" << endl;
         break;
     case 1:
-        cout << i << endl;
+        cout << "i == 1" << endl;
         break;
     default:
         break;
@@ -85,6 +69,15 @@ void f_while() {
 void f_enum() {
     cout << "[enum]" << endl;
 
+    enum SampleEnum {
+        Type0 = 0,
+        Type1,
+        Type2,
+        Type3,
+        Type4,
+        NumTypes
+    };
+
     int i;
     for (i = SampleEnum::Type0; i < SampleEnum::NumTypes; i++) {
         cout << i << " ";
@@ -92,12 +85,34 @@ void f_enum() {
     cout << endl;
 }
 
+void f_class() {
+    cout << "[class]" << endl;
+
+    class SampleClass {
+    public:
+        SampleClass() {
+            cout << "constructor called" << endl;
+        }
+        ~SampleClass() {
+            cout << "destructor called" << endl;
+        }
+
+    private:
+        int i;
+        float f;
+    };
+
+    SampleClass c;
+}
+
 int main(int argc, char *argv[]) {
     f_if();
-    f_for();
+    f_for_i();
+    f_for_xy();
     f_switch();
     f_while();
     f_enum();
+    f_class();
 
     return 0;
 }

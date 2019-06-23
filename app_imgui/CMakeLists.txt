@@ -11,6 +11,7 @@ set(app_SRCS
   ${IMGUI_SRCS}
   ${GL3W_SRCS}
   ${NFD_SRCS}
+  ${JSON11_SRCS}
   )
 add_executable(${PROJECT_NAME} ${app_SRCS})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${OPENGL_gl_LIBRARY} ${GLFW_LIBS})
