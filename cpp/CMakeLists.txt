@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project(sample_cpp CXX)
 
-include($ENV{MY_LIBTT}/config/config.cmake)
+include($ENV{MY_LIBTT_WIN}/config/config.cmake)
 
 add_executable(sample sample.cpp)
 target_link_libraries(sample)
