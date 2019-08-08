@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import sys
 import numpy as np
 import cv2
 
@@ -18,3 +22,4 @@ type(img) # numpy.ndarray
 # 色の変換は充実。ただし指定のチェックは甘い(間違えて指定しても普通に変換される)
 rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+

@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# *memo_py.PIL*
+
+import sys
 import numpy as np
 from PIL import Image
 
@@ -43,10 +48,11 @@ def f_load_image_float32(fname):
     print(ar[:, :, 1].max())  # Gの最大値
     print(ar[:, :, 2].max())  # Bの最大値
 
+def main():
+    fname = '../data/sample.jpg'
+    f_create_image("_out_pil_create_image.png", 300, 300)
+    f_load_image_uint8(fname)
+    f_load_image_float32(fname)
 
-fname = '../data/sample.jpg'
-
-f_create_image("_out_pil_create_image.png", 300, 300)
-f_load_image_uint8(fname)
-f_load_image_float32(fname)
+main()
 

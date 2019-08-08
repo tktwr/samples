@@ -5,7 +5,7 @@ from scipy.io import arff
 import numpy as np
 
 #data, meta = arff.loadarff("mnist_784.arff")
-data, meta = arff.loadarff("test.arff")
+data, meta = arff.loadarff("mnist_test.arff")
 
 image_data = data[meta.names()[:-1]] #everything but the last column
 image_array = np.asarray(image_data.tolist(), dtype=np.uint8)

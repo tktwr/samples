@@ -144,10 +144,8 @@ def main():
     print("=== f_string() ===")
     f_string()
 
-
 if __name__ == "__main__":
     argv = sys.argv
     print(argv)
     main()
-
 

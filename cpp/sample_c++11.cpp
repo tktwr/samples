@@ -29,17 +29,25 @@ void f_initializer() {
     }
 
     {
+        int i {1};
         int a[]{1, 2, 3, 4};
+        struct S { int a, b; };
+        S s {1, 2};
         std::array<int, 4> ar{1, 2, 3, 4};
         std::vector<int> vec{1, 2, 3, 4};
         std::map<string, int> m{{"aaa", 10}, {"bbb", 20}, {"ccc", 30}};
+        std::pair<int, float> p {1, 2.3};
     }
 
     {
+        int i = {1};
         int a[] = {1, 2, 3, 4};
+        struct S { int a, b; };
+        S s = {1, 2};
         std::array<int, 4> ar = {1, 2, 3, 4};
         std::vector<int> vec = {1, 2, 3, 4};
         std::map<string, int> m = {{"aaa", 10}, {"bbb", 20}, {"ccc", 30}};
+        std::pair<int, float> p = {1, 2.3};
 
         cout << "sizeof(a) : " << sizeof(a) << endl;
         cout << "ar.size() : " << ar.size() << endl;
@@ -78,10 +86,13 @@ void f_range_based_for_loop() {
 
     std::vector<int> vec{1, 2, 3, 4, 5};
 
-    for (int &x : vec) {
-        cout << x << " ";
-    }
-    cout << endl;
+    for (const auto& x : vec) {}
+    for (auto x : vec) {}
+    for (int x : vec) {}
+
+    for (auto&& x : vec) {}
+    for (auto& x : vec) {}
+    for (int& x : vec) {}
 }
 
 // *memo_cpp.unique_ptr*
