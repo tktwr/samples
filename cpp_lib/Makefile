@@ -1,1 +1,1 @@
-include $(MY_LIBTT_WIN)/config/makefile.mk
+include $(MY_LIBTT_WIN)/makefile.mk

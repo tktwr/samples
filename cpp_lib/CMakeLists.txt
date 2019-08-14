@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project(sample_cpp_lib CXX)
 
-include($ENV{MY_LIBTT_WIN}/config/config.cmake)
+include($ENV{MY_LIBTT_WIN}/config.cmake)
 
 add_executable(sample_cereal sample_cereal.cpp)
 target_link_libraries(sample_cereal)
