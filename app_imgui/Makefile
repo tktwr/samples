@@ -1,5 +1,5 @@
 include $(MY_LIBTT_WIN)/makefile.mk
 
 run:
-	./build.vs2019/RelWithDebInfo/app_imgui.exe
+	cd $(BUILD_DIR) && $(BUILD_CONFIG)/app_imgui.exe
 
