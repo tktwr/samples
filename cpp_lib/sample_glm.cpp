@@ -7,6 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 #include <glm/gtx/string_cast.hpp> // glm::to_string
 #include <iostream>
+#include <tt/ext/glm/glm_util.h>
 
 using namespace std;
 
@@ -30,6 +31,7 @@ void f_constructor() {
 
     f_print("v = ", v);
     f_print("m = ", m);
+    f_print_mat4_col("m = ", m);
 }
 
 void f_operator() {
@@ -79,6 +81,11 @@ void f_transform() {
     glm::mat4 R = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
     glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
     glm::mat4 M = T * R * S;
+
+    f_print_mat4_col("M = ", M);
+    f_print_mat4_col("T = ", T);
+    f_print_mat4_col("R = ", R);
+    f_print_mat4_col("S = ", S);
 }
 
 glm::mat4 camera(float z, const glm::vec2& rot) {

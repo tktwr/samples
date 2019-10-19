@@ -3,7 +3,7 @@
 
 #include <string>
 #include <tt/util/time.h>
-#include <tt/glapp.h>
+#include <tt/glapp_pc.h>
 
 class MyGLApp : public GLApp {
 public:

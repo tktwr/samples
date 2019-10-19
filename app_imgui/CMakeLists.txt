@@ -8,8 +8,9 @@ set(app_SRCS
   main.cpp
   myglapp.cpp
   ${LIBTT_SRCS}
+  ${LIBTT_PC_SRCS}
   ${IMGUI_SRCS}
-  ${GL3W_SRCS}
+  ${GLAD_SRCS}
   ${NFD_SRCS}
   ${JSON11_SRCS}
   )

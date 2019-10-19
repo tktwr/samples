@@ -6,17 +6,10 @@
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 #include <Eigen/Dense>
+#include <tt/ext/eigen/eigen_util.h>
 
 using namespace Eigen;
 using namespace std;
-
-double ToRadian(double degree) {
-    return degree * M_PI / 180.0;
-}
-
-double ToDegree(double radian) {
-    return radian * 180.0 / M_PI;
-}
 
 void f_print(const std::string& s) {
     std::cout << s << std::endl;
@@ -31,40 +24,6 @@ template<class T>
 void f_print_mat(const std::string& s, const T& val) {
     std::cout << s << std::endl;
     std::cout << val << std::endl;
-}
-
-void f_print_mat3_row(const std::string& s, const Matrix3f& _m) {
-    std::cout << s << std::endl;
-    const float* m = _m.data();
-    printf("%f %f %f\n", m[0], m[1], m[2]);
-    printf("%f %f %f\n", m[3], m[4], m[5]);
-    printf("%f %f %f\n", m[6], m[7], m[8]);
-}
-
-void f_print_mat3_col(const std::string& s, const Matrix3f& _m) {
-    std::cout << s << std::endl;
-    const float* m = _m.data();
-    printf("%f %f %f\n", m[0], m[3], m[6]);
-    printf("%f %f %f\n", m[1], m[4], m[7]);
-    printf("%f %f %f\n", m[2], m[5], m[8]);
-}
-
-void f_print_mat4_row(const std::string& s, const Matrix4f& _m) {
-    std::cout << s << std::endl;
-    const float* m = _m.data();
-    printf("%f %f %f %f\n", m[0],  m[1],  m[2],  m[3]);
-    printf("%f %f %f %f\n", m[4],  m[5],  m[6],  m[7]);
-    printf("%f %f %f %f\n", m[8],  m[9],  m[10], m[11]);
-    printf("%f %f %f %f\n", m[12], m[13], m[14], m[15]);
-}
-
-void f_print_mat4_col(const std::string& s, const Matrix4f& _m) {
-    std::cout << s << std::endl;
-    const float* m = _m.data();
-    printf("%f %f %f %f\n", m[0], m[4], m[8],  m[12]);
-    printf("%f %f %f %f\n", m[1], m[5], m[9],  m[13]);
-    printf("%f %f %f %f\n", m[2], m[6], m[10], m[14]);
-    printf("%f %f %f %f\n", m[3], m[7], m[11], m[15]);
 }
 
 //==================================================
