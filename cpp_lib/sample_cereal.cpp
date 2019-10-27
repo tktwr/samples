@@ -1,4 +1,4 @@
-// *memo_cpp.cereal*
+// *memo_cpp_lib.cereal*
 #include <cereal/cereal.hpp>
 #include <cereal/archives/json.hpp>
 #include <cereal/types/vector.hpp>

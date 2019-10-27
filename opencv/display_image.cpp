@@ -1,4 +1,3 @@
-// *memo_cpp.opencv*
 #include <stdio.h>
 #include <string>
 #include <iostream>

@@ -1,4 +1,4 @@
-// *memo_cpp.eigen*
+// *memo_cpp_lib.eigen*
 #define _USE_MATH_DEFINES
 #include <cmath>
 
@@ -28,26 +28,70 @@ void f_print_mat(const std::string& s, const T& val) {
 
 //==================================================
 
+void f_memory_order() {
+    std::cout << "=== f_memory_order() ===" << std::endl;
+
+    {
+        Translation3f T = Translation3f(1.0f, 2.0f, 3.0f);
+        Affine3f affine = Affine3f(T);
+        Matrix4f M = affine.matrix();
+        f_print_mat4_col("T = ", M);
+    }
+
+    Matrix3f m;
+    // row order input
+    m << 1, 2, 3, 4, 5, 6, 7, 8, 9;
+    Matrix3f mt;
+    mt = m.transpose();
+    f_print_mat3_col("m = ", m);
+    f_print_mat3_col("mt = ", mt);
+
+    Matrix3f m2;
+    // row order input
+    m2 << 1, 2, 3, 4, 5, 6, 7, 8, 9;
+    Matrix3f m2t;
+    m2t = m2.transpose();
+    f_print_mat3_col("m2 = ", m2);
+    f_print_mat3_col("m2t = ", m2t);
+
+    Matrix3f M;
+    M = mt * m2t;
+    f_print_mat3_col("M = ", M);
+
+    // M(row, col)
+    printf("M = \n");
+    printf("%f %f %f\n", M(0, 0), M(0, 1), M(0, 2));
+    printf("%f %f %f\n", M(1, 0), M(1, 1), M(1, 2));
+    printf("%f %f %f\n", M(2, 0), M(2, 1), M(2, 2));
+
+    // column order memory
+    float* p = M.data();
+    printf("M = \n");
+    printf("%f %f %f\n", p[0], p[3], p[6]);
+    printf("%f %f %f\n", p[1], p[4], p[7]);
+    printf("%f %f %f\n", p[2], p[5], p[8]);
+}
+
 void f_constructor() {
     std::cout << "=== f_constructor() ===" << std::endl;
 
     // default values are unknown
     Vector2f v;
-    f_print_mat("Vector2f() = ", v);
+    f_print_mat("Vector2f v;", v);
 
     v = Vector2f(1.0f, 2.0f);
-    f_print_mat("v = Vector2f(1.0f, 2.0f)", v);
+    f_print_mat("v = Vector2f(1.0f, 2.0f);", v);
 
     v = {3.0f, 4.0f};
-    f_print_mat("v = {3.0f, 4.0f}", v);
+    f_print_mat("v = {3.0f, 4.0f};", v);
 
     // default values are unknown
     Matrix2f m;
-    f_print_mat("Matrix2f() = ", m);
+    f_print_mat("Matrix2f m;", m);
 
     // set matrix as row major
     m << 1.0f, 2.0f, 3.0f, 4.0f;
-    f_print_mat("m = ", m);
+    f_print_mat("m << 1.0f, 2.0f, 3.0f, 4.0f;", m);
 }
 
 void f_vec3() {
@@ -55,27 +99,27 @@ void f_vec3() {
 
     Vector3f v;
     v = Vector3f::Identity();
-    f_print_mat("Vector3f::Identity() = ", v);
+    f_print_mat("v = Vector3f::Identity();", v);
 
     // (0, 0, 0)
     v = Vector3f::Zero();
-    f_print_mat("Vector3f::Zero() = ", v);
+    f_print_mat("v = Vector3f::Zero();", v);
 
     // (1, 1, 1)
     v = Vector3f::Ones();
-    f_print_mat("Vector3f::Ones() = ", v);
+    f_print_mat("v = Vector3f::Ones();", v);
 
     // (1, 0, 0)
     v = Vector3f::UnitX();
-    f_print_mat("Vector3f::UnitX() = ", v);
+    f_print_mat("v = Vector3f::UnitX();", v);
 
     // (0, 1, 0)
     v = Vector3f::UnitY();
-    f_print_mat("Vector3f::UnitY() = ", v);
+    f_print_mat("v = Vector3f::UnitY();", v);
 
     // (0, 0, 1)
     v = Vector3f::UnitZ();
-    f_print_mat("Vector3f::UnitZ() = ", v);
+    f_print_mat("v = Vector3f::UnitZ();", v);
 }
 
 void f_mat3() {
@@ -91,6 +135,15 @@ void f_mat3() {
 
     f_print_mat("m = ", m);
     f_print_mat3_col("m = ", m);
+
+    Vector3f v = {1, 2, 3};
+    Vector3f V;
+    V = m * v;
+    f_print_mat("m * v = ", V);
+
+    // invalid product
+    //V = v * m;
+    //f_print_mat("v * m = ", V);
 }
 
 void f_affine() {
@@ -104,7 +157,7 @@ void f_affine() {
     }
 
     {
-        Quaternionf R = Quaternionf(AngleAxisf(ToRadian(30.0), Vector3f::UnitX()));
+        Quaternionf R = Quaternionf(AngleAxisf(ToRadian(90.0), Vector3f::UnitX()));
         Affine3f affine = Affine3f(R);
         Matrix4f M = affine.matrix();
         f_print_mat4_col("R = ", M);
@@ -116,39 +169,31 @@ void f_affine() {
         Matrix4f M = affine.matrix();
         f_print_mat4_col("S = ", M);
     }
+}
 
-    {
-        Matrix3f m;
-        m << 1, 2, 3, 4, 5, 6, 7, 8, 9;
-        f_print_mat3_col("m = ", m);
+void f_conv() {
+    std::cout << "=== f_conv() ===" << std::endl;
 
-        Matrix3f m2;
-        m2 << 11, 12, 13, 14, 15, 16, 17, 18, 19;
-        f_print_mat3_col("m2 = ", m2);
+    Translation3f T = Translation3f(1000.0f, 1000.0f, 0.0f);
+    Quaternionf R = Quaternionf(AngleAxisf(ToRadian(90.0), Vector3f::UnitX()));
+    DiagonalMatrix<float, 3> S = Scaling(1.0f, 1.0f, 1.0f);
 
-        Matrix3f M;
-        M = m * m2;
-        f_print_mat3_col("m * m2 = ", M);
+    Affine3f M;
+    M = T * R * S;
 
-        M = m2 * m;
-        f_print_mat3_col("m2 * m = ", M);
+    Matrix4f m = M.matrix();
+    f_print_mat4_col("m = ", m);
 
-        Vector3f v = {1, 2, 3};
-        Vector3f V;
-        V = m * v;
-        f_print_mat("m * v = ", V);
-
-        // invalid product
-        //V = v * m;
-        //f_print_mat("v * m = ", V);
-    }
+    Vector4f v = {1, 0, 0, 1};
+    Vector4f v2 = m * v;
+    f_print_vec4("v2 = ", v2);
 }
 
 void f_transform() {
     std::cout << "=== f_transform() ===" << std::endl;
 
     Translation3f T = Translation3f(1.0f, 2.0f, 3.0f);
-    Quaternionf R = Quaternionf(AngleAxisf(ToRadian(30.0), Vector3f::UnitX()));
+    Quaternionf R = Quaternionf(AngleAxisf(ToRadian(90.0), Vector3f::UnitX()));
     DiagonalMatrix<float, 3> S = Scaling(1.0f, 2.0f, 3.0f);
 
     Affine3f M;
@@ -210,13 +255,15 @@ void f_matx() {
 }
 
 int main(int argc, char *argv[]) {
-    f_constructor();
-    f_vec3();
-    f_mat3();
-    f_affine();
-    f_transform();
-    f_vecx();
-    f_matx();
+    //f_memory_order();
+    //f_constructor();
+    //f_vec3();
+    //f_mat3();
+    //f_affine();
+    f_conv();
+    //f_transform();
+    //f_vecx();
+    //f_matx();
     return 0;
 }
 

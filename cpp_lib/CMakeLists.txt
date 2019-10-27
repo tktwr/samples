@@ -19,6 +19,17 @@ target_link_libraries(sample_glm)
 add_executable(sample_json11 sample_json11.cpp ${JSON11_SRCS})
 target_link_libraries(sample_json11)
 
+add_executable(sample_opencv sample_opencv.cpp)
+target_link_libraries(sample_opencv ${OpenCV_LIBS})
+
 #add_executable(sample_spdlog sample_spdlog.cpp)
 #target_link_libraries(sample_spdlog)
+
+file(GLOB DATA_FILES ${OpenCV_DLLS})
+
+if(NOT ("${DATA_FILES}" STREQUAL ""))
+    add_custom_command(TARGET sample_opencv POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DATA_FILES} ${PROJECT_BINARY_DIR}
+    )
+endif()
 

@@ -1,3 +1,4 @@
+// *memo_cpp_lib.json11*
 #include <iostream>
 #include <fstream>
 #include <string>

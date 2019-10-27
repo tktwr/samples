@@ -1,4 +1,4 @@
-// *memo_cpp.spdlog*
+// *memo_cpp_lib.spdlog*
 #include <iostream>
 #include <spdlog/spdlog.h>
 

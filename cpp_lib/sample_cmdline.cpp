@@ -1,4 +1,4 @@
-// *memo_cpp.cmdline*
+// *memo_cpp_lib.cmdline*
 #include <iostream>
 #include <string>
 #include <cmdline.h>

@@ -1,4 +1,5 @@
-// *memo_cpp.glm*
+// *memo_cpp_lib.glm*
+#include <iostream>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/vec4.hpp> // glm::vec4
@@ -6,21 +7,58 @@
 #include <glm/gtc/constants.hpp>
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 #include <glm/gtx/string_cast.hpp> // glm::to_string
-#include <iostream>
 #include <tt/ext/glm/glm_util.h>
 
 using namespace std;
 
 void f_print(const std::string& s, const float v) {
-    cout << s.c_str() << v << endl;
+    std::cout << s << v << std::endl;
 }
 
 void f_print(const std::string& s, const glm::vec3& v) {
-    cout << s.c_str() << v.x << " " << v.y << " " << v.z << endl;
+    std::cout << s << v.x << " " << v.y << " " << v.z << std::endl;
 }
 
 void f_print(const std::string& s, const glm::mat4& m) {
-    cout << s.c_str() << glm::to_string(m) << endl;
+    std::cout << s << glm::to_string(m) << std::endl;
+}
+
+//==================================================
+
+void f_memory_order() {
+    std::cout << "=== f_memory_order() ===" << std::endl;
+
+    glm::mat4 T = glm::translate(glm::mat4(1.0f), glm::vec3(1.0f, 2.0f, 3.0f));
+    f_print_mat4_col("T = ", T);
+
+    // colum order input
+    glm::mat3 m = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    glm::mat3 mt = glm::transpose(m);
+    f_print_mat3_col("m = ", m);
+    f_print_mat3_col("mt = ", mt);
+
+    // colum order input
+    glm::mat3 m2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    glm::mat3 m2t = glm::transpose(m2);
+    f_print_mat3_col("m2 = ", m2);
+    f_print_mat3_col("m2t = ", m2t);
+
+    glm::mat3 M;
+    M = m * m2;
+    f_print_mat3_col("M = ", M);
+
+    // M[col][row]
+    printf("M = \n");
+    printf("%f %f %f\n", M[0][0], M[1][0], M[2][0]);
+    printf("%f %f %f\n", M[0][1], M[1][1], M[2][1]);
+    printf("%f %f %f\n", M[0][2], M[1][2], M[2][2]);
+
+    // column order memory
+    float* p = &(M[0][0]);
+    printf("M = \n");
+    printf("%f %f %f\n", p[0], p[3], p[6]);
+    printf("%f %f %f\n", p[1], p[4], p[7]);
+    printf("%f %f %f\n", p[2], p[5], p[8]);
 }
 
 void f_constructor() {
@@ -74,6 +112,49 @@ void f_func() {
     f_print("radians(f) = ", glm::radians(180.f));
 }
 
+void f_affine() {
+    std::cout << "=== f_affine() ===" << std::endl;
+
+    {
+        glm::mat4 T = glm::translate(glm::mat4(1.0f), glm::vec3(1.0f, 2.0f, 3.0f));
+        f_print_mat4_col("T = ", T);
+    }
+
+    {
+        glm::mat4 R = glm::rotate(glm::mat4(1.0f), glm::radians(30.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        f_print_mat4_col("R = ", R);
+    }
+
+    {
+        glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 2.0f, 3.0f));
+        f_print_mat4_col("S = ", S);
+    }
+
+    {
+        glm::mat3 m = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        f_print_mat3_col("m = ", m);
+
+        glm::mat3 m2 = {11, 12, 13, 14, 15, 16, 17, 18, 19};
+        f_print_mat3_col("m2 = ", m2);
+
+        glm::mat3 M;
+        M = m * m2;
+        f_print_mat3_col("m * m2 = ", M);
+
+        M = m2 * m;
+        f_print_mat3_col("m2 * m = ", M);
+
+        glm::vec3 v = {1, 2, 3};
+        glm::vec3 V;
+        V = m * v;
+        f_print("m * v = ", V);
+
+        // invalid product
+        //V = v * m;
+        //f_print_mat("v * m = ", V);
+    }
+}
+
 void f_transform() {
     std::cout << "=== f_transform() ===" << std::endl;
 
@@ -98,10 +179,12 @@ glm::mat4 camera(float z, const glm::vec2& rot) {
 }
 
 int main(int argc, char *argv[]) {
-    f_constructor();
-    f_operator();
-    f_func();
-    f_transform();
+    f_memory_order();
+    //f_constructor();
+    //f_operator();
+    //f_func();
+    //f_affine();
+    //f_transform();
 
     return 0;
 }
