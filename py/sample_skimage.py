@@ -1,3 +1,5 @@
+# *memo_py.skimage*
+
 from skimage import io, color
 from io import BytesIO
 

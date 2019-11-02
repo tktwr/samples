@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# *memo_py.cv2*
 
 import sys
 import numpy as np
