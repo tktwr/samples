@@ -1,4 +1,5 @@
 !_TAG_FILE_ENCODING	utf-8	//
+memo_bat.app	bat/sample.bat	/*memo_bat.app*
 memo_cpp.11	cpp/sample_c++11.cpp	/*memo_cpp.11*
 memo_cpp.14	cpp/sample_c++14.cpp	/*memo_cpp.14*
 memo_cpp.17	cpp/sample_c++17.cpp	/*memo_cpp.17*

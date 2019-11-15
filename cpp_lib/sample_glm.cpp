@@ -8,18 +8,31 @@
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 #include <glm/gtx/string_cast.hpp> // glm::to_string
 #include <tt/ext/glm/glm_util.h>
+#include "util_vec.h"
 
 using namespace std;
 
-void f_print(const std::string& s, const float v) {
+inline void f_print(const std::string& s, const float v) {
     std::cout << s << v << std::endl;
 }
 
-void f_print(const std::string& s, const glm::vec3& v) {
+inline void f_print(const std::string& s, const glm::vec3& v) {
     std::cout << s << v.x << " " << v.y << " " << v.z << std::endl;
 }
 
-void f_print(const std::string& s, const glm::mat4& m) {
+inline void f_print(const std::string& s, const glm::vec4& v) {
+    std::cout << s << v.x << " " << v.y << " " << v.z << " " << v.w << std::endl;
+}
+
+inline void f_print(const std::string& s, const glm::ivec3& v) {
+    std::cout << s << v.x << " " << v.y << " " << v.z << std::endl;
+}
+
+inline void f_print(const std::string& s, const glm::ivec4& v) {
+    std::cout << s << v.x << " " << v.y << " " << v.z << " " << v.w << std::endl;
+}
+
+inline void f_print(const std::string& s, const glm::mat4& m) {
     std::cout << s << glm::to_string(m) << std::endl;
 }
 
@@ -61,15 +74,77 @@ void f_memory_order() {
     printf("%f %f %f\n", p[2], p[5], p[8]);
 }
 
+template<class T, class F>
+void f_op(T a, T b, F f) {
+    f_print("a + b = ", a + b);
+    f_print("a - b = ", a - b);
+    f_print("a * b = ", a * b); // component-wise
+    f_print("a / b = ", a / b); // component-wise
+    f_print("a * f = ", a * f);
+    f_print("f * a = ", f * a);
+}
+
+template<typename T, int N>
+void f_vec_op(T a[N], T b[N], float f) {
+    T o[N];
+
+    tt2::vec_add<T, N>(o, a, b);
+    tt2::vec_print<T, N>("a + b = ", o);
+
+    tt2::vec_sub<T, N>(o, a, b);
+    tt2::vec_print<T, N>("a - b = ", o);
+
+    tt2::vec_mul<T, N>(o, a, b);
+    tt2::vec_print<T, N>("a * b = ", o);
+
+    tt2::vec_div<T, N>(o, a, b);
+    tt2::vec_print<T, N>("a / b = ", o);
+
+    tt2::vec_mul<T, N>(o, a, f);
+    tt2::vec_print<T, N>("a * f = ", o);
+
+    tt2::vec_mul<T, N>(o, f, a);
+    tt2::vec_print<T, N>("f * a = ", o);
+}
+
 void f_constructor() {
     std::cout << "=== f_constructor() ===" << std::endl;
 
-    glm::vec3 v(1.0f);
-    glm::mat4 m(1.0f);
+    {
+        glm::u8vec3 v = {1, 2, 255};
+        tt2::u8vec3_print("u8vec3 v = ", &v[0]);
 
-    f_print("v = ", v);
-    f_print("m = ", m);
-    f_print_mat4_col("m = ", m);
+        f_vec_op<uchar, 3>(&v[0], &v[0], 0.5f);
+    }
+    {
+        glm::u8vec4 v = {1, 2, 3, 255};
+        tt2::u8vec4_print("u8vec4 v = ", &v[0]);
+
+        f_vec_op<uchar, 4>(&v[0], &v[0], 0.5f);
+    }
+    {
+        glm::u16vec4 v = {1, 2, 3, 255};
+        tt2::u16vec4_print("u16vec4 v = ", &v[0]);
+
+        f_vec_op<ushort, 4>(&v[0], &v[0], 0.5f);
+    }
+    {
+        glm::ivec4 v = {1, 2, 3, 255};
+        f_print("ivec4 v = ", v);
+        //f_op(v, v, 2);
+        f_vec_op<int, 4>(&v[0], &v[0], 0.5f);
+    }
+    {
+        glm::vec4 v = {1.0f, 2.0f, 3.0f, 255.0f};
+        f_print("vec4 v = ", v);
+        f_op(v, v, 0.5f);
+        f_vec_op<float, 4>(&v[0], &v[0], 0.5f);
+    }
+    {
+        glm::mat4 m(1.0f);
+        //f_print("mat4 v = ", m);
+        f_print_mat4_col("m = ", m);
+    }
 }
 
 void f_operator() {
@@ -179,8 +254,8 @@ glm::mat4 camera(float z, const glm::vec2& rot) {
 }
 
 int main(int argc, char *argv[]) {
-    f_memory_order();
-    //f_constructor();
+    //f_memory_order();
+    f_constructor();
     //f_operator();
     //f_func();
     //f_affine();

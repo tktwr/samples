@@ -1,17 +1,16 @@
 #!/usr/bin/env python
 
-# 手書き数字の画像データMNISTをダウンロード
-#from sklearn.datasets import fetch_mldata
-#mnist = fetch_mldata('MNIST original', data_home=".")  # data_homeは保存先を指定します
-
-#import arff, numpy as np
-#dataset = arff.load(open('mnist_784.arff', 'rb'))
-#dataset = arff.load(open('test.arff'))
-#data = np.array(dataset['data'])
-#labels = np.array(dataset['labels'])
-
 from scipy.io import arff
 import numpy as np
+import matplotlib.pyplot as plt
+import torch
+from torch.autograd import Variable
+from torch.utils.data import TensorDataset, DataLoader
+from torch import nn
+from torch import optim
+from sklearn.model_selection import train_test_split
+
+
 data, meta = arff.loadarff("Z:/data/mnist/mnist_784.arff")
 #data, meta = arff.loadarff("test.arff")
 #print(type(data))
@@ -30,7 +29,6 @@ label_array = np.asarray(label_data.tolist(), dtype=np.uint8)
 X = image_array / 255
 y = label_array
 
-import matplotlib.pyplot as plt
 plt.imshow(X[0].reshape(28, 28), cmap='gray')
 plt.show()
 
@@ -38,11 +36,7 @@ plt.show()
 
 # 2. DataLoderの作成
 
-import torch
-from torch.utils.data import TensorDataset, DataLoader
-
 # 2.1 データを訓練とテストに分割（6:1）
-from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=1/7, random_state=0)
 
@@ -64,8 +58,6 @@ loader_test = DataLoader(ds_test, batch_size=64, shuffle=False)
 # 3. ネットワークの構築
 # Keras風の書き方 Define and Run
 
-from torch import nn
-
 model = nn.Sequential()
 model.add_module('fc1', nn.Linear(28*28, 100))
 model.add_module('relu1', nn.ReLU())
@@ -77,8 +69,6 @@ print(model)
 
 # 4. 誤差関数と最適化手法の設定
 
-from torch import optim
-
 # 誤差関数の設定
 loss_fn = nn.CrossEntropyLoss()  # 変数名にはcriterionも使われる
 
@@ -86,8 +76,6 @@ loss_fn = nn.CrossEntropyLoss()  # 変数名にはcriterionも使われる
 optimizer = optim.Adam(model.parameters(), lr=0.01)
 
 # 5. 学習と推論の設定
-
-from torch.autograd import Variable
 
 # 5-1. 学習1回でやることを定義します
 # Chainerのtraining.Trainer()に対応するものはない
