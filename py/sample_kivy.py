@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # *memo_py.kivy*
 
 from kivy.app import App

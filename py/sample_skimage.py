@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # *memo_py.skimage*
 
 from skimage import io, color
