@@ -1,4 +1,4 @@
 clean:
-	rm -f _out_*.png
-	rm -f __pycache__
+	rm -f _out_*.png _out_*.jpg
+	rm -rf __pycache__
 

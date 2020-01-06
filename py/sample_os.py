@@ -5,14 +5,6 @@ import os.path
 import glob
 import shutil
 
-def f_remove(fname):
-    if os.path.exists(fname):
-        print("file exist")
-        os.remove(fname)
-        print("file removed")
-    else:
-        print("file not exist")
-
 def f_write(fname):
     f = open(fname, 'w')
     f.write('123\n')
@@ -21,7 +13,7 @@ def f_write(fname):
     f.write('xyz\n')
     f.close()
 
-def f_write2(fname):
+def f_write_with(fname):
     with open(fname, 'w') as f:
         f.write('123\n')
         f.write('456\n')
@@ -48,18 +40,23 @@ def f_path(fname):
     #listdir = os.path.listdir(".")
     #print("listdir={0}".format(listdir))
     print("splitext={0}".format(os.path.splitext(basename)))
-    print("glob={0}".format(glob.glob("./*")))
     join = os.path.join("a", "b", "c.txt")
     print("join={0}".format(join))
-    os.path.isfile(abspath)
-    os.path.isdir(dirname)
 
-def f_sh(fname):
-    os.makedirs("a/b/c", exist_ok=True)
-    if not os.path.exists("a2"):
-        shutil.copytree("a", "a2")
-    #os.rmdir("a")
-    shutil.rmtree("a")
+def f_glob():
+    print("glob={0}".format(glob.glob("./*")))
+
+def f_test(fname):
+    os.path.isfile(fname)
+    os.path.isdir(fname)
+
+def f_shutil(fname):
+    os.makedirs("_test_dir/a/b/c", exist_ok=True)
+    if not os.path.exists("_test_dir2"):
+        shutil.copytree("_test_dir", "_test_dir2")
+    #os.rmdir("_test_dir")
+    shutil.rmtree("_test_dir")
+
     shutil.copy("_test.txt", "_test_cp.txt")
     shutil.move("_test_cp.txt", "_test_mv.txt")
     os.remove("_test.txt")
@@ -67,4 +64,7 @@ def f_sh(fname):
 f_write("_test.txt")
 f_read("_test.txt")
 f_path("_test.txt")
+f_glob()
+f_test("_test.txt")
+f_shutil("_test.txt")
 
