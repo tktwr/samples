@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 def main():
     # 描画範囲の指定
     # x = np.arange(x軸の最小値, x軸の最大値, 刻み)
-    x = np.arange(0, 1, 0.1)
+    x = np.arange(-3, 3, 0.1)
 
     # 計算式
     y = x * x

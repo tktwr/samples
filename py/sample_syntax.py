@@ -8,6 +8,7 @@ import my
 def f_print():
     print("Hello")
     print("こんにちは")
+    print("{} {} {} ".format(1, 2, 3))
     print("{0} {1} {2} ".format(1, 2, 3))
     print("%d %d %d" % (1, 2, 3))
     print("%d " % 1, end="")
@@ -69,34 +70,37 @@ def f_class():
     print(my1.add(1))
 
 def f_list():
-    list = [1, 2, 3, 4, 5]
-    print(list)
-    print(list[0])
-    list.append(10)
-    print(list)
-    list.insert(0, 20)
-    print(list)
-    list.pop(2)
-    print(list)
+    l = [1, 2, 3, 4, 5]
+    print("l = {}".format(l))
+    print("l[0] = {}".format(l[0]))
+    l.append(10)
+    print("l.append(10) = {}".format(l))
+    l.insert(0, 20)
+    print("l.insert(0, 20) = {}".format(l))
+    l.pop(2)
+    print("l.pop(2) = {}".format(l))
 
-    list2 = [1, 'two', 3, 'four', 5]
-    print(list2)
-    print(list2[:])
-    print(list2[0:])
-    print(list2[2:4])
-    print(list2[:-1])
-    print(list2[:-2])
-    print(list2[-2:-1])
-    print(list2[-1:])
+    l = [1, 'two', 3, 'four', 5]
+    print("l       = {}".format(l))
+    print("l[:]    = {}".format(l[:]))
+    print("l[0:]   = {}".format(l[0:]))
+    print("l[2:4]  = {}".format(l[2:4]))
+    print("l[:-1]  = {}".format(l[:-1]))
+    print("l[:-2]  = {}".format(l[:-2]))
+    print("l[-2:-1]= {}".format(l[-2:-1]))
+    print("l[-1:]  = {}".format(l[-1:]))
 
 def f_tuple():
+    # tuple is read only
     t = (1, 3, 5, 7, 9)
-    print(t)
+    print("t = {}".format(t))
+    t = (1, 'two', 3, 'four', 5)
+    print("t = {}".format(t))
 
 def f_dict():
     d = {"a":1, "b":2}
-    print(d)
-    print(d["a"])
+    print("d = {}".format(d))
+    print("d[\"a\"] = {}".format(d["a"]))
 
 def f_type():
     b = True
