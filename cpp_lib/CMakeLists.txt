@@ -22,6 +22,9 @@ target_link_libraries(sample_json11)
 add_executable(sample_opencv sample_opencv.cpp)
 target_link_libraries(sample_opencv ${OpenCV_LIBS})
 
+add_executable(sample_stb sample_stb.cpp)
+target_link_libraries(sample_stb)
+
 #add_executable(sample_spdlog sample_spdlog.cpp)
 #target_link_libraries(sample_spdlog)
 

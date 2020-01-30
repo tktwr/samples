@@ -10,7 +10,7 @@ cmake_ninja:
 	mycmake.sh ninja Release
 
 build_ninja:
-	mycmake-build.sh ninja Release
+	mycmake.sh --build ninja Release
 
 clean_ninja:
 	rm -rf build.ninja version.h
@@ -26,7 +26,7 @@ cmake_vs2019:
 	mycmake.sh vs2019 Release
 
 build_vs2019:
-	mycmake-build.sh vs2019 Release
+	mycmake.sh --build vs2019 Release
 
 clean_vs2019:
 	rm -rf build.vs2019 version.h
