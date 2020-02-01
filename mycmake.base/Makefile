@@ -1,3 +1,6 @@
+MY_BUILD_SYS=`mycmake.sh --build-sys`
+MY_BUILD_CONFIG=`mycmake.sh --build-config`
+
 build:
 	mycmake.sh --build
 
