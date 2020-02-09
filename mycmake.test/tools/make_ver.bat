@@ -1,8 +1,8 @@
 @echo off
 
+echo #pragma once
 echo #include ^<string^>
-
-echo namespace A {
+echo namespace version {
 
 for /f %%i in ('git rev-parse --abbrev-ref HEAD') do set GIT_BRANCH=%%i
 echo const std::string GIT_BRANCH = "%GIT_BRANCH%";

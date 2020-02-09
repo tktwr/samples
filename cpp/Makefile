@@ -1,5 +1,7 @@
 include $(MY_LIBTT_WIN)/makefile.mk
 
+all: cmake build
+
 run:
 	cd $(BUILD_DIR) && $(BUILD_CONFIG)/sample.exe
 	cd $(BUILD_DIR) && $(BUILD_CONFIG)/sample_c++11.exe

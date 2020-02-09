@@ -8,8 +8,8 @@
 using namespace std;
 
 void print(const std::string &str, int val) {
-    static mutex mtx;
-    lock_guard<mutex> lock(mtx);
+    static std::mutex mtx;
+    std::lock_guard<std::mutex> lock(mtx);
     cout << str << ": " << val << endl;
 }
 

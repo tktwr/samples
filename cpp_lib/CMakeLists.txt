@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.6)
 
 project(sample_cpp_lib CXX)
 
@@ -22,11 +22,11 @@ target_link_libraries(sample_json11)
 add_executable(sample_opencv sample_opencv.cpp)
 target_link_libraries(sample_opencv ${OpenCV_LIBS})
 
-add_executable(sample_stb sample_stb.cpp)
-target_link_libraries(sample_stb)
-
 #add_executable(sample_spdlog sample_spdlog.cpp)
 #target_link_libraries(sample_spdlog)
+
+add_executable(sample_stb sample_stb.cpp)
+target_link_libraries(sample_stb)
 
 file(GLOB DATA_FILES ${OpenCV_DLLS})
 
