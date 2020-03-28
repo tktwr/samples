@@ -12,6 +12,8 @@
 
 using namespace std;
 
+namespace tt {
+
 inline void f_print(const std::string& s, const float v) {
     std::cout << s << v << std::endl;
 }
@@ -36,29 +38,31 @@ inline void f_print(const std::string& s, const glm::mat4& m) {
     std::cout << s << glm::to_string(m) << std::endl;
 }
 
+}
+
 //==================================================
 
 void f_memory_order() {
     std::cout << "=== f_memory_order() ===" << std::endl;
 
     glm::mat4 T = glm::translate(glm::mat4(1.0f), glm::vec3(1.0f, 2.0f, 3.0f));
-    f_print_mat4_col("T = ", T);
+    tt::f_print_mat4_col("T = ", T);
 
     // colum order input
     glm::mat3 m = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     glm::mat3 mt = glm::transpose(m);
-    f_print_mat3_col("m = ", m);
-    f_print_mat3_col("mt = ", mt);
+    tt::f_print_mat3_col("m = ", m);
+    tt::f_print_mat3_col("mt = ", mt);
 
     // colum order input
     glm::mat3 m2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     glm::mat3 m2t = glm::transpose(m2);
-    f_print_mat3_col("m2 = ", m2);
-    f_print_mat3_col("m2t = ", m2t);
+    tt::f_print_mat3_col("m2 = ", m2);
+    tt::f_print_mat3_col("m2t = ", m2t);
 
     glm::mat3 M;
     M = m * m2;
-    f_print_mat3_col("M = ", M);
+    tt::f_print_mat3_col("M = ", M);
 
     // M[col][row]
     printf("M = \n");
@@ -76,12 +80,12 @@ void f_memory_order() {
 
 template<class T, class F>
 void f_op(T a, T b, F f) {
-    f_print("a + b = ", a + b);
-    f_print("a - b = ", a - b);
-    f_print("a * b = ", a * b); // component-wise
-    f_print("a / b = ", a / b); // component-wise
-    f_print("a * f = ", a * f);
-    f_print("f * a = ", f * a);
+    tt::f_print("a + b = ", a + b);
+    tt::f_print("a - b = ", a - b);
+    tt::f_print("a * b = ", a * b); // component-wise
+    tt::f_print("a / b = ", a / b); // component-wise
+    tt::f_print("a * f = ", a * f);
+    tt::f_print("f * a = ", f * a);
 }
 
 template<typename T, int N>
@@ -130,20 +134,20 @@ void f_constructor() {
     }
     {
         glm::ivec4 v = {1, 2, 3, 255};
-        f_print("ivec4 v = ", v);
+        tt::f_print("ivec4 v = ", v);
         //f_op(v, v, 2);
         f_vec_op<int, 4>(&v[0], &v[0], 0.5f);
     }
     {
         glm::vec4 v = {1.0f, 2.0f, 3.0f, 255.0f};
-        f_print("vec4 v = ", v);
+        tt::f_print("vec4 v = ", v);
         f_op(v, v, 0.5f);
         f_vec_op<float, 4>(&v[0], &v[0], 0.5f);
     }
     {
         glm::mat4 m(1.0f);
-        //f_print("mat4 v = ", m);
-        f_print_mat4_col("m = ", m);
+        //tt::f_print("mat4 v = ", m);
+        tt::f_print_mat4_col("m = ", m);
     }
 }
 
@@ -154,16 +158,16 @@ void f_operator() {
     glm::mat4 m(1.0f);
     float f = 4;
 
-    f_print("v = ", v);
-    f_print("m = ", m);
-    f_print("f = ", f);
+    tt::f_print("v = ", v);
+    tt::f_print("m = ", m);
+    tt::f_print("f = ", f);
 
-    f_print("v + v = ", v + v);
-    f_print("v - v = ", v - v);
-    f_print("v * v = ", v * v); // component-wise
-    f_print("v / v = ", v / v); // component-wise
-    f_print("v * f = ", v * f);
-    f_print("f * v = ", f * v);
+    tt::f_print("v + v = ", v + v);
+    tt::f_print("v - v = ", v - v);
+    tt::f_print("v * v = ", v * v); // component-wise
+    tt::f_print("v / v = ", v / v); // component-wise
+    tt::f_print("v * f = ", v * f);
+    tt::f_print("f * v = ", f * v);
 }
 
 void f_func() {
@@ -173,18 +177,18 @@ void f_func() {
     glm::mat4 m(1.0f);
     float f = 4;
 
-    f_print("v = ", v);
-    f_print("m = ", m);
-    f_print("f = ", f);
+    tt::f_print("v = ", v);
+    tt::f_print("m = ", m);
+    tt::f_print("f = ", f);
 
-    f_print("sizeof(v) = ", sizeof(v));
-    f_print("length(v) = ", glm::length(v));
-    f_print("distance(v,v) = ", glm::distance(v, v));
-    f_print("normalize(v) = ", glm::normalize(v));
-    f_print("dot(v,v) = ", glm::dot(v, v));
-    f_print("cross(v,v) = ", glm::cross(v, v));
-    f_print("degrees(f) = ", glm::degrees(glm::pi<float>()));
-    f_print("radians(f) = ", glm::radians(180.f));
+    tt::f_print("sizeof(v) = ", sizeof(v));
+    tt::f_print("length(v) = ", glm::length(v));
+    tt::f_print("distance(v,v) = ", glm::distance(v, v));
+    tt::f_print("normalize(v) = ", glm::normalize(v));
+    tt::f_print("dot(v,v) = ", glm::dot(v, v));
+    tt::f_print("cross(v,v) = ", glm::cross(v, v));
+    tt::f_print("degrees(f) = ", glm::degrees(glm::pi<float>()));
+    tt::f_print("radians(f) = ", glm::radians(180.f));
 }
 
 void f_affine() {
@@ -192,41 +196,41 @@ void f_affine() {
 
     {
         glm::mat4 T = glm::translate(glm::mat4(1.0f), glm::vec3(1.0f, 2.0f, 3.0f));
-        f_print_mat4_col("T = ", T);
+        tt::f_print_mat4_col("T = ", T);
     }
 
     {
         glm::mat4 R = glm::rotate(glm::mat4(1.0f), glm::radians(30.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-        f_print_mat4_col("R = ", R);
+        tt::f_print_mat4_col("R = ", R);
     }
 
     {
         glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 2.0f, 3.0f));
-        f_print_mat4_col("S = ", S);
+        tt::f_print_mat4_col("S = ", S);
     }
 
     {
         glm::mat3 m = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        f_print_mat3_col("m = ", m);
+        tt::f_print_mat3_col("m = ", m);
 
         glm::mat3 m2 = {11, 12, 13, 14, 15, 16, 17, 18, 19};
-        f_print_mat3_col("m2 = ", m2);
+        tt::f_print_mat3_col("m2 = ", m2);
 
         glm::mat3 M;
         M = m * m2;
-        f_print_mat3_col("m * m2 = ", M);
+        tt::f_print_mat3_col("m * m2 = ", M);
 
         M = m2 * m;
-        f_print_mat3_col("m2 * m = ", M);
+        tt::f_print_mat3_col("m2 * m = ", M);
 
         glm::vec3 v = {1, 2, 3};
         glm::vec3 V;
         V = m * v;
-        f_print("m * v = ", V);
+        tt::f_print("m * v = ", V);
 
         // invalid product
         //V = v * m;
-        //f_print_mat("v * m = ", V);
+        //tt::f_print_mat("v * m = ", V);
     }
 }
 
@@ -238,10 +242,10 @@ void f_transform() {
     glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
     glm::mat4 M = T * R * S;
 
-    f_print_mat4_col("M = ", M);
-    f_print_mat4_col("T = ", T);
-    f_print_mat4_col("R = ", R);
-    f_print_mat4_col("S = ", S);
+    tt::f_print_mat4_col("M = ", M);
+    tt::f_print_mat4_col("T = ", T);
+    tt::f_print_mat4_col("R = ", R);
+    tt::f_print_mat4_col("S = ", S);
 }
 
 glm::mat4 camera(float z, const glm::vec2& rot) {

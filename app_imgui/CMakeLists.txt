@@ -9,6 +9,7 @@ set(app_SRCS
   myglapp.cpp
   ${LIBTT_SRCS}
   ${LIBTT_PC_SRCS}
+  ${LIBTT_PC_EXT_SRCS}
   ${IMGUI_SRCS}
   ${GLAD_SRCS}
   ${NFD_SRCS}

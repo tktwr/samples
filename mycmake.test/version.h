@@ -2,5 +2,5 @@
 #include <string>
 namespace version {
 const std::string GIT_BRANCH = "master";
-const std::string GIT_COMMIT = "e37c36d";
+const std::string GIT_COMMIT = "76e5f25";
 }

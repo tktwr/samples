@@ -19,7 +19,7 @@ img = Image.open(image_file)
 width, height = img.size
 print("w h: {0} {1}".format(width, height))
 print("mode: {0}".format(img.mode))
-image_array = np.asarray(img, dtype=np.float32)
+image_array = np.asarray(img, dtype=np.float32).reshape(784)
 
 X = image_array / 255
 

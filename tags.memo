@@ -23,7 +23,7 @@ memo_cpp_lib.glm	cpp_lib/sample_glm.cpp	/*memo_cpp_lib.glm*
 memo_cpp_lib.json11	cpp_lib/sample_json11.cpp	/*memo_cpp_lib.json11*
 memo_cpp_lib.opencv	cpp_lib/sample_opencv.cpp	/*memo_cpp_lib.opencv*
 memo_cpp_lib.spdlog	cpp_lib/sample_spdlog.cpp	/*memo_cpp_lib.spdlog*
-memo_py.cv2	py/sample_cv2.py	/*memo_py.cv2*
+memo_py.cv2	py/cv_image.py	/*memo_py.cv2*
 memo_py.kivy	py/sample_kivy.py	/*memo_py.kivy*
 memo_py.matplotlib	py/sample_matplotlib.py	/*memo_py.matplotlib*
 memo_py.PIL	py/sample_PIL.py	/*memo_py.PIL*

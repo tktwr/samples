@@ -12,8 +12,9 @@ def f_create_image(fname, w, h):
     ar = np.array(img, 'f')
     for y in range(h):
         for x in range(w):
-            f = 255. * x / (w - 1)
-            ar[y, x] = [f, 0, 0]
+            r = 255. * x / (w - 1)
+            g = 255. * y / (h - 1)
+            ar[y, x] = [r, g, 0]
     img_out = Image.fromarray(np.uint8(ar))
     img_out.save(fname)
 
@@ -48,11 +49,18 @@ def f_load_image_float32(fname):
     print(ar[:, :, 1].max())  # Gの最大値
     print(ar[:, :, 2].max())  # Bの最大値
 
+def f_to_array(fname):
+    img = Image.open(fname)
+    arr = np.array(img)
+    img2 = Image.fromarray(arr)
+    img2.save("_out_pil_to_array.png")
+
 def main():
     fname = '../data/sample.jpg'
     f_create_image("_out_pil_create_image.png", 300, 300)
     f_load_image_uint8(fname)
     f_load_image_float32(fname)
+    f_to_array(fname)
 
 main()
 
