@@ -6,6 +6,10 @@ import sys
 import my
 
 def f_print():
+    # comment
+    '''
+    comment
+    '''
     print("Hello")
     print("こんにちは")
     print("{} {} {} ".format(1, 2, 3))
@@ -118,9 +122,9 @@ def f_type():
 def f_string():
     s = "abc," + "def,"
     s = s + str(100)
-    print(s)
+    print("s = {}".format(s))
     l = s.split(",")
-    print(l)
+    print("l = {}".format(l))
 
 def main():
     print("=== f_print() ===")

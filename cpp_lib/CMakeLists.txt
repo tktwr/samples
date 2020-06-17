@@ -19,6 +19,9 @@ target_link_libraries(sample_glm)
 add_executable(sample_json11 sample_json11.cpp ${JSON11_SRCS})
 target_link_libraries(sample_json11)
 
+add_executable(sample_mat sample_mat.cpp)
+target_link_libraries(sample_mat)
+
 add_executable(sample_opencv sample_opencv.cpp)
 target_link_libraries(sample_opencv ${OpenCV_LIBS})
 

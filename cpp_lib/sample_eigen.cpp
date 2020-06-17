@@ -259,12 +259,12 @@ void f_matx() {
 }
 
 int main(int argc, char *argv[]) {
-    //f_memory_order();
+    f_memory_order();
     //f_constructor();
     //f_vec3();
     //f_mat3();
     //f_affine();
-    f_conv();
+    //f_conv();
     //f_transform();
     //f_vecx();
     //f_matx();

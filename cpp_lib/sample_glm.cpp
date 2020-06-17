@@ -147,7 +147,7 @@ void f_constructor() {
     {
         glm::mat4 m(1.0f);
         //tt::f_print("mat4 v = ", m);
-        tt::f_print_mat4_col("m = ", m);
+        tt::f_print_mat4_col("mat4 m = ", m);
     }
 }
 
@@ -258,8 +258,8 @@ glm::mat4 camera(float z, const glm::vec2& rot) {
 }
 
 int main(int argc, char *argv[]) {
-    //f_memory_order();
-    f_constructor();
+    f_memory_order();
+    //f_constructor();
     //f_operator();
     //f_func();
     //f_affine();
