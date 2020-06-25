@@ -4,6 +4,11 @@
 import os.path
 import glob
 import shutil
+from datetime import datetime as dt
+
+def f_today():
+    today = dt.today()
+    print(today)
 
 def f_write(fname):
     f = open(fname, 'w')
@@ -67,4 +72,5 @@ f_path("_test.txt")
 f_glob()
 f_test("_test.txt")
 f_shutil("_test.txt")
+f_today()
 

@@ -4,6 +4,7 @@
 
 import sys
 import my
+from dir1.mymodule import MyClassA
 
 def f_print():
     # comment
@@ -28,6 +29,10 @@ def f_if(i):
         print("i == 0")
     elif i == 1:
         print("i == 1")
+    elif i == 2 or i == 3:
+        print("i == 2 or i == 3")
+    elif 4 <= i <= 5:
+        print("4 <= i <= 5")
     else:
         print("i == other")
 
@@ -65,13 +70,17 @@ def f_func():
 def f_class():
     my1 = my.MyClass(10)
     my2 = my.MyClass(20)
+    sub1 = my.MySubClass(100)
 
     print(my.MyClass.n)
     my.MyClass.f("class method")
-
     print(my1.x)
     print(my2.x)
     print(my1.add(1))
+    print(sub1.g())
+
+    a1 = MyClassA(123)
+    print(a1.x)
 
 def f_list():
     l = [1, 2, 3, 4, 5]
@@ -126,34 +135,48 @@ def f_string():
     l = s.split(",")
     print("l = {}".format(l))
 
-def main():
-    print("=== f_print() ===")
-    f_print()
-    print("=== f_if() ===")
-    f_if(0)
-    f_if(1)
-    f_if(2)
-    print("=== f_while() ===")
-    f_while(0)
-    print("=== f_for() ===")
-    f_for()
-    print("=== f_func() ===")
-    f_func()
-    print("=== f_class() ===")
-    f_class()
-    print("=== f_list() ===")
-    f_list()
-    print("=== f_tuple() ===")
-    f_tuple()
-    print("=== f_dict() ===")
-    f_dict()
-    print("=== f_type() ===")
-    f_type()
-    print("=== f_string() ===")
-    f_string()
+def main(argv):
+    for i in argv:
+        if i == "all" or i == "print":
+            print("=== f_print() ===")
+            f_print()
+        if i == "all" or i == "if":
+            print("=== f_if() ===")
+            f_if(0)
+            f_if(1)
+            f_if(2)
+            f_if(3)
+            f_if(4)
+            f_if(5)
+            f_if(9)
+        if i == "all" or i == "while":
+            print("=== f_while() ===")
+            f_while(0)
+        if i == "all" or i == "for":
+            print("=== f_for() ===")
+            f_for()
+        if i == "all" or i == "func":
+            print("=== f_func() ===")
+            f_func()
+        if i == "all" or i == "class":
+            print("=== f_class() ===")
+            f_class()
+        if i == "all" or i == "list":
+            print("=== f_list() ===")
+            f_list()
+        if i == "all" or i == "tuple":
+            print("=== f_tuple() ===")
+            f_tuple()
+        if i == "all" or i == "dict":
+            print("=== f_dict() ===")
+            f_dict()
+        if i == "all" or i == "type":
+            print("=== f_type() ===")
+            f_type()
+        if i == "all" or i == "string":
+            print("=== f_string() ===")
+            f_string()
 
 if __name__ == "__main__":
-    argv = sys.argv
-    print(argv)
-    main()
+    main(sys.argv)
 

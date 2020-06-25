@@ -13,7 +13,7 @@ class MyClass():
     def f(self, text):
         print(text)
 
-class SubClass(MyClass):
+class MySubClass(MyClass):
     def g(self):
         return self.x
 
