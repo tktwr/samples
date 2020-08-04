@@ -13,16 +13,17 @@ def f_print():
     '''
     print("Hello")
     print("こんにちは")
-    print("{} {} {} ".format(1, 2, 3))
-    print("{0} {1} {2} ".format(1, 2, 3))
-    print("%d %d %d" % (1, 2, 3))
-    print("%d " % 1, end="")
-    print("%d " % 2, end="")
+    print("{} {} {}".format(0, 1, 2))
+    print("{0} {1} {2}".format(0, 1, 2))
+    print("{2} {2} {2}".format(0, 1, 2))
+    print("%d %d %d" % (0, 1, 2))
     print("%d " % 3, end="")
+    print("%d " % 4, end="")
+    print("%d " % 5, end="")
     print()
-    print("sys.stdin.encoding: {0}".format(sys.stdin.encoding))
-    print("sys.stdout.encoding: {0}".format(sys.stdout.encoding))
-    print("sys.stderr.encoding: {0}".format(sys.stderr.encoding))
+    print("sys.stdin.encoding: {}".format(sys.stdin.encoding))
+    print("sys.stdout.encoding: {}".format(sys.stdout.encoding))
+    print("sys.stderr.encoding: {}".format(sys.stderr.encoding))
 
 def f_if(i):
     if i == 0:
@@ -63,9 +64,15 @@ def f_for():
 def f_add(a, b):
     return a + b
 
+def f_args(a, b):
+    print("a, b: {} {}".format(a, b))
+
 def f_func():
     x = f_add(1, 2)
     print("f_add: %d" % x)
+    f_args(1, 2)
+    f_args(2, 1)
+    f_args(b=2, a=1)
 
 def f_class():
     my1 = my.MyClass(10)
@@ -93,7 +100,7 @@ def f_list():
     l.pop(2)
     print("l.pop(2) = {}".format(l))
 
-    l = [1, 'two', 3, 'four', 5]
+    l = ['zero', 1, 'two', 3, 'four', 5]
     print("l       = {}".format(l))
     print("l[:]    = {}".format(l[:]))
     print("l[0:]   = {}".format(l[0:]))
@@ -103,12 +110,15 @@ def f_list():
     print("l[-2:-1]= {}".format(l[-2:-1]))
     print("l[-1:]  = {}".format(l[-1:]))
 
+    print("t = {}".format(tuple(l)))
+
 def f_tuple():
     # tuple is read only
     t = (1, 3, 5, 7, 9)
     print("t = {}".format(t))
     t = (1, 'two', 3, 'four', 5)
     print("t = {}".format(t))
+    print("l = {}".format(list(t)))
 
 def f_dict():
     d = {"a":1, "b":2}
@@ -127,6 +137,8 @@ def f_type():
     i = int(1.23)
     f = float(1)
     s = str(1)
+    l = list(t)
+    t = tuple(l)
 
 def f_string():
     s = "abc," + "def,"
