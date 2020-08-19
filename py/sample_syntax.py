@@ -6,21 +6,39 @@ import sys
 import my
 from dir1.mymodule import MyClassA
 
+def f_input():
+    print("input:")
+    in_s = input()
+    print("in_s: {}".format(in_s))
+
 def f_print():
     # comment
     '''
     comment
     '''
+
     print("Hello")
     print("こんにちは")
+
+    # f-string (python >= 3.6)
+    a = 123
+    print(f"a: {a}")
+    print(f"1+1: {1+1}")
+    print(f"1/3: {1/3:.3f}")
+
+    # str.format() method (python >= 2.6)
     print("{} {} {}".format(0, 1, 2))
     print("{0} {1} {2}".format(0, 1, 2))
     print("{2} {2} {2}".format(0, 1, 2))
+
+    # % operator
     print("%d %d %d" % (0, 1, 2))
     print("%d " % 3, end="")
     print("%d " % 4, end="")
     print("%d " % 5, end="")
     print()
+
+    # encoding
     print("sys.stdin.encoding: {}".format(sys.stdin.encoding))
     print("sys.stdout.encoding: {}".format(sys.stdout.encoding))
     print("sys.stderr.encoding: {}".format(sys.stderr.encoding))
@@ -140,6 +158,28 @@ def f_type():
     l = list(t)
     t = tuple(l)
 
+def f_re():
+    import re
+    in_s = "1, 1.5, 2, 2.5:str"
+    out_s = re.split(r",\s+|:", in_s)
+    print("in_s: {}".format(in_s))
+    print("out_s: {}".format(out_s))
+
+def f_parse():
+    import parse
+    in_s = "123 str1 str2 12.34"
+    out_s = parse.parse("{:d} str1 {:w} {:f}", in_s)
+    print("in_s: {}".format(in_s))
+    print("out_s: {}".format(out_s))
+
+    in_s = "123 str1 str2 12.34"
+    out_s = parse.parse("{var1:d} str1 {:w} {var2}", in_s)
+    print("in_s: {}".format(in_s))
+    print("out_s: {}".format(out_s))
+    print("out_s['var1']: {}".format(out_s['var1']))
+    print("out_s['var2']: {}".format(out_s['var2']))
+    print("out_s[0]: {}".format(out_s[0]))
+
 def f_string():
     s = "abc," + "def,"
     s = s + str(100)
@@ -147,8 +187,26 @@ def f_string():
     l = s.split(",")
     print("l = {}".format(l))
 
+    import parse
+    s = "images/img{}_{}.png".format(123, 5)
+    print("s: {}".format(s))
+    print("s[0]: {}".format(s[0]))
+    print("s[-1]: {}".format(s[-1]))
+    print("s[0:4]: {}".format(s[0:4]))
+    print("s[1:4]: {}".format(s[1:4]))
+    print("s.split('/'): {}".format(s.split('/')))
+    print("s.replace('/', '-'): {}".format(s.replace('/', '-')))
+    dirname, filename = s.split("/")
+    print("dirname: {}".format(dirname))
+    print("filename: {}".format(filename))
+    result = parse.parse("img{nr:d}_{label:d}.png", filename)
+    print("nr, label: {}, {}".format(result['nr'], result['label']))
+
 def main(argv):
     for i in argv:
+        if i == "input":
+            print("=== f_input() ===")
+            f_input()
         if i == "all" or i == "print":
             print("=== f_print() ===")
             f_print()
@@ -188,6 +246,12 @@ def main(argv):
         if i == "all" or i == "string":
             print("=== f_string() ===")
             f_string()
+        if i == "all" or i == "re":
+            print("=== f_re() ===")
+            f_re()
+        if i == "all" or i == "parse":
+            print("=== f_parse() ===")
+            f_parse()
 
 if __name__ == "__main__":
     main(sys.argv)

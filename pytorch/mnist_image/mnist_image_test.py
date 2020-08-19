@@ -17,8 +17,9 @@ label_data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 img = Image.open(image_file)
 width, height = img.size
-print("w h: {0} {1}".format(width, height))
-print("mode: {0}".format(img.mode))
+print("w h: {} {}".format(width, height))
+print("mode: {}".format(img.mode))
+
 image_array = np.asarray(img, dtype=np.float32).reshape(784)
 
 X = image_array / 255
@@ -38,6 +39,7 @@ show_image(X_test.numpy())
 # prediction
 model = torch.load(model_file)
 model.eval()
+
 data = Variable(X_test)
 output = model(data)  # 入力dataをinputし、出力を求める
 print("output: {}".format(output))

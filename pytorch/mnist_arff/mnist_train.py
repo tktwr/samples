@@ -10,29 +10,38 @@ from torch import nn
 from torch import optim
 from sklearn.model_selection import train_test_split
 
+debug = 0
 
-data, meta = arff.loadarff("Z:/data/mnist/mnist_784.arff")
-#data, meta = arff.loadarff("test.arff")
-#print(type(data))
-#print(type(meta))
+filename = "Z:/data/mnist/mnist_784.arff"
+#filename = "mnist_test.arff"
+data, meta = arff.loadarff(filename)
 
+# tuple data
 image_data = data[meta.names()[:-1]] #everything but the last column
-image_array = np.asarray(image_data.tolist(), dtype=np.float32)
 label_data = data['class']
+if debug == 1:
+    print(image_data)
+    print(label_data)
+
+# ndarray
+image_array = np.asarray(image_data.tolist(), dtype=np.float32)
 label_array = np.asarray(label_data.tolist(), dtype=np.uint8)
+if debug == 1:
+    print(image_array)
+    print(label_array)
 
-#print(image_data)
-#print(image_array)
-#print(label_data)
-#print(label_array)
+print("image_array.shape: {}".format(image_array.shape))
+print("label_array.shape: {}".format(label_array.shape))
 
-X = image_array / 255
+X = image_array / 255 # [0, 1]
 y = label_array
 
-plt.imshow(X[0].reshape(28, 28), cmap='gray')
-plt.show()
+if debug == 1:
+    print("label: {}".format(y[0]))
+    plt.imshow(X[0].reshape(28, 28), cmap='gray')
+    plt.show()
+    quit()
 
-#print("label: {}".format(y[0]))
 
 # 2. DataLoderの作成
 
@@ -42,8 +51,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # 2.2 データをPyTorchのTensorに変換
 X_train = torch.Tensor(X_train)
-X_test = torch.Tensor(X_test)
 y_train = torch.LongTensor(y_train)
+
+X_test = torch.Tensor(X_test)
 y_test = torch.LongTensor(y_test)
 
 # 2.3 データとラベルをセットにしたDatasetを作成
