@@ -3,11 +3,14 @@ memo_bat.app	bat/sample.bat	/*memo_bat.app*
 memo_cpp.11	cpp/sample_c++11.cpp	/*memo_cpp.11*
 memo_cpp.14	cpp/sample_c++14.cpp	/*memo_cpp.14*
 memo_cpp.17	cpp/sample_c++17.cpp	/*memo_cpp.17*
+memo_cpp.20	cpp/sample_c++20.cpp	/*memo_cpp.20*
 memo_cpp.auto	cpp/sample_c++11.cpp	/*memo_cpp.auto*
+memo_cpp.constexpr	cpp/sample_c++11.cpp	/*memo_cpp.constexpr*
 memo_cpp.cstdio	cpp/sample_cstdio.cpp	/*memo_cpp.cstdio*
+memo_cpp.datetime	cpp/sample_c++11.cpp	/*memo_cpp.datetime*
 memo_cpp.for	cpp/sample_c++11.cpp	/*memo_cpp.for*
 memo_cpp.fstream	cpp/sample_fstream.cpp	/*memo_cpp.fstream*
-memo_cpp.hello	cpp/sample.cpp	/*memo_cpp.hello*
+memo_cpp.hello-world	cpp/sample.cpp	/*memo_cpp.hello-world*
 memo_cpp.initializer	cpp/sample_c++11.cpp	/*memo_cpp.initializer*
 memo_cpp.limits	cpp/sample_c++11.cpp	/*memo_cpp.limits*
 memo_cpp.shared_ptr	cpp/sample_c++11.cpp	/*memo_cpp.shared_ptr*

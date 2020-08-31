@@ -6,12 +6,46 @@
 #include <vector>
 #include <array>
 #include <limits>
+#include <chrono>
+#include <ctime>
+#include <iomanip>  // put_time
 
 using namespace std;
 
+void f_title(const std::string& title) {
+    cout << "=== [" << title << "] ===" << endl;
+}
+
+//-------------------------------------------------------------------------
+
+// *memo_cpp.constexpr*
+constexpr int f_val() { return 10; }
+
+void f_constexpr() {
+    f_title("constexpr");
+
+    constexpr int a = 1;
+    constexpr int b = f_val();
+    std::cout << "a: " << a << std::endl;
+    std::cout << "b: " << b << std::endl;
+}
+
+// *memo_cpp.datetime*
+void f_datetime() {
+    f_title("datetime");
+
+    auto now = std::chrono::system_clock::now();
+    std::time_t end_time = std::chrono::system_clock::to_time_t(now);
+    std::cout << "ctime(): " << std::ctime(&end_time) << std::endl;
+
+    std::time_t t = std::time(nullptr);
+    std::tm* lt = std::localtime(&t);
+    std::cout << std::put_time(lt, "%Y%m%d-%H%M%S") << std::endl;
+}
+
 // *memo_cpp.limits*
 void f_limits() {
-    cout << "[limits]" << endl;
+    f_title("limits");
 
     cout << "unsigned char  max: " << int(std::numeric_limits<unsigned char>::max()) << endl;
     cout << "unsigned short max: " << std::numeric_limits<unsigned short>::max() << endl;
@@ -22,7 +56,7 @@ void f_limits() {
 
 // *memo_cpp.initializer*
 void f_initializer() {
-    cout << "[initializer]" << endl;
+    f_title("initializer");
 
     {
         //std::array<int, 4> ar(1, 2, 3, 4); // No such a constructor
@@ -65,7 +99,7 @@ void f_initializer() {
 
 // *memo_cpp.auto*
 void f_auto_type() {
-    cout << "[auto_type]" << endl;
+    f_title("auto_type");
 
     std::vector<int> vec{1, 2, 3, 4, 5};
 
@@ -82,7 +116,7 @@ void f_auto_type() {
 
 // *memo_cpp.for*
 void f_range_based_for_loop() {
-    cout << "[range_based_for_loop]" << endl;
+    f_title("range_based_for_loop");
 
     std::vector<int> vec{1, 2, 3, 4, 5};
 
@@ -97,7 +131,7 @@ void f_range_based_for_loop() {
 
 // *memo_cpp.unique_ptr*
 void f_unique_ptr() {
-    cout << "[unique_ptr]" << endl;
+    f_title("unique_ptr");
 
     unique_ptr<int> ptr(new int(1));
     unique_ptr<int> ptr2 = std::move(ptr);
@@ -123,14 +157,14 @@ void f_unique_ptr() {
 
 // *memo_cpp.unique_ptr_array*
 void f_unique_ptr_array() {
-    cout << "[unique_ptr_array]" << endl;
+    f_title("unique_ptr_array");
 
     unique_ptr<int[]> ptr(new int[10]);
 }
 
 // *memo_cpp.shared_ptr*
 void f_shared_ptr() {
-    cout << "[shared_ptr]" << endl;
+    f_title("shared_ptr");
 
     shared_ptr<int> ptr(new int(1));
     {
@@ -144,10 +178,12 @@ void f_shared_ptr() {
 
 // *memo_cpp.weak_ptr*
 void f_weak_ptr() {
-    cout << "[weak_ptr]" << endl;
+    f_title("weak_ptr");
 }
 
 int main(int argc, char *argv[]) {
+    f_constexpr();
+    f_datetime();
     f_limits();
     f_initializer();
     f_auto_type();
