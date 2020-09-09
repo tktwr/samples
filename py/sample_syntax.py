@@ -110,6 +110,7 @@ def f_class():
 def f_list():
     l = [1, 2, 3, 4, 5]
     print("l = {}".format(l))
+    print("len(l) = {}".format(len(l)))
     print("l[0] = {}".format(l[0]))
     l.append(10)
     print("l.append(10) = {}".format(l))
@@ -122,13 +123,22 @@ def f_list():
     print("l       = {}".format(l))
     print("l[:]    = {}".format(l[:]))
     print("l[0:]   = {}".format(l[0:]))
-    print("l[2:4]  = {}".format(l[2:4]))
+    print("l[2:4]  = {}".format(l[2:4]))  # 2 + 2 chars
     print("l[:-1]  = {}".format(l[:-1]))
     print("l[:-2]  = {}".format(l[:-2]))
     print("l[-2:-1]= {}".format(l[-2:-1]))
     print("l[-1:]  = {}".format(l[-1:]))
 
     print("t = {}".format(tuple(l)))
+
+    s = "1 2 3 4 5"
+    print("s = {}".format(s))
+    str_list = s.split(" ")
+    print("str_list = {}".format(str_list))
+    int_list = list(int(i) for i in str_list)
+    print("int_list = {}".format(int_list))
+    int_list = list(range(1, 6, 1))
+    print("int_list = {}".format(int_list))
 
 def f_tuple():
     # tuple is read only
