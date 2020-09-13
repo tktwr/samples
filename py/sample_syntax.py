@@ -6,11 +6,13 @@ import sys
 import my
 from dir1.mymodule import MyClassA
 
+# *memo_py.syntax.input*
 def f_input():
     print("input:")
     in_s = input()
     print("in_s: {}".format(in_s))
 
+# *memo_py.syntax.print*
 def f_print():
     # comment
     '''
@@ -43,6 +45,7 @@ def f_print():
     print("sys.stdout.encoding: {}".format(sys.stdout.encoding))
     print("sys.stderr.encoding: {}".format(sys.stderr.encoding))
 
+# *memo_py.syntax.if*
 def f_if(i):
     if i == 0:
         print("i == 0")
@@ -55,12 +58,14 @@ def f_if(i):
     else:
         print("i == other")
 
+# *memo_py.syntax.while*
 def f_while(i):
     while i < 5:
         print("%d " % i, end="")
         i += 1
     print()
 
+# *memo_py.syntax.for*
 def f_for():
     for i in range(0, 5, 1):
         print("%d " % i, end="")
@@ -85,6 +90,7 @@ def f_add(a, b):
 def f_args(a, b):
     print("a, b: {} {}".format(a, b))
 
+# *memo_py.syntax.func*
 def f_func():
     x = f_add(1, 2)
     print("f_add: %d" % x)
@@ -92,6 +98,7 @@ def f_func():
     f_args(2, 1)
     f_args(b=2, a=1)
 
+# *memo_py.syntax.class*
 def f_class():
     my1 = my.MyClass(10)
     my2 = my.MyClass(20)
@@ -107,6 +114,7 @@ def f_class():
     a1 = MyClassA(123)
     print(a1.x)
 
+# *memo_py.syntax.list*
 def f_list():
     l = [1, 2, 3, 4, 5]
     print("l = {}".format(l))
@@ -140,6 +148,7 @@ def f_list():
     int_list = list(range(1, 6, 1))
     print("int_list = {}".format(int_list))
 
+# *memo_py.syntax.tuple*
 def f_tuple():
     # tuple is read only
     t = (1, 3, 5, 7, 9)
@@ -148,11 +157,13 @@ def f_tuple():
     print("t = {}".format(t))
     print("l = {}".format(list(t)))
 
+# *memo_py.syntax.dict*
 def f_dict():
     d = {"a":1, "b":2}
     print("d = {}".format(d))
     print("d[\"a\"] = {}".format(d["a"]))
 
+# *memo_py.syntax.type*
 def f_type():
     b = True
     b = False
@@ -168,6 +179,7 @@ def f_type():
     l = list(t)
     t = tuple(l)
 
+# *memo_py.syntax.re*
 def f_re():
     import re
     in_s = "1, 1.5, 2, 2.5:str"
@@ -175,6 +187,7 @@ def f_re():
     print("in_s: {}".format(in_s))
     print("out_s: {}".format(out_s))
 
+# *memo_py.syntax.parse*
 def f_parse():
     import parse
     in_s = "123 str1 str2 12.34"
@@ -190,6 +203,7 @@ def f_parse():
     print("out_s['var2']: {}".format(out_s['var2']))
     print("out_s[0]: {}".format(out_s[0]))
 
+# *memo_py.syntax.string*
 def f_string():
     s = "abc," + "def,"
     s = s + str(100)

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# *memo_py.os*
 
 import os.path
 import glob

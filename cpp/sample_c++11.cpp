@@ -18,7 +18,7 @@ void f_title(const std::string& title) {
 
 //-------------------------------------------------------------------------
 
-// *memo_cpp.constexpr*
+// *memo_cpp.11.constexpr*
 constexpr int f_val() { return 10; }
 
 void f_constexpr() {
@@ -30,7 +30,7 @@ void f_constexpr() {
     std::cout << "b: " << b << std::endl;
 }
 
-// *memo_cpp.datetime*
+// *memo_cpp.11.datetime*
 void f_datetime() {
     f_title("datetime");
 
@@ -43,7 +43,7 @@ void f_datetime() {
     std::cout << std::put_time(lt, "%Y%m%d-%H%M%S") << std::endl;
 }
 
-// *memo_cpp.limits*
+// *memo_cpp.11.limits*
 void f_limits() {
     f_title("limits");
 
@@ -54,7 +54,7 @@ void f_limits() {
     cout << "double         max: " << std::numeric_limits<double>::max() << endl;
 }
 
-// *memo_cpp.initializer*
+// *memo_cpp.11.initializer*
 void f_initializer() {
     f_title("initializer");
 
@@ -97,7 +97,7 @@ void f_initializer() {
     }
 }
 
-// *memo_cpp.auto*
+// *memo_cpp.11.auto*
 void f_auto_type() {
     f_title("auto_type");
 
@@ -114,7 +114,7 @@ void f_auto_type() {
     cout << endl;
 }
 
-// *memo_cpp.for*
+// *memo_cpp.11.for*
 void f_range_based_for_loop() {
     f_title("range_based_for_loop");
 
@@ -129,7 +129,7 @@ void f_range_based_for_loop() {
     for (int& x : vec) {}
 }
 
-// *memo_cpp.unique_ptr*
+// *memo_cpp.11.unique_ptr*
 void f_unique_ptr() {
     f_title("unique_ptr");
 
@@ -155,14 +155,14 @@ void f_unique_ptr() {
     ptr2.reset();
 }
 
-// *memo_cpp.unique_ptr_array*
+// *memo_cpp.11.unique_ptr_array*
 void f_unique_ptr_array() {
     f_title("unique_ptr_array");
 
     unique_ptr<int[]> ptr(new int[10]);
 }
 
-// *memo_cpp.shared_ptr*
+// *memo_cpp.11.shared_ptr*
 void f_shared_ptr() {
     f_title("shared_ptr");
 
@@ -176,7 +176,7 @@ void f_shared_ptr() {
     cout << "use_count : " << ptr.use_count() << endl;
 }
 
-// *memo_cpp.weak_ptr*
+// *memo_cpp.11.weak_ptr*
 void f_weak_ptr() {
     f_title("weak_ptr");
 }
