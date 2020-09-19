@@ -42,6 +42,7 @@ from torch.optim import lr_scheduler
 import numpy as np
 import torchvision
 from torchvision import datasets, models, transforms
+from torch.utils.tensorboard import SummaryWriter
 import matplotlib.pyplot as plt
 import time
 import os
@@ -49,6 +50,7 @@ import copy
 
 if __name__ == "__main__":
     plt.ion()   # interactive mode
+    writer = SummaryWriter(log_dir="./logs")
 
     ######################################################################
     # Load Data
@@ -92,13 +94,14 @@ if __name__ == "__main__":
     image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),
                                               data_transforms[x])
                       for x in ['train', 'val']}
-    dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=4,
-                                                 shuffle=True, num_workers=4)
+    dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=2,
+                                                 shuffle=True, num_workers=2)
                   for x in ['train', 'val']}
     dataset_sizes = {x: len(image_datasets[x]) for x in ['train', 'val']}
     class_names = image_datasets['train'].classes
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    #device = torch.device("cpu")
 
     ######################################################################
     # Visualize a few images
@@ -106,7 +109,7 @@ if __name__ == "__main__":
     # Let's visualize a few training images so as to understand the data
     # augmentations.
 
-    def imshow(inp, title=None):
+    def imshow(name, inp, title=None):
         """Imshow for Tensor."""
         inp = inp.numpy().transpose((1, 2, 0))
         mean = np.array([0.485, 0.456, 0.406])
@@ -118,6 +121,10 @@ if __name__ == "__main__":
             plt.title(title)
         plt.pause(0.001)  # pause a bit so that plots are updated
 
+        x = inp.transpose((2, 0, 1))
+        x_tensor = torch.Tensor(x)
+        writer.add_image(name, x_tensor, 0)
+
 
     # Get a batch of training data
     inputs, classes = next(iter(dataloaders['train']))
@@ -125,7 +132,7 @@ if __name__ == "__main__":
     # Make a grid from batch
     out = torchvision.utils.make_grid(inputs)
 
-    imshow(out, title=[class_names[x] for x in classes])
+    imshow("inputs", out, title=[class_names[x] for x in classes])
 
 
     ######################################################################
@@ -142,7 +149,7 @@ if __name__ == "__main__":
     # ``torch.optim.lr_scheduler``.
 
 
-    def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
+    def train_model(model_name, model, criterion, optimizer, scheduler, num_epochs=25):
         since = time.time()
 
         best_model_wts = copy.deepcopy(model.state_dict())
@@ -193,6 +200,8 @@ if __name__ == "__main__":
 
                 print('{} Loss: {:.4f} Acc: {:.4f}'.format(
                     phase, epoch_loss, epoch_acc))
+                writer.add_scalar(f'{model_name}/{phase}/loss', epoch_loss, epoch)
+                writer.add_scalar(f'{model_name}/{phase}/acc', epoch_acc, epoch)
 
                 # deep copy the model
                 if phase == 'val' and epoch_acc > best_acc:
@@ -218,7 +227,7 @@ if __name__ == "__main__":
     # Generic function to display predictions for a few images
     #
 
-    def visualize_model(model, num_images=6):
+    def visualize_model(model_name, model, num_images=6):
         was_training = model.training
         model.eval()
         images_so_far = 0
@@ -237,7 +246,7 @@ if __name__ == "__main__":
                     ax = plt.subplot(num_images//2, 2, images_so_far)
                     ax.axis('off')
                     ax.set_title('predicted: {}'.format(class_names[preds[j]]))
-                    imshow(inputs.cpu().data[j])
+                    imshow(model_name, inputs.cpu().data[j])
 
                     if images_so_far == num_images:
                         model.train(mode=was_training)
@@ -275,13 +284,15 @@ if __name__ == "__main__":
     # minute.
     #
 
-    model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
-                           num_epochs=25)
+    model_ft = train_model("model_ft", model_ft, criterion, optimizer_ft, exp_lr_scheduler,
+                           num_epochs=5)
 
     ######################################################################
     #
 
-    visualize_model(model_ft)
+    visualize_model("model_ft", model_ft)
+    inputs_device = inputs.to(device)
+    writer.add_graph(model_ft, inputs_device)
 
 
     ######################################################################
@@ -325,16 +336,17 @@ if __name__ == "__main__":
     # network. However, forward does need to be computed.
     #
 
-    model_conv = train_model(model_conv, criterion, optimizer_conv,
-                             exp_lr_scheduler, num_epochs=25)
+    model_conv = train_model("model_conv", model_conv, criterion, optimizer_conv,
+                             exp_lr_scheduler, num_epochs=5)
 
     ######################################################################
     #
 
-    visualize_model(model_conv)
+    visualize_model("model_conv", model_conv)
 
     plt.ioff()
     plt.show()
+    writer.close()
 
     ######################################################################
     # Further Learning
