@@ -47,8 +47,29 @@ import matplotlib.pyplot as plt
 import time
 import os
 import copy
+import argparse
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description='transfer learning')
+    parser.add_argument('-b', '--batch-size',
+                        type=int,
+                        default=4,
+                        help='set batch_size')
+    parser.add_argument('-w', '--num-workers',
+                        type=int,
+                        default=4,
+                        help='set num_workers')
+    parser.add_argument('-e', '--num-epochs',
+                        type=int,
+                        default=25,
+                        help='set num_epochs')
+
+    return parser.parse_args()
+
 
 if __name__ == "__main__":
+    args = parse_args()
     plt.ion()   # interactive mode
     writer = SummaryWriter(log_dir="./logs")
 
@@ -94,8 +115,8 @@ if __name__ == "__main__":
     image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),
                                               data_transforms[x])
                       for x in ['train', 'val']}
-    dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=2,
-                                                 shuffle=True, num_workers=2)
+    dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=args.batch_size,
+                                                 shuffle=True, num_workers=args.num_workers)
                   for x in ['train', 'val']}
     dataset_sizes = {x: len(image_datasets[x]) for x in ['train', 'val']}
     class_names = image_datasets['train'].classes
@@ -285,7 +306,7 @@ if __name__ == "__main__":
     #
 
     model_ft = train_model("model_ft", model_ft, criterion, optimizer_ft, exp_lr_scheduler,
-                           num_epochs=5)
+                           num_epochs=args.num_epochs)
 
     ######################################################################
     #
@@ -337,7 +358,7 @@ if __name__ == "__main__":
     #
 
     model_conv = train_model("model_conv", model_conv, criterion, optimizer_conv,
-                             exp_lr_scheduler, num_epochs=5)
+                             exp_lr_scheduler, num_epochs=args.num_epochs)
 
     ######################################################################
     #
