@@ -71,7 +71,7 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     plt.ion()   # interactive mode
-    writer = SummaryWriter(log_dir="./logs")
+    writer = SummaryWriter(log_dir="local/logs")
 
     ######################################################################
     # Load Data
@@ -111,7 +111,7 @@ if __name__ == "__main__":
         ]),
     }
 
-    data_dir = 'data/hymenoptera_data'
+    data_dir = 'local/data/hymenoptera_data'
     image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),
                                               data_transforms[x])
                       for x in ['train', 'val']}
