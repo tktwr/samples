@@ -5,10 +5,10 @@ from torchvision import datasets, transforms
 import numpy as np
 
 # Writer will output to ./runs/ directory by default
-writer = SummaryWriter()
+writer = SummaryWriter(log_dir="local/runs")
 
 transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
-trainset = datasets.MNIST('mnist_train', train=True, download=True, transform=transform)
+trainset = datasets.MNIST('local/mnist_train', train=True, download=True, transform=transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=64, shuffle=True)
 model = torchvision.models.resnet50(False)
 # Have ResNet model take in grayscale rather than RGB

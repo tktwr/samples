@@ -71,7 +71,7 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     plt.ion()   # interactive mode
-    writer = SummaryWriter(log_dir="local/logs")
+    writer = SummaryWriter(log_dir="local/runs")
 
     ######################################################################
     # Load Data
