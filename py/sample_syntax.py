@@ -4,13 +4,16 @@
 
 import sys
 import my
-from dir1.mymodule import MyClassA
+import modules.mymodule as mymod
+from common import f_title
+
 
 # *memo_py.syntax.input*
 def f_input():
     print("input:")
     in_s = input()
-    print("in_s: {}".format(in_s))
+    print("in_s: {in_s}")
+
 
 # *memo_py.syntax.print*
 def f_print():
@@ -41,9 +44,10 @@ def f_print():
     print()
 
     # encoding
-    print("sys.stdin.encoding: {}".format(sys.stdin.encoding))
-    print("sys.stdout.encoding: {}".format(sys.stdout.encoding))
-    print("sys.stderr.encoding: {}".format(sys.stderr.encoding))
+    print(f"sys.stdin.encoding: {sys.stdin.encoding}")
+    print(f"sys.stdout.encoding: {sys.stdout.encoding}")
+    print(f"sys.stderr.encoding: {sys.stderr.encoding}")
+
 
 # *memo_py.syntax.if*
 def f_if(i):
@@ -58,12 +62,14 @@ def f_if(i):
     else:
         print("i == other")
 
+
 # *memo_py.syntax.while*
 def f_while(i):
     while i < 5:
         print("%d " % i, end="")
         i += 1
     print()
+
 
 # *memo_py.syntax.for*
 def f_for():
@@ -84,19 +90,23 @@ def f_for():
         print("%d " % i, end="")
     print()
 
+
 def f_add(a, b):
     return a + b
 
+
 def f_args(a, b):
-    print("a, b: {} {}".format(a, b))
+    print(f"a, b: {a} {b}")
+
 
 # *memo_py.syntax.func*
 def f_func():
     x = f_add(1, 2)
-    print("f_add: %d" % x)
+    print(f"x: {x}")
     f_args(1, 2)
     f_args(2, 1)
     f_args(b=2, a=1)
+
 
 # *memo_py.syntax.class*
 def f_class():
@@ -111,57 +121,61 @@ def f_class():
     print(my1.add(1))
     print(sub1.g())
 
-    a1 = MyClassA(123)
+    a1 = mymod.MyClassA(123)
     print(a1.x)
+
 
 # *memo_py.syntax.list*
 def f_list():
     l = [1, 2, 3, 4, 5]
-    print("l = {}".format(l))
-    print("len(l) = {}".format(len(l)))
-    print("l[0] = {}".format(l[0]))
+    print(f"l = {l}")
+    print(f"len(l) = {len(l)}")
+    print(f"l[0] = {l[0]}")
     l.append(10)
-    print("l.append(10) = {}".format(l))
+    print(f"l.append(10) = {l}")
     l.insert(0, 20)
-    print("l.insert(0, 20) = {}".format(l))
+    print(f"l.insert(0, 20) = {l}")
     l.pop(2)
-    print("l.pop(2) = {}".format(l))
+    print(f"l.pop(2) = {l}")
 
     l = ['zero', 1, 'two', 3, 'four', 5]
-    print("l       = {}".format(l))
-    print("l[:]    = {}".format(l[:]))
-    print("l[0:]   = {}".format(l[0:]))
-    print("l[2:4]  = {}".format(l[2:4]))  # 2 + 2 chars
-    print("l[:-1]  = {}".format(l[:-1]))
-    print("l[:-2]  = {}".format(l[:-2]))
-    print("l[-2:-1]= {}".format(l[-2:-1]))
-    print("l[-1:]  = {}".format(l[-1:]))
+    print(f"l       = {l}")
+    print(f"l[:]    = {l[:]}")
+    print(f"l[0:]   = {l[0:]}")
+    print(f"l[2:4]  = {l[2:4]}")  # 2 + 2 chars
+    print(f"l[:-1]  = {l[:-1]}")
+    print(f"l[:-2]  = {l[:-2]}")
+    print(f"l[-2:-1]= {l[-2:-1]}")
+    print(f"l[-1:]  = {l[-1:]}")
 
-    print("t = {}".format(tuple(l)))
+    print(f"t = {tuple(l)}")
 
     s = "1 2 3 4 5"
-    print("s = {}".format(s))
+    print(f"s = {s}")
     str_list = s.split(" ")
-    print("str_list = {}".format(str_list))
+    print(f"str_list = {str_list}")
     int_list = list(int(i) for i in str_list)
-    print("int_list = {}".format(int_list))
+    print(f"int_list = {int_list}")
     int_list = list(range(1, 6, 1))
-    print("int_list = {}".format(int_list))
+    print(f"int_list = {int_list}")
+
 
 # *memo_py.syntax.tuple*
 def f_tuple():
     # tuple is read only
     t = (1, 3, 5, 7, 9)
-    print("t = {}".format(t))
+    print(f"t = {t}")
     t = (1, 'two', 3, 'four', 5)
-    print("t = {}".format(t))
-    print("l = {}".format(list(t)))
+    print(f"t = {t}")
+    print(f"l = {list(t)}")
+
 
 # *memo_py.syntax.dict*
 def f_dict():
     d = {"a":1, "b":2}
-    print("d = {}".format(d))
-    print("d[\"a\"] = {}".format(d["a"]))
+    print(f"d = {d}")
+    print(f"d['a'] = {d['a']}")
+
 
 # *memo_py.syntax.type*
 def f_type():
@@ -179,63 +193,68 @@ def f_type():
     l = list(t)
     t = tuple(l)
 
+
+# *memo_py.syntax.string*
+def f_string():
+    s = "abc," + "def,"
+    s = s + str(100)
+    print(f"s = {s}")
+    l = s.split(",")
+    print(f"l = {l}")
+
+    import parse
+    s = f"images/img{123}_{5}.png"
+    print(f"s: {s}")
+    print(f"s[0]: {s[0]}")
+    print(f"s[-1]: {s[-1]}")
+    print(f"s[0:4]: {s[0:4]}")
+    print(f"s[1:4]: {s[1:4]}")
+    print(f"s.split('/'): {s.split('/')}")
+    print(f"s.replace('/', '-'): {s.replace('/', '-')}")
+    dirname, filename = s.split("/")
+    print(f"dirname: {dirname}")
+    print(f"filename: {filename}")
+    result = parse.parse("img{nr:d}_{label:d}.png", filename)
+    print(f"nr, label: {result['nr']}, {result['label']}")
+
+
 # *memo_py.syntax.re*
 def f_re():
     import re
     in_s = "1, 1.5, 2, 2.5:str"
     out_s = re.split(r",\s+|:", in_s)
-    print("in_s: {}".format(in_s))
-    print("out_s: {}".format(out_s))
+    print(f"in_s: {in_s}")
+    print(f"out_s: {out_s}")
+
 
 # *memo_py.syntax.parse*
 def f_parse():
     import parse
     in_s = "123 str1 str2 12.34"
     out_s = parse.parse("{:d} str1 {:w} {:f}", in_s)
-    print("in_s: {}".format(in_s))
-    print("out_s: {}".format(out_s))
+    print(f"in_s: {in_s}")
+    print(f"out_s: {out_s}")
 
     in_s = "123 str1 str2 12.34"
     out_s = parse.parse("{var1:d} str1 {:w} {var2}", in_s)
-    print("in_s: {}".format(in_s))
-    print("out_s: {}".format(out_s))
-    print("out_s['var1']: {}".format(out_s['var1']))
-    print("out_s['var2']: {}".format(out_s['var2']))
-    print("out_s[0]: {}".format(out_s[0]))
+    print(f"in_s: {in_s}")
+    print(f"out_s: {out_s}")
+    print(f"out_s['var1']: {out_s['var1']}")
+    print(f"out_s['var2']: {out_s['var2']}")
+    print(f"out_s[0]: {out_s[0]}")
 
-# *memo_py.syntax.string*
-def f_string():
-    s = "abc," + "def,"
-    s = s + str(100)
-    print("s = {}".format(s))
-    l = s.split(",")
-    print("l = {}".format(l))
-
-    import parse
-    s = "images/img{}_{}.png".format(123, 5)
-    print("s: {}".format(s))
-    print("s[0]: {}".format(s[0]))
-    print("s[-1]: {}".format(s[-1]))
-    print("s[0:4]: {}".format(s[0:4]))
-    print("s[1:4]: {}".format(s[1:4]))
-    print("s.split('/'): {}".format(s.split('/')))
-    print("s.replace('/', '-'): {}".format(s.replace('/', '-')))
-    dirname, filename = s.split("/")
-    print("dirname: {}".format(dirname))
-    print("filename: {}".format(filename))
-    result = parse.parse("img{nr:d}_{label:d}.png", filename)
-    print("nr, label: {}, {}".format(result['nr'], result['label']))
 
 def main(argv):
+    print(f"argv: {argv}")
     for i in argv:
         if i == "input":
-            print("=== f_input() ===")
+            f_title("f_input()")
             f_input()
         if i == "all" or i == "print":
-            print("=== f_print() ===")
+            f_title("f_print()")
             f_print()
         if i == "all" or i == "if":
-            print("=== f_if() ===")
+            f_title("f_if()")
             f_if(0)
             f_if(1)
             f_if(2)
@@ -244,39 +263,39 @@ def main(argv):
             f_if(5)
             f_if(9)
         if i == "all" or i == "while":
-            print("=== f_while() ===")
+            f_title("f_while()")
             f_while(0)
         if i == "all" or i == "for":
-            print("=== f_for() ===")
+            f_title("f_for()")
             f_for()
         if i == "all" or i == "func":
-            print("=== f_func() ===")
+            f_title("f_func()")
             f_func()
         if i == "all" or i == "class":
-            print("=== f_class() ===")
+            f_title("f_class()")
             f_class()
         if i == "all" or i == "list":
-            print("=== f_list() ===")
+            f_title("f_list()")
             f_list()
         if i == "all" or i == "tuple":
-            print("=== f_tuple() ===")
+            f_title("f_tuple()")
             f_tuple()
         if i == "all" or i == "dict":
-            print("=== f_dict() ===")
+            f_title("f_dict()")
             f_dict()
         if i == "all" or i == "type":
-            print("=== f_type() ===")
+            f_title("f_type()")
             f_type()
         if i == "all" or i == "string":
-            print("=== f_string() ===")
+            f_title("f_string()")
             f_string()
         if i == "all" or i == "re":
-            print("=== f_re() ===")
+            f_title("f_re()")
             f_re()
         if i == "all" or i == "parse":
-            print("=== f_parse() ===")
+            f_title("f_parse()")
             f_parse()
+
 
 if __name__ == "__main__":
     main(sys.argv)
-

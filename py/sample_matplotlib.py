@@ -34,7 +34,7 @@ def read_data(fname):
 def plot_data():
     #x = np.random.rand(100)
     #y = np.random.rand(100)
-    x, y = read_data("data_plot.txt")
+    x, y = read_data("data/data_plot.txt")
 
     fig, ax = plt.subplots()
     ax.plot(x, y, "o")
