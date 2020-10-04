@@ -1,3 +1,4 @@
+// *memo_cpp.class*
 #include <memory>
 #include <iostream>
 

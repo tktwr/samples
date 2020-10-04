@@ -7,6 +7,7 @@ memo_cpp.11.datetime	cpp/sample_c++11.cpp	/*memo_cpp.11.datetime*
 memo_cpp.11.for	cpp/sample_c++11.cpp	/*memo_cpp.11.for*
 memo_cpp.11.initializer	cpp/sample_c++11.cpp	/*memo_cpp.11.initializer*
 memo_cpp.11.limits	cpp/sample_c++11.cpp	/*memo_cpp.11.limits*
+memo_cpp.11.move	cpp/sample_move.cpp	/*memo_cpp.11.move*
 memo_cpp.11.shared_ptr	cpp/sample_c++11.cpp	/*memo_cpp.11.shared_ptr*
 memo_cpp.11.thread	cpp/sample_thread.cpp	/*memo_cpp.11.thread*
 memo_cpp.11.unique_ptr	cpp/sample_c++11.cpp	/*memo_cpp.11.unique_ptr*
@@ -17,6 +18,7 @@ memo_cpp.17	cpp/sample_c++17.cpp	/*memo_cpp.17*
 memo_cpp.17.nested_namespace	cpp/sample_c++17.cpp	/*memo_cpp.17.nested_namespace*
 memo_cpp.17.structured_bidings	cpp/sample_c++17.cpp	/*memo_cpp.17.structured_bidings*
 memo_cpp.20	cpp/sample_c++20.cpp	/*memo_cpp.20*
+memo_cpp.class	cpp/sample_class.cpp	/*memo_cpp.class*
 memo_cpp.cstdio	cpp/sample_cstdio.cpp	/*memo_cpp.cstdio*
 memo_cpp.fstream	cpp/sample_fstream.cpp	/*memo_cpp.fstream*
 memo_cpp.hello-world	cpp/sample.cpp	/*memo_cpp.hello-world*
