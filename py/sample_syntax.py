@@ -10,6 +10,7 @@ from common import f_title
 
 # *memo_py.syntax.input*
 def f_input():
+    f_title("f_input()")
     print("input:")
     in_s = input()
     print("in_s: {in_s}")
@@ -17,6 +18,7 @@ def f_input():
 
 # *memo_py.syntax.print*
 def f_print():
+    f_title("f_print()")
     # comment
     '''
     comment
@@ -50,44 +52,49 @@ def f_print():
 
 
 # *memo_py.syntax.if*
-def f_if(i):
-    if i == 0:
-        print("i == 0")
-    elif i == 1:
-        print("i == 1")
-    elif i == 2 or i == 3:
-        print("i == 2 or i == 3")
-    elif 4 <= i <= 5:
-        print("4 <= i <= 5")
-    else:
-        print("i == other")
+def f_if():
+    f_title("f_if()")
+    for i in (0, 1, 2, 3, 4, 5, 9):
+        if i == 0:
+            print("i == 0")
+        elif i == 1:
+            print("i == 1")
+        elif i == 2 or i == 3:
+            print("i == 2 or i == 3")
+        elif 4 <= i <= 5:
+            print("4 <= i <= 5")
+        else:
+            print("i == other")
 
 
 # *memo_py.syntax.while*
-def f_while(i):
+def f_while():
+    f_title("f_while()")
+    i = 0
     while i < 5:
-        print("%d " % i, end="")
+        print(f"{i} ", end="")
         i += 1
     print()
 
 
 # *memo_py.syntax.for*
 def f_for():
+    f_title("f_for()")
     for i in range(0, 5, 1):
-        print("%d " % i, end="")
+        print(f"{i} ", end="")
     print()
 
     for i in range(0, 5):
-        print("%d " % i, end="")
+        print(f"{i} ", end="")
     print()
 
     for i in range(5):
-        print("%d " % i, end="")
+        print(f"{i} ", end="")
     print()
 
     list = [1, 3, 5, 7, 9]
     for i in list:
-        print("%d " % i, end="")
+        print(f"{i} ", end="")
     print()
 
 
@@ -101,6 +108,7 @@ def f_args(a, b):
 
 # *memo_py.syntax.func*
 def f_func():
+    f_title("f_func()")
     x = f_add(1, 2)
     print(f"x: {x}")
     f_args(1, 2)
@@ -110,6 +118,7 @@ def f_func():
 
 # *memo_py.syntax.class*
 def f_class():
+    f_title("f_class()")
     my1 = my.MyClass(10)
     my2 = my.MyClass(20)
     sub1 = my.MySubClass(100)
@@ -127,6 +136,7 @@ def f_class():
 
 # *memo_py.syntax.list*
 def f_list():
+    f_title("f_list()")
     l = [1, 2, 3, 4, 5]
     print(f"l = {l}")
     print(f"len(l) = {len(l)}")
@@ -162,6 +172,7 @@ def f_list():
 
 # *memo_py.syntax.tuple*
 def f_tuple():
+    f_title("f_tuple()")
     # tuple is read only
     t = (1, 3, 5, 7, 9)
     print(f"t = {t}")
@@ -172,6 +183,7 @@ def f_tuple():
 
 # *memo_py.syntax.dict*
 def f_dict():
+    f_title("f_dict()")
     d = {"a":1, "b":2}
     print(f"d = {d}")
     print(f"d['a'] = {d['a']}")
@@ -179,6 +191,7 @@ def f_dict():
 
 # *memo_py.syntax.type*
 def f_type():
+    f_title("f_type()")
     b = True
     b = False
     i = 0
@@ -196,6 +209,7 @@ def f_type():
 
 # *memo_py.syntax.string*
 def f_string():
+    f_title("f_string()")
     s = "abc," + "def,"
     s = s + str(100)
     print(f"s = {s}")
@@ -220,6 +234,7 @@ def f_string():
 
 # *memo_py.syntax.re*
 def f_re():
+    f_title("f_re()")
     import re
     in_s = "1, 1.5, 2, 2.5:str"
     out_s = re.split(r",\s+|:", in_s)
@@ -229,6 +244,7 @@ def f_re():
 
 # *memo_py.syntax.parse*
 def f_parse():
+    f_title("f_parse()")
     import parse
     in_s = "123 str1 str2 12.34"
     out_s = parse.parse("{:d} str1 {:w} {:f}", in_s)
@@ -244,57 +260,52 @@ def f_parse():
     print(f"out_s[0]: {out_s[0]}")
 
 
+def f_other():
+    f_title("f_other()")
+    print(f" 5  / 2 = { 5  / 2}")
+    print(f" 5 // 2 = { 5 // 2}")
+    print(f" 5  / 3 = { 5  / 3}")
+    print(f" 5 // 3 = { 5 // 3}")
+    print(f"10  / 3 = {10  / 3}")
+    print(f"10 // 3 = {10 // 3}")
+
+    R, G, B = 0, 1, 2
+    print(f"R, G, B: {R}, {G}, {B}")
+
+
 def main(argv):
     print(f"argv: {argv}")
     for i in argv:
         if i == "input":
-            f_title("f_input()")
             f_input()
         if i == "all" or i == "print":
-            f_title("f_print()")
             f_print()
         if i == "all" or i == "if":
-            f_title("f_if()")
-            f_if(0)
-            f_if(1)
-            f_if(2)
-            f_if(3)
-            f_if(4)
-            f_if(5)
-            f_if(9)
+            f_if()
         if i == "all" or i == "while":
-            f_title("f_while()")
-            f_while(0)
+            f_while()
         if i == "all" or i == "for":
-            f_title("f_for()")
             f_for()
         if i == "all" or i == "func":
-            f_title("f_func()")
             f_func()
         if i == "all" or i == "class":
-            f_title("f_class()")
             f_class()
         if i == "all" or i == "list":
-            f_title("f_list()")
             f_list()
         if i == "all" or i == "tuple":
-            f_title("f_tuple()")
             f_tuple()
         if i == "all" or i == "dict":
-            f_title("f_dict()")
             f_dict()
         if i == "all" or i == "type":
-            f_title("f_type()")
             f_type()
         if i == "all" or i == "string":
-            f_title("f_string()")
             f_string()
         if i == "all" or i == "re":
-            f_title("f_re()")
             f_re()
         if i == "all" or i == "parse":
-            f_title("f_parse()")
             f_parse()
+        if i == "all" or i == "other":
+            f_other()
 
 
 if __name__ == "__main__":
