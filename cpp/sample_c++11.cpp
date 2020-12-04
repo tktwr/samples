@@ -114,19 +114,28 @@ void f_auto_type() {
     cout << endl;
 }
 
-// *memo_cpp.11.for*
-void f_range_based_for_loop() {
-    f_title("range_based_for_loop");
+// *memo_cpp.11.universal_reference*
+void f_universal_reference() {
+    f_title("universal_reference");
+
+    int i = 1;
+    auto&& a = i; // int&  a;と等価 (左辺値参照型)
+    auto&& b = 1; // int&& b;と等価 (右辺値参照型)
+
+    std::vector<int> vec{1, 2, 3, 4, 5};
+    for (auto&& x : vec) {}
+}
+
+// *memo_cpp.11.range_for*
+void f_range_for() {
+    f_title("range_for");
 
     std::vector<int> vec{1, 2, 3, 4, 5};
 
+    for (auto x : vec) { x = 1; }
+    for (auto& x : vec) { x = 1; }
     for (const auto& x : vec) {}
-    for (auto x : vec) {}
-    for (int x : vec) {}
-
-    for (auto&& x : vec) {}
-    for (auto& x : vec) {}
-    for (int& x : vec) {}
+    for (auto&& x : vec) { x = 1; }
 }
 
 // *memo_cpp.11.unique_ptr*
@@ -187,7 +196,8 @@ int main(int argc, char *argv[]) {
     f_limits();
     f_initializer();
     f_auto_type();
-    f_range_based_for_loop();
+    f_universal_reference();
+    f_range_for();
     f_unique_ptr();
     f_unique_ptr_array();
     f_shared_ptr();

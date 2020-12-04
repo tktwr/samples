@@ -3,6 +3,7 @@
 # *memo_py.os*
 
 import sys
+import os
 import os.path
 import glob
 import shutil
@@ -87,6 +88,12 @@ def f_shutil(fname):
     shutil.copy("_test.txt", "_test_cp.txt")
     shutil.move("_test_cp.txt", "_test_mv.txt")
     os.remove("_test.txt")
+
+    dir_name = os.environ['USERPROFILE']
+    print(f"dir_name: {dir_name}")
+    os.system('ls -l')  # deprecated
+    import subprocess
+    result = subprocess.run(('ls', '-l'))
 
 
 def main(argv):

@@ -208,6 +208,10 @@ def f_type():
 
 
 # *memo_py.syntax.string*
+# *memo_py.syntax.string.split*
+# *memo_py.syntax.string.strip*
+# *memo_py.syntax.string.replace*
+# *memo_py.syntax.string.join*
 def f_string():
     f_title("f_string()")
     s = "abc," + "def,"
@@ -216,7 +220,6 @@ def f_string():
     l = s.split(",")
     print(f"l = {l}")
 
-    import parse
     s = f"images/img{123}_{5}.png"
     print(f"s: {s}")
     print(f"s[0]: {s[0]}")
@@ -225,11 +228,19 @@ def f_string():
     print(f"s[1:4]: {s[1:4]}")
     print(f"s.split('/'): {s.split('/')}")
     print(f"s.replace('/', '-'): {s.replace('/', '-')}")
+
     dirname, filename = s.split("/")
     print(f"dirname: {dirname}")
     print(f"filename: {filename}")
+
+    import parse
     result = parse.parse("img{nr:d}_{label:d}.png", filename)
     print(f"nr, label: {result['nr']}, {result['label']}")
+
+    s = "/".join(["aaa", "bbb", "ccc"])
+    print(f"s: {s}")
+    s = "  aaa 123  ".strip()
+    print(f"s: [{s}]")
 
 
 # *memo_py.syntax.re*

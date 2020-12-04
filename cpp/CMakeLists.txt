@@ -36,3 +36,6 @@ target_link_libraries(sample_syntax)
 add_executable(sample_thread sample_thread.cpp)
 target_link_libraries(sample_thread)
 
+add_executable(sample_template sample_template.cpp)
+target_link_libraries(sample_template)
+

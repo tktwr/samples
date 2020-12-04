@@ -150,6 +150,47 @@ void f_mat3() {
     //tt::f_print_mat("v * m = ", V);
 }
 
+constexpr float PI = static_cast<float>(EIGEN_PI);
+using Vec3 = Eigen::Vector3f;
+using Quat = Eigen::Quaternionf;
+
+float DegToRad(float deg) {
+    return PI * deg / 180.f;
+}
+
+float RadToDeg(float rad) {
+    return 180.f * rad / PI;
+}
+
+// convert quaternion to Euler angle (radian)
+Vec3 Quat2Euler(const Quat& q) {
+    return q.toRotationMatrix().eulerAngles(0, 1, 2);
+}
+
+// convert Euler angle (radian) to quaternion
+Quat Euler2Quat(const Vec3& v) {
+    return Eigen::AngleAxisf(v[0], Vec3::UnitX()) *
+           Eigen::AngleAxisf(v[1], Vec3::UnitY()) *
+           Eigen::AngleAxisf(v[2], Vec3::UnitZ());
+}
+
+// convert quaternion to Euler angle (degree)
+Vec3 Quat2EulerInDeg(const Quat& q) {
+    Vec3 v = q.toRotationMatrix().eulerAngles(0, 1, 2);
+    return Vec3(RadToDeg(v[0]), RadToDeg(v[1]), RadToDeg(v[2]));
+}
+
+// convert Euler angle (degree) to quaternion
+Quat Euler2QuatInDeg(const Vec3& _v) {
+    Vec3 v = Vec3(DegToRad(_v[0]), DegToRad(_v[1]), DegToRad(_v[2]));
+    return Eigen::AngleAxisf(v[0], Vec3::UnitX()) *
+           Eigen::AngleAxisf(v[1], Vec3::UnitY()) *
+           Eigen::AngleAxisf(v[2], Vec3::UnitZ());
+}
+
+void f_quat() {
+}
+
 void f_affine() {
     std::cout << "=== f_affine() ===" << std::endl;
 
@@ -256,6 +297,18 @@ void f_matx() {
     tt::f_print_val("size = ", m.size());
     tt::f_print_val("rows = ", m.rows());
     tt::f_print_val("cols = ", m.cols());
+}
+
+void f_decompose(const Matrix4f& M, Vector3f& trans, Vector3f& scale, Quaternionf& quat) {
+    auto&& affine = Affine3f(M);
+    Matrix3f S;
+    Matrix3f R;
+    affine.computeScalingRotation(&S, &R);
+    trans[0] = M(12);
+    trans[1] = M(13);
+    trans[2] = M(14);
+    scale = S.diagonal();
+    quat = Quaternionf(R);
 }
 
 int main(int argc, char *argv[]) {
