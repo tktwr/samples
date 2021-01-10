@@ -3,8 +3,8 @@
 # *memo_py.syntax*
 
 import sys
-import my
-import modules.mymodule as mymod
+import mymodule
+import mypackage.mymodule as mymod
 from common import f_title
 
 
@@ -98,6 +98,7 @@ def f_for():
     print()
 
 
+# *memo_py.syntax.func*
 def f_add(a, b):
     return a + b
 
@@ -106,7 +107,6 @@ def f_args(a, b):
     print(f"a, b: {a} {b}")
 
 
-# *memo_py.syntax.func*
 def f_func():
     f_title("f_func()")
     x = f_add(1, 2)
@@ -117,21 +117,61 @@ def f_func():
 
 
 # *memo_py.syntax.class*
+class MyClass():
+    def __init__(self):
+        print(f"MyClass.__init__")
+
+    def __del__(self):
+        print(f"MyClass.__del__")
+
+    def f(self, x):
+        self.x = x
+        print(f"MyClass.f: {x}")
+
+    def public_method(self):
+        pass
+
+    def _protected_method(self):
+        pass
+
+    def __private_method(self):
+        pass
+    
+    class_member = 0
+
+    @classmethod
+    def class_method(cls):
+        cls.class_member += 1
+        print(f"class_method: {cls.class_member}")
+
+
+class MySubClass(MyClass):
+    def f(self, x):
+        print(f"MySubClass.f: {x}")
+
+
 def f_class():
     f_title("f_class()")
-    my1 = my.MyClass(10)
-    my2 = my.MyClass(20)
-    sub1 = my.MySubClass(100)
+    my = MyClass()
+    my.f(10)
+    MyClass.class_method()
+    MyClass.class_method()
 
-    print(my.MyClass.n)
-    my.MyClass.f("class method")
-    print(my1.x)
-    print(my2.x)
-    print(my1.add(1))
-    print(sub1.g())
 
-    a1 = mymod.MyClassA(123)
-    print(a1.x)
+def f_subclass():
+    f_title("f_subclass()")
+    my = MySubClass()
+    my.f(10)
+
+
+# *memo_py.syntax.module*
+def f_module():
+    f_title("f_module()")
+    mymodule.myfunc()
+
+    mymod.myfunc()
+    my = mymod.MyClass()
+    my.mymethod()
 
 
 # *memo_py.syntax.list*
@@ -181,6 +221,10 @@ def f_tuple():
     print(f"l = {list(t)}")
 
 
+# *memo_py.syntax.set*
+def f_set():
+    s = {1, 2, 3}
+
 # *memo_py.syntax.dict*
 def f_dict():
     f_title("f_dict()")
@@ -207,68 +251,9 @@ def f_type():
     t = tuple(l)
 
 
-# *memo_py.syntax.string*
-# *memo_py.syntax.string.split*
-# *memo_py.syntax.string.strip*
-# *memo_py.syntax.string.replace*
-# *memo_py.syntax.string.join*
-def f_string():
-    f_title("f_string()")
-    s = "abc," + "def,"
-    s = s + str(100)
-    print(f"s = {s}")
-    l = s.split(",")
-    print(f"l = {l}")
-
-    s = f"images/img{123}_{5}.png"
-    print(f"s: {s}")
-    print(f"s[0]: {s[0]}")
-    print(f"s[-1]: {s[-1]}")
-    print(f"s[0:4]: {s[0:4]}")
-    print(f"s[1:4]: {s[1:4]}")
-    print(f"s.split('/'): {s.split('/')}")
-    print(f"s.replace('/', '-'): {s.replace('/', '-')}")
-
-    dirname, filename = s.split("/")
-    print(f"dirname: {dirname}")
-    print(f"filename: {filename}")
-
-    import parse
-    result = parse.parse("img{nr:d}_{label:d}.png", filename)
-    print(f"nr, label: {result['nr']}, {result['label']}")
-
-    s = "/".join(["aaa", "bbb", "ccc"])
-    print(f"s: {s}")
-    s = "  aaa 123  ".strip()
-    print(f"s: [{s}]")
-
-
-# *memo_py.syntax.re*
-def f_re():
-    f_title("f_re()")
-    import re
-    in_s = "1, 1.5, 2, 2.5:str"
-    out_s = re.split(r",\s+|:", in_s)
-    print(f"in_s: {in_s}")
-    print(f"out_s: {out_s}")
-
-
-# *memo_py.syntax.parse*
-def f_parse():
-    f_title("f_parse()")
-    import parse
-    in_s = "123 str1 str2 12.34"
-    out_s = parse.parse("{:d} str1 {:w} {:f}", in_s)
-    print(f"in_s: {in_s}")
-    print(f"out_s: {out_s}")
-
-    in_s = "123 str1 str2 12.34"
-    out_s = parse.parse("{var1:d} str1 {:w} {var2}", in_s)
-    print(f"in_s: {in_s}")
-    print(f"out_s: {out_s}")
-    print(f"out_s['var1']: {out_s['var1']}")
-    print(f"out_s['var2']: {out_s['var2']}")
-    print(f"out_s[0]: {out_s[0]}")
+# *memo_py.syntax.zip*
+def f_zip():
+    pass
 
 
 def f_other():
@@ -301,20 +286,20 @@ def main(argv):
             f_func()
         if i == "all" or i == "class":
             f_class()
+        if i == "all" or i == "subclass":
+            f_subclass()
+        if i == "all" or i == "module":
+            f_module()
         if i == "all" or i == "list":
             f_list()
         if i == "all" or i == "tuple":
             f_tuple()
+        if i == "all" or i == "set":
+            f_set()
         if i == "all" or i == "dict":
             f_dict()
         if i == "all" or i == "type":
             f_type()
-        if i == "all" or i == "string":
-            f_string()
-        if i == "all" or i == "re":
-            f_re()
-        if i == "all" or i == "parse":
-            f_parse()
         if i == "all" or i == "other":
             f_other()
 

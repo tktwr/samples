@@ -11,12 +11,16 @@ from datetime import datetime as dt
 from common import f_title
 
 
+# *memo_py.datetime*
 def f_today():
     f_title("f_today()")
     today = dt.today()
     print(today)
+    time_stamp = dt.now().strftime("%Y%m%d-%H%M%S")
+    print(time_stamp)
 
 
+# *memo_py.glob*
 def f_glob():
     f_title("f_glob()")
     print(f"glob={glob.glob('./*')}")
@@ -45,6 +49,7 @@ def f_read(fname):
             print(line.strip())
 
 
+# *memo_py.os.path*
 def f_path(fname):
     f_title("f_path()")
     path = "~/Desktop/" + fname
@@ -77,6 +82,7 @@ def f_test(fname):
         print("isdir: False")
 
 
+# *memo_py.shutil*
 def f_shutil(fname):
     f_title("f_shutil()")
     os.makedirs("_test_dir/a/b/c", exist_ok=True)
