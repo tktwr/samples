@@ -256,6 +256,24 @@ def f_zip():
     pass
 
 
+def f_color():
+    color = {
+        "Red"    : "fb4934",
+        "Green"  : "b8bb26",
+        "Yellow" : "fabd2f",
+        "Blue"   : "707fd9",
+        "Purple" : "d3869b",
+        "Aqua"   : "8ec07c",
+        "Orange" : "fe8019",
+    }
+    for i in color:
+        hex_str = color[i]
+        r = int(hex_str[0:2], 16)
+        g = int(hex_str[2:4], 16)
+        b = int(hex_str[4:6], 16)
+        print(f"{i}, {hex_str}, {r}, {g}, {b}")
+
+
 def f_other():
     f_title("f_other()")
     print(f" 5  / 2 = { 5  / 2}")
@@ -300,6 +318,8 @@ def main(argv):
             f_dict()
         if i == "all" or i == "type":
             f_type()
+        if i == "all" or i == "color":
+            f_color()
         if i == "all" or i == "other":
             f_other()
 
