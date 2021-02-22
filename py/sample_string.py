@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import os
 import re
 import parse
 from common import f_title
@@ -39,6 +40,16 @@ def f_string():
     print(f"s: [{s}]")
 
 
+def f_expand_env(s):
+    r = re.search('\$\w+', s)
+    if r != None:
+        matched = r.group()
+        env_var = matched[1:]
+        if os.getenv(env_var) != None:
+            s = s.replace(matched, os.environ[env_var])
+    return s
+
+
 # *memo_py.re*
 def f_re():
     f_title("f_re()")
@@ -46,6 +57,20 @@ def f_re():
     out_s = re.split(r",\s+|:", in_s)
     print(f"in_s: {in_s}")
     print(f"out_s: {out_s}")
+
+    s = "$USERPROFILE/tmp"
+    #s = "$USERPROFILE"
+    #s = "/a/b/c"
+    r = re.search('\$\w+', s)
+    if r != None:
+        print(f"r: {r}")
+        print(f"r.group(): {r.group()}")
+        print(f"r.start(): {r.start()}")
+        print(f"r.end(): {r.end()}")
+        print(f"r.span(): {r.span()}")
+
+    o = f_expand_env(s)
+    print(f"o: {o}")
 
 
 # *memo_py.parse*
