@@ -33,3 +33,7 @@ message("CMAKE_CXX_COMPILER_ID=${CMAKE_CXX_COMPILER_ID}")
 message("HOME=$ENV{HOME}")
 message("USERPROFILE=$ENV{USERPROFILE}")
 
+set(Python_ROOT_DIR "~/.python-venv/torch")
+find_package(Python COMPONENTS Interpreter Development)
+message(STATUS "Python_EXECUTABLE=${Python_EXECUTABLE}")
+
