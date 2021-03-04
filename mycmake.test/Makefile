@@ -57,3 +57,8 @@ all.clean:
 	rm -rf build.android
 	rm -f version.h
 
+#------------------------------------------------------
+env:
+	@echo "PATH: $(PATH)"
+	@echo "which python: $(shell which python)"
+

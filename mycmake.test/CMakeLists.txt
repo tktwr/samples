@@ -4,6 +4,8 @@ project(app)
 
 add_executable(app main.cpp)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 if(MSVC)
 add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
     COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/tools/make_ver.bat > ${CMAKE_CURRENT_SOURCE_DIR}/version.h
@@ -33,7 +35,9 @@ message("CMAKE_CXX_COMPILER_ID=${CMAKE_CXX_COMPILER_ID}")
 message("HOME=$ENV{HOME}")
 message("USERPROFILE=$ENV{USERPROFILE}")
 
-set(Python_ROOT_DIR "~/.python-venv/torch")
+set(Python_FIND_REGISTRY "NEVER")
+set(Python_FIND_VIRTUALENV "STANDARD")
+#set(Python_ROOT_DIR "~/.python-venv/torch")
 find_package(Python COMPONENTS Interpreter Development)
 message(STATUS "Python_EXECUTABLE=${Python_EXECUTABLE}")
 
