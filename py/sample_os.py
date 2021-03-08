@@ -102,6 +102,15 @@ def f_shutil(fname):
     result = subprocess.run(('ls', '-l'))
 
 
+def f_sys():
+    f_title("f_sys()")
+    print(sys.argv)
+
+    sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+    for i in sys.path:
+        print(i)
+
+
 def main(argv):
     f_today()
     f_glob()
@@ -111,6 +120,7 @@ def main(argv):
     f_path("_test.txt")
     f_test("_test.txt")
     f_shutil("_test.txt")
+    f_sys()
 
 
 if __name__ == "__main__":

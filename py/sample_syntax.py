@@ -3,8 +3,6 @@
 # *memo_py.syntax*
 
 import sys
-import mymodule
-import mypackage.mymodule as mymod
 from common import f_title
 
 
@@ -164,16 +162,6 @@ def f_subclass():
     my.f(10)
 
 
-# *memo_py.syntax.module*
-def f_module():
-    f_title("f_module()")
-    mymodule.myfunc()
-
-    mymod.myfunc()
-    my = mymod.MyClass()
-    my.mymethod()
-
-
 # *memo_py.syntax.list*
 def f_list():
     f_title("f_list()")
@@ -306,8 +294,6 @@ def main(argv):
             f_class()
         if i == "all" or i == "subclass":
             f_subclass()
-        if i == "all" or i == "module":
-            f_module()
         if i == "all" or i == "list":
             f_list()
         if i == "all" or i == "tuple":
