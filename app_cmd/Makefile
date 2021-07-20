@@ -1,4 +1,5 @@
 include $(MY_LIBTT_WIN)/makefile.mk
+-include local.mk
 
 all: cmake build
 
