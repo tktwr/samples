@@ -8,7 +8,7 @@ import mypackage.mymodule as mymod
 
 # *memo_py.syntax.module*
 def f_module():
-    f_title("f_module()")
+    print("f_module()")
     mymodule.myfunc()
 
     mymod.myfunc()
