@@ -9,9 +9,9 @@ from common import f_title
 # *memo_py.syntax.input*
 def f_input():
     f_title("f_input()")
-    print("input:")
+    print(f"input: ", end="")
     in_s = input()
-    print("in_s: {in_s}")
+    print(f"in_s: {in_s}")
 
 
 # *memo_py.syntax.print*
@@ -26,43 +26,91 @@ def f_print():
     print("こんにちは")
 
     # f-string (python >= 3.6)
-    a = 123
-    print(f"a: {a}")
-    print(f"1+1: {1+1}")
-    print(f"1/3: {1/3:.3f}")
+    ival = 123456789
+    fval = 1/3
+    word = "hello"
+    width = 10
 
+    print(f"1+1      = {1+1}")
+    print(f"1+0.5    = {1+0.5}")
+    print(f"ival     = {ival}")
+    print(f"ival     = {ival:,d}")
+    print(f"fval     = {fval}")
+    print(f"fval:.3f = {fval:.3f}")
+    print(f"word     = [{word:<{width}s}]")
+    print(f"word     = [{word:^{width}s}]")
+    print(f"word     = [{word:>{width}s}]")
+    print(f"word     = ", end='')
+    print(word)
+
+    # encoding
+    print(f"sys.stdin.encoding  = {sys.stdin.encoding}")
+    print(f"sys.stdout.encoding = {sys.stdout.encoding}")
+    print(f"sys.stderr.encoding = {sys.stderr.encoding}")
+
+
+def f_print_old():
+    f_title("f_print_old()")
     # str.format() method (python >= 2.6)
     print("{} {} {}".format(0, 1, 2))
     print("{0} {1} {2}".format(0, 1, 2))
     print("{2} {2} {2}".format(0, 1, 2))
 
-    # % operator
+    # % operator (old)
+    print("%d " % 0)
     print("%d %d %d" % (0, 1, 2))
-    print("%d " % 3, end="")
-    print("%d " % 4, end="")
-    print("%d " % 5, end="")
-    print()
-
-    # encoding
-    print(f"sys.stdin.encoding: {sys.stdin.encoding}")
-    print(f"sys.stdout.encoding: {sys.stdout.encoding}")
-    print(f"sys.stderr.encoding: {sys.stderr.encoding}")
 
 
 # *memo_py.syntax.if*
 def f_if():
     f_title("f_if()")
-    for i in (0, 1, 2, 3, 4, 5, 9):
-        if i == 0:
-            print("i == 0")
-        elif i == 1:
-            print("i == 1")
-        elif i == 2 or i == 3:
-            print("i == 2 or i == 3")
-        elif 4 <= i <= 5:
-            print("4 <= i <= 5")
-        else:
-            print("i == other")
+    l = [0, 1, 2, 3, 4]
+    i = 1
+
+    if i == 0:
+        print("i == 0")
+    elif i == 1:
+        print("i == 1")
+    else:
+        print("i == else")
+
+    if not (i == 0):
+        print("not (i == 0)")
+
+    if i == 0 or i == 1:
+        print("i == 0 or i == 1")
+
+    if 0 <= i and i < 2:
+        print("0 <= i and i < 2")
+
+    if 0 <= i < 2:
+        print("0 <= i < 2")
+
+    if i in l:
+        print(f"{i} = inside")
+    else:
+        print(f"{i} = outside")
+
+
+# *memo_py.syntax.for*
+def f_for():
+    f_title("f_for()")
+    for i in range(5):
+        print(f"{i} ", end="")
+    print()
+
+    for i in range(0, 5):
+        print(f"{i} ", end="")
+    print()
+
+    for i in range(0, 5, 1):
+        print(f"{i} ", end="")
+    print()
+
+    list = [0, 1, 2, 3, 4]
+    for i in list:
+        print(f"{i} ", end="")
+    print()
 
 
 # *memo_py.syntax.while*
@@ -72,27 +120,6 @@ def f_while():
     while i < 5:
         print(f"{i} ", end="")
         i += 1
-    print()
-
-
-# *memo_py.syntax.for*
-def f_for():
-    f_title("f_for()")
-    for i in range(0, 5, 1):
-        print(f"{i} ", end="")
-    print()
-
-    for i in range(0, 5):
-        print(f"{i} ", end="")
-    print()
-
-    for i in range(5):
-        print(f"{i} ", end="")
-    print()
-
-    list = [1, 3, 5, 7, 9]
-    for i in list:
-        print(f"{i} ", end="")
     print()
 
 
@@ -211,7 +238,9 @@ def f_tuple():
 
 # *memo_py.syntax.set*
 def f_set():
+    f_title("f_set()")
     s = {1, 2, 3}
+
 
 # *memo_py.syntax.dict*
 def f_dict():
@@ -241,10 +270,12 @@ def f_type():
 
 # *memo_py.syntax.zip*
 def f_zip():
+    f_title("f_zip()")
     pass
 
 
 def f_color():
+    f_title("f_color()")
     color = {
         "Red"    : "fb4934",
         "Green"  : "b8bb26",
@@ -276,38 +307,33 @@ def f_other():
 
 
 def main(argv):
-    print(f"argv: {argv}")
-    for i in argv:
-        if i == "input":
-            f_input()
-        if i == "all" or i == "print":
-            f_print()
-        if i == "all" or i == "if":
-            f_if()
-        if i == "all" or i == "while":
-            f_while()
-        if i == "all" or i == "for":
-            f_for()
-        if i == "all" or i == "func":
-            f_func()
-        if i == "all" or i == "class":
-            f_class()
-        if i == "all" or i == "subclass":
-            f_subclass()
-        if i == "all" or i == "list":
-            f_list()
-        if i == "all" or i == "tuple":
-            f_tuple()
-        if i == "all" or i == "set":
-            f_set()
-        if i == "all" or i == "dict":
-            f_dict()
-        if i == "all" or i == "type":
-            f_type()
-        if i == "all" or i == "color":
-            f_color()
-        if i == "all" or i == "other":
-            f_other()
+    dict_func = {
+            "input"     : f_input,
+            "print"     : f_print,
+            "print_old" : f_print_old,
+            "if"        : f_if,
+            "for"       : f_for,
+            "while"     : f_while,
+            "func"      : f_func,
+            "class"     : f_class,
+            "subclass"  : f_subclass,
+            "list"      : f_list,
+            "tuple"     : f_tuple,
+            "set"       : f_set,
+            "dict"      : f_dict,
+            "type"      : f_type,
+            "zip"       : f_zip,
+            "color"     : f_color,
+            "other"     : f_other,
+            }
+
+    if len(argv) == 1:
+        func_names = dict_func.keys()
+    else:
+        func_names = argv[1:]
+
+    for i in func_names:
+        dict_func[i]()
 
 
 if __name__ == "__main__":

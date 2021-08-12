@@ -10,9 +10,7 @@ from common import f_title
 
 # *memo_py.string*
 # *memo_py.string.split*
-# *memo_py.string.strip*
 # *memo_py.string.replace*
-# *memo_py.string.join*
 def f_string():
     f_title("f_string()")
     s = "abc," + "def,"
@@ -34,8 +32,11 @@ def f_string():
     print(f"dirname: {dirname}")
     print(f"filename: {filename}")
 
+    # *memo_py.string.join*
     s = "/".join(["aaa", "bbb", "ccc"])
     print(f"s: {s}")
+
+    # *memo_py.string.strip*
     s = "  aaa 123  ".strip()
     print(f"s: [{s}]")
 
