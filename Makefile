@@ -2,7 +2,7 @@ tags: tags.memo
 
 .PHONY: tags.memo
 tags.memo:
-	memotags.sh cpp/*.cpp cpp_lib/*.cpp opencv/*.cpp py/*.py sh/*.sh bat/*.bat > tags.memo
+	memotags.sh cpp/*.cpp cpp_lib/*.cpp opencv/*.cpp py/*.py vim/*.vim sh/*.sh bat/*.bat > tags.memo
 
 all:
 	cd cpp && make all

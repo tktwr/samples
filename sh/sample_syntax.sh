@@ -1,6 +1,7 @@
 #!/bin/sh
 # *memo_sh.syntax*
 
+# *memo_sh.syntax.while*
 f_while() {
   end=$1
   i=0
@@ -10,6 +11,7 @@ f_while() {
   done
 }
 
+# *memo_sh.syntax.if_z*
 f_if_z() {
   if [ -z "$X0" ]; then
     echo "ok"
@@ -28,6 +30,7 @@ f_if_z() {
   fi
 }
 
+# *memo_sh.syntax.if*
 f_if() {
   if [ $1 ]; then
     echo "if"
