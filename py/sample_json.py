@@ -18,7 +18,7 @@ def f_write_json(fname, data):
 
 
 def main(argv):
-    fname = "local/out.json"
+    fname = "_output/out.json"
 
     data = [1, 2, 3, 4]
     data = {"a":1, "b":2}

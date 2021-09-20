@@ -114,7 +114,7 @@ def f_sys():
 def main(argv):
     f_today()
     f_glob()
-    f_chdir("local")
+    f_chdir("_output")
     f_write("_test.txt")
     f_read("_test.txt")
     f_path("_test.txt")

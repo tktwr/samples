@@ -30,7 +30,8 @@ install:
 #------------------------------------------------------
 .PHONY: android
 android:
-	mycmake-android.sh
+	#mycmake-android.sh
+	build_android.bat
 
 #------------------------------------------------------
 all: cmake build
@@ -42,20 +43,17 @@ run:
 all.all:
 	mycmake.sh         make Release
 	mycmake.sh --build make Release
-	mycmake.sh         make Debug
-	mycmake.sh --build make Debug
 	mycmake.sh         vs2019
 	mycmake.sh --build vs2019 Release
-	mycmake.sh --build vs2019 Debug
-	mycmake.sh --build vs2019 RelWithDebInfo
-	mycmake-android.sh
 
 all.clean:
 	rm -rf build.make
-	rm -rf build.ninja
 	rm -rf build.vs2019
-	rm -rf build.android
 	rm -f version.h
+
+all.run:
+	cd build.make   && ./Release/app.exe
+	cd build.vs2019 && ./Release/app.exe
 
 #------------------------------------------------------
 env:

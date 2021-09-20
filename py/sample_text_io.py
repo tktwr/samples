@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo_py.text*
+# *memo_py.text_io*
 
 import sys
 
@@ -18,8 +18,8 @@ def f_write_text(fname, lines):
 
 
 def main(argv):
-    ifname = "../data/sample.txt"
-    ofname = "local/out.txt"
+    ifname = "data/sample.txt"
+    ofname = "_output/text_io.txt"
 
     lines = f_read_text(ifname)
     print(lines)
