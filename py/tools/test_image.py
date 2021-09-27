@@ -10,7 +10,7 @@ size = (256, 256)
 color = [0.816, 0.604, 0.514]
 iu.img_create_color(fname, size, "RGB", color)
 
-fname = "local/metalroughness.png"
+fname = "local/metalrough.png"
 size = (256, 256)
 color = [0.0, 1.0, 0.0, 1.0]
 iu.img_create_color(fname, size, "RGBA", color)
