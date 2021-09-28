@@ -10,11 +10,11 @@ run:
 	$(WINPTY) python ./sample_tensorboard.py
 
 run-tb:
-	tensorboard --logdir=local/runs
+	tensorboard --logdir=_local/runs
 
 view-tb:
 	chrome.sh http://localhost:6006/
 
 clean:
-	rm -rf local/runs
+	rm -rf _local/runs
 

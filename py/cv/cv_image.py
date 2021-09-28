@@ -6,7 +6,7 @@ import sys
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-import mycvmod
+import cv_util
 from common import f_title
 
 
@@ -51,14 +51,25 @@ def f_blur(fname):
     img_sub = img - img_gauss
     img_edge = cv2.Canny(img, 100, 200)
 
-    mycv = mycvmod.MyCv()
+    mycv = cv_util.ImageTile()
     img_all = mycv.tile([
         [img, img_blur, img_gauss],
         [img_median, img_bf],
         [img_sub, img_edge]
         ])
-    cv2.imwrite("local/blur_all.jpg", img_all)
+    cv2.imwrite("_output/blur_all.jpg", img_all)
     cv2.imshow("blur_all", img_all)
+
+
+def f_crop(fname):
+    f_title("f_crop()")
+
+    img = cv2.imread(fname)
+
+    # specified by location
+    # img[top:bottom, left:right]
+    out = img[0:50, 0:50]
+    cv2.imwrite("_output/crop.jpg", out)
 
 
 def f_cvt(fname):
@@ -69,7 +80,7 @@ def f_cvt(fname):
     img_lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    mycv = mycvmod.MyCv()
+    mycv = cv_util.ImageTile()
     img_cvt = mycv.tile([
         [img_rgb, img_lab, img_gray]
         ])
@@ -99,34 +110,35 @@ def f_hist(fname):
 
 
 def f_tile():
-    im1 = cv2.imread("../data/sample.jpg")
-    im2 = cv2.imread("../data/sample2.jpg")
-    mycv = mycvmod.MyCv()
+    im1 = cv2.imread("../../data/sample.jpg")
+    im2 = cv2.imread("../../data/sample2.jpg")
+    mycv = cv_util.ImageTile()
     img_cat = mycv.tile([[im1],
                          [im1, im2, im1, im2, im1],
                          [im1, im2, im1]])
-    cv2.imwrite("local/img_cat.jpg", img_cat)
+    cv2.imwrite("_output/img_cat.jpg", img_cat)
     cv2.imshow("img_cat", img_cat)
 
     img_hcat = mycv.hconcat([im1, im2, im1])
-    cv2.imwrite("local/img_hcat.jpg", img_hcat)
+    cv2.imwrite("_output/img_hcat.jpg", img_hcat)
     cv2.imshow("img_hcat", img_hcat)
 
     img_vcat = mycv.vconcat([im1, im2, im1])
-    cv2.imwrite("local/img_vcat.jpg", img_vcat)
+    cv2.imwrite("_output/img_vcat.jpg", img_vcat)
     cv2.imshow("img_vcat", img_vcat)
 
 
 def main(argv):
-    fname = "../data/sample.jpg"
+    fname = "../../data/sample.jpg"
 
-    f_image(fname)
-    f_resize(fname)
-    f_blur(fname)
-    f_cvt(fname)
-    f_np(fname)
+    #f_image(fname)
+    #f_resize(fname)
+    #f_blur(fname)
+    #f_cvt(fname)
+    #f_np(fname)
     f_tile()
-    f_hist(fname)
+    #f_hist(fname)
+    f_crop(fname)
 
     cv2.waitKey()
 

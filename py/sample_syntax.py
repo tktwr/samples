@@ -26,21 +26,23 @@ def f_print():
     print("こんにちは")
 
     # f-string (python >= 3.6)
-    ival = 123456789
+    ival = 2
     fval = 1/3
     word = "hello"
     width = 10
 
-    print(f"1+1      = {1+1}")
-    print(f"1+0.5    = {1+0.5}")
-    print(f"ival     = {ival}")
-    print(f"ival     = {ival:,d}")
-    print(f"fval     = {fval}")
-    print(f"fval:.3f = {fval:.3f}")
-    print(f"word     = [{word:<{width}s}]")
-    print(f"word     = [{word:^{width}s}]")
-    print(f"word     = [{word:>{width}s}]")
-    print(f"word     = ", end='')
+    print(f"1+1         = {1+1}")
+    print(f"1+0.5       = {1+0.5}")
+    print(f"ival        = {ival}")
+    print(f"ival:3d     = {ival:3d}")
+    print(f"ival:03d    = {ival:03d}")
+    print(f"ival**10:,d = {ival**10:,d}")
+    print(f"fval        = {fval}")
+    print(f"fval:.3f    = {fval:.3f}")
+    print(f"word:<10s   = [{word:<{width}s}]")
+    print(f"word:^10s   = [{word:^{width}s}]")
+    print(f"word:>10s   = [{word:>{width}s}]")
+    print(f"word        = ", end               = '')
     print(word)
 
     # encoding
@@ -181,6 +183,7 @@ def f_class():
     my.f(10)
     MyClass.class_method()
     MyClass.class_method()
+    print(f"MyClass.class_member: {MyClass.class_member}")
 
 
 def f_subclass():
@@ -274,6 +277,7 @@ def f_zip():
     pass
 
 
+# *memo_py.syntax.color*
 def f_color():
     f_title("f_color()")
     color = {
@@ -292,18 +296,23 @@ def f_color():
         b = int(hex_str[4:6], 16)
         print(f"{i}, {hex_str}, {r}, {g}, {b}")
 
+    R, G, B = 0, 1, 2
+    print(f"R, G, B: {R}, {G}, {B}")
 
-def f_other():
-    f_title("f_other()")
+
+# *memo_py.syntax.math*
+def f_math():
+    f_title("f_math()")
     print(f" 5  / 2 = { 5  / 2}")
     print(f" 5 // 2 = { 5 // 2}")
     print(f" 5  / 3 = { 5  / 3}")
     print(f" 5 // 3 = { 5 // 3}")
     print(f"10  / 3 = {10  / 3}")
     print(f"10 // 3 = {10 // 3}")
-
-    R, G, B = 0, 1, 2
-    print(f"R, G, B: {R}, {G}, {B}")
+    print(f"2**10   = {2**10}")
+    a = 0
+    a += 1
+    print(f"a = {a}")
 
 
 def main(argv):
@@ -324,7 +333,7 @@ def main(argv):
             "type"      : f_type,
             "zip"       : f_zip,
             "color"     : f_color,
-            "other"     : f_other,
+            "math"      : f_math,
             }
 
     if len(argv) == 1:

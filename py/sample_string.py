@@ -9,36 +9,36 @@ from common import f_title
 
 
 # *memo_py.string*
+# *memo_py.string.strip*
 # *memo_py.string.split*
+# *memo_py.string.join*
 # *memo_py.string.replace*
 def f_string():
     f_title("f_string()")
-    s = "abc," + "def,"
-    s = s + str(100)
-    print(f"s = {s}")
-    l = s.split(",")
-    print(f"l = {l}")
 
     s = f"images/img{123}_{5}.png"
-    print(f"s: {s}")
-    print(f"s[0]: {s[0]}")
-    print(f"s[-1]: {s[-1]}")
-    print(f"s[0:4]: {s[0:4]}")
-    print(f"s[1:4]: {s[1:4]}")
-    print(f"s.split('/'): {s.split('/')}")
-    print(f"s.replace('/', '-'): {s.replace('/', '-')}")
-
     dirname, filename = s.split("/")
-    print(f"dirname: {dirname}")
-    print(f"filename: {filename}")
 
-    # *memo_py.string.join*
-    s = "/".join(["aaa", "bbb", "ccc"])
-    print(f"s: {s}")
+    print(f"s                   = {s}")
+    print(f"s[0]                = {s[0]}")
+    print(f"s[-1]               = {s[-1]}")
+    print(f"s[0:4]              = {s[0:4]}")
+    print(f"s[1:4]              = {s[1:4]}")
+    print(f"s.split('/')        = {s.split('/')}")
+    print(f"s.replace('/', '-') = {s.replace('/', '-')}")
+    print(f"dirname             = {dirname}")
+    print(f"filename            = {filename}")
 
-    # *memo_py.string.strip*
-    s = "  aaa 123  ".strip()
-    print(f"s: [{s}]")
+    r = "  aaa 123  "
+    s = "abc," + "def," + str(100)
+    l = ["aaa", "bbb", "ccc"]
+
+    print(f'r            = "{r}"')
+    print(f'r.strip()    = "{r.strip()}"')
+    print(f"s            = {s}")
+    print(f's.split(",") = {s.split(",")}')
+    print(f"l            = {l}")
+    print(f'"/".join(l)  = {"/".join(l)}')
 
 
 def f_expand_env(s):
