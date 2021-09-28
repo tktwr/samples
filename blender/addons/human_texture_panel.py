@@ -1,3 +1,4 @@
+import os
 import bpy
 
 
@@ -16,12 +17,47 @@ bl_info = {
 }
 
 
-class MY_OT_button(bpy.types.Operator):
-    bl_label = "text"
-    bl_idname = "my.button"
+def f_info():
+    print(f"CWD: {os.getcwd()}")
+    print(bpy.data.objects)
+    print(bpy.data.materials)
+    print(bpy.data.textures)
+
+
+def f_load_texture(mtl_name, img_fname):
+    dir = f"{os.getcwd()}\\textures"
+    name, ext = img_fname.split('.')
+    fname = f"{dir}\\{img_fname}"
+    fname_beauty = f"{dir}\\{name}_beauty.{ext}"
+    print(fname)
+    print(fname_beauty)
+    img = bpy.data.images.load(fname)
+    img_beauty = bpy.data.images.load(fname_beauty)
+
+    nodes = bpy.data.materials[mtl_name].node_tree.nodes
+    for i in nodes:
+        print(i)
+    nodes["Image Texture"].image = img
+    nodes["Image Texture.001"].image = img_beauty
+
+
+class MY_OT_next_btn(bpy.types.Operator):
+    bl_label = "Next"
+    bl_idname = "my.next_btn"
+    idx = 0
+    size = 2
 
     def execute(self, context):
-        print("pushed")
+        idx = MY_OT_next_btn.idx
+        size = MY_OT_next_btn.size
+
+        #f_info()
+
+        fname = f"Head_diffuse_{idx+1:02}.png"
+        f_load_texture("Head_skin_edit", fname)
+        idx += 1
+        idx = idx % size
+        MY_OT_next_btn.idx = idx
         return {'FINISHED'}
 
 
@@ -45,7 +81,7 @@ class MY_PT_ui(bpy.types.Panel):
         row.prop(beauty_val, "default_value", text="Beauty", slider=True)
 
         row = layout.row()
-        row.operator("my.button")
+        row.operator("my.next_btn")
 
         row = layout.row()
         row.operator("render.render")
@@ -53,7 +89,7 @@ class MY_PT_ui(bpy.types.Panel):
 
 classes = (
     MY_PT_ui,
-    MY_OT_button
+    MY_OT_next_btn
 )
 
 
