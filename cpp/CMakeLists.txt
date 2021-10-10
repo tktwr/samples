@@ -30,12 +30,18 @@ target_link_libraries(sample_cstdio)
 add_executable(sample_fstream sample_fstream.cpp)
 target_link_libraries(sample_fstream)
 
+add_executable(sample_move sample_move.cpp)
+target_link_libraries(sample_move)
+
+add_executable(sample_stl sample_stl.cpp)
+target_link_libraries(sample_stl)
+
 add_executable(sample_syntax sample_syntax.cpp)
 target_link_libraries(sample_syntax)
 
-add_executable(sample_thread sample_thread.cpp)
-target_link_libraries(sample_thread)
-
 add_executable(sample_template sample_template.cpp)
 target_link_libraries(sample_template)
+
+add_executable(sample_thread sample_thread.cpp)
+target_link_libraries(sample_thread)
 

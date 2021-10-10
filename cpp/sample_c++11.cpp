@@ -190,6 +190,14 @@ void f_weak_ptr() {
     f_title("weak_ptr");
 }
 
+// *memo_cpp.11.lambda*
+void f_lambda() {
+    f_title("lambda");
+
+    auto plus = [](int a, int b) { return a + b; };
+    int result = plus(2, 3); // result == 5
+}
+
 int main(int argc, char *argv[]) {
     f_constexpr();
     f_datetime();
@@ -202,6 +210,7 @@ int main(int argc, char *argv[]) {
     f_unique_ptr_array();
     f_shared_ptr();
     f_weak_ptr();
+    f_lambda();
 
     return 0;
 }
