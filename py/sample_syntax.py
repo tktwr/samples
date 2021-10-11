@@ -8,7 +8,6 @@ from common import f_title
 
 # *memo_py.syntax.input*
 def f_input():
-    f_title("f_input()")
     print(f"input: ", end="")
     in_s = input()
     print(f"in_s: {in_s}")
@@ -16,7 +15,6 @@ def f_input():
 
 # *memo_py.syntax.print*
 def f_print():
-    f_title("f_print()")
     # comment
     '''
     comment
@@ -52,7 +50,6 @@ def f_print():
 
 
 def f_print_old():
-    f_title("f_print_old()")
     # str.format() method (python >= 2.6)
     print("{} {} {}".format(0, 1, 2))
     print("{0} {1} {2}".format(0, 1, 2))
@@ -65,7 +62,6 @@ def f_print_old():
 
 # *memo_py.syntax.if*
 def f_if():
-    f_title("f_if()")
     l = [0, 1, 2, 3, 4]
     i = 1
 
@@ -96,7 +92,6 @@ def f_if():
 
 # *memo_py.syntax.for*
 def f_for():
-    f_title("f_for()")
     for i in range(5):
         print(f"{i} ", end="")
     print()
@@ -117,7 +112,6 @@ def f_for():
 
 # *memo_py.syntax.while*
 def f_while():
-    f_title("f_while()")
     i = 0
     while i < 5:
         print(f"{i} ", end="")
@@ -135,7 +129,6 @@ def f_args(a, b):
 
 
 def f_func():
-    f_title("f_func()")
     x = f_add(1, 2)
     print(f"x: {x}")
     f_args(1, 2)
@@ -178,7 +171,6 @@ class MySubClass(MyClass):
 
 
 def f_class():
-    f_title("f_class()")
     my = MyClass()
     my.f(10)
     MyClass.class_method()
@@ -187,14 +179,12 @@ def f_class():
 
 
 def f_subclass():
-    f_title("f_subclass()")
     my = MySubClass()
     my.f(10)
 
 
 # *memo_py.syntax.list*
 def f_list():
-    f_title("f_list()")
     l = [1, 2, 3, 4, 5]
     print(f"l = {l}")
     print(f"len(l) = {len(l)}")
@@ -230,7 +220,6 @@ def f_list():
 
 # *memo_py.syntax.tuple*
 def f_tuple():
-    f_title("f_tuple()")
     # tuple is read only
     t = (1, 3, 5, 7, 9)
     print(f"t = {t}")
@@ -241,13 +230,11 @@ def f_tuple():
 
 # *memo_py.syntax.set*
 def f_set():
-    f_title("f_set()")
     s = {1, 2, 3}
 
 
 # *memo_py.syntax.dict*
 def f_dict():
-    f_title("f_dict()")
     d = {"a":1, "b":2}
     print(f"d = {d}")
     print(f"d['a'] = {d['a']}")
@@ -255,7 +242,6 @@ def f_dict():
 
 # *memo_py.syntax.type*
 def f_type():
-    f_title("f_type()")
     b = True
     b = False
     i = 0
@@ -273,13 +259,11 @@ def f_type():
 
 # *memo_py.syntax.zip*
 def f_zip():
-    f_title("f_zip()")
     pass
 
 
 # *memo_py.syntax.color*
 def f_color():
-    f_title("f_color()")
     color = {
         "Red"    : "fb4934",
         "Green"  : "b8bb26",
@@ -302,7 +286,6 @@ def f_color():
 
 # *memo_py.syntax.math*
 def f_math():
-    f_title("f_math()")
     print(f" 5  / 2 = { 5  / 2}")
     print(f" 5 // 2 = { 5 // 2}")
     print(f" 5  / 3 = { 5  / 3}")
@@ -342,6 +325,7 @@ def main(argv):
         func_names = argv[1:]
 
     for i in func_names:
+        f_title(i)
         dict_func[i]()
 
 

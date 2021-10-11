@@ -12,7 +12,7 @@ from PIL import Image
 #   origin: upper-left
 #   channel order: RGB
 
-OUTPUT_DIR="local/"
+OUTPUT_DIR="_output"
 
 def f_image_info(img):
     w, h = img.size
@@ -76,21 +76,21 @@ def f_image_extract_channel(img, ch):
 
 
 def f_image_getchannels(img):
-    name = OUTPUT_DIR + "pil_image_getchannel"
+    name = f"{OUTPUT_DIR}/pil_image_getchannel"
     for i in range(3):
         o = img.getchannel(i)
         o.save(f"{name}_{i}.png")
 
 
 def f_image_exchange_channels(img):
-    name = OUTPUT_DIR + "pil_image_exchange_channels"
+    name = f"{OUTPUT_DIR}/pil_image_exchange_channels"
     r, g, b = img.split()
     o = Image.merge("RGB", (b, g, r))
     o.save(f"{name}.png")
 
 
 def f_image_resize(img):
-    name = OUTPUT_DIR + "pil_image_resize"
+    name = f"{OUTPUT_DIR}/pil_image_resize"
     w, h = img.size
     size = (int(0.5 * w), int(0.5 * h))
     o = img.resize(size)
@@ -98,13 +98,13 @@ def f_image_resize(img):
 
 
 def f_image_gray(img):
-    name = OUTPUT_DIR + "pil_image_gray"
+    name = f"{OUTPUT_DIR}/pil_image_gray"
     o = img.convert("L")
     o.save(f"{name}.png")
 
 
 def main(argv):
-    name = OUTPUT_DIR + "pil_image"
+    name = f"{OUTPUT_DIR}/pil_image"
     img = f_image_create(100, 100)
     img.save(f"{name}.jpg")
     img.save(f"{name}.png")
