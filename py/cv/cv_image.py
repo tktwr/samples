@@ -16,21 +16,8 @@ fname = f"{INPUT_DIR}/sample.jpg"
 fname2 = f"{INPUT_DIR}/sample2.jpg"
 
 
-def f_image():
-    img = cv2.imread(fname)
-    if len(img.shape) == 3:
-        height, width, channels = img.shape[:3]
-    else:
-        height, width = img.shape[:2]
-        channels = 1
-
-    print(f"img.shape = {img.shape}")
-    print(f"height    = {height}")
-    print(f"width     = {width}")
-    print(f"channels  = {channels}")
-    print(f"img.dtype = {img.dtype}")
-    print(f"type(img) = {type(img)}")
-    cv2.imshow("img", img)
+def f_info():
+    cv_util.cv_info(fname)
 
 
 def f_new():
@@ -133,7 +120,7 @@ def f_hist():
 
 def main(argv):
     dict_func = {
-            "image"  : f_image,
+            "info"   : f_info,
             "new"    : f_new,
             "resize" : f_resize,
             "crop"   : f_crop,
