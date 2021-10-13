@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from common import FileName
+from ttpy import FileName
 
 fname = FileName("a/b/c/d.png")
 print(fname.origname())
