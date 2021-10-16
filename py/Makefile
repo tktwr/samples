@@ -10,7 +10,6 @@ run:
 	sample_string.py
 	sample_syntax.py
 	sample_text.py
-	sample_tkinter.py
 	test_common.py
 
 run-n:
