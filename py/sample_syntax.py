@@ -200,6 +200,9 @@ def f_list():
     print(f"l       = {l}")
     print(f"l[:]    = {l[:]}")
     print(f"l[0:]   = {l[0:]}")
+    print(f"l[1:]   = {l[1:]}")
+    print(f"l[:6]   = {l[:6]}")
+    print(f"l[:2]   = {l[:2]}")
     print(f"l[2:4]  = {l[2:4]}")  # 2 + 2 chars
     print(f"l[:-1]  = {l[:-1]}")
     print(f"l[:-2]  = {l[:-2]}")
@@ -296,6 +299,11 @@ def f_math():
     a = 0
     a += 1
     print(f"a = {a}")
+
+    x = -10
+    print(f"0 if x < 0 else x = {0 if x < 0 else x}")
+    x = 10
+    print(f"0 if x < 0 else x = {0 if x < 0 else x}")
 
 
 def main(argv):
