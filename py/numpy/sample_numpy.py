@@ -77,8 +77,19 @@ def f_array_op():
     print(f"np.append(x, y) = {np.append(x, y)}")
 
 
+def f_arange():
+    x = np.arange(6)
+    print(f"x = {x}")
+    x = np.arange(0.0, 1.0, 0.2)
+    print(f"x = {x}")
+    x = np.linspace(0.0, 1.0, 5)
+    print(f"x = {x}")
+    x = np.arange(24).reshape(2, 3, 4)
+    print(f"x =\n{x}")
+
+
 def f_reshape():
-    x = np.array([0, 1, 2, 3, 4, 5])
+    x = np.arange(6)
     print(f"x = {x}")
     print(f"x.reshape(2, -1) =\n{x.reshape(2, -1)}")
     print(f"x.reshape(-1, 2) =\n{x.reshape(-1, 2)}")
@@ -92,6 +103,7 @@ def main(argv):
             "array_2d"       : f_array_2d,
             "array_3d"       : f_array_3d,
             "array_op"       : f_array_op,
+            "arange"         : f_arange,
             "reshape"        : f_reshape,
             }
 
