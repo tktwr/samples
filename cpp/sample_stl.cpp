@@ -1,12 +1,14 @@
 // *memo_cpp.stl*
 #include <iostream>
 #include <vector>
+#include <list>
 
 using namespace std;
 
-void f_print(const std::string& text, const std::vector<int>& vec) {
+template<class T>
+void f_print(const std::string& text, const T& container) {
     std::cout << text;
-    for (auto&& x : vec) {
+    for (auto&& x : container) {
         std::cout << x << " ";
     }
     std::cout << std::endl;
@@ -58,11 +60,18 @@ void f_vector_sample() {
     f_print("vec_out = ", vec_out);
 }
 
+// *memo_cpp.stl.list*
+void f_list_init() {
+    std::list<int> l = {0, 1, 2, 3, 4, 5};
+    f_print("l = ", l);
+}
+
 int main(int argc, char *argv[]) {
     f_vector_init();
     f_vector_add();
     f_vector_cat();
     f_vector_sample();
+    f_list_init();
     return 0;
 }
 

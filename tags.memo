@@ -23,9 +23,11 @@ memo_cpp.20	cpp/sample_c++20.cpp	/*memo_cpp.20*
 memo_cpp.class	cpp/sample_class.cpp	/*memo_cpp.class*
 memo_cpp.cstdio	cpp/sample_cstdio.cpp	/*memo_cpp.cstdio*
 memo_cpp.fstream	cpp/sample_fstream.cpp	/*memo_cpp.fstream*
-memo_cpp.hello-world	cpp/sample.cpp	/*memo_cpp.hello-world*
+memo_cpp.hello-world	cpp/sample_hello.cpp	/*memo_cpp.hello-world*
 memo_cpp.stl	cpp/sample_stl.cpp	/*memo_cpp.stl*
+memo_cpp.stl.list	cpp/sample_stl.cpp	/*memo_cpp.stl.list*
 memo_cpp.stl.vector	cpp/sample_stl.cpp	/*memo_cpp.stl.vector*
+memo_cpp.string	cpp/sample_string.cpp	/*memo_cpp.string*
 memo_cpp.syntax	cpp/sample_syntax.cpp	/*memo_cpp.syntax*
 memo_cpp.syntax.class	cpp/sample_syntax.cpp	/*memo_cpp.syntax.class*
 memo_cpp.syntax.enum	cpp/sample_syntax.cpp	/*memo_cpp.syntax.enum*
@@ -47,7 +49,6 @@ memo_py.glob	py/sample_os.py	/*memo_py.glob*
 memo_py.json	py/sample_json.py	/*memo_py.json*
 memo_py.kivy	py/sample_kivy.py	/*memo_py.kivy*
 memo_py.matplotlib	py/sample_matplotlib.py	/*memo_py.matplotlib*
-memo_py.numpy	py/sample_numpy.py	/*memo_py.numpy*
 memo_py.os	py/sample_os.py	/*memo_py.os*
 memo_py.os.path	py/sample_os.py	/*memo_py.os.path*
 memo_py.parse	py/sample_string.py	/*memo_py.parse*
@@ -76,7 +77,6 @@ memo_py.syntax.type	py/sample_syntax.py	/*memo_py.syntax.type*
 memo_py.syntax.while	py/sample_syntax.py	/*memo_py.syntax.while*
 memo_py.syntax.zip	py/sample_syntax.py	/*memo_py.syntax.zip*
 memo_py.text_io	py/sample_text_io.py	/*memo_py.text_io*
-memo_py.tkinter	py/sample_tkinter.py	/*memo_py.tkinter*
 memo_sh.app	sh/sample_app.sh	/*memo_sh.app*
 memo_sh.syntax	sh/sample_syntax.sh	/*memo_sh.syntax*
 memo_sh.syntax.if	sh/sample_syntax.sh	/*memo_sh.syntax.if*

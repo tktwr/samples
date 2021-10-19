@@ -12,7 +12,6 @@ function(func app)
 endfunction()
 
 set(APPS
-  sample
   sample_c++11
   sample_c++14
   sample_c++17
@@ -20,8 +19,10 @@ set(APPS
   sample_class
   sample_cstdio
   sample_fstream
+  sample_hello_world
   sample_move
   sample_stl
+  sample_string
   sample_syntax
   sample_template
   sample_thread
