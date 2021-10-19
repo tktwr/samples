@@ -1,10 +1,12 @@
 // *memo_cpp.class*
 #include <memory>
+#include <vector>
 #include <iostream>
 
 class ABase {
 public:
-    ABase() {
+    ABase(int val = 0) {
+        m_val = val;
         std::cout << "ABase::ABase()" << std::endl;
     }
     virtual ~ABase() {
@@ -13,11 +15,12 @@ public:
     void hello() const {
         std::cout << "ABase::hello() " << this << std::endl;
     }
+    int m_val = 0;
 };
 
 class A : public ABase {
 public:
-    A() {
+    A(int val = 0) : ABase(val) {
         std::cout << "A::A()" << std::endl;
     }
     virtual ~A() {
@@ -81,10 +84,22 @@ void f_shared_ptr() {
     }
 }
 
+void f_emplace_back() {
+    std::cout << "=== f_emplace_back()" << std::endl;
+    std::vector<A> vec;
+    vec.reserve(5);
+    std::cout << "=== push_back()" << std::endl;
+    vec.push_back(1);
+    std::cout << "=== emplace_back()" << std::endl;
+    vec.emplace_back(2);
+    std::cout << "===" << std::endl;
+}
+
 int main(int argc, char *argv[]) {
     f_constructor();
     f_ptr();
     f_shared_ptr();
+    f_emplace_back();
     return 0;
 }
 
