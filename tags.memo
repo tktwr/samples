@@ -23,7 +23,7 @@ memo_cpp.20	cpp/sample_c++20.cpp	/*memo_cpp.20*
 memo_cpp.class	cpp/sample_class.cpp	/*memo_cpp.class*
 memo_cpp.cstdio	cpp/sample_cstdio.cpp	/*memo_cpp.cstdio*
 memo_cpp.fstream	cpp/sample_fstream.cpp	/*memo_cpp.fstream*
-memo_cpp.hello-world	cpp/sample_hello.cpp	/*memo_cpp.hello-world*
+memo_cpp.hello_world	cpp/sample_hello_world.cpp	/*memo_cpp.hello_world*
 memo_cpp.stl	cpp/sample_stl.cpp	/*memo_cpp.stl*
 memo_cpp.stl.list	cpp/sample_stl.cpp	/*memo_cpp.stl.list*
 memo_cpp.stl.vector	cpp/sample_stl.cpp	/*memo_cpp.stl.vector*
