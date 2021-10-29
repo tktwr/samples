@@ -22,6 +22,7 @@ set(APPS
   sample_hello_world
   sample_move
   sample_stl
+  sample_stream
   sample_string
   sample_syntax
   sample_template

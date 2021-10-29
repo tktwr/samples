@@ -47,22 +47,30 @@ public:
     }
     void exec(const std::string& line) {
         std::istringstream istr(line);
+        istr.exceptions(std::ios::failbit);
+
         std::string token;
 
-        istr >> token;
+        try {
+            istr >> token;
 
-        if (token == "help") {
-            cmd_help();
-        } else if (token == "set") {
-            std::string name;
-            std::string val;
-            istr >> name >> val;
-            cmd_set(name, val);
-        } else if (token == "print") {
-            std::string l;
-            std::getline(istr, l);
-            trim(l);
-            cmd_print(l);
+            if (token == "help") {
+                cmd_help();
+            } else if (token == "set") {
+                std::string name;
+                std::string val;
+                istr >> name >> val;
+                cmd_set(name, val);
+            } else if (token == "print") {
+                std::string l;
+                std::getline(istr, l);
+                trim(l);
+                cmd_print(l);
+            } else {
+                std::cout << "unknown token: " << token << std::endl;
+            }
+        } catch(const std::exception& e) {
+            std::cout << "error: token: " << token << std::endl;
         }
     }
     void run() {
