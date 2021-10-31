@@ -140,6 +140,7 @@ def f_func():
 class MyClass():
     def __init__(self):
         print(f"MyClass.__init__")
+        self.a = {0: 123}
 
     def __del__(self):
         print(f"MyClass.__del__")
@@ -147,6 +148,11 @@ class MyClass():
     def f(self, x):
         self.x = x
         print(f"MyClass.f: {x}")
+
+    def g(self):
+        print(dir(self))
+        print(f"hasattr(self, 'x') = {hasattr(self, 'x')}")
+        print(f"hasattr(self, 'a') = {hasattr(self, 'a')}")
 
     def public_method(self):
         pass
@@ -173,6 +179,7 @@ class MySubClass(MyClass):
 def f_class():
     my = MyClass()
     my.f(10)
+    my.g()
     MyClass.class_method()
     MyClass.class_method()
     print(f"MyClass.class_member: {MyClass.class_member}")
@@ -245,6 +252,7 @@ def f_dict():
 
 # *memo_py.syntax.type*
 def f_type():
+    n = None
     b = True
     b = False
     i = 0
@@ -306,6 +314,22 @@ def f_math():
     print(f"0 if x < 0 else x = {0 if x < 0 else x}")
 
 
+def f_exist():
+    a = 123
+
+    print(f"locals()             = {locals()}")
+    #print(f"globals()           = {globals()}")
+    print(f"'a' in locals()      = {'a' in locals()}")
+    print(f"'a' in globals()     = {'a' in globals()}")
+    print(f"'a' not in globals() = {'a' not in globals()}")
+
+    d = {0: 123}
+
+    print(f"0 in d     = {0 in d}")
+    print(f"1 in d     = {1 in d}")
+    print(f"1 not in d = {1 not in d}")
+
+
 def main(argv):
     dict_func = {
             "input"     : f_input,
@@ -325,6 +349,7 @@ def main(argv):
             "zip"       : f_zip,
             "color"     : f_color,
             "math"      : f_math,
+            "exist"     : f_exist,
             }
 
     if len(argv) == 1:
