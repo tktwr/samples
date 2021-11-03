@@ -245,9 +245,30 @@ def f_set():
 
 # *memo_py.syntax.dict*
 def f_dict():
-    d = {"a":1, "b":2}
+    d = {"aaa":123, "bbb":234, "ccc":345}
+
     print(f"d = {d}")
-    print(f"d['a'] = {d['a']}")
+    print(f"d['aaa'] = {d['aaa']}")
+    print(f"d.get('aaa') = {d.get('aaa')}")
+    print(f"d.get('zzz') = {d.get('zzz')}")
+    print(f"d.keys() = {d.keys()}")
+    print(f"d.values() = {d.values()}")
+
+    print(f"'aaa' in d = {'aaa' in d}")
+    print(f"'aaa' not in d = {'aaa' not in d}")
+    print(f"123 in d.values() = {123 in d.values()}")
+    print(f"123 not in d.values() = {123 in d.values()}")
+
+    for key in d:
+        print(f"key = {key}")
+
+    print(f"d.pop('aaa') = {d.pop('aaa')}")
+    print(f"d = {d}")
+
+    print(f"d.pop('zzz', None) = {d.pop('zzz', None)}")
+    print(f"d = {d}")
+
+    print(f"d.clear() = {d.clear()}")
 
 
 # *memo_py.syntax.type*
