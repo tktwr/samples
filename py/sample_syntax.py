@@ -40,7 +40,7 @@ def f_print():
     print(f"word:<10s   = [{word:<{width}s}]")
     print(f"word:^10s   = [{word:^{width}s}]")
     print(f"word:>10s   = [{word:>{width}s}]")
-    print(f"word        = ", end               = '')
+    print(f"word        = ", end='')
     print(word)
 
     # encoding
@@ -257,7 +257,7 @@ def f_dict():
     print(f"'aaa' in d = {'aaa' in d}")
     print(f"'aaa' not in d = {'aaa' not in d}")
     print(f"123 in d.values() = {123 in d.values()}")
-    print(f"123 not in d.values() = {123 in d.values()}")
+    print(f"123 not in d.values() = {123 not in d.values()}")
 
     for key in d:
         print(f"key = {key}")
@@ -339,7 +339,7 @@ def f_exist():
     a = 123
 
     print(f"locals()             = {locals()}")
-    #print(f"globals()           = {globals()}")
+    print(f"globals()            = {globals()}")
     print(f"'a' in locals()      = {'a' in locals()}")
     print(f"'a' in globals()     = {'a' in globals()}")
     print(f"'a' not in globals() = {'a' not in globals()}")
@@ -351,36 +351,48 @@ def f_exist():
     print(f"1 not in d = {1 not in d}")
 
 
+def f_func_object():
+    func = f_print
+    func()
+
+
+def f_eval():
+    func = "print"
+    eval(f"f_{func}()")
+
+
 def main(argv):
-    dict_func = {
-            "input"     : f_input,
-            "print"     : f_print,
-            "print_old" : f_print_old,
-            "if"        : f_if,
-            "for"       : f_for,
-            "while"     : f_while,
-            "func"      : f_func,
-            "class"     : f_class,
-            "subclass"  : f_subclass,
-            "list"      : f_list,
-            "tuple"     : f_tuple,
-            "set"       : f_set,
-            "dict"      : f_dict,
-            "type"      : f_type,
-            "zip"       : f_zip,
-            "color"     : f_color,
-            "math"      : f_math,
-            "exist"     : f_exist,
-            }
+    funcs = (
+            "input",
+            "print",
+            "print_old",
+            "if",
+            "for",
+            "while",
+            "func",
+            "class",
+            "subclass",
+            "list",
+            "tuple",
+            "set",
+            "dict",
+            "type",
+            "zip",
+            "color",
+            "math",
+            "exist",
+            "func_object",
+            "eval",
+            )
 
     if len(argv) == 1:
-        func_names = dict_func.keys()
+        selected = funcs
     else:
-        func_names = argv[1:]
+        selected = argv[1:]
 
-    for i in func_names:
+    for i in selected:
         f_title(i)
-        dict_func[i]()
+        eval(f"f_{i}()")
 
 
 if __name__ == "__main__":
