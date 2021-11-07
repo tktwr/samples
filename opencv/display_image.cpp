@@ -24,7 +24,7 @@ void f_image_create() {
     std::cout << "mat.cols: " << mat.cols << std::endl;
     std::cout << "mat.data: " << reinterpret_cast<unsigned long long>(mat.data) << std::endl;
 
-    cv::imwrite("_create.png", mat);
+    cv::imwrite("_output/create.png", mat);
 }
 
 void f_image_filter(cv::Mat& src_img) {
@@ -38,10 +38,10 @@ void f_image_filter(cv::Mat& src_img) {
     cv::Mat dst_img;
 
     cv::boxFilter(src_img, dst_img, src_img.type(), cv::Size(10, 10));
-    cv::imwrite("_box_filter.png", dst_img);
+    cv::imwrite("_output/box_filter.png", dst_img);
 
     cv::bilateralFilter(src_img, dst_img, -1, 50, 20);
-    cv::imwrite("_bilateral_filter.png", dst_img);
+    cv::imwrite("_output/bilateral_filter.png", dst_img);
 }
 
 void f_image_morphology() {
@@ -57,13 +57,15 @@ void f_image_morphology() {
         }
     }
 
-    cv::imwrite("_morphology_orig.png", mat);
+    cv::imwrite("_output/morphology_orig.png", mat);
 
     cv::Mat dst_img;
+
     cv::erode(mat, dst_img, cv::Mat(), cv::Point(-1,-1), 4);
-    cv::imwrite("_erode.png", dst_img);
+    cv::imwrite("_output/erode.png", dst_img);
+
     cv::dilate(mat, dst_img, cv::Mat(), cv::Point(-1,-1), 4);
-    cv::imwrite("_dilate.png", dst_img);
+    cv::imwrite("_output/dilate.png", dst_img);
 }
 
 int main(int argc, char **argv) {
@@ -80,7 +82,7 @@ int main(int argc, char **argv) {
         return -1;
     }
 
-    cv::imwrite("_src_img.png", src_img);
+    cv::imwrite("_output/src_img.png", src_img);
 
     cv::namedWindow("display_image", cv::WINDOW_AUTOSIZE);
     cv::imshow("display_image", src_img);
