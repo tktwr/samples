@@ -5,7 +5,16 @@ import sys
 import cv_util as cu
 
 
-def bgr_to_bgra(dtype):
+def f_new():
+    shape = (200, 300, 3)
+    dtype = 'uint8'
+    val = (255, 0, 0)
+    img = cu.cv_create_img(shape, dtype, val)
+    fname = f'new_3_{dtype}.png'
+    cu.cv_save(fname, img)
+
+
+def f_bgr_to_bgra(dtype):
     img = cu.cv_load(f'new_3_{dtype}.png')
     img_bgra = cu.cv_bgr_to_bgra_img(img)
     cu.cv_save(f'bgra_{dtype}.png', img_bgra)
@@ -15,8 +24,9 @@ def bgr_to_bgra(dtype):
 
 
 def main(argv):
-    bgr_to_bgra('uint8')
-    bgr_to_bgra('uint16')
+    f_new()
+    f_bgr_to_bgra('uint8')
+    #f_bgr_to_bgra('uint16')
 
 
 if __name__ == "__main__":
