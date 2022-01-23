@@ -38,9 +38,6 @@ f_test_image_tile() {
   image-tile.py -c 2 hgrad_3_uint8.png vgrad_3_uint8.png vgrad_3_uint8.png hgrad_3_uint8.png
 }
 
-#mkdir -p _output
-#cd _output
-
 f_test_image_create_new
 f_test_image_create_grad
 f_test_image_split
