@@ -3,6 +3,7 @@
 # *memo_py.syntax*
 
 import sys
+import math
 from common import f_title
 
 
@@ -333,6 +334,15 @@ def f_math():
     print(f"0 if x < 0 else x = {0 if x < 0 else x}")
     x = 10
     print(f"0 if x < 0 else x = {0 if x < 0 else x}")
+
+    print(f"math.pi               = {math.pi}")
+    print(f"math.radians(180)     = {math.radians(180)}")
+    print(f"math.degrees(math.pi) = {math.degrees(math.pi)}")
+    print(f"math.sin(math.pi/2)   = {math.sin(math.pi/2)}")
+
+    l = [0, math.pi/2, math.pi]
+    ll = [math.degrees(i) for i in l]
+    print(f"ll = {ll}")
 
 
 def f_exist():
