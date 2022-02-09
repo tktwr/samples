@@ -4,7 +4,7 @@
 
 import sys
 import math
-from common import f_title
+import util as ut
 
 
 # *memo_py.syntax.input*
@@ -401,7 +401,7 @@ def main(argv):
         selected = argv[1:]
 
     for i in selected:
-        f_title(i)
+        ut.f_title(i)
         eval(f"f_{i}()")
 
 

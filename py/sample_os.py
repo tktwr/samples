@@ -8,12 +8,12 @@ import os.path
 import glob
 import shutil
 from datetime import datetime as dt
-from common import f_title
+import util as ut
 
 
 # *memo_py.datetime*
 def f_today():
-    f_title("f_today()")
+    ut.f_title("f_today()")
     today = dt.today()
     print(today)
     time_stamp = dt.now().strftime("%Y%m%d-%H%M%S")
@@ -22,19 +22,19 @@ def f_today():
 
 # *memo_py.glob*
 def f_glob():
-    f_title("f_glob()")
+    ut.f_title("f_glob()")
     print(f"glob={glob.glob('./*')}")
 
 
 def f_chdir(dirname):
-    f_title("f_chdir()")
+    ut.f_title("f_chdir()")
     print(f"os.getcwd(): {os.getcwd()}")
     os.chdir(dirname)
     print(f"os.getcwd(): {os.getcwd()}")
 
 
 def f_write(fname):
-    f_title("f_write()")
+    ut.f_title("f_write()")
     with open(fname, 'w') as f:
         f.write('123\n')
         f.write('456\n')
@@ -43,7 +43,7 @@ def f_write(fname):
 
 
 def f_read(fname):
-    f_title("f_read()")
+    ut.f_title("f_read()")
     with open(fname, 'r') as f:
         for line in f:
             print(line.strip())
@@ -51,7 +51,7 @@ def f_read(fname):
 
 # *memo_py.os.path*
 def f_path(fname):
-    f_title("f_path()")
+    ut.f_title("f_path()")
     path = "~/Desktop/" + fname
     print(f"path={path}")
     expanduser = os.path.expanduser(path)
@@ -70,7 +70,7 @@ def f_path(fname):
 
 
 def f_test(fname):
-    f_title("f_test()")
+    ut.f_title("f_test()")
     if os.path.isfile(fname) == True:
         print("isfile: True")
     else:
@@ -84,7 +84,7 @@ def f_test(fname):
 
 # *memo_py.shutil*
 def f_shutil(fname):
-    f_title("f_shutil()")
+    ut.f_title("f_shutil()")
     os.makedirs("_test_dir/a/b/c", exist_ok=True)
     if not os.path.exists("_test_dir2"):
         shutil.copytree("_test_dir", "_test_dir2")
@@ -103,7 +103,7 @@ def f_shutil(fname):
 
 
 def f_sys():
-    f_title("f_sys()")
+    ut.f_title("f_sys()")
     print(sys.argv)
 
     sys.path.append(os.path.join(os.path.dirname(__file__), '..'))

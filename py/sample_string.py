@@ -5,7 +5,7 @@ import sys
 import os
 import re
 import parse
-from common import f_title
+import util as ut
 
 
 # *memo_py.string*
@@ -14,8 +14,6 @@ from common import f_title
 # *memo_py.string.join*
 # *memo_py.string.replace*
 def f_string():
-    f_title("f_string()")
-
     s = f"images/img{123}_{5}.png"
     dirname, filename = s.split("/")
 
@@ -40,6 +38,22 @@ def f_string():
     print(f"l            = {l}")
     print(f'"/".join(l)  = {"/".join(l)}')
 
+    s = "hello"
+    if s == "hello":
+        print("hello")
+    if s != "world":
+        print("!world")
+    if s.startswith('he'):
+        print(s)
+    if s.endswith('o'):
+        print(s)
+    if "el" in s:
+        print("el")
+    if 'eo' in s:
+        print("eo")
+    if "aa" not in s:
+        print("!aa")
+
 
 def f_expand_env(s):
     r = re.search('\$\w+', s)
@@ -53,7 +67,6 @@ def f_expand_env(s):
 
 # *memo_py.re*
 def f_re():
-    f_title("f_re()")
     in_s = "1, 1.5, 2, 2.5:str"
     out_s = re.split(r",\s+|:", in_s)
     print(f"in_s: {in_s}")
@@ -76,7 +89,6 @@ def f_re():
 
 # *memo_py.parse*
 def f_parse():
-    f_title("f_parse()")
     filename = "img123_5.png"
     result = parse.parse("img{nr:d}_{label:d}.png", filename)
     print(f"nr, label: {result['nr']}, {result['label']}")
@@ -100,6 +112,21 @@ def main(argv):
     f_string()
     f_re()
     f_parse()
+
+    funcs = (
+            "string",
+            "re",
+            "parse",
+            )
+
+    if len(argv) == 1:
+        selected = funcs
+    else:
+        selected = argv[1:]
+
+    for i in selected:
+        ut.f_title(i)
+        eval(f"f_{i}()")
 
 
 if __name__ == "__main__":
