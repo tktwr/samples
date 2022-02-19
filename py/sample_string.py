@@ -9,10 +9,10 @@ import util as ut
 
 
 # *memo_py.string*
-# *memo_py.string.strip*
-# *memo_py.string.split*
-# *memo_py.string.join*
-# *memo_py.string.replace*
+# *memo_py.string.f_strip*
+# *memo_py.string.f_split*
+# *memo_py.string.f_join*
+# *memo_py.string.f_replace*
 def f_string():
     s = f"images/img{123}_{5}.png"
     dirname, filename = s.split("/")
@@ -65,7 +65,7 @@ def f_expand_env(s):
     return s
 
 
-# *memo_py.re*
+# *memo_py.string.f_re*
 def f_re():
     in_s = "1, 1.5, 2, 2.5:str"
     out_s = re.split(r",\s+|:", in_s)
@@ -87,7 +87,7 @@ def f_re():
     print(f"o: {o}")
 
 
-# *memo_py.parse*
+# *memo_py.string.f_parse*
 def f_parse():
     filename = "img123_5.png"
     result = parse.parse("img{nr:d}_{label:d}.png", filename)
@@ -114,9 +114,9 @@ def main(argv):
     f_parse()
 
     funcs = (
-            "string",
-            "re",
-            "parse",
+            "f_string",
+            "f_re",
+            "f_parse",
             )
 
     if len(argv) == 1:
@@ -126,7 +126,7 @@ def main(argv):
 
     for i in selected:
         ut.f_title(i)
-        eval(f"f_{i}()")
+        eval(f"{i}()")
 
 
 if __name__ == "__main__":

@@ -5,4 +5,4 @@ import os
 
 
 def f_title(str):
-    print(f"=== [{str}] ===")
+    print(f"=== [{str}] ===", flush=True)

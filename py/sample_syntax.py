@@ -7,14 +7,14 @@ import math
 import util as ut
 
 
-# *memo_py.syntax.input*
+# *memo_py.syntax.f_input*
 def f_input():
     print(f"input: ", end="")
     in_s = input()
     print(f"in_s: {in_s}")
 
 
-# *memo_py.syntax.print*
+# *memo_py.syntax.f_print*
 def f_print():
     # comment
     '''
@@ -50,7 +50,7 @@ def f_print():
     print(f"sys.stderr.encoding = {sys.stderr.encoding}")
 
 
-def f_print_old():
+def f_print_old_style():
     # str.format() method (python >= 2.6)
     print("{} {} {}".format(0, 1, 2))
     print("{0} {1} {2}".format(0, 1, 2))
@@ -61,7 +61,7 @@ def f_print_old():
     print("%d %d %d" % (0, 1, 2))
 
 
-# *memo_py.syntax.if*
+# *memo_py.syntax.f_if*
 def f_if():
     l = [0, 1, 2, 3, 4]
     i = 1
@@ -91,7 +91,7 @@ def f_if():
         print(f"{i} = outside")
 
 
-# *memo_py.syntax.for*
+# *memo_py.syntax.f_for*
 def f_for():
     for i in range(5):
         print(f"{i} ", end="")
@@ -111,7 +111,7 @@ def f_for():
     print()
 
 
-# *memo_py.syntax.while*
+# *memo_py.syntax.f_while*
 def f_while():
     i = 0
     while i < 5:
@@ -120,7 +120,7 @@ def f_while():
     print()
 
 
-# *memo_py.syntax.func*
+# *memo_py.syntax.f_func*
 def f_add(a, b):
     return a + b
 
@@ -137,7 +137,7 @@ def f_func():
     f_args(b=2, a=1)
 
 
-# *memo_py.syntax.class*
+# *memo_py.syntax.f_class*
 class MyClass():
     def __init__(self):
         print(f"MyClass.__init__")
@@ -191,7 +191,7 @@ def f_subclass():
     my.f(10)
 
 
-# *memo_py.syntax.list*
+# *memo_py.syntax.f_list*
 def f_list():
     l = [1, 2, 3, 4, 5]
     print(f"l = {l}")
@@ -229,7 +229,7 @@ def f_list():
     print(f"int_list = {int_list}")
 
 
-# *memo_py.syntax.tuple*
+# *memo_py.syntax.f_tuple*
 def f_tuple():
     # tuple is read only
     t = (1, 3, 5, 7, 9)
@@ -239,12 +239,12 @@ def f_tuple():
     print(f"l = {list(t)}")
 
 
-# *memo_py.syntax.set*
+# *memo_py.syntax.f_set*
 def f_set():
     s = {1, 2, 3}
 
 
-# *memo_py.syntax.dict*
+# *memo_py.syntax.f_dict*
 def f_dict():
     d = {"aaa":123, "bbb":234, "ccc":345}
 
@@ -272,7 +272,7 @@ def f_dict():
     print(f"d.clear() = {d.clear()}")
 
 
-# *memo_py.syntax.type*
+# *memo_py.syntax.f_type*
 def f_type():
     n = None
     b = True
@@ -290,12 +290,12 @@ def f_type():
     t = tuple(l)
 
 
-# *memo_py.syntax.zip*
+# *memo_py.syntax.f_zip*
 def f_zip():
     pass
 
 
-# *memo_py.syntax.color*
+# *memo_py.syntax.f_color*
 def f_color():
     color = {
         "Red"    : "fb4934",
@@ -317,7 +317,7 @@ def f_color():
     print(f"R, G, B: {R}, {G}, {B}")
 
 
-# *memo_py.syntax.math*
+# *memo_py.syntax.f_math*
 def f_math():
     print(f" 5  / 2 = { 5  / 2}")
     print(f" 5 // 2 = { 5 // 2}")
@@ -345,6 +345,7 @@ def f_math():
     print(f"ll = {ll}")
 
 
+# *memo_py.syntax.f_exist*
 def f_exist():
     a = 123
 
@@ -361,11 +362,13 @@ def f_exist():
     print(f"1 not in d = {1 not in d}")
 
 
+# *memo_py.syntax.f_func_object*
 def f_func_object():
     func = f_print
     func()
 
 
+# *memo_py.syntax.f_eval*
 def f_eval():
     func = "print"
     eval(f"f_{func}()")
@@ -373,26 +376,31 @@ def f_eval():
 
 def main(argv):
     funcs = (
-            "input",
-            "print",
-            "print_old",
-            "if",
-            "for",
-            "while",
-            "func",
-            "class",
-            "subclass",
-            "list",
-            "tuple",
-            "set",
-            "dict",
-            "type",
-            "zip",
-            "color",
-            "math",
-            "exist",
-            "func_object",
-            "eval",
+            "f_input",
+            "f_print",
+            "f_print_old_style",
+
+            "f_if",
+            "f_for",
+            "f_while",
+
+            "f_func",
+            "f_class",
+            "f_subclass",
+
+            "f_list",
+            "f_tuple",
+            "f_set",
+            "f_dict",
+            "f_type",
+
+            "f_zip",
+            "f_color",
+            "f_math",
+            "f_exist",
+
+            "f_func_object",
+            "f_eval",
             )
 
     if len(argv) == 1:
@@ -402,7 +410,7 @@ def main(argv):
 
     for i in selected:
         ut.f_title(i)
-        eval(f"f_{i}()")
+        eval(f"{i}()")
 
 
 if __name__ == "__main__":

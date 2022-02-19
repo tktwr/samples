@@ -1,8 +1,20 @@
+TAGS_DIR="\
+cpp/*.cpp \
+cpp_lib/*.cpp \
+opencv/*.cpp \
+py/*.py \
+py/cv/*.py \
+py/numpy/*.py \
+vim/*.vim \
+sh/*.sh \
+bat/*.bat \
+"
+
 tags: tags.memo
 
 .PHONY: tags.memo
 tags.memo:
-	memotags.sh cpp/*.cpp cpp_lib/*.cpp opencv/*.cpp py/*.py vim/*.vim sh/*.sh bat/*.bat > tags.memo
+	memotags.sh $(TAGS_DIR) > tags.memo
 
 all:
 	cd cpp && make all

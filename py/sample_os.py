@@ -11,7 +11,7 @@ from datetime import datetime as dt
 import util as ut
 
 
-# *memo_py.datetime*
+# *memo_py.os.f_today*
 def f_today():
     ut.f_title("f_today()")
     today = dt.today()
@@ -20,12 +20,13 @@ def f_today():
     print(time_stamp)
 
 
-# *memo_py.glob*
+# *memo_py.os.f_glob*
 def f_glob():
     ut.f_title("f_glob()")
     print(f"glob={glob.glob('./*')}")
 
 
+# *memo_py.os.f_chdir*
 def f_chdir(dirname):
     ut.f_title("f_chdir()")
     print(f"os.getcwd(): {os.getcwd()}")
@@ -33,6 +34,7 @@ def f_chdir(dirname):
     print(f"os.getcwd(): {os.getcwd()}")
 
 
+# *memo_py.os.f_write*
 def f_write(fname):
     ut.f_title("f_write()")
     with open(fname, 'w') as f:
@@ -42,6 +44,7 @@ def f_write(fname):
         f.write('xyz\n')
 
 
+# *memo_py.os.f_read*
 def f_read(fname):
     ut.f_title("f_read()")
     with open(fname, 'r') as f:
@@ -49,7 +52,7 @@ def f_read(fname):
             print(line.strip())
 
 
-# *memo_py.os.path*
+# *memo_py.os.f_path*
 def f_path(fname):
     ut.f_title("f_path()")
     path = "~/Desktop/" + fname
@@ -69,6 +72,7 @@ def f_path(fname):
     print(f"join={join}")
 
 
+# *memo_py.os.f_test*
 def f_test(fname):
     ut.f_title("f_test()")
     if os.path.isfile(fname) == True:
@@ -82,7 +86,7 @@ def f_test(fname):
         print("isdir: False")
 
 
-# *memo_py.shutil*
+# *memo_py.os.f_shutil*
 def f_shutil(fname):
     ut.f_title("f_shutil()")
     os.makedirs("_test_dir/a/b/c", exist_ok=True)
@@ -102,6 +106,7 @@ def f_shutil(fname):
     result = subprocess.run(('ls', '-l'))
 
 
+# *memo_py.os.f_sys*
 def f_sys():
     ut.f_title("f_sys()")
     print(sys.argv)

@@ -6,8 +6,8 @@ import sys
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-import cv_util
-from common import f_title
+import cv_util as cvut
+import util as ut
 
 
 INPUT_DIR = "../../data"
@@ -17,9 +17,10 @@ fname2 = f"{INPUT_DIR}/sample2.jpg"
 
 
 def f_info():
-    cv_util.cv_info(fname)
+    cvut.cv_info(fname)
 
 
+# *memo_py.cv2.f_new*
 def f_new():
     w = 200
     h = 200
@@ -29,6 +30,7 @@ def f_new():
     cv2.imwrite(f"{OUTPUT_DIR}/new.jpg", img)
 
 
+# *memo_py.cv2.f_resize*
 def f_resize():
     img = cv2.imread(fname)
     h = img.shape[0]
@@ -37,6 +39,7 @@ def f_resize():
     cv2.imwrite(f"{OUTPUT_DIR}/resize.jpg", img_resize)
 
 
+# *memo_py.cv2.f_crop*
 def f_crop():
     img = cv2.imread(fname)
 
@@ -46,20 +49,22 @@ def f_crop():
     cv2.imwrite(f"{OUTPUT_DIR}/crop.jpg", out)
 
 
+# *memo_py.cv2.f_cvt*
 def f_cvt():
     img = cv2.imread(fname)
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     img_lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    mycv = cv_util.ImageTile()
-    img_cvt = mycv.tile([
+    img_list = [
         [img, img_rgb],
         [img_lab, img_gray]
-        ])
-    cv2.imwrite(f"{OUTPUT_DIR}/cvt.jpg", img_cvt)
+        ]
+    img_tile = cvut.cv_htile(img_list)
+    cv2.imwrite(f"{OUTPUT_DIR}/cvt.jpg", img_tile)
 
 
+# *memo_py.cv2.f_red*
 def f_red():
     img = cv2.imread(fname)
     # B, G channelsを0にする
@@ -67,6 +72,7 @@ def f_red():
     cv2.imwrite(f"{OUTPUT_DIR}/red.jpg", img)
 
 
+# *memo_py.cv2.f_np*
 def f_np():
     with open(fname, "rb") as f:
         binary = f.read()
@@ -75,6 +81,7 @@ def f_np():
     cv2.imwrite(f"{OUTPUT_DIR}/np.jpg", img)
 
 
+# *memo_py.cv2.f_blur*
 def f_blur():
     img = cv2.imread(fname)
     img_blur = cv2.blur(img, (7, 7))
@@ -84,30 +91,35 @@ def f_blur():
     img_sub = img - img_gauss
     img_edge = cv2.Canny(img, 100, 200)
 
-    mycv = cv_util.ImageTile()
-    img_all = mycv.tile([
+    img_list = [
         [img, img_blur, img_gauss],
         [img_median, img_bf],
         [img_sub, img_edge]
-        ])
-    cv2.imwrite(f"{OUTPUT_DIR}/blur_all.jpg", img_all)
+        ]
+    img_tile = cvut.cv_htile(img_list)
+    cv2.imwrite(f"{OUTPUT_DIR}/blur_all.jpg", img_tile)
 
 
+# *memo_py.cv2.f_tile*
 def f_tile():
     im1 = cv2.imread(fname)
     im2 = cv2.imread(fname2)
-    mycv = cv_util.ImageTile()
-    img_cat = mycv.tile([[im1],
-                         [im1, im2, im1, im2, im1],
-                         [im1, im2, im1]])
-    img_hcat = mycv.hconcat([im1, im2, im1])
-    img_vcat = mycv.vconcat([im1, im2, im1])
 
-    cv2.imwrite(f"{OUTPUT_DIR}/tile_cat.jpg", img_cat)
-    cv2.imwrite(f"{OUTPUT_DIR}/tile_hcat.jpg", img_hcat)
-    cv2.imwrite(f"{OUTPUT_DIR}/tile_vcat.jpg", img_vcat)
+    img_list = [
+        [im1],
+        [im1, im2, im1, im2, im1],
+        [im1, im2, im1]
+        ]
+    img_tile   = cvut.cv_htile(img_list)
+    img_tile_h = cvut.cv_hconcat([im1, im2, im1])
+    img_tile_v = cvut.cv_vconcat([im1, im2, im1])
+
+    cv2.imwrite(f"{OUTPUT_DIR}/tile.jpg",   img_tile)
+    cv2.imwrite(f"{OUTPUT_DIR}/tile_h.jpg", img_tile_h)
+    cv2.imwrite(f"{OUTPUT_DIR}/tile_v.jpg", img_tile_v)
 
 
+# *memo_py.cv2.f_hist*
 def f_hist():
     img = cv2.imread(fname)
     color = ('b','g','r')
@@ -118,28 +130,36 @@ def f_hist():
     plt.show()
 
 
+# *memo_py.cv2.f_draw*
+def f_draw():
+    img = cv2.imread(fname)
+    img = cv2.rectangle(img, (50, 50), (100, 100), (255, 0, 0), 3)
+    cv2.imwrite(f"{OUTPUT_DIR}/draw_rect.jpg", img)
+
+
 def main(argv):
-    dict_func = {
-            "info"   : f_info,
-            "new"    : f_new,
-            "resize" : f_resize,
-            "crop"   : f_crop,
-            "cvt"    : f_cvt,
-            "red"    : f_red,
-            "np"     : f_np,
-            "blur"   : f_blur,
-            "tile"   : f_tile,
-            "hist"   : f_hist,
-            }
+    funcs = (
+            "f_info",
+            "f_new",
+            "f_resize",
+            "f_crop",
+            "f_cvt",
+            "f_red",
+            "f_np",
+            "f_blur",
+            "f_tile",
+            "f_hist",
+            "f_draw",
+            )
 
     if len(argv) == 1:
-        func_names = dict_func.keys()
+        selected = funcs
     else:
-        func_names = argv[1:]
+        selected = argv[1:]
 
-    for i in func_names:
-        f_title(i)
-        dict_func[i]()
+    for i in selected:
+        ut.f_title(i)
+        eval(f"{i}()")
 
     cv2.waitKey()
 
