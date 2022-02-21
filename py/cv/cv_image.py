@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # *memo_py.cv2*
 
+import os
 import sys
 import cv2
 import numpy as np
@@ -14,6 +15,8 @@ INPUT_DIR = "../../data"
 OUTPUT_DIR = "_output"
 fname = f"{INPUT_DIR}/sample.jpg"
 fname2 = f"{INPUT_DIR}/sample2.jpg"
+
+#fname = f"{os.environ['MY_DATA']}/env/2k_exr/mossy_forest_2k.exr"
 
 
 def f_info():
@@ -28,6 +31,12 @@ def f_new():
     img[:,0:w//2] = (255,0,0)      # (B, G, R)
     img[:,w//2:w] = (0,255,0)
     cv2.imwrite(f"{OUTPUT_DIR}/new.jpg", img)
+
+
+# *memo_py.cv2.f_show*
+def f_show():
+    img = cv2.imread(fname, cv2.IMREAD_UNCHANGED)
+    cv2.imshow(f"{fname}", img)
 
 
 # *memo_py.cv2.f_resize*
@@ -130,6 +139,20 @@ def f_hist():
     plt.show()
 
 
+# *memo_py.cv2.f_hist_exr*
+def f_hist_exr():
+    img = cv2.imread(fname, cv2.IMREAD_UNCHANGED)
+    img = np.power(img, 1.0/2.2)
+    cv2.imshow(f"{fname}", img)
+    img *= 255
+    color = ('b','g','r')
+    for i,col in enumerate(color):
+       histr = cv2.calcHist([img],[i],None,[256],[0,256])
+       plt.plot(histr,color = col)
+       plt.xlim([0,256])
+    plt.show()
+
+
 # *memo_py.cv2.f_draw*
 def f_draw():
     img = cv2.imread(fname)
@@ -141,6 +164,7 @@ def main(argv):
     funcs = (
             "f_info",
             "f_new",
+            "f_show",
             "f_resize",
             "f_crop",
             "f_cvt",
