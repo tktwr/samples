@@ -43,9 +43,23 @@ void f_substr() {
     std::cout << "ss       = " << ss << std::endl;
 }
 
+void f_path() {
+    std::string fname = "C:\\a\\b\\c\\d.txt";
+    std::replace(fname.begin(), fname.end(), '\\', '/');
+    std::cout << fname << std::endl;
+
+    size_t i = fname.rfind('/');
+    std::string dir;
+    if (i != std::string::npos) {
+        dir = fname.substr(0, i + 1);
+    }
+    std::cout << dir << std::endl;
+}
+
 int main(int argc, char *argv[]) {
-    f_string();
-    f_substr();
+    //f_string();
+    //f_substr();
+    f_path();
     return 0;
 }
 

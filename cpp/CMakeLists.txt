@@ -12,6 +12,9 @@ function(func app)
 endfunction()
 
 set(APPS
+  sample_c++17
+  )
+set(APPS_ALL
   sample_c++11
   sample_c++14
   sample_c++17

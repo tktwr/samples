@@ -17,8 +17,10 @@ memo_cpp.11.universal_reference	cpp/sample_c++11.cpp	/*memo_cpp.11.universal_ref
 memo_cpp.11.weak_ptr	cpp/sample_c++11.cpp	/*memo_cpp.11.weak_ptr*
 memo_cpp.14	cpp/sample_c++14.cpp	/*memo_cpp.14*
 memo_cpp.17	cpp/sample_c++17.cpp	/*memo_cpp.17*
-memo_cpp.17.nested_namespace	cpp/sample_c++17.cpp	/*memo_cpp.17.nested_namespace*
-memo_cpp.17.structured_bidings	cpp/sample_c++17.cpp	/*memo_cpp.17.structured_bidings*
+memo_cpp.17.f_any	cpp/sample_c++17.cpp	/*memo_cpp.17.f_any*
+memo_cpp.17.f_filesystem	cpp/sample_c++17.cpp	/*memo_cpp.17.f_filesystem*
+memo_cpp.17.f_nested_namespace	cpp/sample_c++17.cpp	/*memo_cpp.17.f_nested_namespace*
+memo_cpp.17.f_structured_bidings	cpp/sample_c++17.cpp	/*memo_cpp.17.f_structured_bidings*
 memo_cpp.20	cpp/sample_c++20.cpp	/*memo_cpp.20*
 memo_cpp.class	cpp/sample_class.cpp	/*memo_cpp.class*
 memo_cpp.cstdio	cpp/sample_cstdio.cpp	/*memo_cpp.cstdio*
@@ -26,6 +28,7 @@ memo_cpp.fstream	cpp/sample_fstream.cpp	/*memo_cpp.fstream*
 memo_cpp.hello_world	cpp/sample_hello_world.cpp	/*memo_cpp.hello_world*
 memo_cpp.stl	cpp/sample_stl.cpp	/*memo_cpp.stl*
 memo_cpp.stl.list	cpp/sample_stl.cpp	/*memo_cpp.stl.list*
+memo_cpp.stl.map	cpp/sample_stl.cpp	/*memo_cpp.stl.map*
 memo_cpp.stl.vector	cpp/sample_stl.cpp	/*memo_cpp.stl.vector*
 memo_cpp.string	cpp/sample_string.cpp	/*memo_cpp.string*
 memo_cpp.syntax	cpp/sample_syntax.cpp	/*memo_cpp.syntax*
@@ -49,10 +52,12 @@ memo_py.cv2.f_crop	py/cv/cv_image.py	/*memo_py.cv2.f_crop*
 memo_py.cv2.f_cvt	py/cv/cv_image.py	/*memo_py.cv2.f_cvt*
 memo_py.cv2.f_draw	py/cv/cv_image.py	/*memo_py.cv2.f_draw*
 memo_py.cv2.f_hist	py/cv/cv_image.py	/*memo_py.cv2.f_hist*
+memo_py.cv2.f_hist_exr	py/cv/cv_image.py	/*memo_py.cv2.f_hist_exr*
 memo_py.cv2.f_new	py/cv/cv_image.py	/*memo_py.cv2.f_new*
 memo_py.cv2.f_np	py/cv/cv_image.py	/*memo_py.cv2.f_np*
 memo_py.cv2.f_red	py/cv/cv_image.py	/*memo_py.cv2.f_red*
 memo_py.cv2.f_resize	py/cv/cv_image.py	/*memo_py.cv2.f_resize*
+memo_py.cv2.f_show	py/cv/cv_image.py	/*memo_py.cv2.f_show*
 memo_py.cv2.f_tile	py/cv/cv_image.py	/*memo_py.cv2.f_tile*
 memo_py.fileinput	py/cat.py	/*memo_py.fileinput*
 memo_py.json	py/sample_json.py	/*memo_py.json*

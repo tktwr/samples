@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <map>
+#include <stdexcept>
 
 using namespace std;
 
@@ -66,12 +68,31 @@ void f_list_init() {
     f_print("l = ", l);
 }
 
+// *memo_cpp.stl.map*
+void f_map() {
+    std::map<std::string, int> m = {
+        {"aaa", 10},
+        {"bbb", 11},
+        {"ccc", 12},
+    };
+    std::cout << m["aaa"] << std::endl;
+    std::cout << m["bbb"] << std::endl;
+    std::cout << m["ccc"] << std::endl;
+
+    try {
+        std::cout << m.at("ddd") << std::endl;
+    } catch(std::out_of_range&) {
+        std::cout << "exception std::out_of_range" << std::endl;
+    }
+}
+
 int main(int argc, char *argv[]) {
-    f_vector_init();
-    f_vector_add();
-    f_vector_cat();
-    f_vector_sample();
-    f_list_init();
+    //f_vector_init();
+    //f_vector_add();
+    //f_vector_cat();
+    //f_vector_sample();
+    //f_list_init();
+    f_map();
     return 0;
 }
 
