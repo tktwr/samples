@@ -19,6 +19,7 @@ memo_cpp.14	cpp/sample_c++14.cpp	/*memo_cpp.14*
 memo_cpp.17	cpp/sample_c++17.cpp	/*memo_cpp.17*
 memo_cpp.17.f_any	cpp/sample_c++17.cpp	/*memo_cpp.17.f_any*
 memo_cpp.17.f_filesystem	cpp/sample_c++17.cpp	/*memo_cpp.17.f_filesystem*
+memo_cpp.17.f_filesystem_path	cpp/sample_c++17.cpp	/*memo_cpp.17.f_filesystem_path*
 memo_cpp.17.f_nested_namespace	cpp/sample_c++17.cpp	/*memo_cpp.17.f_nested_namespace*
 memo_cpp.17.f_structured_bidings	cpp/sample_c++17.cpp	/*memo_cpp.17.f_structured_bidings*
 memo_cpp.20	cpp/sample_c++20.cpp	/*memo_cpp.20*

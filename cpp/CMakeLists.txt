@@ -6,15 +6,15 @@ include($ENV{MY_LIBTT_WIN}/config.cmake)
 
 set(CMAKE_CXX_STANDARD 20)
 
-function(func app)
-  add_executable(${app} ${app}.cpp)
+function(func app cpp)
+  add_executable(${app} ${cpp})
   target_link_libraries(${app})
 endfunction()
 
-set(APPS
+set(APP
   sample_c++17
   )
-set(APPS_ALL
+set(APP_ALL
   sample_c++11
   sample_c++14
   sample_c++17
@@ -32,8 +32,8 @@ set(APPS_ALL
   sample_thread
 )
 
-foreach(app IN LISTS APPS)
+foreach(app IN LISTS APP)
   message("app: ${app}")
-  func(${app})
+  func(${app} ${app}.cpp)
 endforeach()
 

@@ -1,6 +1,7 @@
 // *memo_cpp.17*
 #include <filesystem>
 #include <iostream>
+#include <fstream>
 #include <tuple>
 #include <any>
 
@@ -22,7 +23,7 @@ void f_nested_namespace() {
 std::tuple<bool, int, float> f_a() {
     bool bval = true;
     int ival = 123;
-    float fval = 123.456;
+    float fval = 123.456f;
     return {bval, ival, fval};
 }
 
@@ -35,54 +36,96 @@ void f_structured_bidings() {
 
 //-------------------------------------------------------------------------
 // *memo_cpp.17.f_any*
-/*
 void f_any() {
-    // int型の値を代入して取り出す
     std::any x = 3;
     int n = std::any_cast<int>(x);
 
     std::cout << n << std::endl;
 
-    // 文字列を再代入して取り出す
     x = "Hello";
     const char* s = std::any_cast<const char*>(x);
 
     std::cout << s << std::endl;
 
-    // 間違った型で取り出そうとすると例外が送出される
     try {
-        std::any_cast<double>(x);
+        double d = std::any_cast<double>(x);
     } catch (const std::bad_any_cast& e) {
         std::cout << e.what() << std::endl;
     }
 }
-*/
 
 //-------------------------------------------------------------------------
 // *memo_cpp.17.f_filesystem*
-void f_filesystem() {
-    std::filesystem::path p = std::filesystem::current_path();
-	std::filesystem::path pp = p.parent_path();
-	std::filesystem::path ap = std::filesystem::absolute("./test.txt");
+// *memo_cpp.17.f_filesystem_path*
+namespace fs = std::filesystem;
+std::string ODIR = "_output/fs/";
 
-    std::cout << p.string() << std::endl;
+void f_filesystem_path() {
+    fs::path p = "/a/b/c/d.txt";
+    std::cout << "p         : " << p.string() << std::endl;
+    std::cout << "directory : " << p.parent_path() << std::endl;
+    std::cout << "filename  : " << p.filename() << std::endl;
+    std::cout << "stem      : " << p.stem() << std::endl;
+    std::cout << "extension : " << p.extension() << std::endl;
+
+    fs::path cp = fs::current_path();
+	fs::path pp = cp.parent_path();
+	fs::path ap = fs::absolute("./test.txt");
+
+    std::cout << cp.string() << std::endl;
 	std::cout << pp.string() << std::endl;
 	std::cout << ap.string() << std::endl;
+	std::cout << ap.generic_string() << std::endl;
+}
 
-    bool exists = std::filesystem::exists("./test.txt");
-	bool is_dir = std::filesystem::is_directory("./test.txt");
-	bool is_file = std::filesystem::is_regular_file("./test.txt");
+void f_init_test_dir() {
+    fs::create_directories(ODIR);
+    std::ofstream ofs(ODIR+"test.txt");
+    ofs << "hello world" << std::endl;
+}
+
+void f_filesystem() {
+    f_init_test_dir();
+
+    bool exists = fs::exists(ODIR+"test.txt");
+	bool is_file = fs::is_regular_file(ODIR+"test.txt");
+	bool is_dir = fs::is_directory(ODIR);
 
 	std::cout << "exists: " << exists << std::endl;
-	std::cout << "is_dir: " << is_dir << std::endl;
 	std::cout << "is_file: " << is_file << std::endl;
+	std::cout << "is_dir: " << is_dir << std::endl;
+
+    fs::create_directory(ODIR+"dir1");
+	fs::create_directories(ODIR+"dir2/a/b");
+
+	fs::copy(ODIR+"test.txt", ODIR+"test2.txt");
+	fs::copy(ODIR+"dir2", ODIR+"dir3", fs::copy_options::recursive);
+
+	fs::rename(ODIR+"test2.txt", ODIR+"test3.txt");
+	fs::rename(ODIR+"test3.txt", ODIR+"dir3/test3.txt");
+
+	fs::remove(ODIR+"test.txt");
+	fs::remove_all(ODIR+"dir2");
+
+    std::cout << "---" << std::endl;
+    auto&& di = fs::directory_iterator(ODIR);
+    for (auto f : di) {
+        std::cout << f.path().string() << std::endl;
+    }
+
+    std::cout << "---" << std::endl;
+    auto&& rdi = fs::recursive_directory_iterator(ODIR);
+    for (auto f : rdi) {
+        std::cout << f.path().string() << std::endl;
+    }
 }
 
 //-------------------------------------------------------------------------
 int main(int argc, char *argv[]) {
     f_nested_namespace();
     f_structured_bidings();
-    //f_any();
+    f_any();
+    f_filesystem_path();
     f_filesystem();
 
     return 0;
