@@ -33,12 +33,8 @@ MAT_PARAM_30 = {
 
 
 #======================================================
-def radian(deg):
-    return deg * math.pi / 180
-
-
-def radian3(deg3):
-    return [radian(i) for i in deg3]
+def radians3(deg3):
+    return [math.radians(i) for i in deg3]
 
 
 def clear_all():
@@ -58,12 +54,16 @@ def clear_all():
 
 def set_mat_custom_props():
     for mat in bpy.data.materials:
-        mat['Subsurface Radius'] = get_mat_param(mat, 'Subsurface Radius')
-        mat['Specular'] = get_mat_param(mat, 'Specular')
-        mat['Specular Tint'] = get_mat_param(mat, 'Specular Tint')
-        mat['IOR'] = get_mat_param(mat, 'IOR')
-        mat['Transmission'] = get_mat_param(mat, 'Transmission')
-        mat['Transmission Roughness'] = get_mat_param(mat, 'Transmission Roughness')
+        print(f'mat.name = {mat.name}')
+        bsdf = find_principled_bsdf_node(mat)
+        if bsdf != None:
+            print(f'bsdf.name = {bsdf.name}')
+            mat['u_subsurface_radius'] = get_mat_param(mat, 'Subsurface Radius')
+            mat['u_specular'] = get_mat_param(mat, 'Specular')
+            mat['u_specular_tint'] = get_mat_param(mat, 'Specular Tint')
+            mat['u_ior'] = get_mat_param(mat, 'IOR')
+            mat['u_transmission'] = get_mat_param(mat, 'Transmission')
+            mat['u_transmission_roughness'] = get_mat_param(mat, 'Transmission Roughness')
 
 
 #------------------------------------------------------
@@ -93,7 +93,7 @@ def create_camera(name, loc, rot_deg):
     data = bpy.data.cameras.new(name=name)
     obj = bpy.data.objects.new(name, data)
     obj.location = loc
-    obj.rotation_euler = radian3(rot_deg)
+    obj.rotation_euler = radians3(rot_deg)
     return obj
 
 
@@ -123,6 +123,14 @@ def create_material(name):
 #------------------------------------------------------
 # material
 #------------------------------------------------------
+def find_principled_bsdf_node(mat):
+    if mat.node_tree != None:
+        for i in mat.node_tree.nodes:
+            if i.name.startswith('Principled BSDF') or i.name.startswith('プリンシプルBSDF'):
+                return i
+    return None
+
+
 def set_obj_material(obj, mat):
     obj_matslots = obj.material_slots
     if len(obj_matslots) == 0:
@@ -132,13 +140,15 @@ def set_obj_material(obj, mat):
 
 
 def set_mat_param(mat, mat_param_name, val):
-    bsdf = mat.node_tree.nodes["Principled BSDF"]
+    #bsdf = mat.node_tree.nodes["Principled BSDF"]
+    bsdf = find_principled_bsdf_node(mat)
     mat_param_id = MAT_PARAM_30[mat_param_name]
     bsdf.inputs[mat_param_id].default_value = val
 
 
 def get_mat_param(mat, mat_param_name):
-    bsdf = mat.node_tree.nodes["Principled BSDF"]
+    #bsdf = mat.node_tree.nodes["Principled BSDF"]
+    bsdf = find_principled_bsdf_node(mat)
     mat_param_id = MAT_PARAM_30[mat_param_name]
     return bsdf.inputs[mat_param_id].default_value
 
@@ -146,35 +156,91 @@ def get_mat_param(mat, mat_param_name):
 #======================================================
 # main
 #======================================================
-SAMPLES = (
+MAT_BLENDER_DEFAULT = {
+    "Base Color": (0.8, 0.8, 0.8, 1.0),
+    "Subsurface": 0.0,
+    "Subsurface Radius": (1.0, 0.2, 0.1),
+    "Subsurface Color": (0.8, 0.8, 0.8, 1.0),
+    "Subsurface IOR": 1.4,
+    "Subsurface Anisotropy": 0.0,
+    "Metallic": 0.0,
+    "Specular": 0.5,
+    "Specular Tint": 0.0,
+    "Roughness": 0.5,
+    "Anisotropic": 0.0,
+    "Anisotropic Rotation": 0.0,
+    "Sheen": 0.0,
+    "Sheen Tint": 0.5,
+    "Clearcoat": 0.0,
+    "Clearcoat Roughness": 0.03,
+    "IOR": 1.45,
+    "Transmission": 0.0,
+    "Transmission Roughness": 0.0,
+    "Emission": (0.0, 0.0, 0.0, 1.0),
+    "Emission Strength": 1.0,
+    "Alpha": 1.0,
+    #"Normal": (0.0, 0.0, 1.0),
+    #"Clearcoat Normal": (0.0, 0.0, 1.0),
+    #"Tangent": (0.0, 0.0, 1.0),
+}
+
+MAT_DEFAULT = {
+    "Specular": 0.5,
+    "Roughness": 0.2,
+}
+
+MAT_SAMPLES = (
     {
         "name": "Subsurface",
         "Base Color": (1.000, 0.258, 0.123, 1.000),
-        "Transmission": 0.0,
+        "Subsurface Color": (1.000, 0.258, 0.123, 1.000),
         "min":  0.0,
         "max":  1.0,
     }, {
         "name": "Metallic",
         "Base Color": (1.000, 0.780, 0.040, 1.000),
-        "Transmission": 0.0,
         "min":  0.0,
         "max":  1.0,
     }, {
         "name": "Specular",
         "Base Color": (1.000, 0.028, 0.026, 1.000),
-        "Transmission": 0.0,
         "min":  0.0,
         "max":  1.0,
     }, {
         "name": "Specular Tint",
         "Base Color": (1.000, 0.028, 0.026, 1.000),
-        "Transmission": 0.0,
         "min":  0.0,
         "max":  1.0,
     }, {
         "name": "Roughness",
         "Base Color": (0.093, 0.161, 1.000, 1.000),
-        "Transmission": 0.0,
+        "min":  0.0,
+        "max":  1.0,
+    }, {
+        "name": "Sheen",
+        "Base Color": (0.141, 0.00083, 0.006, 1.000),
+        "Roughness": 0.9,
+        "Sheen Tint": 0.0,
+        "min":  0.0,
+        "max":  1.0,
+    }, {
+        "name": "Sheen Tint",
+        "Base Color": (0.141, 0.00083, 0.006, 1.000),
+        "Roughness": 0.9,
+        "Sheen": 1.0,
+        "min":  0.0,
+        "max":  1.0,
+    }, {
+        "name": "Clearcoat",
+        "Base Color": (0.011, 0.063, 0.066, 1.000),
+        "Specular": 0.0,
+        "min":  0.0,
+        "max":  1.0,
+    }, {
+        "name": "Clearcoat Roughness",
+        "Base Color": (0.011, 0.063, 0.066, 1.000),
+        "Specular": 0.0,
+        "Clearcoat": 1.0,
         "min":  0.0,
         "max":  1.0,
     }, {
@@ -186,7 +252,6 @@ SAMPLES = (
     }, {
         "name": "Transmission",
         "Base Color": (0.238, 1.000, 0.117, 1.000),
-        "Transmission": 1.0,
         "min":  0.0,
         "max":  1.0,
     }, {
@@ -199,11 +264,15 @@ SAMPLES = (
 )
 
 
-def create_bsdf_samples(w, h):
-    bpy.context.scene.render.resolution_x = 1024
-    bpy.context.scene.render.resolution_y = 1024
+def create_bsdf_samples(nx, ny):
+    w = 512
+    bpy.context.scene.render.resolution_x = w
+    bpy.context.scene.render.resolution_y = w * ny / nx
+    bpy.context.scene.render.resolution_percentage = 100
 
-    cam_loc = ((w-1)/2, -20, -(h-1)/2)
+    l = 1.1 * ny / 2 / math.tan(math.radians(39.6/2))
+
+    cam_loc = ((nx-1)/2, -l, -(ny-1)/2)
     cam_rot = (90, 0, 0)
     cam = create_camera('Camera_0', cam_loc, cam_rot)
     add_object_to_scene(cam)
@@ -215,21 +284,24 @@ def create_bsdf_samples(w, h):
     shapes_coll = create_collection("Shapes")
     add_collection_to_scene(shapes_coll)
 
-    for j in range(0, h):
-        for i in range(0, w):
+    for j in range(0, ny):
+        for i in range(0, nx):
             loc = (i, 0, -j)
             name = f"Sphere_{j}_{i}"
             obj = create_sphere(name, 0.4, loc)
             mat = create_material(name)
-            set_mat_param(mat, "Subsurface Color", SAMPLES[0]["Base Color"])
-            set_mat_param(mat, "Roughness", 0.145)
 
-            sample = SAMPLES[j]
-            set_mat_param(mat, "Base Color", sample["Base Color"])
-            set_mat_param(mat, "Transmission", sample["Transmission"])
-            alpha = i/(w-1)
+            # set fixed material params
+            for sample in (MAT_BLENDER_DEFAULT, MAT_DEFAULT, MAT_SAMPLES[j]):
+                for key in MAT_PARAM_30.keys():
+                    if key in sample:
+                        set_mat_param(mat, key, sample[key])
+
+            # set a variable material param
+            alpha = i/(nx-1)
             val = (1-alpha) * sample["min"] + alpha * sample["max"]
             set_mat_param(mat, sample["name"], val)
+
             set_obj_material(obj, mat)
             link_object_to_collection(obj, shapes_coll)
 
@@ -280,7 +352,16 @@ class MY_OT_create_btn(bpy.types.Operator):
     bl_idname = "my.create_btn"
 
     def execute(self, context):
-        create_bsdf_samples(11, len(SAMPLES))
+        create_bsdf_samples(7, len(MAT_SAMPLES))
+        return {'FINISHED'}
+
+
+class MY_OT_extra_btn(bpy.types.Operator):
+    bl_label = "Extra"
+    bl_idname = "my.extra_btn"
+
+    def execute(self, context):
+        set_mat_custom_props()
         return {'FINISHED'}
 
 
@@ -302,6 +383,9 @@ class MY_PT_ui(bpy.types.Panel):
         row.operator("my.create_btn")
 
         row = layout.row()
+        row.operator("my.extra_btn")
+
+        row = layout.row()
         row.operator("my.info_btn")
 
         row = layout.row()
@@ -313,6 +397,7 @@ classes = (
     MY_OT_info_btn,
     MY_OT_clear_btn,
     MY_OT_create_btn,
+    MY_OT_extra_btn,
 )
 
 
