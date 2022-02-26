@@ -352,7 +352,8 @@ class MY_OT_create_btn(bpy.types.Operator):
     bl_idname = "my.create_btn"
 
     def execute(self, context):
-        create_bsdf_samples(7, len(MAT_SAMPLES))
+        scene = context.scene
+        create_bsdf_samples(scene.bsdf_samples_nx, len(MAT_SAMPLES))
         return {'FINISHED'}
 
 
@@ -373,17 +374,24 @@ class MY_PT_ui(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        scene = context.scene
 
         obj = context.object
 
         row = layout.row()
         row.operator("my.clear_btn")
 
+        layout.prop(scene, "bsdf_samples_nx")
+
         row = layout.row()
         row.operator("my.create_btn")
 
+        layout.separator()
+
         row = layout.row()
         row.operator("my.extra_btn")
+
+        layout.separator()
 
         row = layout.row()
         row.operator("my.info_btn")
@@ -401,15 +409,42 @@ classes = (
 )
 
 
+#------------------------------------------------------
+# props
+#------------------------------------------------------
+def init_props():
+    scene = bpy.types.Scene
+    scene.bsdf_samples_nx = bpy.props.IntProperty(
+        name="nx",
+        description="the number of columns",
+        default=7,
+        min=1,
+        max=11
+    )
+
+
+def clear_props():
+    scene = bpy.types.Scene
+    del scene.bsdf_samples_nx
+
+
+#------------------------------------------------------
+# register
+#------------------------------------------------------
 def register():
     for c in classes:
         bpy.utils.register_class(c)
+    init_props()
 
 
 def unregister():
+    clear_props()
     for c in classes:
         bpy.utils.unregister_class(c)
 
 
+#------------------------------------------------------
+# main
+#------------------------------------------------------
 if __name__ == "__main__":
     register()
