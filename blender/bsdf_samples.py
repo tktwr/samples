@@ -70,6 +70,9 @@ def set_mat_custom_props():
             mat['u_transmission'] = get_mat_param(mat, 'Transmission')
             mat['u_transmission_roughness'] = get_mat_param(mat, 'Transmission Roughness')
 
+            normal_scale = get_normal_map_strength(mat)
+            mat['u_normal_scale'] = (normal_scale, normal_scale, 1.0)
+
 
 #------------------------------------------------------
 # add
@@ -125,15 +128,35 @@ def create_material(name):
     return mat
 
 
+def rename_all(src, dst):
+    for obj in bpy.data.objects:
+        if src in obj.name:
+            obj.name = obj.name.replace(src, dst)
+        if src in obj.data.name:
+            obj.data.name = obj.data.name.replace(src, dst)
+    for mat in bpy.data.materials:
+        if src in mat.name:
+            mat.name = mat.name.replace(src, dst)
+
+
 #------------------------------------------------------
 # material
 #------------------------------------------------------
 def find_principled_bsdf_node(mat):
     if mat.node_tree != None:
         for i in mat.node_tree.nodes:
-            if i.name.startswith('Principled BSDF') or i.name.startswith('プリンシプルBSDF'):
+            if i.bl_idname == 'ShaderNodeBsdfPrincipled':
                 return i
     return None
+
+
+def get_normal_map_strength(mat):
+    if mat.node_tree != None:
+        for i in mat.node_tree.links:
+            if i.to_node.bl_idname == 'ShaderNodeBsdfPrincipled' and i.to_socket.identifier == 'Normal' and i.from_node.bl_idname == 'ShaderNodeNormalMap':
+                normal_map_node = i.from_node
+                return normal_map_node.inputs[0].default_value
+    return 1.0
 
 
 def set_obj_material(obj, mat):
@@ -371,6 +394,16 @@ class MY_OT_extra_btn(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class MY_OT_rename_btn(bpy.types.Operator):
+    bl_label = "Rename"
+    bl_idname = "my.rename_btn"
+
+    def execute(self, context):
+        scene = context.scene
+        rename_all(scene.bsdf_samples_src_text, scene.bsdf_samples_dst_text)
+        return {'FINISHED'}
+
+
 class MY_PT_ui(bpy.types.Panel):
     bl_label = "BSDF Samples"
     bl_category = "Material"
@@ -383,26 +416,25 @@ class MY_PT_ui(bpy.types.Panel):
 
         obj = context.object
 
-        row = layout.row()
-        row.operator("my.clear_btn")
+        layout.operator("my.clear_btn")
 
         layout.prop(scene, "bsdf_samples_nx")
-
-        row = layout.row()
-        row.operator("my.create_btn")
+        layout.operator("my.create_btn")
 
         layout.separator()
 
-        row = layout.row()
-        row.operator("my.extra_btn")
+        layout.operator("my.extra_btn")
 
         layout.separator()
 
-        row = layout.row()
-        row.operator("my.info_btn")
+        layout.prop(scene, "bsdf_samples_src_text")
+        layout.prop(scene, "bsdf_samples_dst_text")
+        layout.operator("my.rename_btn")
 
-        row = layout.row()
-        row.operator("render.render")
+        layout.separator()
+
+        layout.operator("my.info_btn")
+        layout.operator("render.render")
 
 
 classes = (
@@ -411,6 +443,7 @@ classes = (
     MY_OT_clear_btn,
     MY_OT_create_btn,
     MY_OT_extra_btn,
+    MY_OT_rename_btn,
 )
 
 
@@ -426,11 +459,21 @@ def init_props():
         min=1,
         max=11
     )
+    scene.bsdf_samples_src_text = bpy.props.StringProperty(
+        name="src_text",
+        description="src_text",
+    )
+    scene.bsdf_samples_dst_text = bpy.props.StringProperty(
+        name="dst_text",
+        description="dst_text",
+    )
 
 
 def clear_props():
     scene = bpy.types.Scene
     del scene.bsdf_samples_nx
+    del scene.bsdf_samples_src_text
+    del scene.bsdf_samples_dst_text
 
 
 #------------------------------------------------------
