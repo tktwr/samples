@@ -311,6 +311,11 @@ void f_decompose(const Matrix4f& M, Vector3f& trans, Vector3f& scale, Quaternion
     quat = Quaternionf(R);
 }
 
+void f_color() {
+    Vector3f color_srgb = {0.8, 0.8, 0.8};
+    Vector3f color_linear = color.array().pow(2.2);
+}
+
 int main(int argc, char *argv[]) {
     f_memory_order();
     //f_constructor();
@@ -321,6 +326,8 @@ int main(int argc, char *argv[]) {
     //f_transform();
     //f_vecx();
     //f_matx();
+    //f_decompose();
+    //f_color();
     return 0;
 }
 
