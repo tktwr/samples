@@ -35,11 +35,11 @@ public:
         m_k2v[key] = val;
     }
 
-    V getValue(const K& key) {
-        return m_k2v[key];
+    const V& getValue(const K& key) const {
+        return m_k2v.at(key);
     }
-    K getKey(const V& val) {
-        return m_v2k[val];
+    const K& getKey(const V& val) const {
+        return m_v2k.at(val);
     }
 
 private:
@@ -72,9 +72,14 @@ int main(int argc, char *argv[]) {
         "Banana",
         "Orange",
         "Apple",
+        "Strawberry",
     };
-    for (auto&& name : names) {
-        std::cout << name << " " << idname.getKey(name) << std::endl;
+    try {
+        for (auto&& name : names) {
+            std::cout << name << " " << idname.getKey(name) << std::endl;
+        }
+    } catch(std::out_of_range& e) {
+        std::cout << e.what() << std::endl;
     }
 
     return 0;
