@@ -12,7 +12,7 @@ function(func app cpp)
 endfunction()
 
 set(APP
-  sample_c++17
+  sample_util
   )
 set(APP_ALL
   sample_c++11
@@ -30,6 +30,7 @@ set(APP_ALL
   sample_syntax
   sample_template
   sample_thread
+  sample_util
 )
 
 foreach(app IN LISTS APP)

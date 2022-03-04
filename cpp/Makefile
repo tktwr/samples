@@ -18,6 +18,7 @@ sample_string.exe \
 sample_syntax.exe \
 sample_template.exe \
 sample_thread.exe \
+sample_util.exe \
 "
 
 all: cmake build
