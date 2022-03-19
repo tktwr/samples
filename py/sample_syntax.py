@@ -346,6 +346,8 @@ def f_math():
 
 
 # *memo_py.syntax.f_exist*
+# *memo_py.syntax.in*
+# *memo_py.syntax.not_in*
 def f_exist():
     a = 123
 
@@ -355,11 +357,21 @@ def f_exist():
     print(f"'a' in globals()     = {'a' in globals()}")
     print(f"'a' not in globals() = {'a' not in globals()}")
 
-    d = {0: 123}
+    t = (1, 3, 4)
 
-    print(f"0 in d     = {0 in d}")
-    print(f"1 in d     = {1 in d}")
-    print(f"1 not in d = {1 not in d}")
+    print(f"t            = {t}")
+    print(f"1 in t       = {1 in t}")
+    print(f"0 in t       = {0 in t}")
+    print(f"0 not in t   = {0 not in t}")
+    print(f"not (0 in t) = {not (0 in t)}")
+
+    d = {1: "apple"}
+
+    print(f"d            = {d}")
+    print(f"1 in d       = {1 in d}")
+    print(f"0 in d       = {0 in d}")
+    print(f"0 not in d   = {0 not in d}")
+    print(f"not (0 in d) = {not (0 in d)}")
 
 
 # *memo_py.syntax.f_func_object*

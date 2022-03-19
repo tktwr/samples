@@ -61,6 +61,7 @@ memo_py.cv2.f_resize	py/cv/cv_image.py	/*memo_py.cv2.f_resize*
 memo_py.cv2.f_show	py/cv/cv_image.py	/*memo_py.cv2.f_show*
 memo_py.cv2.f_tile	py/cv/cv_image.py	/*memo_py.cv2.f_tile*
 memo_py.fileinput	py/cat.py	/*memo_py.fileinput*
+memo_py.hashlib	py/sample_hashlib.py	/*memo_py.hashlib*
 memo_py.json	py/sample_json.py	/*memo_py.json*
 memo_py.json.f_read_json	py/sample_json.py	/*memo_py.json.f_read_json*
 memo_py.json.f_write_json	py/sample_json.py	/*memo_py.json.f_write_json*
@@ -112,6 +113,8 @@ memo_py.syntax.f_tuple	py/sample_syntax.py	/*memo_py.syntax.f_tuple*
 memo_py.syntax.f_type	py/sample_syntax.py	/*memo_py.syntax.f_type*
 memo_py.syntax.f_while	py/sample_syntax.py	/*memo_py.syntax.f_while*
 memo_py.syntax.f_zip	py/sample_syntax.py	/*memo_py.syntax.f_zip*
+memo_py.syntax.in	py/sample_syntax.py	/*memo_py.syntax.in*
+memo_py.syntax.not_in	py/sample_syntax.py	/*memo_py.syntax.not_in*
 memo_py.text_io	py/sample_text_io.py	/*memo_py.text_io*
 memo_py.text_io.f_read_text	py/sample_text_io.py	/*memo_py.text_io.f_read_text*
 memo_py.text_io.f_write_text	py/sample_text_io.py	/*memo_py.text_io.f_write_text*
