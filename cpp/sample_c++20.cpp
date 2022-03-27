@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// *memo_cpp.20.format*
 void f_format() {
 #ifdef USE_CPP20
     std::string message = std::format("The answer is {}.", 42);

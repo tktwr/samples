@@ -1,8 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import time
 import numpy as np
+import tt_util as tu
+
+
+# Vectorize wraps frompyfunc. Vectorize adds extra features:
+# - Copies the docstring from the original function
+# - Allows you to exclude an argument from broadcasting rules.
+# - Returns an array of the correct dtype instead of dtype=object
+
+# $ ./ufunc.py 
+# timeit_f : avg=0.375 sec, median=0.376 sec
+# timeit_vf: avg=0.325 sec, median=0.321 sec
+# timeit_uf: avg=0.271 sec, median=0.268 sec
+# timeit_np: avg=0.040 sec, median=0.040 sec
+
 
 N = 1000000
 l = np.random.rand(N)
@@ -15,36 +28,22 @@ def f(x):
 vf = np.vectorize(f)
 uf = np.frompyfunc(f, 1, 1)
 
-def timeit(func):
-    def wrapper(*args, **kargs):
-        time_list = []
-        for i in range(5):
-            start = time.time()
-            func(*args, **kargs)
-            end = time.time()
-            time_list.append(end - start)
-        avg = np.mean(time_list)
-        median = np.median(time_list)
-        print(f"{func.__name__}: avg={avg:.3f} sec, median={median:.3f} sec")
-    return wrapper
-
-
-@timeit
+@tu.timeit
 def timeit_f(l):
     for i in l:
         f(i)
 
-@timeit
+@tu.timeit
 def timeit_vf(l):
     vf(l)
 
 
-@timeit
+@tu.timeit
 def timeit_uf(l):
     uf(l)
 
 
-@timeit
+@tu.timeit
 def timeit_np(l):
     l ** 3
 

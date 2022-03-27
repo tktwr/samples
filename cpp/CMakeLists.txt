@@ -12,7 +12,7 @@ function(func app cpp)
 endfunction()
 
 set(APP
-  sample_util
+  sample_string
   )
 set(APP_ALL
   sample_c++11

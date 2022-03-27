@@ -1,5 +1,9 @@
 #!/bin/bash
 
+f_test_image_create_check() {
+  image-create.py -a check -o check_3_uint8.png -s 256 256 -c 3 -y uint8 --bgr0 1 0 0 --bgr1 0 1 0 -n 4 4
+}
+
 f_test_image_create_new() {
   image-create.py -o new_4_uint8.png -s 300 200 -c 4 -y uint8 --bgr0 1 0 0 1
   image-create.py -o new_3_uint8.png -s 300 200 -c 3 -y uint8 --bgr0 1 0 0
@@ -42,10 +46,11 @@ f_test_image_conv() {
   image-conv.py -t 200 $MY_SAMPLES/data/sample*.jpg
 }
 
-f_test_image_create_new
-f_test_image_create_grad
-f_test_image_split
-f_test_image_merge
-f_test_image_tile
-f_test_image_conv
+f_test_image_create_check
+#f_test_image_create_new
+#f_test_image_create_grad
+#f_test_image_split
+#f_test_image_merge
+#f_test_image_tile
+#f_test_image_conv
 

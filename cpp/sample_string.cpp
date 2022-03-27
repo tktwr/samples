@@ -1,38 +1,44 @@
-// *memo_cpp.string*
 #include <iostream>
 #include <string>
 #include <algorithm>
 
 using namespace std;
 
-bool f_match(const std::string& s, const std::string& m) {
+// *memo_cpp.string*
+void f_string() {
+    std::string s = "hello world";
+
+    std::cout << "s        = " << s << std::endl;
+    std::cout << "s.size() = " << s.size() << std::endl;
+}
+
+// *memo_cpp.string.match*
+// *memo_cpp.string.find*
+bool f_string_match() {
+    std::string s = "hello world";
+    std::string m = "world";
+
     auto i = s.find(m);
     if (i != std::string::npos) {
-        std::cout << "matched" << std::endl;
-        std::cout << "i        = " << i << std::endl;
+        std::cout << "matched: " << i << std::endl;
     } else {
         std::cout << "not matched" << std::endl;
     }
     return true;
 }
 
-void f_transform(const std::string& s0) {
-    std::cout << "s0 = " << s0 << std::endl;
-    std::string s = s0;
+// *memo_cpp.string.transform*
+// *memo_cpp.string.tolower*
+void f_string_transform() {
+    std::string s = "Hello WORLD";
+
+    std::cout << "s = " << s << std::endl;
     std::transform(s.begin(), s.end(), s.begin(), ::tolower);
     std::cout << "s = " << s << std::endl;
 }
 
-void f_string() {
-    std::string s = "hello world";
-
-    std::cout << "s        = " << s << std::endl;
-    std::cout << "s.size() = " << s.size() << std::endl;
-    f_match(s, "world");
-    f_transform("Hello WORLD");
-}
-
-void f_substr() {
+// *memo_cpp.string.substr*
+void f_string_substr() {
     std::string s = "0123456789";
     std::string ss;
 
@@ -43,7 +49,8 @@ void f_substr() {
     std::cout << "ss       = " << ss << std::endl;
 }
 
-void f_path() {
+// *memo_cpp.string.path*
+void f_string_path() {
     std::string fname = "C:\\a\\b\\c\\d.txt";
     std::replace(fname.begin(), fname.end(), '\\', '/');
     std::cout << fname << std::endl;
@@ -57,9 +64,11 @@ void f_path() {
 }
 
 int main(int argc, char *argv[]) {
-    //f_string();
-    //f_substr();
-    f_path();
+    f_string();
+    f_string_match();
+    f_string_transform();
+    f_string_substr();
+    f_string_path();
     return 0;
 }
 

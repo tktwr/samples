@@ -193,17 +193,25 @@ def f_subclass():
 
 # *memo_py.syntax.f_list*
 def f_list():
-    l = [1, 2, 3, 4, 5]
+    l = [0, 1, 2, 3, 4, 5]
     print(f"l = {l}")
     print(f"len(l) = {len(l)}")
     print(f"l[0] = {l[0]}")
+    print(f"l[5] = {l[5]}")
+
+    # *memo_py.syntax.f_list.append*
     l.append(10)
     print(f"l.append(10) = {l}")
+
+    # *memo_py.syntax.f_list.insert*
     l.insert(0, 20)
     print(f"l.insert(0, 20) = {l}")
+
+    # *memo_py.syntax.f_list.pop*
     l.pop(2)
     print(f"l.pop(2) = {l}")
 
+    # *memo_py.syntax.f_list.slice*
     l = ['zero', 1, 'two', 3, 'four', 5]
     print(f"l       = {l}")
     print(f"l[:]    = {l[:]}")
@@ -211,22 +219,32 @@ def f_list():
     print(f"l[1:]   = {l[1:]}")
     print(f"l[:6]   = {l[:6]}")
     print(f"l[:2]   = {l[:2]}")
-    print(f"l[2:4]  = {l[2:4]}")  # 2 + 2 chars
+    print(f"l[2:4]  = {l[2:4]}")    # pos 2 + 2 chars
     print(f"l[:-1]  = {l[:-1]}")
     print(f"l[:-2]  = {l[:-2]}")
     print(f"l[-2:-1]= {l[-2:-1]}")
-    print(f"l[-1:]  = {l[-1:]}")
+    print(f"l[-1:]  = {l[-1:]}")    # the last
 
+    # *memo_py.syntax.f_list.list_to_tuple*
     print(f"t = {tuple(l)}")
 
-    s = "1 2 3 4 5"
-    print(f"s = {s}")
-    str_list = s.split(" ")
-    print(f"str_list = {str_list}")
+    # *memo_py.syntax.f_list.str_to_str_list*
+    s = '0 1 2 3 4 5'
+    print(f's = {s}')
+    str_list = s.split(' ')
+    print(f"s.split(' ') = {str_list}")
+
+    # *memo_py.syntax.f_list.str_to_int_list*
     int_list = list(int(i) for i in str_list)
-    print(f"int_list = {int_list}")
-    int_list = list(range(1, 6, 1))
-    print(f"int_list = {int_list}")
+    print(f'int_list = {int_list}')
+
+
+# *memo_py.syntax.f_range*
+def f_range():
+    print(f'list(range(6))       = {list(range(6))}')
+    print(f'list(range(0, 6))    = {list(range(0, 6))}')
+    print(f'list(range(0, 6, 1)) = {list(range(0, 6, 1))}')
+    print(f'list(range(0, 6, 1)) = {list(range(0, 6, 2))}')
 
 
 # *memo_py.syntax.f_tuple*
@@ -248,28 +266,35 @@ def f_set():
 def f_dict():
     d = {"aaa":123, "bbb":234, "ccc":345}
 
-    print(f"d = {d}")
-    print(f"d['aaa'] = {d['aaa']}")
-    print(f"d.get('aaa') = {d.get('aaa')}")
-    print(f"d.get('zzz') = {d.get('zzz')}")
-    print(f"d.keys() = {d.keys()}")
-    print(f"d.values() = {d.values()}")
+    print(f"d                     = {d}")
+    print(f"d['aaa']              = {d['aaa']}")
 
-    print(f"'aaa' in d = {'aaa' in d}")
-    print(f"'aaa' not in d = {'aaa' not in d}")
-    print(f"123 in d.values() = {123 in d.values()}")
-    print(f"123 not in d.values() = {123 not in d.values()}")
+    # *memo_py.syntax.f_dict.get*
+    print(f"d.get('aaa')          = {d.get('aaa')}")
+    print(f"d.get('zzz')          = {d.get('zzz')}")
+
+    # *memo_py.syntax.f_dict.keys*
+    print(f"d.keys()              = {d.keys()}")
+    print(f"'aaa' in d            = {'aaa' in d}")
+    print(f"'aaa' not in d        = {'aaa' not in d}")
 
     for key in d:
         print(f"key = {key}")
 
-    print(f"d.pop('aaa') = {d.pop('aaa')}")
-    print(f"d = {d}")
+    # *memo_py.syntax.f_dict.values*
+    print(f"d.values()            = {d.values()}")
+    print(f"123 in d.values()     = {123 in d.values()}")
+    print(f"123 not in d.values() = {123 not in d.values()}")
 
-    print(f"d.pop('zzz', None) = {d.pop('zzz', None)}")
-    print(f"d = {d}")
+    # *memo_py.syntax.f_dict.pop*
+    print(f"d.pop('aaa')          = {d.pop('aaa')}")
+    print(f"d                     = {d}")
+    print(f"d.pop('zzz', None)    = {d.pop('zzz', None)}")
+    print(f"d                     = {d}")
 
-    print(f"d.clear() = {d.clear()}")
+    # *memo_py.syntax.f_dict.clear*
+    print(f"d.clear()             = {d.clear()}")
+    print(f"d                     = {d}")
 
 
 # *memo_py.syntax.f_type*
@@ -401,6 +426,7 @@ def main(argv):
             "f_subclass",
 
             "f_list",
+            "f_range",
             "f_tuple",
             "f_set",
             "f_dict",

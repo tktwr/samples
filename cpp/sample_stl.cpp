@@ -16,20 +16,49 @@ void f_print(const std::string& text, const T& container) {
     std::cout << std::endl;
 }
 
+// *memo_cpp.stl.container*
+void f_container() {
+    std::vector<int> c = {0, 1, 2, 3, 4, 5};
+
+    for (auto&& x : c) {
+        std::cout << x << " ";
+    }
+    std::cout << std::endl;
+
+    for (auto&& itr = c.begin(); itr != c.end(); ++itr) {
+        std::cout << *itr << " ";
+    }
+    std::cout << std::endl;
+}
+
 // *memo_cpp.stl.vector*
-void f_vector_init() {
+void f_vector() {
+    // *memo_cpp.stl.vector.init*
     std::vector<int> vec = {0, 1, 2, 3, 4, 5};
     f_print("vec = ", vec);
-}
 
-void f_vector_add() {
-    std::vector<int> vec;
+    // *memo_cpp.stl.vector.clear*
+    vec.clear();
+
+    // *memo_cpp.stl.vector.reserve*
     vec.reserve(10);
+
+    // *memo_cpp.stl.vector.push_back*
     vec.push_back(0);
-    vec.emplace_back(1);
+    vec.push_back(1);
+
+    // *memo_cpp.stl.vector.emplace_back*
+    vec.emplace_back(2);
+    vec.emplace_back(3);
+
+    // *memo_cpp.stl.vector.pop_back*
+    vec.pop_back();
+
     f_print("vec = ", vec);
 }
 
+// *memo_cpp.stl.vector.cat*
+// *memo_cpp.stl.vector.insert*
 void f_vector_cat() {
     std::vector<int> v0 = {0, 1};
     std::vector<int> v1 = {2, 3};
@@ -39,16 +68,18 @@ void f_vector_cat() {
     f_print("v0 = ", v0);
 }
 
-void f_vector_sample() {
+void f_vector_sort() {
     std::vector<int> vec = {0, 1, 2, 3, 4, 5};
     std::vector<int> vec0;
     std::vector<int> vec1;
 
-    for (auto&& itr = vec.begin(); itr != vec.end(); ++itr) {
-        if ((*itr % 2) == 0) {
-            vec0.push_back(*itr);
+    for (auto&& x : vec) {
+        if ((x % 2) == 0) {
+            // even number
+            vec0.push_back(x);
         } else {
-            vec1.push_back(*itr);
+            // odd number
+            vec1.push_back(x);
         }
     }
 
@@ -87,12 +118,12 @@ void f_map() {
 }
 
 int main(int argc, char *argv[]) {
-    //f_vector_init();
-    //f_vector_add();
+    //f_container();
+    //f_vector();
     //f_vector_cat();
-    //f_vector_sample();
+    f_vector_sort();
     //f_list_init();
-    f_map();
+    //f_map();
     return 0;
 }
 

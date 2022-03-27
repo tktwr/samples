@@ -1,11 +1,16 @@
-all: clean data
+all:
+
+clean_all: clean_data clean_model
+
+clean_data:
+	rm -rf _images
+
+clean_model:
+	rm -f mnist.model
 
 data:
 	mkdir -p _images
 	./arff2png.py mnist_test.arff
-
-clean:
-	rm -f _images/*.png
 
 train:
 	./mnist_train.py $(MY_DATA)/mnist/mnist_784.arff mnist.model
