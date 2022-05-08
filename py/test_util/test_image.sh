@@ -1,22 +1,24 @@
 #!/bin/bash
 
 f_test_image_create_check() {
-  image-create.py -a check -o check_3_uint8.png -s 256 256 -c 3 -y uint8 --bgr0 1 0 0 --bgr1 0 1 0 -n 4 4
+  image-create.py -a check -o check_3_uint8.png  -s 256 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 2 2
+  image-create.py -a check -o check2_3_uint8.png -s 512 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 4 2
+  image-create.py -a hstripe -o hstripe_3_uint8.png -s 512 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 1 8
 }
 
 f_test_image_create_new() {
-  image-create.py -o new_4_uint8.png -s 300 200 -c 4 -y uint8 --bgr0 1 0 0 1
-  image-create.py -o new_3_uint8.png -s 300 200 -c 3 -y uint8 --bgr0 1 0 0
-  image-create.py -o new_1_uint8.png -s 300 200 -c 1 -y uint8 --bgr0 1
+  image-create.py -a new -o new_4_uint8.png -s 300 200 -c 4 -y uint8 --bgr0 1 0 0 1
+  image-create.py -a new -o new_3_uint8.png -s 300 200 -c 3 -y uint8 --bgr0 1 0 0
+  image-create.py -a new -o new_1_uint8.png -s 300 200 -c 1 -y uint8 --bgr0 1
 
-  image-create.py -o new_4_uint16.png -s 300 200 -c 4 -y uint16 --bgr0 1 0 0 1
-  image-create.py -o new_3_uint16.png -s 300 200 -c 3 -y uint16 --bgr0 1 0 0
-  image-create.py -o new_1_uint16.png -s 300 200 -c 1 -y uint16 --bgr0 1
+  image-create.py -a new -o new_4_uint16.png -s 300 200 -c 4 -y uint16 --bgr0 1 0 0 1
+  image-create.py -a new -o new_3_uint16.png -s 300 200 -c 3 -y uint16 --bgr0 1 0 0
+  image-create.py -a new -o new_1_uint16.png -s 300 200 -c 1 -y uint16 --bgr0 1
 
   # 4ch float32 exr is not supported
-  #image-create.py -o new_4_float32.exr -s 300 200 -c 4 -y float32 --bgr0 1 0 0 1
-  image-create.py -o new_3_float32.exr -s 300 200 -c 3 -y float32 --bgr0 1 0 0
-  image-create.py -o new_1_float32.exr -s 300 200 -c 1 -y float32 --bgr0 1
+  #image-create.py -a new -o new_4_float32.exr -s 300 200 -c 4 -y float32 --bgr0 1 0 0 1
+  image-create.py -a new -o new_3_float32.exr -s 300 200 -c 3 -y float32 --bgr0 1 0 0
+  image-create.py -a new -o new_1_float32.exr -s 300 200 -c 1 -y float32 --bgr0 1
 }
 
 f_test_image_create_grad() {
