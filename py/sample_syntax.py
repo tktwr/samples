@@ -66,6 +66,9 @@ def f_if():
     l = [0, 1, 2, 3, 4]
     i = 1
 
+    print(f'l = {l}')
+    print(f'i = {i}')
+
     if i == 0:
         print("i == 0")
     elif i == 1:
@@ -76,7 +79,8 @@ def f_if():
     if not (i == 0):
         print("not (i == 0)")
 
-    if i == 0 or i == 1:
+    if i == 0 or \
+       i == 1:
         print("i == 0 or i == 1")
 
     if 0 <= i and i < 2:

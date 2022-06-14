@@ -11,6 +11,12 @@ func VimTestPopupClose()
   call popup_close(s:popup_winid)
 endfunc
 
+func VimTestPopupCreateShellCmd()
+	let buf = term_start(['fzy_bmk.sh', 'bmk_file.txt'], #{hidden: 1, term_finish: 'close'})
+	let winid = popup_create(buf, #{minwidth: 50, minheight: 20})
+endfunc
+
+command! PopupTerm call popup_create(term_start([&shell], #{ hidden: 1, term_finish: 'close'}), #{ border: [], minwidth: &columns/2, minheight: &lines/2 })
 "------------------------------------------------------
 " popup_dialog
 "------------------------------------------------------

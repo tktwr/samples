@@ -17,3 +17,18 @@ func VimTestSyntax(name)
   let d['ddd'] = 333
   echom d['ddd']
 endfunc
+
+func VimTestString()
+  let i = 12
+  let fname = "/a/b/c/d.txt"
+  let str = printf("%3d %s ", i, fname)
+  let substr = str[4:-2]
+  let nr = str2nr(str[0:2])
+
+  echom "nr = [".nr."]"
+  echom "str = [".str."]"
+  echom "substr = [".substr."]"
+  echom str == fname
+  echom substr == fname
+endfunc
+
