@@ -5,14 +5,14 @@
 import sys
 
 
-# *memo_py.text_io.f_read_text*
+# *memo_py.text_io.read_text*
 def f_read_text(fname):
     with open(fname, "r") as f:
         lines = f.readlines()
     return lines
 
 
-# *memo_py.text_io.f_write_text*
+# *memo_py.text_io.write_text*
 def f_write_text(fname, lines):
     with open(fname, "w") as f:
         for i in lines:

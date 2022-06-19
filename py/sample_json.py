@@ -6,14 +6,14 @@ import sys
 import json
 
 
-# *memo_py.json.f_read_json*
+# *memo_py.json.read_json*
 def f_read_json(fname):
     with open(fname, "r") as f:
         json_data = json.load(f)
     return json_data
 
 
-# *memo_py.json.f_write_json*
+# *memo_py.json.write_json*
 def f_write_json(fname, data):
     with open(fname, "w") as f:
         f.write(json.dumps(data, sort_keys=True, indent=4))

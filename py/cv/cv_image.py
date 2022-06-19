@@ -23,7 +23,7 @@ def f_info():
     cvut.cv_info(fname)
 
 
-# *memo_py.cv2.f_new*
+# *memo_py.cv2.new*
 def f_new():
     w = 200
     h = 200
@@ -33,13 +33,13 @@ def f_new():
     cv2.imwrite(f"{OUTPUT_DIR}/new.jpg", img)
 
 
-# *memo_py.cv2.f_show*
+# *memo_py.cv2.show*
 def f_show():
     img = cv2.imread(fname, cv2.IMREAD_UNCHANGED)
     cv2.imshow(f"{fname}", img)
 
 
-# *memo_py.cv2.f_resize*
+# *memo_py.cv2.resize*
 def f_resize():
     img = cv2.imread(fname)
     h = img.shape[0]
@@ -48,7 +48,7 @@ def f_resize():
     cv2.imwrite(f"{OUTPUT_DIR}/resize.jpg", img_resize)
 
 
-# *memo_py.cv2.f_crop*
+# *memo_py.cv2.crop*
 def f_crop():
     img = cv2.imread(fname)
 
@@ -58,7 +58,7 @@ def f_crop():
     cv2.imwrite(f"{OUTPUT_DIR}/crop.jpg", out)
 
 
-# *memo_py.cv2.f_cvt*
+# *memo_py.cv2.cvt*
 def f_cvt():
     img = cv2.imread(fname)
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -73,7 +73,7 @@ def f_cvt():
     cv2.imwrite(f"{OUTPUT_DIR}/cvt.jpg", img_tile)
 
 
-# *memo_py.cv2.f_red*
+# *memo_py.cv2.red*
 def f_red():
     img = cv2.imread(fname)
     # B, G channelsを0にする
@@ -81,7 +81,7 @@ def f_red():
     cv2.imwrite(f"{OUTPUT_DIR}/red.jpg", img)
 
 
-# *memo_py.cv2.f_np*
+# *memo_py.cv2.np*
 def f_np():
     with open(fname, "rb") as f:
         binary = f.read()
@@ -90,7 +90,7 @@ def f_np():
     cv2.imwrite(f"{OUTPUT_DIR}/np.jpg", img)
 
 
-# *memo_py.cv2.f_blur*
+# *memo_py.cv2.blur*
 def f_blur():
     img = cv2.imread(fname)
     img_blur = cv2.blur(img, (7, 7))
@@ -109,7 +109,7 @@ def f_blur():
     cv2.imwrite(f"{OUTPUT_DIR}/blur_all.jpg", img_tile)
 
 
-# *memo_py.cv2.f_tile*
+# *memo_py.cv2.tile*
 def f_tile():
     im1 = cv2.imread(fname)
     im2 = cv2.imread(fname2)
@@ -128,7 +128,7 @@ def f_tile():
     cv2.imwrite(f"{OUTPUT_DIR}/tile_v.jpg", img_tile_v)
 
 
-# *memo_py.cv2.f_hist*
+# *memo_py.cv2.hist*
 def f_hist():
     img = cv2.imread(fname)
     color = ('b','g','r')
@@ -139,7 +139,7 @@ def f_hist():
     plt.show()
 
 
-# *memo_py.cv2.f_hist_exr*
+# *memo_py.cv2.hist_exr*
 def f_hist_exr():
     img = cv2.imread(fname, cv2.IMREAD_UNCHANGED)
     img = np.power(img, 1.0/2.2)
@@ -153,7 +153,7 @@ def f_hist_exr():
     plt.show()
 
 
-# *memo_py.cv2.f_draw*
+# *memo_py.cv2.draw*
 def f_draw():
     img = cv2.imread(fname)
     img = cv2.rectangle(img, (50, 50), (100, 100), (255, 0, 0), 3)

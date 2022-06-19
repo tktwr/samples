@@ -7,14 +7,14 @@ import math
 import util as ut
 
 
-# *memo_py.syntax.f_input*
+# *memo_py.syntax.input*
 def f_input():
     print(f"input: ", end="")
     in_s = input()
     print(f"in_s: {in_s}")
 
 
-# *memo_py.syntax.f_print*
+# *memo_py.syntax.print*
 def f_print():
     # comment
     '''
@@ -61,7 +61,7 @@ def f_print_old_style():
     print("%d %d %d" % (0, 1, 2))
 
 
-# *memo_py.syntax.f_if*
+# *memo_py.syntax.if*
 def f_if():
     l = [0, 1, 2, 3, 4]
     i = 1
@@ -95,7 +95,7 @@ def f_if():
         print(f"{i} = outside")
 
 
-# *memo_py.syntax.f_for*
+# *memo_py.syntax.for*
 def f_for():
     for i in range(5):
         print(f"{i} ", end="")
@@ -115,7 +115,7 @@ def f_for():
     print()
 
 
-# *memo_py.syntax.f_while*
+# *memo_py.syntax.while*
 def f_while():
     i = 0
     while i < 5:
@@ -124,7 +124,7 @@ def f_while():
     print()
 
 
-# *memo_py.syntax.f_func*
+# *memo_py.syntax.func*
 def f_add(a, b):
     return a + b
 
@@ -141,7 +141,7 @@ def f_func():
     f_args(b=2, a=1)
 
 
-# *memo_py.syntax.f_class*
+# *memo_py.syntax.class*
 class MyClass():
     def __init__(self):
         print(f"MyClass.__init__")
@@ -195,7 +195,7 @@ def f_subclass():
     my.f(10)
 
 
-# *memo_py.syntax.f_list*
+# *memo_py.syntax.list*
 def f_list():
     l = [0, 1, 2, 3, 4, 5]
     print(f"l = {l}")
@@ -203,19 +203,19 @@ def f_list():
     print(f"l[0] = {l[0]}")
     print(f"l[5] = {l[5]}")
 
-    # *memo_py.syntax.f_list.append*
+    # *memo_py.syntax.list.append*
     l.append(10)
     print(f"l.append(10) = {l}")
 
-    # *memo_py.syntax.f_list.insert*
+    # *memo_py.syntax.list.insert*
     l.insert(0, 20)
     print(f"l.insert(0, 20) = {l}")
 
-    # *memo_py.syntax.f_list.pop*
+    # *memo_py.syntax.list.pop*
     l.pop(2)
     print(f"l.pop(2) = {l}")
 
-    # *memo_py.syntax.f_list.slice*
+    # *memo_py.syntax.list.slice*
     l = ['zero', 1, 'two', 3, 'four', 5]
     print(f"l       = {l}")
     print(f"l[:]    = {l[:]}")
@@ -229,21 +229,21 @@ def f_list():
     print(f"l[-2:-1]= {l[-2:-1]}")
     print(f"l[-1:]  = {l[-1:]}")    # the last
 
-    # *memo_py.syntax.f_list.list_to_tuple*
+    # *memo_py.syntax.list.list_to_tuple*
     print(f"t = {tuple(l)}")
 
-    # *memo_py.syntax.f_list.str_to_str_list*
+    # *memo_py.syntax.list.str_to_str_list*
     s = '0 1 2 3 4 5'
     print(f's = {s}')
     str_list = s.split(' ')
     print(f"s.split(' ') = {str_list}")
 
-    # *memo_py.syntax.f_list.str_to_int_list*
+    # *memo_py.syntax.list.str_to_int_list*
     int_list = list(int(i) for i in str_list)
     print(f'int_list = {int_list}')
 
 
-# *memo_py.syntax.f_range*
+# *memo_py.syntax.range*
 def f_range():
     print(f'list(range(6))       = {list(range(6))}')
     print(f'list(range(0, 6))    = {list(range(0, 6))}')
@@ -251,7 +251,7 @@ def f_range():
     print(f'list(range(0, 6, 1)) = {list(range(0, 6, 2))}')
 
 
-# *memo_py.syntax.f_tuple*
+# *memo_py.syntax.tuple*
 def f_tuple():
     # tuple is read only
     t = (1, 3, 5, 7, 9)
@@ -261,23 +261,27 @@ def f_tuple():
     print(f"l = {list(t)}")
 
 
-# *memo_py.syntax.f_set*
+# *memo_py.syntax.set*
 def f_set():
     s = {1, 2, 3}
 
 
-# *memo_py.syntax.f_dict*
+# *memo_py.syntax.dict*
 def f_dict():
-    d = {"aaa":123, "bbb":234, "ccc":345}
+    d = {
+        "aaa":123,
+        "bbb":234,
+        "ccc":345
+    }
 
     print(f"d                     = {d}")
     print(f"d['aaa']              = {d['aaa']}")
 
-    # *memo_py.syntax.f_dict.get*
+    # *memo_py.syntax.dict.get*
     print(f"d.get('aaa')          = {d.get('aaa')}")
     print(f"d.get('zzz')          = {d.get('zzz')}")
 
-    # *memo_py.syntax.f_dict.keys*
+    # *memo_py.syntax.dict.keys*
     print(f"d.keys()              = {d.keys()}")
     print(f"'aaa' in d            = {'aaa' in d}")
     print(f"'aaa' not in d        = {'aaa' not in d}")
@@ -285,23 +289,23 @@ def f_dict():
     for key in d:
         print(f"key = {key}")
 
-    # *memo_py.syntax.f_dict.values*
+    # *memo_py.syntax.dict.values*
     print(f"d.values()            = {d.values()}")
     print(f"123 in d.values()     = {123 in d.values()}")
     print(f"123 not in d.values() = {123 not in d.values()}")
 
-    # *memo_py.syntax.f_dict.pop*
+    # *memo_py.syntax.dict.pop*
     print(f"d.pop('aaa')          = {d.pop('aaa')}")
     print(f"d                     = {d}")
     print(f"d.pop('zzz', None)    = {d.pop('zzz', None)}")
     print(f"d                     = {d}")
 
-    # *memo_py.syntax.f_dict.clear*
+    # *memo_py.syntax.dict.clear*
     print(f"d.clear()             = {d.clear()}")
     print(f"d                     = {d}")
 
 
-# *memo_py.syntax.f_type*
+# *memo_py.syntax.type*
 def f_type():
     n = None
     b = True
@@ -319,12 +323,12 @@ def f_type():
     t = tuple(l)
 
 
-# *memo_py.syntax.f_zip*
+# *memo_py.syntax.zip*
 def f_zip():
     pass
 
 
-# *memo_py.syntax.f_color*
+# *memo_py.syntax.color*
 def f_color():
     color = {
         "Red"    : "fb4934",
@@ -346,7 +350,7 @@ def f_color():
     print(f"R, G, B: {R}, {G}, {B}")
 
 
-# *memo_py.syntax.f_math*
+# *memo_py.syntax.math*
 def f_math():
     print(f" 5  / 2 = { 5  / 2}")
     print(f" 5 // 2 = { 5 // 2}")
@@ -374,7 +378,7 @@ def f_math():
     print(f"ll = {ll}")
 
 
-# *memo_py.syntax.f_exist*
+# *memo_py.syntax.exist*
 # *memo_py.syntax.in*
 # *memo_py.syntax.not_in*
 def f_exist():
@@ -403,13 +407,13 @@ def f_exist():
     print(f"not (0 in d) = {not (0 in d)}")
 
 
-# *memo_py.syntax.f_func_object*
+# *memo_py.syntax.func_object*
 def f_func_object():
     func = f_print
     func()
 
 
-# *memo_py.syntax.f_eval*
+# *memo_py.syntax.eval*
 def f_eval():
     func = "print"
     eval(f"f_{func}()")
@@ -417,33 +421,33 @@ def f_eval():
 
 def main(argv):
     funcs = (
-            "f_input",
-            "f_print",
-            "f_print_old_style",
+        "f_input",
+        "f_print",
+        "f_print_old_style",
 
-            "f_if",
-            "f_for",
-            "f_while",
+        "f_if",
+        "f_for",
+        "f_while",
 
-            "f_func",
-            "f_class",
-            "f_subclass",
+        "f_func",
+        "f_class",
+        "f_subclass",
 
-            "f_list",
-            "f_range",
-            "f_tuple",
-            "f_set",
-            "f_dict",
-            "f_type",
+        "f_list",
+        "f_range",
+        "f_tuple",
+        "f_set",
+        "f_dict",
+        "f_type",
 
-            "f_zip",
-            "f_color",
-            "f_math",
-            "f_exist",
+        "f_zip",
+        "f_color",
+        "f_math",
+        "f_exist",
 
-            "f_func_object",
-            "f_eval",
-            )
+        "f_func_object",
+        "f_eval",
+    )
 
     if len(argv) == 1:
         selected = funcs

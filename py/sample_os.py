@@ -11,84 +11,81 @@ from datetime import datetime as dt
 import util as ut
 
 
-# *memo_py.os.f_today*
+OUTPUT_DIR="_output"
+FILE_NAME="_test.txt"
+
+
+# *memo_py.os.today*
 def f_today():
-    ut.f_title("f_today()")
     today = dt.today()
     print(today)
     time_stamp = dt.now().strftime("%Y%m%d-%H%M%S")
     print(time_stamp)
 
 
-# *memo_py.os.f_glob*
+# *memo_py.os.glob*
 def f_glob():
-    ut.f_title("f_glob()")
-    print(f"glob={glob.glob('./*')}")
+    print(f"glob.glob('./*'): {glob.glob('./*')}")
 
 
-# *memo_py.os.f_chdir*
-def f_chdir(dirname):
-    ut.f_title("f_chdir()")
+# *memo_py.os.chdir*
+def f_chdir():
     print(f"os.getcwd(): {os.getcwd()}")
-    os.chdir(dirname)
+    os.chdir(OUTPUT_DIR)
     print(f"os.getcwd(): {os.getcwd()}")
 
 
-# *memo_py.os.f_write*
-def f_write(fname):
-    ut.f_title("f_write()")
-    with open(fname, 'w') as f:
+# *memo_py.os.write*
+def f_write():
+    with open(FILE_NAME, 'w') as f:
         f.write('123\n')
         f.write('456\n')
         f.write('abc\n')
         f.write('xyz\n')
 
 
-# *memo_py.os.f_read*
-def f_read(fname):
-    ut.f_title("f_read()")
-    with open(fname, 'r') as f:
+# *memo_py.os.read*
+def f_read():
+    with open(FILE_NAME, 'r') as f:
         for line in f:
             print(line.strip())
 
 
-# *memo_py.os.f_path*
-def f_path(fname):
-    ut.f_title("f_path()")
-    path = "~/Desktop/" + fname
+# *memo_py.os.path*
+def f_path():
+    path = "~/Desktop/a.txt"
     print(f"path={path}")
+
     expanduser = os.path.expanduser(path)
     print(f"expanduser={expanduser}")
+
     abspath = os.path.abspath(expanduser)
     print(f"abspath={abspath}")
+
     dirname = os.path.dirname(abspath)
     print(f"dirname={dirname}")
+
     basename = os.path.basename(abspath)
     print(f"basename={basename}")
-    #listdir = os.path.listdir(".")
-    #print(f"listdir={listdir}")
     print(f"splitext={os.path.splitext(basename)}")
+
     join = os.path.join("a", "b", "c.txt")
     print(f"join={join}")
 
-
-# *memo_py.os.f_test*
-def f_test(fname):
-    ut.f_title("f_test()")
-    if os.path.isfile(fname) == True:
-        print("isfile: True")
-    else:
-        print("isfile: False")
-
-    if os.path.isdir(fname) == True:
-        print("isdir: True")
-    else:
-        print("isdir: False")
+    #listdir = os.path.listdir(".")
+    #print(f"listdir={listdir}")
 
 
-# *memo_py.os.f_shutil*
-def f_shutil(fname):
-    ut.f_title("f_shutil()")
+# *memo_py.os.test*
+def f_test():
+    file = '/etc/hosts'
+    dir = '/etc'
+    print(f"os.path.isfile({file}): {os.path.isfile(file)}")
+    print(f"os.path.isdir({dir}): os.path.isdir(dir)")
+
+
+# *memo_py.os.shutil*
+def f_shutil():
     os.makedirs("_test_dir/a/b/c", exist_ok=True)
     if not os.path.exists("_test_dir2"):
         shutil.copytree("_test_dir", "_test_dir2")
@@ -106,9 +103,8 @@ def f_shutil(fname):
     result = subprocess.run(('ls', '-l'))
 
 
-# *memo_py.os.f_sys*
+# *memo_py.os.sys*
 def f_sys():
-    ut.f_title("f_sys()")
     print(sys.argv)
 
     sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
@@ -117,17 +113,27 @@ def f_sys():
 
 
 def main(argv):
-    f_today()
-    f_glob()
-    f_chdir("_output")
-    f_write("_test.txt")
-    f_read("_test.txt")
-    f_path("_test.txt")
-    f_test("_test.txt")
-    f_shutil("_test.txt")
-    f_sys()
+    funcs = (
+        "f_today",
+        "f_glob",
+        "f_chdir",
+        "f_write",
+        "f_read",
+        "f_path",
+        "f_test",
+        "f_shutil",
+        "f_sys",
+    )
+
+    if len(argv) == 1:
+        selected = funcs
+    else:
+        selected = argv[1:]
+
+    for i in selected:
+        ut.f_title(i)
+        eval(f"{i}()")
 
 
 if __name__ == "__main__":
-    #main(sys.argv)
-    f_path("_test.txt")
+    main(sys.argv)

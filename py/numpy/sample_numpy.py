@@ -7,7 +7,7 @@ import numpy as np
 import util as ut
 
 
-# *memo_py.numpy.f_init*
+# *memo_py.numpy.init*
 def f_init():
     x = np.array([[0, 1, 2],
                   [3, 4, 5]])
@@ -19,7 +19,7 @@ def f_init():
     print(f"eye(3) =\n{np.eye(3)}")
 
 
-# *memo_py.numpy.f_array_1d*
+# *memo_py.numpy.array_1d*
 def f_array_1d():
     x = np.array([0, 1, 2])
     print(f"x = {x}")
@@ -30,7 +30,7 @@ def f_array_1d():
     print(f"x.max() = {x.max()}")
 
 
-# *memo_py.numpy.f_array_1d_float*
+# *memo_py.numpy.array_1d_float*
 def f_array_1d_float():
     x = np.array([0, 1, 2], dtype='float32')
     print(f"x = {x}")
@@ -41,7 +41,7 @@ def f_array_1d_float():
     print(f"x.max() = {x.max()}")
 
 
-# *memo_py.numpy.f_array_2d*
+# *memo_py.numpy.array_2d*
 def f_array_2d():
     x = np.array([[0, 1, 2],
                   [3, 4, 5]])
@@ -53,7 +53,7 @@ def f_array_2d():
     print(f"x.max() = {x.max()}")
 
 
-# *memo_py.numpy.f_array_3d*
+# *memo_py.numpy.array_3d*
 def f_array_3d():
     x = np.array([[[0, 1], [2, 3], [4, 5]],
                   [[6, 7], [8, 9], [10, 11]]])
@@ -72,7 +72,7 @@ def f_array_3d():
     print(f"x[:,:,1].max() = {x[:,:,1].max()}")
 
 
-# *memo_py.numpy.f_array_op*
+# *memo_py.numpy.array_op*
 def f_array_op():
     x = np.array([0, 1, 2])
     y = np.array([3, 4, 5])
@@ -83,7 +83,7 @@ def f_array_op():
     print(f"np.append(x, y) = {np.append(x, y)}")
 
 
-# *memo_py.numpy.f_arange*
+# *memo_py.numpy.arange*
 def f_arange():
     x = np.arange(6)
     print(f"x = {x}")
@@ -95,7 +95,7 @@ def f_arange():
     print(f"x =\n{x}")
 
 
-# *memo_py.numpy.f_reshape*
+# *memo_py.numpy.reshape*
 def f_reshape():
     x = np.arange(6)
     print(f"x = {x}")
@@ -104,7 +104,7 @@ def f_reshape():
 
 
 def main(argv):
-    funcs = {
+    funcs = (
             "f_init",
             "f_array_1d",
             "f_array_1d_float",
@@ -113,7 +113,7 @@ def main(argv):
             "f_array_op",
             "f_arange",
             "f_reshape",
-            }
+            )
 
     if len(argv) == 1:
         selected = funcs

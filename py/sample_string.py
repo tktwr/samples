@@ -8,7 +8,7 @@ import parse
 import util as ut
 
 
-# *memo_py.f_string*
+# *memo_py.string*
 def f_string():
     s = "hello world"
     print(f"s                   = {s}")
@@ -17,7 +17,7 @@ def f_string():
     print(f"s[0:4]              = {s[0:4]}")
     print(f"s[1:4]              = {s[1:4]}")
 
-    # *memo_py.f_string.if*
+    # *memo_py.string.if*
     s = "hello"
     if s == "hello":
         print("hello")
@@ -34,32 +34,32 @@ def f_string():
     if "aa" not in s:
         print("!aa")
 
-    # *memo_py.f_string.strip*
+    # *memo_py.string.strip*
     s = "  aaa 123  "
     print(f's            = "{s}"')
     print(f's.strip()    = "{s.strip()}"')
 
-    # *memo_py.f_string.split*
+    # *memo_py.string.split*
     s = "abc," + "def," + str(100)
     print(f"s            = {s}")
     print(f's.split(",") = {s.split(",")}')
 
 
-# *memo_py.f_filename*
+# *memo_py.filename*
 def f_filename():
     s = f"images/img123_5.png"
 
     print(f"s                   = {s}")
 
-    # *memo_py.f_filename.split*
+    # *memo_py.filename.split*
     dirname, filename = s.split("/")
     print(f"dirname             = {dirname}")
     print(f"filename            = {filename}")
 
-    # *memo_py.f_filename.replace*
+    # *memo_py.filename.replace*
     print(f"s.replace('_', '-') = {s.replace('_', '-')}")
 
-    # *memo_py.f_filename.join*
+    # *memo_py.filename.join*
     l = ["aaa", "bbb", "ccc"]
     print(f"l            = {l}")
     print(f'"/".join(l)  = {"/".join(l)}')
@@ -75,7 +75,7 @@ def f_expand_env(s):
     return s
 
 
-# *memo_py.f_re*
+# *memo_py.re*
 def f_re():
     in_s = "1, 1.5, 2, 2.5:str"
     out_s = re.split(r",\s+|:", in_s)
@@ -97,7 +97,7 @@ def f_re():
     print(f"o: {o}")
 
 
-# *memo_py.f_parse*
+# *memo_py.parse*
 def f_parse():
     filename = "img123_5.png"
     result = parse.parse("img{nr:d}_{label:d}.png", filename)
