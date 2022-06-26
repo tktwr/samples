@@ -95,6 +95,7 @@ memo_py.numpy.array_2d	py/numpy/sample_numpy.py	/*memo_py.numpy.array_2d*
 memo_py.numpy.array_3d	py/numpy/sample_numpy.py	/*memo_py.numpy.array_3d*
 memo_py.numpy.array_op	py/numpy/sample_numpy.py	/*memo_py.numpy.array_op*
 memo_py.numpy.init	py/numpy/sample_numpy.py	/*memo_py.numpy.init*
+memo_py.numpy.list_2d	py/numpy/sample_numpy.py	/*memo_py.numpy.list_2d*
 memo_py.numpy.reshape	py/numpy/sample_numpy.py	/*memo_py.numpy.reshape*
 memo_py.os	py/sample_os.py	/*memo_py.os*
 memo_py.os.chdir	py/sample_os.py	/*memo_py.os.chdir*

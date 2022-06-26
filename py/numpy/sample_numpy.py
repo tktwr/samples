@@ -103,6 +103,22 @@ def f_reshape():
     print(f"x.reshape(-1, 2) =\n{x.reshape(-1, 2)}")
 
 
+# *memo_py.numpy.list_2d*
+def f_list_2d():
+    l1 = [1, 2, 3, 4]
+    l2 = [0.1, 0.2, 0.3, 0.4]
+    l = list(zip(l1, l2))
+    ar = np.asarray(l)
+
+    print(f"l1: {l1}")
+    print(f"l2: {l2}")
+    print(f"l: {l}")
+    print(f"ar: {ar}")
+    print(f"ar[:,0]: {ar[:,0]}")
+    print(f"ar[:,1]: {ar[:,1]}")
+    print(f"list(ar[:,1]): {list(ar[:,1])}")
+
+
 def main(argv):
     funcs = (
             "f_init",
@@ -113,6 +129,7 @@ def main(argv):
             "f_array_op",
             "f_arange",
             "f_reshape",
+            "f_list_2d",
             )
 
     if len(argv) == 1:

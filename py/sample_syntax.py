@@ -325,7 +325,10 @@ def f_type():
 
 # *memo_py.syntax.zip*
 def f_zip():
-    pass
+    l1 = [1, 2, 3, 4]
+    l2 = [0.1, 0.2, 0.3, 0.4]
+    l = list(zip(l1, l2))
+    print(l)
 
 
 # *memo_py.syntax.color*
