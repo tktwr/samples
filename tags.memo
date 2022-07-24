@@ -114,6 +114,7 @@ memo_py.string	py/sample_string.py	/*memo_py.string*
 memo_py.string.if	py/sample_string.py	/*memo_py.string.if*
 memo_py.string.split	py/sample_string.py	/*memo_py.string.split*
 memo_py.string.strip	py/sample_string.py	/*memo_py.string.strip*
+memo_py.subprocess	py/sample_subprocess.py	/*memo_py.subprocess*
 memo_py.syntax	py/sample_syntax.py	/*memo_py.syntax*
 memo_py.syntax.class	py/sample_syntax.py	/*memo_py.syntax.class*
 memo_py.syntax.color	py/sample_syntax.py	/*memo_py.syntax.color*

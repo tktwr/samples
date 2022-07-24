@@ -20,11 +20,13 @@ let s:shell_out = ""
 
 func MyCallback(channel, msg)
   echom 'MyCallback: ' . a:msg
+
   let s:shell_out = a:msg
 endfunc
 
 func MyGotOutput(channel, msg)
   "echom 'MyGotOutput: ' . a:msg
+
   let msg = substitute(a:msg, '\r', '', 'g')
   if msg != ""
     let s:shell_out = msg
