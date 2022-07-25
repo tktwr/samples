@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.6)
 
 project(sample_cpp CXX)
 
-include($ENV{MY_LIBTT_WIN}/config.cmake)
+include($ENV{MY_LIBTT_WIN}/default.cmake)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -33,7 +33,7 @@ set(APP_ALL
   sample_util
 )
 
-foreach(app IN LISTS APP)
+foreach(app IN LISTS APP_ALL)
   message("app: ${app}")
   func(${app} ${app}.cpp)
 endforeach()
