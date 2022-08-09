@@ -10,10 +10,7 @@ sh/*.sh \
 bat/*.bat \
 "
 
-tags: tags.memo
-
-.PHONY: tags.memo
-tags.memo:
+tags_memo:
 	memotags.sh $(TAGS_DIR) > tags.memo
 
 all:
