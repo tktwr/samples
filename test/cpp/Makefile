@@ -1,5 +1,7 @@
-all: make ninja vs2019 android
+dev:
+	mycmake.sh --build make Release
 
+#------------------------------------------------------
 make:
 	mycmake.sh         make Release
 	mycmake.sh --build make Release
@@ -18,10 +20,19 @@ vs2019:
 	mycmake.sh --build vs2019 Debug
 	mycmake.sh --build vs2019 RelWithDebInfo
 
+vs2022:
+	mycmake.sh         vs2022
+	mycmake.sh --build vs2022 Release
+	mycmake.sh --build vs2022 Debug
+	mycmake.sh --build vs2022 RelWithDebInfo
+
 android:
 	#mycmake-android.sh
 	build_android.bat
 
+#------------------------------------------------------
+all: make ninja vs2019 android
+
 clean:
-	rm -rf build*
+	rm -rf build* compile_commands.json
 
