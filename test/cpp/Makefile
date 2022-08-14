@@ -1,5 +1,5 @@
-dev:
-	mycmake.sh --build make Release
+build:
+	mycmake.sh --build
 
 #------------------------------------------------------
 make:
