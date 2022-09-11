@@ -17,7 +17,8 @@ all:
 	cd cpp && make all
 	cd cpp_lib && make all
 
-all.clean:
-	cd cpp && make all.clean
-	cd cpp_lib && make all.clean
+clean_n:
+	myclean.sh -py
+	myclean.sh -b
+	myclean.sh -o
 

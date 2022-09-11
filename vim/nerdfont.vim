@@ -1,4 +1,6 @@
 func VimTestNerdFont()
+  echo "> [\u2b80]"
+  echo "< [\u2b82]"
   echo "> [\uf44a]"
   echo "> [\ue0b0]"
   echo "> [\ue0b1]"
