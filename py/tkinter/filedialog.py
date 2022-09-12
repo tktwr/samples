@@ -3,6 +3,6 @@
 
 from tkinter import filedialog
 
-fle = filedialog.askopenfilename() 
+fle = filedialog.askopenfilename()
 
 print(fle)

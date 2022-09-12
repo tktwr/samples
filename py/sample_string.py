@@ -66,11 +66,11 @@ def f_filename():
 
 
 def f_expand_env(s):
-    r = re.search('\$\w+', s)
-    if r != None:
+    r = re.search(r'\$\w+', s)
+    if r is not None:
         matched = r.group()
         env_var = matched[1:]
-        if os.getenv(env_var) != None:
+        if os.getenv(env_var) is not None:
             s = s.replace(matched, os.environ[env_var])
     return s
 
@@ -83,10 +83,10 @@ def f_re():
     print(f"out_s: {out_s}")
 
     s = "$USERPROFILE/tmp"
-    #s = "$USERPROFILE"
-    #s = "/a/b/c"
-    r = re.search('\$\w+', s)
-    if r != None:
+    # s = "$USERPROFILE"
+    # s = "/a/b/c"
+    r = re.search(r'\$\w+', s)
+    if r is not None:
         print(f"r: {r}")
         print(f"r.group(): {r.group()}")
         print(f"r.start(): {r.start()}")
@@ -119,12 +119,11 @@ def f_parse():
 
 
 def main(argv):
-    funcs = (
-            "f_string",
-            "f_filename",
-            "f_re",
-            "f_parse",
-            )
+    funcs = ("f_string",
+             "f_filename",
+             "f_re",
+             "f_parse",
+             )
 
     if len(argv) == 1:
         selected = funcs

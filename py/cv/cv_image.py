@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # *memo_py.cv2*
 
-import os
 import sys
 import cv2
 import numpy as np

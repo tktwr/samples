@@ -26,7 +26,7 @@ def f_print():
 
     # f-string (python >= 3.6)
     ival = 2
-    fval = 1/3
+    fval = 1 / 3
     word = "hello"
     width = 10
 
@@ -167,7 +167,7 @@ class MyClass():
 
     def __private_method(self):
         pass
-    
+
     class_member = 0
 
     @classmethod
@@ -268,11 +268,10 @@ def f_set():
 
 # *memo_py.syntax.dict*
 def f_dict():
-    d = {
-        "aaa":123,
-        "bbb":234,
-        "ccc":345
-    }
+    d = {"aaa": 123,
+         "bbb": 234,
+         "ccc": 345
+         }
 
     print(f"d                     = {d}")
     print(f"d['aaa']              = {d['aaa']}")

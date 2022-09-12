@@ -36,7 +36,7 @@ def main(argv):
     fname = "_output/out.json"
 
     data = [1, 2, 3, 4]
-    data = {"a":1, "b":2}
+    data = {"a": 1, "b": 2}
 
     f_write_json(fname, data)
     data2 = f_read_json(fname)

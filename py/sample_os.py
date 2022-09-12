@@ -11,8 +11,8 @@ from datetime import datetime as dt
 import util as ut
 
 
-OUTPUT_DIR="_output"
-FILE_NAME="_test.txt"
+OUTPUT_DIR = "_output"
+FILE_NAME = "_test.txt"
 
 
 # *memo_py.os.today*
@@ -72,8 +72,8 @@ def f_path():
     join = os.path.join("a", "b", "c.txt")
     print(f"join={join}")
 
-    #listdir = os.path.listdir(".")
-    #print(f"listdir={listdir}")
+    # listdir = os.path.listdir(".")
+    # print(f"listdir={listdir}")
 
 
 # *memo_py.os.test*
@@ -89,7 +89,7 @@ def f_shutil():
     os.makedirs("_test_dir/a/b/c", exist_ok=True)
     if not os.path.exists("_test_dir2"):
         shutil.copytree("_test_dir", "_test_dir2")
-    #os.rmdir("_test_dir")
+    # os.rmdir("_test_dir")
     shutil.rmtree("_test_dir")
 
     shutil.copy("_test.txt", "_test_cp.txt")

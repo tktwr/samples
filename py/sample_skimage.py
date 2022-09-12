@@ -16,9 +16,9 @@ with open(filename, 'rb') as f:
 img = io.imread(BytesIO(binary))
 
 # numpy配列の取得、インスタンス自体がndarrayです
-type(img) # numpy.ndarray
+type(img)  # numpy.ndarray
 
 # デフォルトの色はRGB/RGBAです
 # 色の変換も充実しています。割とチェックもされる印象
-#rgb = color.rgba2rgb(img)
-#lab = color.rgb2lab(rgb)
+# rgb = color.rgba2rgb(img)
+# lab = color.rgb2lab(rgb)

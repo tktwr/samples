@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
 import PIL
 import cv2
 import numpy
@@ -9,8 +8,8 @@ import matplotlib
 import sklearn
 import tkinter
 import torch
-#import tensorflow
-#import skimage
+# import tensorflow
+# import skimage
 
 
 def main():
@@ -23,8 +22,8 @@ def main():
     print(f"torch {torch.__version__}")
     if torch.cuda.is_available():
         print(f"  cuda is available")
-    #print(f"tensorflow {tensorflow.__version__}")
-    #print(f"skimage {skimage.__version__}")
+    # print(f"tensorflow {tensorflow.__version__}")
+    # print(f"skimage {skimage.__version__}")
 
 
 if __name__ == "__main__":
