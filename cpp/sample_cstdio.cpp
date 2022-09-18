@@ -33,7 +33,7 @@ void f_read_text_file(const char *fname) {
 void f_write_binary_file(const char *fname) {
     FILE *fp = fopen(fname, "wb");
     size_t r = fwrite(g_binary, sizeof(int), ARRAY_SIZE, fp);
-    printf("f_write_binary_file: r: %d\n", r);
+    printf("f_write_binary_file: r: %lu\n", r);
     fclose(fp);
 }
 
@@ -41,7 +41,7 @@ void f_read_binary_file(const char *fname) {
     FILE *fp = fopen(fname, "rb");
     int data[ARRAY_SIZE];
     size_t r = fread(data, sizeof(int), ARRAY_SIZE, fp);
-    printf("f_read_binary_file: r: %d\n", r);
+    printf("f_read_binary_file: r: %lu\n", r);
     for (int i=0; i<ARRAY_SIZE; i++) {
         printf("%d ", data[i]);
     }

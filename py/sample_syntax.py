@@ -375,7 +375,7 @@ def f_math():
     print(f"math.degrees(math.pi) = {math.degrees(math.pi)}")
     print(f"math.sin(math.pi/2)   = {math.sin(math.pi/2)}")
 
-    l = [0, math.pi/2, math.pi]
+    l = [0, math.pi / 2, math.pi]
     ll = [math.degrees(i) for i in l]
     print(f"ll = {ll}")
 
