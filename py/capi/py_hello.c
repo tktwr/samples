@@ -1,4 +1,5 @@
 #include <Python.h>
+#include <stdio.h>
 
 // C function 'hello world'
 static PyObject* c_helloworld(PyObject* self, PyObject* args)

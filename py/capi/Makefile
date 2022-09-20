@@ -16,7 +16,7 @@ whl:
 	python setup.py bdist_wheel
 
 whl-install:
-	pip install --force-reinstall dist/myModule-1.0.1-cp38-cp38-win_amd64.whl
+	pip install --force-reinstall dist/myModule-*.whl
 
 whl-uninstall:
 	pip uninstall myModule
