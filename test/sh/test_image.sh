@@ -1,10 +1,11 @@
 #!/bin/bash
+# vim:nowrap
 
 f_test_image_create_check() {
-  image-create.py -a check -o check_w256_c3_uint8.png -s 256 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 2 2
-  image-create.py -a check -o check_w512_c3_uint8.png -s 512 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 4 2
-  image-create.py -a hstripe -o hstripe_w256_c3_uint8.png -s 256 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 1 8
-  image-create.py -a hstripe -o hstripe_w512_c3_uint8.png -s 512 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 1 8
+  image-create.py -a check     -o check_w256_c3_uint8.png     -s 256 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 2 2
+  image-create.py -a check     -o check_w512_c3_uint8.png     -s 512 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 4 2
+  image-create.py -a hstripe   -o hstripe_w256_c3_uint8.png   -s 256 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 1 8
+  image-create.py -a hstripe   -o hstripe_w512_c3_uint8.png   -s 512 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 1 8
   image-create.py -a se_stripe -o se_stripe_w256_c3_uint8.png -s 256 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 8 1
   image-create.py -a se_stripe -o se_stripe_w512_c3_uint8.png -s 512 256 -c 3 -y uint8 --bgr0 0.5 0.5 0.5 --bgr1 1.0 1.0 1.0 -n 16 1
 }
@@ -52,10 +53,9 @@ f_test_image_conv() {
 }
 
 f_test_image_create_check
-#f_test_image_create_new
-#f_test_image_create_grad
-#f_test_image_split
-#f_test_image_merge
-#f_test_image_tile
-#f_test_image_conv
-
+f_test_image_create_new
+f_test_image_create_grad
+f_test_image_split
+f_test_image_merge
+f_test_image_tile
+f_test_image_conv
