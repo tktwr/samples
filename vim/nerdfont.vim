@@ -16,5 +16,17 @@ func VimTestNerdFont()
   echo "  [\ue0c6]"
   echo "  [\ue0c0]"
   echo "  [\uf5b5]"
+  echo "┌─────┐"
+  echo "│     │"
+  echo "└─────┘"
+  echo ""
+  echo ""
+  echo ""
+  echo "  "
+  echo "  "
+  echo "  "
+  echo "  "
+  echo "  "
+  echo "  "
 endfunc
 
