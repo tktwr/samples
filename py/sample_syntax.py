@@ -7,23 +7,41 @@ import math
 import util as ut
 
 
-# *memo_py.syntax.input*
-def f_input():
-    print(f"input: ", end="")
-    in_s = input()
-    print(f"in_s: {in_s}")
-
-
-# *memo_py.syntax.print*
-def f_print():
+# -----------------------------------------------------
+# *memo_py.syntax.comment*
+def f_comment():
     # comment
     '''
     comment
     '''
 
+
+# -----------------------------------------------------
+# *memo_py.syntax.encoding*
+def f_encoding():
+    print(f"sys.stdin.encoding  = {sys.stdin.encoding}")
+    print(f"sys.stdout.encoding = {sys.stdout.encoding}")
+    print(f"sys.stderr.encoding = {sys.stderr.encoding}")
+
+
+# -----------------------------------------------------
+# *memo_py.syntax.input*
+def f_input():
+    print(f"input: ", end="")
+    s = input()
+    print(f"s: {s}")
+
+
+# -----------------------------------------------------
+# *memo_py.syntax.print*
+def f_print():
     print("Hello")
     print("こんにちは")
 
+
+# -----------------------------------------------------
+# *memo_py.syntax.print_fstring*
+def f_print_fstring():
     # f-string (python >= 3.6)
     ival = 2
     fval = 1 / 3
@@ -44,23 +62,25 @@ def f_print():
     print(f"word        = ", end='')
     print(word)
 
-    # encoding
-    print(f"sys.stdin.encoding  = {sys.stdin.encoding}")
-    print(f"sys.stdout.encoding = {sys.stdout.encoding}")
-    print(f"sys.stderr.encoding = {sys.stderr.encoding}")
 
-
-def f_print_old_style():
+# -----------------------------------------------------
+# *memo_py.syntax.print_format*
+def f_print_format():
     # str.format() method (python >= 2.6)
     print("{} {} {}".format(0, 1, 2))
     print("{0} {1} {2}".format(0, 1, 2))
     print("{2} {2} {2}".format(0, 1, 2))
 
+
+# -----------------------------------------------------
+# *memo_py.syntax.print_operator*
+def f_print_operator():
     # % operator (old)
     print("%d " % 0)
     print("%d %d %d" % (0, 1, 2))
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.if*
 def f_if():
     l = [0, 1, 2, 3, 4]
@@ -95,6 +115,7 @@ def f_if():
         print(f"{i} = outside")
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.for*
 def f_for():
     for i in range(5):
@@ -115,6 +136,7 @@ def f_for():
     print()
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.while*
 def f_while():
     i = 0
@@ -124,23 +146,30 @@ def f_while():
     print()
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.func*
 def f_add(a, b):
     return a + b
 
 
+def f_func():
+    x = f_add(1, 2)
+    print(f"x: {x}")
+
+
+# -----------------------------------------------------
+# *memo_py.syntax.func_args*
 def f_args(a, b):
     print(f"a, b: {a} {b}")
 
 
-def f_func():
-    x = f_add(1, 2)
-    print(f"x: {x}")
+def f_func_args():
     f_args(1, 2)
     f_args(2, 1)
     f_args(b=2, a=1)
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.class*
 class MyClass():
     def __init__(self):
@@ -176,11 +205,6 @@ class MyClass():
         print(f"class_method: {cls.class_member}")
 
 
-class MySubClass(MyClass):
-    def f(self, x):
-        print(f"MySubClass.f: {x}")
-
-
 def f_class():
     my = MyClass()
     my.f(10)
@@ -190,11 +214,19 @@ def f_class():
     print(f"MyClass.class_member: {MyClass.class_member}")
 
 
+# -----------------------------------------------------
+# *memo_py.syntax.subclass*
+class MySubClass(MyClass):
+    def f(self, x):
+        print(f"MySubClass.f: {x}")
+
+
 def f_subclass():
     my = MySubClass()
     my.f(10)
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.list*
 def f_list():
     l = [0, 1, 2, 3, 4, 5]
@@ -243,6 +275,7 @@ def f_list():
     print(f'int_list = {int_list}')
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.range*
 def f_range():
     print(f'list(range(6))       = {list(range(6))}')
@@ -251,6 +284,7 @@ def f_range():
     print(f'list(range(0, 6, 1)) = {list(range(0, 6, 2))}')
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.tuple*
 def f_tuple():
     # tuple is read only
@@ -261,11 +295,13 @@ def f_tuple():
     print(f"l = {list(t)}")
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.set*
 def f_set():
     s = {1, 2, 3}
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.dict*
 def f_dict():
     d = {"aaa": 123,
@@ -304,6 +340,7 @@ def f_dict():
     print(f"d                     = {d}")
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.type*
 def f_type():
     n = None
@@ -322,6 +359,7 @@ def f_type():
     t = tuple(l)
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.zip*
 def f_zip():
     l1 = [1, 2, 3, 4]
@@ -330,6 +368,7 @@ def f_zip():
     print(l)
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.color*
 def f_color():
     color = {
@@ -352,6 +391,7 @@ def f_color():
     print(f"R, G, B: {R}, {G}, {B}")
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.math*
 def f_math():
     print(f" 5  / 2 = { 5  / 2}")
@@ -380,6 +420,7 @@ def f_math():
     print(f"ll = {ll}")
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.exist*
 # *memo_py.syntax.in*
 # *memo_py.syntax.not_in*
@@ -409,29 +450,37 @@ def f_exist():
     print(f"not (0 in d) = {not (0 in d)}")
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.func_object*
 def f_func_object():
     func = f_print
     func()
 
 
+# -----------------------------------------------------
 # *memo_py.syntax.eval*
 def f_eval():
     func = "print"
     eval(f"f_{func}()")
 
 
+# -----------------------------------------------------
 def main(argv):
     funcs = (
+        "f_comment",
+        "f_encoding",
         "f_input",
         "f_print",
-        "f_print_old_style",
+        "f_print_fstring",
+        "f_print_format",
+        "f_print_operator",
 
         "f_if",
         "f_for",
         "f_while",
 
         "f_func",
+        "f_func_args",
         "f_class",
         "f_subclass",
 
