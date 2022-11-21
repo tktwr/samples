@@ -18,21 +18,22 @@ FILE_NAME = "_test.txt"
 # *memo_py.os.today*
 def f_today():
     today = dt.today()
-    print(today)
+    print(f'today = {today}')
     time_stamp = dt.now().strftime("%Y%m%d-%H%M%S")
-    print(time_stamp)
+    print(f'time_stamp = {time_stamp}')
 
 
 # *memo_py.os.glob*
 def f_glob():
-    print(f"glob.glob('./*'): {glob.glob('./*')}")
+    files = glob.glob('*.py')
+    print(f"files = {files}")
 
 
 # *memo_py.os.chdir*
 def f_chdir():
-    print(f"os.getcwd(): {os.getcwd()}")
+    print(f"dir = {os.getcwd()}")
     os.chdir(OUTPUT_DIR)
-    print(f"os.getcwd(): {os.getcwd()}")
+    print(f"dir = {os.getcwd()}")
 
 
 # *memo_py.os.write*

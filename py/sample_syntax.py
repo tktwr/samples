@@ -247,7 +247,9 @@ def f_list():
     l.pop(2)
     print(f"l.pop(2) = {l}")
 
-    # *memo_py.syntax.list.slice*
+
+# *memo_py.syntax.list.slice*
+def f_list_slice():
     l = ['zero', 1, 'two', 3, 'four', 5]
     print(f"l       = {l}")
     print(f"l[:]    = {l[:]}")
@@ -261,7 +263,10 @@ def f_list():
     print(f"l[-2:-1]= {l[-2:-1]}")
     print(f"l[-1:]  = {l[-1:]}")    # the last
 
-    # *memo_py.syntax.list.list_to_tuple*
+
+# *memo_py.syntax.list.convert*
+def f_list_convert():
+    l = [0, 1, 2, 3, 4, 5]
     print(f"t = {tuple(l)}")
 
     # *memo_py.syntax.list.str_to_str_list*
@@ -270,7 +275,7 @@ def f_list():
     str_list = s.split(' ')
     print(f"s.split(' ') = {str_list}")
 
-    # *memo_py.syntax.list.str_to_int_list*
+    # *memo_py.syntax.list.str_list_to_int_list*
     int_list = list(int(i) for i in str_list)
     print(f'int_list = {int_list}')
 
@@ -485,6 +490,8 @@ def main(argv):
         "f_subclass",
 
         "f_list",
+        "f_list_slice",
+        "f_list_convert",
         "f_range",
         "f_tuple",
         "f_set",

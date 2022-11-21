@@ -313,14 +313,14 @@ void f_decompose(const Matrix4f& M, Vector3f& trans, Vector3f& scale, Quaternion
 
 void f_color() {
     Vector3f color_srgb = {0.8, 0.8, 0.8};
-    Vector3f color_linear = color.array().pow(2.2);
+    Vector3f color_linear = color_srgb.array().pow(2.2);
 }
 
 int main(int argc, char *argv[]) {
-    f_memory_order();
+    //f_memory_order();
     //f_constructor();
     //f_vec3();
-    //f_mat3();
+    f_mat3();
     //f_affine();
     //f_conv();
     //f_transform();
