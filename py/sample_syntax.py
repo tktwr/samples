@@ -4,7 +4,7 @@
 
 import sys
 import math
-import util as ut
+import tt_util as ut
 
 
 # -----------------------------------------------------
@@ -148,25 +148,25 @@ def f_while():
 
 # -----------------------------------------------------
 # *memo_py.syntax.func*
-def f_add(a, b):
+def _f_add(a, b):
     return a + b
 
 
 def f_func():
-    x = f_add(1, 2)
+    x = _f_add(1, 2)
     print(f"x: {x}")
 
 
 # -----------------------------------------------------
 # *memo_py.syntax.func_args*
-def f_args(a, b):
+def _f_args(a, b):
     print(f"a, b: {a} {b}")
 
 
 def f_func_args():
-    f_args(1, 2)
-    f_args(2, 1)
-    f_args(b=2, a=1)
+    _f_args(1, 2)
+    _f_args(2, 1)
+    _f_args(b=2, a=1)
 
 
 # -----------------------------------------------------
@@ -227,83 +227,90 @@ def f_subclass():
 
 
 # -----------------------------------------------------
+# *memo_py.syntax.type*
+def f_type():
+    n = None
+    b = True
+    b = False
+    i = 0
+    f = 0.0
+    s = ""
+    l = []
+    t = ()
+    d = {}
+    i = int(1.23)
+    f = float(1)
+    s = str(1)
+    l = list(t)
+    t = tuple(l)
+
+
+# -----------------------------------------------------
 # *memo_py.syntax.list*
 def f_list():
-    l = [0, 1, 2, 3, 4, 5]
-    print(f"l = {l}")
-    print(f"len(l) = {len(l)}")
-    print(f"l[0] = {l[0]}")
-    print(f"l[5] = {l[5]}")
+    lst = [0, 1, 2, 3, 4, 5]
+
+    print(f'lst      = {lst}')
+    print(f'len(lst) = {len(lst)}')
+    print(f'lst[0]   = {lst[0]}')
+    print(f'lst[5]   = {lst[5]}')
+    print(f't        = {tuple(lst)}')
 
     # *memo_py.syntax.list.append*
-    l.append(10)
-    print(f"l.append(10) = {l}")
+    lst.append(10)
+    print(f'lst.append(10)         = {lst}')
+
+    # *memo_py.syntax.list.extend*
+    lst.extend([100, 101])
+    print(f'lst.extend([100, 101]) = {lst}')
 
     # *memo_py.syntax.list.insert*
-    l.insert(0, 20)
-    print(f"l.insert(0, 20) = {l}")
+    lst.insert(0, 20)
+    print(f'lst.insert(0, 20)      = {lst}')
 
     # *memo_py.syntax.list.pop*
-    l.pop(2)
-    print(f"l.pop(2) = {l}")
+    lst.pop(2)
+    print(f'lst.pop(2)             = {lst}')
+
+
+# *memo_py.syntax.list_op*
+def f_list_op():
+    lst1 = [1] * 2
+    lst2 = [2] * 3
+    lst = lst1 + lst2
+    print(f'lst      = {lst}')
 
 
 # *memo_py.syntax.list.slice*
 def f_list_slice():
-    l = ['zero', 1, 'two', 3, 'four', 5]
-    print(f"l       = {l}")
-    print(f"l[:]    = {l[:]}")
-    print(f"l[0:]   = {l[0:]}")
-    print(f"l[1:]   = {l[1:]}")
-    print(f"l[:6]   = {l[:6]}")
-    print(f"l[:2]   = {l[:2]}")
-    print(f"l[2:4]  = {l[2:4]}")    # pos 2 + 2 chars
-    print(f"l[:-1]  = {l[:-1]}")
-    print(f"l[:-2]  = {l[:-2]}")
-    print(f"l[-2:-1]= {l[-2:-1]}")
-    print(f"l[-1:]  = {l[-1:]}")    # the last
+    lst = ['zero', 1, 'two', 3, 'four', 5]
+    print(f'lst        = {lst}')
+    print(f'lst[:]     = {lst[:]}')
+    print(f'lst[0:]    = {lst[0:]}')
+    print(f'lst[1:]    = {lst[1:]}')
+    print(f'lst[:6]    = {lst[:6]}')
+    print(f'lst[:2]    = {lst[:2]}')
+    print(f'lst[2:4]   = {lst[2:4]}')
+    print(f'lst[:-1]   = {lst[:-1]}')
+    print(f'lst[:-2]   = {lst[:-2]}')
+    print(f'lst[-2:-1] = {lst[-2:-1]}')
+    print(f'lst[-1:]   = {lst[-1:]}')    # the last
 
 
-# *memo_py.syntax.list.convert*
-def f_list_convert():
-    l = [0, 1, 2, 3, 4, 5]
-    print(f"t = {tuple(l)}")
-
-    # *memo_py.syntax.list.str_to_str_list*
+# *memo_py.syntax.list.str_to_list*
+def f_list_str_to_list():
     s = '0 1 2 3 4 5'
-    print(f's = {s}')
-    str_list = s.split(' ')
-    print(f"s.split(' ') = {str_list}")
-
-    # *memo_py.syntax.list.str_list_to_int_list*
-    int_list = list(int(i) for i in str_list)
-    print(f'int_list = {int_list}')
+    slst = s.split(' ')
+    print(f's    = {s}')
+    print(f'slst = {slst}')
 
 
-# -----------------------------------------------------
-# *memo_py.syntax.range*
-def f_range():
-    print(f'list(range(6))       = {list(range(6))}')
-    print(f'list(range(0, 6))    = {list(range(0, 6))}')
-    print(f'list(range(0, 6, 1)) = {list(range(0, 6, 1))}')
-    print(f'list(range(0, 6, 1)) = {list(range(0, 6, 2))}')
-
-
-# -----------------------------------------------------
-# *memo_py.syntax.tuple*
-def f_tuple():
-    # tuple is read only
-    t = (1, 3, 5, 7, 9)
-    print(f"t = {t}")
-    t = (1, 'two', 3, 'four', 5)
-    print(f"t = {t}")
-    print(f"l = {list(t)}")
-
-
-# -----------------------------------------------------
-# *memo_py.syntax.set*
-def f_set():
-    s = {1, 2, 3}
+# *memo_py.syntax.list.comprehensions*
+def f_list_comprehensions():
+    slst = ['0', '1', '2', '3', '4', '5']
+    ilst = [int(i) for i in slst]
+    print(f'slst = {slst}')
+    print(f'ilst = {ilst}')
 
 
 # -----------------------------------------------------
@@ -346,22 +353,30 @@ def f_dict():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.type*
-def f_type():
-    n = None
-    b = True
-    b = False
-    i = 0
-    f = 0.0
-    s = ""
-    l = []
-    t = ()
-    d = {}
-    i = int(1.23)
-    f = float(1)
-    s = str(1)
-    l = list(t)
-    t = tuple(l)
+# *memo_py.syntax.tuple*
+def f_tuple():
+    # tuple is read only
+    t = (1, 3, 5, 7, 9)
+    print(f"t = {t}")
+    t = (1, 'two', 3, 'four', 5)
+    print(f"t = {t}")
+    print(f"l = {list(t)}")
+
+
+# -----------------------------------------------------
+# *memo_py.syntax.set*
+def f_set():
+    s = {1, 2, 3}
+    print(f's = {s}')
+
+
+# -----------------------------------------------------
+# *memo_py.syntax.range*
+def f_range():
+    print(f'list(range(6))       = {list(range(6))}')
+    print(f'list(range(0, 6))    = {list(range(0, 6))}')
+    print(f'list(range(0, 6, 1)) = {list(range(0, 6, 1))}')
+    print(f'list(range(0, 6, 1)) = {list(range(0, 6, 2))}')
 
 
 # -----------------------------------------------------
@@ -390,7 +405,7 @@ def f_color():
         r = int(hex_str[0:2], 16)
         g = int(hex_str[2:4], 16)
         b = int(hex_str[4:6], 16)
-        print(f"{i}, {hex_str}, {r}, {g}, {b}")
+        print(f"{i:10s}, {hex_str}, {r:3d}, {g:3d}, {b:3d}")
 
     R, G, B = 0, 1, 2
     print(f"R, G, B: {R}, {G}, {B}")
@@ -426,10 +441,9 @@ def f_math():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.exist*
 # *memo_py.syntax.in*
 # *memo_py.syntax.not_in*
-def f_exist():
+def f_in():
     a = 123
 
     print(f"locals()             = {locals()}")
@@ -465,57 +479,26 @@ def f_func_object():
 # -----------------------------------------------------
 # *memo_py.syntax.eval*
 def f_eval():
-    func = "print"
-    eval(f"f_{func}()")
+    func = 'f_print'
+    eval(f'{func}()')
 
 
 # -----------------------------------------------------
-def main(argv):
-    funcs = (
-        "f_comment",
-        "f_encoding",
-        "f_input",
-        "f_print",
-        "f_print_fstring",
-        "f_print_format",
-        "f_print_operator",
+def _f_get_all_func_names():
+    lst = []
+    for i in globals():
+        if callable(globals()[i]) and i.startswith('f_'):
+            lst.append(i)
+    return lst
 
-        "f_if",
-        "f_for",
-        "f_while",
 
-        "f_func",
-        "f_func_args",
-        "f_class",
-        "f_subclass",
-
-        "f_list",
-        "f_list_slice",
-        "f_list_convert",
-        "f_range",
-        "f_tuple",
-        "f_set",
-        "f_dict",
-        "f_type",
-
-        "f_zip",
-        "f_color",
-        "f_math",
-        "f_exist",
-
-        "f_func_object",
-        "f_eval",
-    )
-
-    if len(argv) == 1:
-        selected = funcs
+if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        func_lst = _f_get_all_func_names()
     else:
-        selected = argv[1:]
+        func_lst = sys.argv[1:]
+    print(func_lst)
 
-    for i in selected:
-        ut.f_title(i)
-        eval(f"{i}()")
-
-
-if __name__ == "__main__":
-    main(sys.argv)
+    for func in func_lst:
+        ut.print_title(f' [{func}] ', '-' * 55, 'center')
+        eval(f'{func}()')

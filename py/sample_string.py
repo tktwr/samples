@@ -5,7 +5,7 @@ import sys
 import os
 import re
 import parse
-import util as ut
+import tt_util as ut
 
 
 # *memo_py.string*
@@ -83,7 +83,7 @@ def f_join():
     print(f's = {s}')
 
 
-def f_expand_env(s):
+def _f_expand_env(s):
     r = re.search(r'\$\w+', s)
     if r is not None:
         matched = r.group()
@@ -111,7 +111,7 @@ def f_re():
         print(f'r.end(): {r.end()}')
         print(f'r.span(): {r.span()}')
 
-    o = f_expand_env(s)
+    o = _f_expand_env(s)
     print(f'o: {o}')
 
 
@@ -136,28 +136,22 @@ def f_parse():
     print(f'out_s[0]: {out_s[0]}')
 
 
-def main(argv):
-    funcs = ('f_string',
-             'f_if',
-             'f_with',
-             'f_in',
-             'f_strip',
-             'f_replace',
-             'f_split',
-             'f_join',
-             'f_re',
-             'f_parse',
-             )
-
-    if len(argv) == 1:
-        selected = funcs
-    else:
-        selected = argv[1:]
-
-    for i in selected:
-        ut.f_title(i)
-        eval(f'{i}()')
+# -----------------------------------------------------
+def _f_get_all_func_names():
+    lst = []
+    for i in globals():
+        if callable(globals()[i]) and i.startswith('f_'):
+            lst.append(i)
+    return lst
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    if len(sys.argv) == 1:
+        func_lst = _f_get_all_func_names()
+    else:
+        func_lst = sys.argv[1:]
+    print(func_lst)
+
+    for func in func_lst:
+        ut.print_title(f' [{func}] ', '-' * 55, 'center')
+        eval(f'{func}()')

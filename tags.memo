@@ -128,7 +128,6 @@ memo_py.syntax.dict.pop	py/sample_syntax.py	/*memo_py.syntax.dict.pop*
 memo_py.syntax.dict.values	py/sample_syntax.py	/*memo_py.syntax.dict.values*
 memo_py.syntax.encoding	py/sample_syntax.py	/*memo_py.syntax.encoding*
 memo_py.syntax.eval	py/sample_syntax.py	/*memo_py.syntax.eval*
-memo_py.syntax.exist	py/sample_syntax.py	/*memo_py.syntax.exist*
 memo_py.syntax.for	py/sample_syntax.py	/*memo_py.syntax.for*
 memo_py.syntax.func	py/sample_syntax.py	/*memo_py.syntax.func*
 memo_py.syntax.func_args	py/sample_syntax.py	/*memo_py.syntax.func_args*
@@ -138,12 +137,13 @@ memo_py.syntax.in	py/sample_syntax.py	/*memo_py.syntax.in*
 memo_py.syntax.input	py/sample_syntax.py	/*memo_py.syntax.input*
 memo_py.syntax.list	py/sample_syntax.py	/*memo_py.syntax.list*
 memo_py.syntax.list.append	py/sample_syntax.py	/*memo_py.syntax.list.append*
-memo_py.syntax.list.convert	py/sample_syntax.py	/*memo_py.syntax.list.convert*
+memo_py.syntax.list.comprehensions	py/sample_syntax.py	/*memo_py.syntax.list.comprehensions*
+memo_py.syntax.list.extend	py/sample_syntax.py	/*memo_py.syntax.list.extend*
 memo_py.syntax.list.insert	py/sample_syntax.py	/*memo_py.syntax.list.insert*
 memo_py.syntax.list.pop	py/sample_syntax.py	/*memo_py.syntax.list.pop*
 memo_py.syntax.list.slice	py/sample_syntax.py	/*memo_py.syntax.list.slice*
-memo_py.syntax.list.str_list_to_int_list	py/sample_syntax.py	/*memo_py.syntax.list.str_list_to_int_list*
-memo_py.syntax.list.str_to_str_list	py/sample_syntax.py	/*memo_py.syntax.list.str_to_str_list*
+memo_py.syntax.list.str_to_list	py/sample_syntax.py	/*memo_py.syntax.list.str_to_list*
+memo_py.syntax.list_op	py/sample_syntax.py	/*memo_py.syntax.list_op*
 memo_py.syntax.math	py/sample_syntax.py	/*memo_py.syntax.math*
 memo_py.syntax.not_in	py/sample_syntax.py	/*memo_py.syntax.not_in*
 memo_py.syntax.print	py/sample_syntax.py	/*memo_py.syntax.print*
