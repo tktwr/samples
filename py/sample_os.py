@@ -8,25 +8,17 @@ import os.path
 import glob
 import shutil
 from datetime import datetime as dt
-import util as ut
+import tt_util as ut
 
 
 OUTPUT_DIR = "_output"
 FILE_NAME = "_test.txt"
 
 
-# *memo_py.os.today*
-def f_today():
-    today = dt.today()
-    print(f'today = {today}')
-    time_stamp = dt.now().strftime("%Y%m%d-%H%M%S")
-    print(f'time_stamp = {time_stamp}')
-
-
-# *memo_py.os.glob*
-def f_glob():
-    files = glob.glob('*.py')
-    print(f"files = {files}")
+# *memo_py.os.mkdir*
+def f_mkdir():
+    shutil.rmtree(OUTPUT_DIR)
+    os.mkdir(OUTPUT_DIR)
 
 
 # *memo_py.os.chdir*
@@ -52,56 +44,85 @@ def f_read():
             print(line.strip())
 
 
+# *memo_py.os.shutil.dir*
+def f_shutil_dir():
+    os.makedirs("_test_dir/a/b/c", exist_ok=True)
+
+    if os.path.exists("_test_dir2"):
+        shutil.rmtree("_test_dir2")
+
+    shutil.copytree("_test_dir", "_test_dir2")
+    shutil.move("_test_dir2", "_test_dir3")
+    shutil.rmtree("_test_dir")
+
+
+# *memo_py.os.shutil.file*
+def f_shutil_file():
+    shutil.copy("_test.txt", "_test_cp.txt")
+    shutil.move("_test_cp.txt", "_test_mv.txt")
+    os.remove("_test.txt")
+    print(os.listdir('.'))
+
+
+# *memo_py.os.system*
+def f_system():
+    os.system('ls -l')  # deprecated
+
+
+# *memo_py.os.subprocess*
+def f_subprocess():
+    import subprocess
+    result = subprocess.run(('ls', '-l'))
+
+
+# *memo_py.os.glob*
+def f_glob():
+    files = glob.glob('*.txt')
+    print(f"files = {files}")
+
+
 # *memo_py.os.path*
 def f_path():
     path = "~/Desktop/a.txt"
-    print(f"path={path}")
+    print(f"path = {path}")
 
     expanduser = os.path.expanduser(path)
-    print(f"expanduser={expanduser}")
+    print(f"expanduser = {expanduser}")
 
     abspath = os.path.abspath(expanduser)
-    print(f"abspath={abspath}")
+    print(f"abspath = {abspath}")
 
     dirname = os.path.dirname(abspath)
-    print(f"dirname={dirname}")
+    print(f"dirname = {dirname}")
 
     basename = os.path.basename(abspath)
-    print(f"basename={basename}")
-    print(f"splitext={os.path.splitext(basename)}")
+    print(f"basename = {basename}")
+    print(f"splitext = {os.path.splitext(basename)}")
 
     join = os.path.join("a", "b", "c.txt")
-    print(f"join={join}")
-
-    # listdir = os.path.listdir(".")
-    # print(f"listdir={listdir}")
+    print(f"join = {join}")
 
 
-# *memo_py.os.test*
+# *memo_py.os.path.test*
 def f_test():
     file = '/etc/hosts'
     dir = '/etc'
     print(f"os.path.isfile({file}): {os.path.isfile(file)}")
-    print(f"os.path.isdir({dir}): os.path.isdir(dir)")
+    print(f"os.path.isdir({dir})  : {os.path.isdir(dir)}")
 
 
-# *memo_py.os.shutil*
-def f_shutil():
-    os.makedirs("_test_dir/a/b/c", exist_ok=True)
-    if not os.path.exists("_test_dir2"):
-        shutil.copytree("_test_dir", "_test_dir2")
-    # os.rmdir("_test_dir")
-    shutil.rmtree("_test_dir")
-
-    shutil.copy("_test.txt", "_test_cp.txt")
-    shutil.move("_test_cp.txt", "_test_mv.txt")
-    os.remove("_test.txt")
-
-    dir_name = os.environ['USERPROFILE']
+# *memo_py.os.environ*
+def f_environ():
+    dir_name = os.environ['HOME']
     print(f"dir_name: {dir_name}")
-    os.system('ls -l')  # deprecated
-    import subprocess
-    result = subprocess.run(('ls', '-l'))
+
+
+# *memo_py.os.today*
+def f_today():
+    today = dt.today()
+    print(f'today = {today}')
+    time_stamp = dt.now().strftime("%Y%m%d-%H%M%S")
+    print(f'time_stamp = {time_stamp}')
 
 
 # *memo_py.os.sys*
@@ -113,28 +134,22 @@ def f_sys():
         print(i)
 
 
-def main(argv):
-    funcs = (
-        "f_today",
-        "f_glob",
-        "f_chdir",
-        "f_write",
-        "f_read",
-        "f_path",
-        "f_test",
-        "f_shutil",
-        "f_sys",
-    )
+# -----------------------------------------------------
+def _f_get_all_func_names():
+    lst = []
+    for i in globals():
+        if callable(globals()[i]) and i.startswith('f_'):
+            lst.append(i)
+    return lst
 
-    if len(argv) == 1:
-        selected = funcs
+
+if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        func_lst = _f_get_all_func_names()
     else:
-        selected = argv[1:]
+        func_lst = sys.argv[1:]
+    print(func_lst)
 
-    for i in selected:
-        ut.f_title(i)
-        eval(f"{i}()")
-
-
-if __name__ == "__main__":
-    main(sys.argv)
+    for func in func_lst:
+        ut.print_title(f' [{func}] ', '-' * 55, 'center')
+        eval(f'{func}()')
