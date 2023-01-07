@@ -1,48 +1,40 @@
 "------------------------------------------------------
-" shell
+" popup shell
 "------------------------------------------------------
 let s:shell_out = ""
 
-func MyCallback(channel, msg)
-  echom 'MyCallback: ' . a:msg
-
+func OutCb(channel, msg)
   let s:shell_out = a:msg
 endfunc
 
-func MyGotOutput(channel, msg)
-  echom 'MyGotOutput: ' . a:msg
-
-  let msg = substitute(a:msg, '\r', '', 'g')
-  if msg != ""
-    let s:shell_out = msg
-  endif
+func CloseCb(channel)
+  let s:shell_out = substitute(s:shell_out, '\r', '', 'g')
+  echom 'CloseCb: ' . s:shell_out
 endfunc
 
-func MyJobExit(job, status)
-  echom 'MyJobExit: ' . s:shell_out
-  echom 'job: ' . a:job
-  echom 'status: ' . a:status
+func! TestPopupCreateShellCmd()
+  let cmd = ['fzy_bmk.sh', 'bmk_file.txt']
+	let term_opts = {
+		\ 'out_cb'      : function('OutCb'),
+		\ 'close_cb'    : function('CloseCb'),
+    \ 'hidden'      : 1,
+    \ 'term_finish' : 'close'
+    \ }
+	let buf = term_start(cmd, term_opts)
 
-  "let line = ch_read(a:job)
-  "echom 'ch_read' . line
+	let win_opts = {
+    \ 'title'       : printf(" [%s] ", join(cmd)),
+    \ 'border'      : [1,1,1,1],
+    \ 'borderchars' : ['─', '│', '─', '│', '╭', '╮', '╯', '╰'],
+    \ 'minwidth'    : &columns/2,
+    \ 'minheight'   : 12
+    \ }
+	let winid = popup_create(buf, win_opts)
 endfunc
 
-func MyCloseCb(channel)
-  echom 'MyCloseCb: ' . s:shell_out
-
-  "let line = ch_read(a:channel)
-  "echom 'ch_read' . line
+"------------------------------------------------------
+" test
+"------------------------------------------------------
+func! Test()
+  call TestPopupCreateShellCmd()
 endfunc
-
-func VimTestPopupCreateShellCmd()
-	let buf = term_start(['fzy_bmk.sh', 'bmk_file.txt'], #{
-		\ callback: function('MyCallback'),
-		\ out_cb: function('MyGotOutput'),
-		\ exit_cb: function('MyJobExit'),
-		\ close_cb: function('MyCloseCb'),
-    \ hidden: 1,
-    \ term_finish: 'close'
-    \ })
-	let winid = popup_create(buf, #{minwidth: &columns/2, minheight: 12})
-endfunc
-

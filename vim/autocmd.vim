@@ -2,27 +2,28 @@
 "------------------------------------------------------
 " test autocmd
 "------------------------------------------------------
-func VimTestEventMsg(msg)
-  echo a:msg.": ".expand("%")
+func! TestEventMsg(msg)
+  echom a:msg.": ".expand("%")
 endfunc
 
-func VimTestAutocmd()
+func! TestAutocmd()
   augroup ag_mytest
     autocmd!
-    autocmd FileType txt     call VimTestEventMsg("FileType txt")
-    autocmd FileType bmk     call VimTestEventMsg("FileType bmk")
-    autocmd WinEnter *       call VimTestEventMsg("WinEnter")
-    autocmd WinLeave *       call VimTestEventMsg("WinLeave")
-    autocmd BufRead *        call VimTestEventMsg("BufRead")
-    autocmd BufEnter *       call VimTestEventMsg("BufEnter")
-    autocmd BufLeave *       call VimTestEventMsg("BufLeave")
-    autocmd BufWinEnter *    call VimTestEventMsg("BufWinEnter")
-    autocmd BufWinLeave *    call VimTestEventMsg("BufWinLeave")
+    autocmd FileType txt     call TestEventMsg("FileType txt")
+    autocmd FileType bmk     call TestEventMsg("FileType bmk")
+    autocmd WinEnter *       call TestEventMsg("WinEnter")
+    autocmd WinLeave *       call TestEventMsg("WinLeave")
+    autocmd BufRead *        call TestEventMsg("BufRead")
+    autocmd BufEnter *       call TestEventMsg("BufEnter")
+    autocmd BufLeave *       call TestEventMsg("BufLeave")
+    autocmd BufWinEnter *    call TestEventMsg("BufWinEnter")
+    autocmd BufWinLeave *    call TestEventMsg("BufWinLeave")
   augroup END
 endfunc
 
 "------------------------------------------------------
-" command
+" test
 "------------------------------------------------------
-command VimTestAutocmd       call VimTestAutocmd()
-
+func! Test()
+  call TestAutocmd()
+endfunc

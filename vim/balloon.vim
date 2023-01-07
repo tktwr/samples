@@ -2,7 +2,7 @@
 " balloon
 "------------------------------------------------------
 " *memo_vim.syntax.popup_beval*
-func VimTestBalloonExpr()
+func TestBalloonExpr()
   if s:winid && popup_getpos(s:winid) != {}
     " previous popup window still shows
     if v:beval_text == s:last_text
@@ -17,12 +17,16 @@ func VimTestBalloonExpr()
 endfunc
 
 " *memo_vim.syntax.balloon*
-func VimTestBalloon()
+func TestBalloon()
   set ballooneval balloonevalterm
-  set balloonexpr=VimTestBalloonExpr()
+  set balloonexpr=TestBalloonExpr()
   let s:winid = 0
   let s:last_text = ''
 endfunc
 
 "------------------------------------------------------
-command VimTestBalloon    call VimTestBalloon()
+" test
+"------------------------------------------------------
+func! Test()
+  call TestBalloon()
+endfunc

@@ -1,4 +1,18 @@
-func VimTestNerdFont()
+func! TestStrLen()
+  "let separator = "=============================="
+  let separator = "══════════════════════════════"
+  "let separator = "──────────────────────────────"
+
+  echom printf('strlen          : %s', strlen(separator))
+  echom printf('strchars        : %s', strchars(separator))
+  echom printf('strdisplaywidth : %s', strdisplaywidth(separator))
+  echom printf('strwidth        : %s', strwidth(separator))
+
+  " no func in nvim
+  echom printf('strcharlen      : %s', strcharlen(separator))
+endfunc
+
+func! TestNerdFont()
   echo "> [\u2b80]"
   echo "< [\u2b82]"
   echo "> [\uf44a]"
@@ -30,3 +44,6 @@ func VimTestNerdFont()
   echo "  "
 endfunc
 
+func! Test()
+  call TestStrLen()
+endfunc

@@ -1,7 +1,7 @@
 "------------------------------------------------------
 " popup_menu
 "------------------------------------------------------
-func VimTestPopupMenuFilter(id, key)
+func! TestPopupMenuFilter(id, key)
   " Handle shortcuts
   if a:key == 'S'
      call popup_close(a:id, 1)
@@ -20,7 +20,7 @@ func VimTestPopupMenuFilter(id, key)
   return popup_filter_menu(a:id, a:key)
 endfunc
 
-func VimTestPopupMenuHandler(id, result)
+func! TestPopupMenuHandler(id, result)
   echo a:result
   if &buftype == 'terminal'
     let l:bufnr = winbufnr(0)
@@ -31,18 +31,25 @@ func VimTestPopupMenuHandler(id, result)
 endfunc
 
 " *memo_vim.syntax.popup_menu*
-func VimTestPopupMenu()
+func! TestPopupMenu()
   let cmd_list = ['Save', 'Cancel', 'Discard']
-  call popup_menu(cmd_list, #{
-    \ filter: 'VimTestPopupMenuFilter',
-    \ callback: 'VimTestPopupMenuHandler',
-    \ border: [0,0,0,0],
-    \ padding: [0,0,0,0],
-    \ pos: 'botleft',
-    \ line: 'cursor-1',
-    \ col: 'cursor',
-    \ moved: 'WORD',
-    \ })
+  let opts = {
+    \ 'filter'      : 'TestPopupMenuFilter',
+    \ 'callback'    : 'TestPopupMenuHandler',
+    \ 'padding'     : [0,0,0,0],
+    \ 'border'      : [1,1,1,1],
+    \ 'borderchars' : ['─', '│', '─', '│', '╭', '╮', '╯', '╰'],
+    \ 'pos'         : 'botleft',
+    \ 'line'        : 'cursor-1',
+    \ 'col'         : 'cursor',
+    \ 'moved'       : 'WORD',
+    \ }
+  call popup_menu(cmd_list, opts)
 endfunc
 
-command VimTestPopupMenu     call VimTestPopupMenu()
+"------------------------------------------------------
+" test
+"------------------------------------------------------
+func! Test()
+  call TestPopupMenu()
+endfunc
