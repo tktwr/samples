@@ -13,6 +13,7 @@ def plot_graph():
     x = np.arange(-3, 3, 0.1)
     y = x * x
     plt.plot(x, y)
+    plt.savefig('_output/plot_graph.png')
     plt.show()
 
 
@@ -40,12 +41,23 @@ def plot_data():
     ax.plot(x, y, "o")
     ax.set_xlabel('x axis')
     ax.set_ylabel('y axis')
+    plt.savefig('_output/plot_data.png')
+    plt.show()
+
+
+def plot_image():
+    img = plt.imread('../data/sample.jpg')
+    plt.title('Image')
+    plt.axis('off')
+    plt.imshow(img)
+    plt.savefig('_output/plot_image.png')
     plt.show()
 
 
 def main(argv):
     plot_graph()
     plot_data()
+    plot_image()
 
 
 if __name__ == "__main__":
