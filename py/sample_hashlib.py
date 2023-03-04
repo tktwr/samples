@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *sample_py.hashlib*
+# *sample:py.hashlib*
 
 import hashlib
 

@@ -1,4 +1,4 @@
-// *sample_cpp.14*
+// *sample:cpp.14*
 #include <iostream>
 
 using namespace std;

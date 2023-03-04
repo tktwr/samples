@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *sample_py.kivy*
+# *sample:py.kivy*
 
 from kivy.app import App
 from kivy.uix.button import Button

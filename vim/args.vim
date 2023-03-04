@@ -1,7 +1,7 @@
 "------------------------------------------------------
 " args
 "------------------------------------------------------
-" *sample_vim.syntax.nargs*
+" *sample:vim.syntax.nargs*
 func VimTestNargs(...)
   echom "nargs: ".a:0
   if a:0 == 1
@@ -12,17 +12,17 @@ func VimTestNargs(...)
   endif
 endfunc
 
-" *sample_vim.syntax.fargs*
+" *sample:vim.syntax.fargs*
 func VimTestFargs(arg1, arg2)
   echom "VimTestFargs: [".a:arg1." ".a:arg2."]"
 endfunc
 
-" *sample_vim.syntax.qargs*
+" *sample:vim.syntax.qargs*
 func VimTestQargs(arg)
   echom "VimTestQargs: [".a:arg."]"
 endfunc
 
-" *sample_vim.syntax.range*
+" *sample:vim.syntax.range*
 func VimTestRange(arg1, arg2)
   echom "VimTestRange: [".a:arg1." ".a:arg2."]"
 endfunc

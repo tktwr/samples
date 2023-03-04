@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *sample_py.json*
+# *sample:py.json*
 
 import sys
 import json
 
 
-# *sample_py.json.read_json*
+# *sample:py.json.read_json*
 def f_read_json(fname):
     with open(fname, "r") as f:
         return json.load(f)
 
 
-# *sample_py.json.write_json*
+# *sample:py.json.write_json*
 def f_write_json(fname, data):
     with open(fname, "w") as f:
         f.write(json.dumps(data, sort_keys=True, indent=4))

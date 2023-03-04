@@ -19,7 +19,7 @@ bat/*.bat \
 # functions
 #======================================================
 f_tags_memo() {
-  sampletags.sh $TAGS_DIR > tags
+  memotags.sh 'sample:' $TAGS_DIR > tags
   mktags_dir.sh
 }
 

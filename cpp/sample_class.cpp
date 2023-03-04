@@ -1,4 +1,4 @@
-// *sample_cpp.class*
+// *sample:cpp.class*
 #include <memory>
 #include <vector>
 #include <iostream>

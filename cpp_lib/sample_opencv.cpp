@@ -1,4 +1,4 @@
-// *sample_cpp_lib.opencv*
+// *sample:cpp_lib.opencv*
 #include <iostream>
 #include <opencv2/opencv.hpp>
 

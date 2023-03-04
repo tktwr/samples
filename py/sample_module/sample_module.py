@@ -6,7 +6,7 @@ import mymodule
 import mypackage.mymodule as mymod
 
 
-# *sample_py.syntax.module*
+# *sample:py.syntax.module*
 def f_module():
     print("f_module()")
     mymodule.myfunc()

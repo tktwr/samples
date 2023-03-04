@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *sample_py.pil*
-# *sample_py.image*
+# *sample:py.pil*
+# *sample:py.image*
 
 import sys
 import numpy as np

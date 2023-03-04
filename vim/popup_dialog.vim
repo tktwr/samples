@@ -10,7 +10,7 @@ func! TestPopupDialogHandler(id, result)
   endif
 endfunc
 
-" *sample_vim.syntax.popup_dialog*
+" *sample:vim.syntax.popup_dialog*
 func! TestPopupDialog()
   let text = split(&runtimepath, ',')
   let text += ['Continue? y/n']

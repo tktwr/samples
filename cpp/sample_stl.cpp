@@ -1,4 +1,4 @@
-// *sample_cpp.stl*
+// *sample:cpp.stl*
 #include <iostream>
 #include <vector>
 #include <list>
@@ -16,7 +16,7 @@ void f_print(const std::string& text, const T& container) {
     std::cout << std::endl;
 }
 
-// *sample_cpp.stl.container*
+// *sample:cpp.stl.container*
 void f_container() {
     std::vector<int> c = {0, 1, 2, 3, 4, 5};
 
@@ -31,34 +31,34 @@ void f_container() {
     std::cout << std::endl;
 }
 
-// *sample_cpp.stl.vector*
+// *sample:cpp.stl.vector*
 void f_vector() {
-    // *sample_cpp.stl.vector.init*
+    // *sample:cpp.stl.vector.init*
     std::vector<int> vec = {0, 1, 2, 3, 4, 5};
     f_print("vec = ", vec);
 
-    // *sample_cpp.stl.vector.clear*
+    // *sample:cpp.stl.vector.clear*
     vec.clear();
 
-    // *sample_cpp.stl.vector.reserve*
+    // *sample:cpp.stl.vector.reserve*
     vec.reserve(10);
 
-    // *sample_cpp.stl.vector.push_back*
+    // *sample:cpp.stl.vector.push_back*
     vec.push_back(0);
     vec.push_back(1);
 
-    // *sample_cpp.stl.vector.emplace_back*
+    // *sample:cpp.stl.vector.emplace_back*
     vec.emplace_back(2);
     vec.emplace_back(3);
 
-    // *sample_cpp.stl.vector.pop_back*
+    // *sample:cpp.stl.vector.pop_back*
     vec.pop_back();
 
     f_print("vec = ", vec);
 }
 
-// *sample_cpp.stl.vector.cat*
-// *sample_cpp.stl.vector.insert*
+// *sample:cpp.stl.vector.cat*
+// *sample:cpp.stl.vector.insert*
 void f_vector_cat() {
     std::vector<int> v0 = {0, 1};
     std::vector<int> v1 = {2, 3};
@@ -93,13 +93,13 @@ void f_vector_sort() {
     f_print("vec_out = ", vec_out);
 }
 
-// *sample_cpp.stl.list*
+// *sample:cpp.stl.list*
 void f_list_init() {
     std::list<int> l = {0, 1, 2, 3, 4, 5};
     f_print("l = ", l);
 }
 
-// *sample_cpp.stl.map*
+// *sample:cpp.stl.map*
 void f_map() {
     std::map<std::string, int> m = {
         {"aaa", 10},

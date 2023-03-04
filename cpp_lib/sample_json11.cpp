@@ -1,4 +1,4 @@
-// *sample_cpp_lib.json11*
+// *sample:cpp_lib.json11*
 #include <iostream>
 #include <fstream>
 #include <string>

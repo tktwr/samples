@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *sample_py.os*
+# *sample:py.os*
 
 import sys
 import os
@@ -15,20 +15,20 @@ OUTPUT_DIR = "_output"
 FILE_NAME = "_test.txt"
 
 
-# *sample_py.os.mkdir*
+# *sample:py.os.mkdir*
 def f_mkdir():
     shutil.rmtree(OUTPUT_DIR)
     os.mkdir(OUTPUT_DIR)
 
 
-# *sample_py.os.chdir*
+# *sample:py.os.chdir*
 def f_chdir():
     print(f"dir = {os.getcwd()}")
     os.chdir(OUTPUT_DIR)
     print(f"dir = {os.getcwd()}")
 
 
-# *sample_py.os.write*
+# *sample:py.os.write*
 def f_write():
     with open(FILE_NAME, 'w') as f:
         f.write('123\n')
@@ -37,14 +37,14 @@ def f_write():
         f.write('xyz\n')
 
 
-# *sample_py.os.read*
+# *sample:py.os.read*
 def f_read():
     with open(FILE_NAME, 'r') as f:
         for line in f:
             print(line.strip())
 
 
-# *sample_py.os.shutil.dir*
+# *sample:py.os.shutil.dir*
 def f_shutil_dir():
     os.makedirs("_test_dir/a/b/c", exist_ok=True)
 
@@ -56,7 +56,7 @@ def f_shutil_dir():
     shutil.rmtree("_test_dir")
 
 
-# *sample_py.os.shutil.file*
+# *sample:py.os.shutil.file*
 def f_shutil_file():
     shutil.copy("_test.txt", "_test_cp.txt")
     shutil.move("_test_cp.txt", "_test_mv.txt")
@@ -64,24 +64,24 @@ def f_shutil_file():
     print(os.listdir('.'))
 
 
-# *sample_py.os.system*
+# *sample:py.os.system*
 def f_system():
     os.system('ls -l')  # deprecated
 
 
-# *sample_py.os.subprocess*
+# *sample:py.os.subprocess*
 def f_subprocess():
     import subprocess
     result = subprocess.run(('ls', '-l'))
 
 
-# *sample_py.os.glob*
+# *sample:py.os.glob*
 def f_glob():
     files = glob.glob('*.txt')
     print(f"files = {files}")
 
 
-# *sample_py.os.path*
+# *sample:py.os.path*
 def f_path():
     path = "~/Desktop/a.txt"
     print(f"path = {path}")
@@ -103,7 +103,7 @@ def f_path():
     print(f"join = {join}")
 
 
-# *sample_py.os.path.test*
+# *sample:py.os.path.test*
 def f_test():
     file = '/etc/hosts'
     dir = '/etc'
@@ -111,13 +111,13 @@ def f_test():
     print(f"os.path.isdir({dir})  : {os.path.isdir(dir)}")
 
 
-# *sample_py.os.environ*
+# *sample:py.os.environ*
 def f_environ():
     dir_name = os.environ['HOME']
     print(f"dir_name: {dir_name}")
 
 
-# *sample_py.os.today*
+# *sample:py.os.today*
 def f_today():
     today = dt.today()
     print(f'today = {today}')
@@ -125,7 +125,7 @@ def f_today():
     print(f'time_stamp = {time_stamp}')
 
 
-# *sample_py.os.sys*
+# *sample:py.os.sys*
 def f_sys():
     print(sys.argv)
 

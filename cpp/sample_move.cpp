@@ -1,4 +1,4 @@
-// *sample_cpp.11.move*
+// *sample:cpp.11.move*
 #include <iostream>
 #include <utility>
 

@@ -1,10 +1,10 @@
-// *sample_cpp.syntax*
+// *sample:cpp.syntax*
 #include <iostream>
 
 using namespace std;
 
 // ----------------------------------------------------
-// *sample_cpp.syntax.if*
+// *sample:cpp.syntax.if*
 void f_if() {
     cout << "[if]" << endl;
 
@@ -19,7 +19,7 @@ void f_if() {
 }
 
 // ----------------------------------------------------
-// *sample_cpp.syntax.for*
+// *sample:cpp.syntax.for*
 void f_for_i() {
     cout << "[for]" << endl;
 
@@ -31,7 +31,7 @@ void f_for_i() {
 }
 
 // ----------------------------------------------------
-// *sample_cpp.syntax.for_xy*
+// *sample:cpp.syntax.for_xy*
 void f_for_xy() {
     cout << "[for xy]" << endl;
 
@@ -47,7 +47,7 @@ void f_for_xy() {
 }
 
 // ----------------------------------------------------
-// *sample_cpp.syntax.switch*
+// *sample:cpp.syntax.switch*
 void f_switch() {
     cout << "[switch]" << endl;
 
@@ -65,7 +65,7 @@ void f_switch() {
 }
 
 // ----------------------------------------------------
-// *sample_cpp.syntax.while*
+// *sample:cpp.syntax.while*
 void f_while() {
     cout << "[while]" << endl;
 
@@ -77,7 +77,7 @@ void f_while() {
 }
 
 // ----------------------------------------------------
-// *sample_cpp.syntax.enum*
+// *sample:cpp.syntax.enum*
 void f_enum() {
     cout << "[enum]" << endl;
 
@@ -98,7 +98,7 @@ void f_enum() {
 }
 
 // ----------------------------------------------------
-// *sample_cpp.syntax.class*
+// *sample:cpp.syntax.class*
 void f_class() {
     cout << "[class]" << endl;
 

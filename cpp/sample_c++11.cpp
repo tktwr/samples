@@ -1,4 +1,4 @@
-// *sample_cpp.11*
+// *sample:cpp.11*
 #include <iostream>
 #include <map>
 #include <memory>
@@ -18,7 +18,7 @@ void f_title(const std::string& title) {
 
 //-------------------------------------------------------------------------
 
-// *sample_cpp.11.constexpr*
+// *sample:cpp.11.constexpr*
 constexpr int f_val() { return 10; }
 
 void f_constexpr() {
@@ -30,7 +30,7 @@ void f_constexpr() {
     std::cout << "b: " << b << std::endl;
 }
 
-// *sample_cpp.11.datetime*
+// *sample:cpp.11.datetime*
 void f_datetime() {
     f_title("datetime");
 
@@ -43,7 +43,7 @@ void f_datetime() {
     std::cout << std::put_time(lt, "%Y%m%d-%H%M%S") << std::endl;
 }
 
-// *sample_cpp.11.limits*
+// *sample:cpp.11.limits*
 void f_limits() {
     f_title("limits");
 
@@ -54,7 +54,7 @@ void f_limits() {
     cout << "double         max: " << std::numeric_limits<double>::max() << endl;
 }
 
-// *sample_cpp.11.initializer*
+// *sample:cpp.11.initializer*
 void f_initializer() {
     f_title("initializer");
 
@@ -97,7 +97,7 @@ void f_initializer() {
     }
 }
 
-// *sample_cpp.11.auto*
+// *sample:cpp.11.auto*
 void f_auto_type() {
     f_title("auto_type");
 
@@ -114,7 +114,7 @@ void f_auto_type() {
     cout << endl;
 }
 
-// *sample_cpp.11.universal_reference*
+// *sample:cpp.11.universal_reference*
 void f_universal_reference() {
     f_title("universal_reference");
 
@@ -126,7 +126,7 @@ void f_universal_reference() {
     for (auto&& x : vec) {}
 }
 
-// *sample_cpp.11.range_for*
+// *sample:cpp.11.range_for*
 void f_range_for() {
     f_title("range_for");
 
@@ -138,7 +138,7 @@ void f_range_for() {
     for (auto&& x : vec) { x = 1; }
 }
 
-// *sample_cpp.11.unique_ptr*
+// *sample:cpp.11.unique_ptr*
 void f_unique_ptr() {
     f_title("unique_ptr");
 
@@ -164,14 +164,14 @@ void f_unique_ptr() {
     ptr2.reset();
 }
 
-// *sample_cpp.11.unique_ptr_array*
+// *sample:cpp.11.unique_ptr_array*
 void f_unique_ptr_array() {
     f_title("unique_ptr_array");
 
     unique_ptr<int[]> ptr(new int[10]);
 }
 
-// *sample_cpp.11.shared_ptr*
+// *sample:cpp.11.shared_ptr*
 void f_shared_ptr() {
     f_title("shared_ptr");
 
@@ -185,12 +185,12 @@ void f_shared_ptr() {
     cout << "use_count : " << ptr.use_count() << endl;
 }
 
-// *sample_cpp.11.weak_ptr*
+// *sample:cpp.11.weak_ptr*
 void f_weak_ptr() {
     f_title("weak_ptr");
 }
 
-// *sample_cpp.11.lambda*
+// *sample:cpp.11.lambda*
 void f_lambda() {
     f_title("lambda");
 

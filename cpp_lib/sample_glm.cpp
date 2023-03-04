@@ -1,4 +1,4 @@
-// *sample_cpp_lib.glm*
+// *sample:cpp_lib.glm*
 #include <iostream>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp> // glm::vec3

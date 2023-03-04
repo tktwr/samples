@@ -8,7 +8,7 @@ import parse
 import tt_util as ut
 
 
-# *sample_py.string*
+# *sample:py.string*
 def f_string():
     s = 'hello world'
     print(f's                   = {s}')
@@ -18,7 +18,7 @@ def f_string():
     print(f's[1:4]              = {s[1:4]}')
 
 
-# *sample_py.string.if*
+# *sample:py.string.if*
 def f_if():
     s = 'hello'
     if s == 'hello':
@@ -27,7 +27,7 @@ def f_if():
         print('!world')
 
 
-# *sample_py.string.with*
+# *sample:py.string.with*
 def f_with():
     s = 'hello'
     if s.startswith('he'):
@@ -36,7 +36,7 @@ def f_with():
         print('o')
 
 
-# *sample_py.string.in*
+# *sample:py.string.in*
 def f_in():
     s = 'hello'
     if 'el' in s:
@@ -45,7 +45,7 @@ def f_in():
         print('!aa')
 
 
-# *sample_py.string.strip*
+# *sample:py.string.strip*
 def f_strip():
     s = '  aaa 123  '
     print(f's = "{s}"')
@@ -53,7 +53,7 @@ def f_strip():
     print(f's = "{s}"')
 
 
-# *sample_py.string.replace*
+# *sample:py.string.replace*
 def f_replace():
     s = f'images/img123_5.png'
     print(f's = {s}')
@@ -61,7 +61,7 @@ def f_replace():
     print(f's = {s}')
 
 
-# *sample_py.string.split*
+# *sample:py.string.split*
 def f_split():
     s = 'abc,' + 'def,' + str(100)
     print(f's = {s}')
@@ -75,7 +75,7 @@ def f_split():
     print(f'filename = {filename}')
 
 
-# *sample_py.string.join*
+# *sample:py.string.join*
 def f_join():
     lst = ['aaa', 'bbb', 'ccc']
     print(f'lst = {lst}')
@@ -93,7 +93,7 @@ def _f_expand_env(s):
     return s
 
 
-# *sample_py.string.re*
+# *sample:py.string.re*
 def f_re():
     in_s = '1, 1.5, 2, 2.5:str'
     out_s = re.split(r',\s+|:', in_s)
@@ -115,7 +115,7 @@ def f_re():
     print(f'o: {o}')
 
 
-# *sample_py.string.parse*
+# *sample:py.string.parse*
 def f_parse():
     filename = 'img123_5.png'
     result = parse.parse('img{nr:d}_{label:d}.png', filename)
