@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo_py.syntax*
+# *sample_py.syntax*
 
 import sys
 import math
@@ -8,7 +8,7 @@ import tt_util as ut
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.comment*
+# *sample_py.syntax.comment*
 def f_comment():
     # comment
     '''
@@ -17,7 +17,7 @@ def f_comment():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.encoding*
+# *sample_py.syntax.encoding*
 def f_encoding():
     print(f"sys.stdin.encoding  = {sys.stdin.encoding}")
     print(f"sys.stdout.encoding = {sys.stdout.encoding}")
@@ -25,7 +25,7 @@ def f_encoding():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.input*
+# *sample_py.syntax.input*
 def f_input():
     print(f"input: ", end="")
     s = input()
@@ -33,14 +33,14 @@ def f_input():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.print*
+# *sample_py.syntax.print*
 def f_print():
     print("Hello")
     print("こんにちは")
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.print_fstring*
+# *sample_py.syntax.print_fstring*
 def f_print_fstring():
     # f-string (python >= 3.6)
     ival = 2
@@ -64,7 +64,7 @@ def f_print_fstring():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.print_format*
+# *sample_py.syntax.print_format*
 def f_print_format():
     # str.format() method (python >= 2.6)
     print("{} {} {}".format(0, 1, 2))
@@ -73,7 +73,7 @@ def f_print_format():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.print_operator*
+# *sample_py.syntax.print_operator*
 def f_print_operator():
     # % operator (old)
     print("%d " % 0)
@@ -81,7 +81,7 @@ def f_print_operator():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.if*
+# *sample_py.syntax.if*
 def f_if():
     l = [0, 1, 2, 3, 4]
     i = 1
@@ -116,7 +116,7 @@ def f_if():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.for*
+# *sample_py.syntax.for*
 def f_for():
     for i in range(5):
         print(f"{i} ", end="")
@@ -137,7 +137,7 @@ def f_for():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.while*
+# *sample_py.syntax.while*
 def f_while():
     i = 0
     while i < 5:
@@ -147,7 +147,7 @@ def f_while():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.func*
+# *sample_py.syntax.func*
 def _f_add(a, b):
     return a + b
 
@@ -158,7 +158,7 @@ def f_func():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.func_args*
+# *sample_py.syntax.func_args*
 def _f_args(a, b):
     print(f"a, b: {a} {b}")
 
@@ -170,7 +170,7 @@ def f_func_args():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.class*
+# *sample_py.syntax.class*
 class MyClass():
     def __init__(self):
         print(f"MyClass.__init__")
@@ -215,7 +215,7 @@ def f_class():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.subclass*
+# *sample_py.syntax.subclass*
 class MySubClass(MyClass):
     def f(self, x):
         print(f"MySubClass.f: {x}")
@@ -227,7 +227,7 @@ def f_subclass():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.type*
+# *sample_py.syntax.type*
 def f_type():
     n = None
     b = True
@@ -246,7 +246,7 @@ def f_type():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.list*
+# *sample_py.syntax.list*
 def f_list():
     lst = [0, 1, 2, 3, 4, 5]
 
@@ -256,24 +256,24 @@ def f_list():
     print(f'lst[5]   = {lst[5]}')
     print(f't        = {tuple(lst)}')
 
-    # *memo_py.syntax.list.append*
+    # *sample_py.syntax.list.append*
     lst.append(10)
     print(f'lst.append(10)         = {lst}')
 
-    # *memo_py.syntax.list.extend*
+    # *sample_py.syntax.list.extend*
     lst.extend([100, 101])
     print(f'lst.extend([100, 101]) = {lst}')
 
-    # *memo_py.syntax.list.insert*
+    # *sample_py.syntax.list.insert*
     lst.insert(0, 20)
     print(f'lst.insert(0, 20)      = {lst}')
 
-    # *memo_py.syntax.list.pop*
+    # *sample_py.syntax.list.pop*
     lst.pop(2)
     print(f'lst.pop(2)             = {lst}')
 
 
-# *memo_py.syntax.list_op*
+# *sample_py.syntax.list_op*
 def f_list_op():
     lst1 = [1] * 2
     lst2 = [2] * 3
@@ -281,7 +281,7 @@ def f_list_op():
     print(f'lst      = {lst}')
 
 
-# *memo_py.syntax.list.slice*
+# *sample_py.syntax.list.slice*
 def f_list_slice():
     lst = ['zero', 1, 'two', 3, 'four', 5]
     print(f'lst        = {lst}')
@@ -297,7 +297,7 @@ def f_list_slice():
     print(f'lst[-1:]   = {lst[-1:]}')    # the last
 
 
-# *memo_py.syntax.list.str_to_list*
+# *sample_py.syntax.list.str_to_list*
 def f_list_str_to_list():
     s = '0 1 2 3 4 5'
     slst = s.split(' ')
@@ -305,7 +305,7 @@ def f_list_str_to_list():
     print(f'slst = {slst}')
 
 
-# *memo_py.syntax.list.comprehensions*
+# *sample_py.syntax.list.comprehensions*
 def f_list_comprehensions():
     slst = ['0', '1', '2', '3', '4', '5']
     ilst = [int(i) for i in slst]
@@ -314,7 +314,7 @@ def f_list_comprehensions():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.dict*
+# *sample_py.syntax.dict*
 def f_dict():
     d = {"aaa": 123,
          "bbb": 234,
@@ -324,11 +324,11 @@ def f_dict():
     print(f"d                     = {d}")
     print(f"d['aaa']              = {d['aaa']}")
 
-    # *memo_py.syntax.dict.get*
+    # *sample_py.syntax.dict.get*
     print(f"d.get('aaa')          = {d.get('aaa')}")
     print(f"d.get('zzz')          = {d.get('zzz')}")
 
-    # *memo_py.syntax.dict.keys*
+    # *sample_py.syntax.dict.keys*
     print(f"d.keys()              = {d.keys()}")
     print(f"'aaa' in d            = {'aaa' in d}")
     print(f"'aaa' not in d        = {'aaa' not in d}")
@@ -336,24 +336,24 @@ def f_dict():
     for key in d:
         print(f"key = {key}")
 
-    # *memo_py.syntax.dict.values*
+    # *sample_py.syntax.dict.values*
     print(f"d.values()            = {d.values()}")
     print(f"123 in d.values()     = {123 in d.values()}")
     print(f"123 not in d.values() = {123 not in d.values()}")
 
-    # *memo_py.syntax.dict.pop*
+    # *sample_py.syntax.dict.pop*
     print(f"d.pop('aaa')          = {d.pop('aaa')}")
     print(f"d                     = {d}")
     print(f"d.pop('zzz', None)    = {d.pop('zzz', None)}")
     print(f"d                     = {d}")
 
-    # *memo_py.syntax.dict.clear*
+    # *sample_py.syntax.dict.clear*
     print(f"d.clear()             = {d.clear()}")
     print(f"d                     = {d}")
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.tuple*
+# *sample_py.syntax.tuple*
 def f_tuple():
     # tuple is read only
     t = (1, 3, 5, 7, 9)
@@ -364,14 +364,14 @@ def f_tuple():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.set*
+# *sample_py.syntax.set*
 def f_set():
     s = {1, 2, 3}
     print(f's = {s}')
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.range*
+# *sample_py.syntax.range*
 def f_range():
     print(f'list(range(6))       = {list(range(6))}')
     print(f'list(range(0, 6))    = {list(range(0, 6))}')
@@ -380,7 +380,7 @@ def f_range():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.zip*
+# *sample_py.syntax.zip*
 def f_zip():
     l1 = [1, 2, 3, 4]
     l2 = [0.1, 0.2, 0.3, 0.4]
@@ -389,7 +389,7 @@ def f_zip():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.color*
+# *sample_py.syntax.color*
 def f_color():
     color = {
         "Red"    : "fb4934",
@@ -412,7 +412,7 @@ def f_color():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.math*
+# *sample_py.syntax.math*
 def f_math():
     print(f" 5  / 2 = { 5  / 2}")
     print(f" 5 // 2 = { 5 // 2}")
@@ -441,8 +441,8 @@ def f_math():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.in*
-# *memo_py.syntax.not_in*
+# *sample_py.syntax.in*
+# *sample_py.syntax.not_in*
 def f_in():
     a = 123
 
@@ -470,14 +470,14 @@ def f_in():
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.func_object*
+# *sample_py.syntax.func_object*
 def f_func_object():
     func = f_print
     func()
 
 
 # -----------------------------------------------------
-# *memo_py.syntax.eval*
+# *sample_py.syntax.eval*
 def f_eval():
     func = 'f_print'
     eval(f'{func}()')

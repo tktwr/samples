@@ -30,7 +30,7 @@ func! TestPopupMenuHandler(id, result)
   endif
 endfunc
 
-" *memo_vim.syntax.popup_menu*
+" *sample_vim.syntax.popup_menu*
 func! TestPopupMenu()
   let cmd_list = ['Save', 'Cancel', 'Discard']
   let opts = {

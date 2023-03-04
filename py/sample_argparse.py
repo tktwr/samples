@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo_py.argparse*
+# *sample_py.argparse*
 
 import sys
 import argparse

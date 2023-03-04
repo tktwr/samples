@@ -1,7 +1,7 @@
 "------------------------------------------------------
 " popup_create
 "------------------------------------------------------
-" *memo_vim.syntax.popup_create*
+" *sample_vim.syntax.popup_create*
 func! TestPopupCreate()
   let text = ['hello', 'world']
   let opts = {
@@ -12,7 +12,7 @@ func! TestPopupCreate()
   let s:popup_winid = popup_create(text, opts)
 endfunc
 
-" *memo_vim.syntax.popup_close*
+" *sample_vim.syntax.popup_close*
 func! TestPopupClose()
   call popup_close(s:popup_winid)
   unlet s:popup_winid

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo_py.subprocess*
+# *sample_py.subprocess*
 
 import subprocess
 

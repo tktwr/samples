@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo_py.os*
+# *sample_py.os*
 
 import sys
 import os
@@ -15,20 +15,20 @@ OUTPUT_DIR = "_output"
 FILE_NAME = "_test.txt"
 
 
-# *memo_py.os.mkdir*
+# *sample_py.os.mkdir*
 def f_mkdir():
     shutil.rmtree(OUTPUT_DIR)
     os.mkdir(OUTPUT_DIR)
 
 
-# *memo_py.os.chdir*
+# *sample_py.os.chdir*
 def f_chdir():
     print(f"dir = {os.getcwd()}")
     os.chdir(OUTPUT_DIR)
     print(f"dir = {os.getcwd()}")
 
 
-# *memo_py.os.write*
+# *sample_py.os.write*
 def f_write():
     with open(FILE_NAME, 'w') as f:
         f.write('123\n')
@@ -37,14 +37,14 @@ def f_write():
         f.write('xyz\n')
 
 
-# *memo_py.os.read*
+# *sample_py.os.read*
 def f_read():
     with open(FILE_NAME, 'r') as f:
         for line in f:
             print(line.strip())
 
 
-# *memo_py.os.shutil.dir*
+# *sample_py.os.shutil.dir*
 def f_shutil_dir():
     os.makedirs("_test_dir/a/b/c", exist_ok=True)
 
@@ -56,7 +56,7 @@ def f_shutil_dir():
     shutil.rmtree("_test_dir")
 
 
-# *memo_py.os.shutil.file*
+# *sample_py.os.shutil.file*
 def f_shutil_file():
     shutil.copy("_test.txt", "_test_cp.txt")
     shutil.move("_test_cp.txt", "_test_mv.txt")
@@ -64,24 +64,24 @@ def f_shutil_file():
     print(os.listdir('.'))
 
 
-# *memo_py.os.system*
+# *sample_py.os.system*
 def f_system():
     os.system('ls -l')  # deprecated
 
 
-# *memo_py.os.subprocess*
+# *sample_py.os.subprocess*
 def f_subprocess():
     import subprocess
     result = subprocess.run(('ls', '-l'))
 
 
-# *memo_py.os.glob*
+# *sample_py.os.glob*
 def f_glob():
     files = glob.glob('*.txt')
     print(f"files = {files}")
 
 
-# *memo_py.os.path*
+# *sample_py.os.path*
 def f_path():
     path = "~/Desktop/a.txt"
     print(f"path = {path}")
@@ -103,7 +103,7 @@ def f_path():
     print(f"join = {join}")
 
 
-# *memo_py.os.path.test*
+# *sample_py.os.path.test*
 def f_test():
     file = '/etc/hosts'
     dir = '/etc'
@@ -111,13 +111,13 @@ def f_test():
     print(f"os.path.isdir({dir})  : {os.path.isdir(dir)}")
 
 
-# *memo_py.os.environ*
+# *sample_py.os.environ*
 def f_environ():
     dir_name = os.environ['HOME']
     print(f"dir_name: {dir_name}")
 
 
-# *memo_py.os.today*
+# *sample_py.os.today*
 def f_today():
     today = dt.today()
     print(f'today = {today}')
@@ -125,7 +125,7 @@ def f_today():
     print(f'time_stamp = {time_stamp}')
 
 
-# *memo_py.os.sys*
+# *sample_py.os.sys*
 def f_sys():
     print(sys.argv)
 

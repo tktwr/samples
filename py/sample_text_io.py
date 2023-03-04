@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo_py.text_io*
+# *sample_py.text_io*
 
 import sys
 
 
-# *memo_py.text_io.read_text*
+# *sample_py.text_io.read_text*
 def f_read_text(fname):
     with open(fname, "r") as f:
         return f.readlines()
 
 
-# *memo_py.text_io.write_text*
+# *sample_py.text_io.write_text*
 def f_write_text(fname, lines):
     with open(fname, "w") as f:
         for i in lines:

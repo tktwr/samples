@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo_py.pil*
-# *memo_py.image*
+# *sample_py.pil*
+# *sample_py.image*
 
 import sys
 import numpy as np

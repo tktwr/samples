@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo_py.hashlib*
+# *sample_py.hashlib*
 
 import hashlib
 

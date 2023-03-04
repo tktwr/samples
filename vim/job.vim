@@ -1,4 +1,4 @@
-" *memo_vim.syntax.job_start*
+" *sample_vim.syntax.job_start*
 "------------------------------------------------------
 " job
 "------------------------------------------------------
@@ -12,7 +12,7 @@ func VimTestJobCloseHandler(channel)
   endwhile
 endfunc
 
-" *memo_vim.syntax.job_start*
+" *sample_vim.syntax.job_start*
 func VimTestJobStartAndClose()
   let cmd = "ls -l"
   let s:job = job_start(cmd, {"close_cb": "VimTestJobCloseHandler"})

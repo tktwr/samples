@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo_py.json*
+# *sample_py.json*
 
 import sys
 import json
 
 
-# *memo_py.json.read_json*
+# *sample_py.json.read_json*
 def f_read_json(fname):
     with open(fname, "r") as f:
         return json.load(f)
 
 
-# *memo_py.json.write_json*
+# *sample_py.json.write_json*
 def f_write_json(fname, data):
     with open(fname, "w") as f:
         f.write(json.dumps(data, sort_keys=True, indent=4))

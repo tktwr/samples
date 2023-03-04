@@ -1,4 +1,4 @@
-// *memo_cpp.17*
+// *sample_cpp.17*
 #include <filesystem>
 #include <iostream>
 #include <fstream>
@@ -8,7 +8,7 @@
 using namespace std;
 
 //-------------------------------------------------------------------------
-// *memo_cpp.17.nested_namespace*
+// *sample_cpp.17.nested_namespace*
 namespace a::b::c {
     int ival;
 }
@@ -19,7 +19,7 @@ void f_nested_namespace() {
 }
 
 //-------------------------------------------------------------------------
-// *memo_cpp.17.structured_bidings*
+// *sample_cpp.17.structured_bidings*
 std::tuple<bool, int, float> f_a() {
     bool bval = true;
     int ival = 123;
@@ -35,7 +35,7 @@ void f_structured_bidings() {
 }
 
 //-------------------------------------------------------------------------
-// *memo_cpp.17.any*
+// *sample_cpp.17.any*
 void f_any() {
     std::any x = 3;
     int n = std::any_cast<int>(x);
@@ -55,8 +55,8 @@ void f_any() {
 }
 
 //-------------------------------------------------------------------------
-// *memo_cpp.17.filesystem*
-// *memo_cpp.17.filesystem_path*
+// *sample_cpp.17.filesystem*
+// *sample_cpp.17.filesystem_path*
 namespace fs = std::filesystem;
 std::string ODIR = "_output/fs/";
 

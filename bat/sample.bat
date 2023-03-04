@@ -1,5 +1,5 @@
 @echo off
-rem *memo_bat.app*
+rem *sample_bat.app*
 rem sample batch file
 
 set BAT_DIR=%~dp0

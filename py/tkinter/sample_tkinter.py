@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo_py.tkinter*
+# *sample_py.tkinter*
 
 import sys
 import tkinter
