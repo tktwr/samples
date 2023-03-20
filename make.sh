@@ -20,7 +20,6 @@ bat/*.bat \
 #======================================================
 f_tags_memo() {
   memotags.sh 'sample:' $TAGS_DIR > tags
-  mktags_dir.sh
 }
 
 f_all() {
