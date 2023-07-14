@@ -43,6 +43,16 @@ def parse_args(argv):
                         type=float,
                         default=[1.0, 1.0, 1.0],
                         help='set color (default=1.0 1.0 1.0)')
+
+    parser.add_argument('-xx',
+                        type=str,
+                        default="str",
+                        help='set str')
+    parser.add_argument('--xx-xx',
+                        type=str,
+                        default="str",
+                        help='set str')
+
     parser.add_argument('file', nargs='*')
 
     args = parser.parse_args()
@@ -53,6 +63,7 @@ def main(argv):
     print(argv)
 
     args = parse_args(argv)
+    print(args)
     print(f"args.verbose : {args.verbose}")
     print(f"args.str     : {args.str}")
     print(f"args.int     : {args.int}")

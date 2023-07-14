@@ -8,10 +8,12 @@
 # functions
 #======================================================
 f_image_tile() {
-  image-tile.py -o _output/tile.jpg        -c 2 $MY_SAMPLES/data/sample*.jpg BLACK WHITE
-  image-tile.py -o _output/tile_FILE.jpg   -c 2 $MY_SAMPLES/data/sample*.jpg -l FILE
-  image-tile.py -o _output/tile_NUM.jpg    -c 2 $MY_SAMPLES/data/sample*.jpg -l NUM
-  image-tile.py -o _output/tile_ALPHA.jpg  -c 2 $MY_SAMPLES/data/sample*.jpg -l ALPHA
+  image-tile.py -o _output/tile_X.jpg      -nx 2 $MY_SAMPLES/data/sample*.jpg BLACK WHITE BLACK WHITE
+  image-tile.py -o _output/tile_Y.jpg      -ny 2 $MY_SAMPLES/data/sample*.jpg BLACK WHITE BLACK WHITE --file-order Y
+  image-tile.py -o _output/tile_Y2.jpg     -nx 2 $MY_SAMPLES/data/sample*.jpg BLACK WHITE BLACK WHITE --file-order Y
+  image-tile.py -o _output/tile_FILE.jpg   -nx 2 $MY_SAMPLES/data/sample*.jpg --label-type FILE
+  image-tile.py -o _output/tile_NUM.jpg    -nx 2 $MY_SAMPLES/data/sample*.jpg --label-type NUM
+  image-tile.py -o _output/tile_ALPHA.jpg  -nx 2 $MY_SAMPLES/data/sample*.jpg --label-type ALPHA
 }
 
 f_test_image() {

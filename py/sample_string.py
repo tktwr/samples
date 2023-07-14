@@ -115,6 +115,14 @@ def f_re():
     print(f'o: {o}')
 
 
+# *sample:py.string.re.sub*
+def f_re_sub():
+    s = ' aa bb  cc    dd  '
+    o = re.sub(r'\s+', ' ', s)
+    print(f's: [{s}]')
+    print(f'o: [{o}]')
+
+
 # *sample:py.string.parse*
 def f_parse():
     filename = 'img123_5.png'
