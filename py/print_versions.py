@@ -12,7 +12,7 @@ import torch
 # import skimage
 
 
-def main():
+def version():
     print(f"PIL {PIL.__version__}")
     print(f"cv2 {cv2.__version__}")
     print(f"numpy {numpy.__version__}")
@@ -27,4 +27,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    version()

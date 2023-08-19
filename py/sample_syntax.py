@@ -64,23 +64,6 @@ def f_print_fstring():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.print_format*
-def f_print_format():
-    # str.format() method (python >= 2.6)
-    print("{} {} {}".format(0, 1, 2))
-    print("{0} {1} {2}".format(0, 1, 2))
-    print("{2} {2} {2}".format(0, 1, 2))
-
-
-# -----------------------------------------------------
-# *sample:py.syntax.print_operator*
-def f_print_operator():
-    # % operator (old)
-    print("%d " % 0)
-    print("%d %d %d" % (0, 1, 2))
-
-
-# -----------------------------------------------------
 # *sample:py.syntax.if*
 def f_if():
     l = [0, 1, 2, 3, 4]

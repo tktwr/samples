@@ -14,9 +14,13 @@ def f_write_text_file(fname, lines):
 
 
 if __name__ == '__main__':
-    ifname = 'data/sample.txt'
-    ofname = '_output/io_text.txt'
+    fname = '_output/io_text.txt'
+    lines = [
+            '123',
+            '456\n',
+            'abc\n',
+            ]
 
-    lines = f_read_text_file(ifname)
+    f_write_text_file(fname, lines)
+    lines = f_read_text_file(fname)
     print(lines)
-    f_write_text_file(ofname, lines)
