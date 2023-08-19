@@ -23,13 +23,20 @@ f_run_ext() {
   sample_skimage.py
 }
 
+f_clean_n() {
+  myclean.sh --output-dir
+  myclean.sh --pycache-dir
+}
+
 f_clean() {
-  myclean.sh -rm -py
+  myclean.sh --output-dir -rm
+  myclean.sh --pycache-dir -rm
 }
 
 #------------------------------------------------------
 f_help() {
   echo "run"
+  echo "clean_n"
   echo "clean"
   echo "help"
 }
