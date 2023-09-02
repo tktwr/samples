@@ -21,10 +21,16 @@ f_test_image() {
   cd _output/image && ../../test_image.sh
 }
 
+f_clean() {
+  rm -rf _output
+  mkdir _output
+}
+
 #------------------------------------------------------
 f_help() {
   echo "image_tile"
   echo "test_image"
+  echo "clean"
   echo "help"
 }
 

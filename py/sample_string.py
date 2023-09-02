@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
 import os
 import re
 import parse
@@ -11,11 +10,12 @@ import tt_util as ut
 # *sample:py.string*
 def f_string():
     s = 'hello world'
-    print(f's                   = {s}')
-    print(f's[0]                = {s[0]}')
-    print(f's[-1]               = {s[-1]}')
-    print(f's[0:4]              = {s[0:4]}')
-    print(f's[1:4]              = {s[1:4]}')
+
+    print(f's      = {s}')
+    print(f's[0]   = {s[0]}')
+    print(f's[-1]  = {s[-1]}')
+    print(f's[0:4] = {s[0:4]}')
+    print(f's[1:4] = {s[1:4]}')
 
 
 # *sample:py.string.if*
@@ -144,22 +144,3 @@ def f_parse():
     print(f'out_s[0]: {out_s[0]}')
 
 
-# -----------------------------------------------------
-def _f_get_all_func_names():
-    lst = []
-    for i in globals():
-        if callable(globals()[i]) and i.startswith('f_'):
-            lst.append(i)
-    return lst
-
-
-if __name__ == '__main__':
-    if len(sys.argv) == 1:
-        func_lst = _f_get_all_func_names()
-    else:
-        func_lst = sys.argv[1:]
-    print(func_lst)
-
-    for func in func_lst:
-        ut.print_title(f' [{func}] ', '-' * 55, 'center')
-        eval(f'{func}()')

@@ -18,36 +18,15 @@ bat/*.bat \
 #======================================================
 # functions
 #======================================================
-f_tags_memo() {
+f_tags() {
   memotags.sh 'sample:' $TAGS_DIR > tags
-}
-
-f_all() {
-  cd cpp && make all
-  cd cpp_lib && make all
-}
-
-f_clean_n() {
-  myclean.sh -py
-  myclean.sh -b
-  myclean.sh -o
-}
-
-#------------------------------------------------------
-f_help() {
-	echo "tags_memo"
-	echo "all"
-	echo "clean_n"
-	echo "help"
-}
-
-f_default() {
-  f_tags_memo
 }
 
 #======================================================
 # main
 #======================================================
-func_name=${1:-"default"}
-shift
-eval "f_$func_name $@"
+f_fzf_default() {
+  f_tags
+}
+
+f_fzf_main "$@"

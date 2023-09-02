@@ -44,8 +44,3 @@ def f_shutil_file():
     print(os.listdir('.'))
 
 
-if __name__ == '__main__':
-    func_lst = ut.get_all_funcs(globals().keys())
-    for func in func_lst:
-        ut.log_title(f' [{func}] ')
-        eval(f'{func}()')
