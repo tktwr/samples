@@ -11,6 +11,10 @@ f_all() {
   ./main.py
 }
 
+f_print() {
+  ./main.py f_print
+}
+
 f_clean_n() {
   myclean.sh --output-dir
   myclean.sh --pycache-dir
