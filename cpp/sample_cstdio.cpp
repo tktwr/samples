@@ -50,8 +50,8 @@ void f_read_binary_file(const char *fname) {
 }
 
 int main(int argc, char *argv[]) {
-    const char *fname_text = "data_cstdio.txt";
-    const char *fname_binary = "data_cstdio.bin";
+    const char *fname_text = "_output/data_cstdio.txt";
+    const char *fname_binary = "_output/data_cstdio.bin";
 
     f_write_text_file(fname_text);
     f_read_text_file(fname_text);

@@ -42,8 +42,8 @@ void f_read_binary_file(const char *fname) {
 }
 
 int main(int argc, char *argv[]) {
-    std::string fname_text = "data_fstream.txt";
-    std::string fname_binary = "data_fstream.bin";
+    std::string fname_text = "_output/data_fstream.txt";
+    std::string fname_binary = "_output/data_fstream.bin";
 
     f_write_text_file(fname_text.c_str());
     f_read_text_file(fname_text.c_str());
