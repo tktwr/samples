@@ -36,9 +36,16 @@ f_cmake_clean_all() {
 }
 
 f_run() {
-  for i in $APPS; do
-    echo "--- [$i] ---"
-    $MY_BUILD_DIR/$i
+  for app in $APPS; do
+    echo "--- [$app] ---"
+    case $MY_BUILD_SYS in
+      vs*)
+        $MY_BUILD_DIR/$MY_BUILD_CONFIG/$app.exe
+        ;;
+      *)
+        $MY_BUILD_DIR/$app
+        ;;
+    esac
   done
 }
 
@@ -46,4 +53,3 @@ f_run() {
 # main
 #======================================================
 f_fzf_main "$@"
-

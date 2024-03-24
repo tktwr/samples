@@ -2,7 +2,12 @@ cmake_minimum_required(VERSION 3.6)
 
 project(sample_cpp_lib CXX)
 
-include($ENV{MY_LIBTT}/default.cmake)
+if(WIN32)
+  include($ENV{MY_LIBTT_WIN}/default.cmake)
+else()
+  include($ENV{MY_LIBTT}/default.cmake)
+endif()
+
 
 #add_executable(sample_cereal sample_cereal.cpp)
 #target_link_libraries(sample_cereal)

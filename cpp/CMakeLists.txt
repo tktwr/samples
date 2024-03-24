@@ -2,12 +2,6 @@ cmake_minimum_required(VERSION 3.6)
 
 project(sample_cpp CXX)
 
-if(WIN32)
-  include($ENV{MY_LIBTT_WIN}/default.cmake)
-else()
-  include($ENV{MY_LIBTT}/default.cmake)
-endif()
-
 set(CMAKE_CXX_STANDARD 20)
 
 function(func app cpp)
