@@ -1,8 +1,8 @@
 LANG=C
 
-BUILD_SYS=$(shell mycmake.sh --build-sys)
-BUILD_CONFIG=$(shell mycmake.sh --build-config)
-BUILD_DIR=$(shell mycmake.sh --build-dir)
+BUILD_SYS=$(MY_BUILD_SYS)
+BUILD_CONFIG=$(MY_BUILD_CONFIG)
+BUILD_DIR=$(MY_BUILD_DIR)
 
 #------------------------------------------------------
 .PHONY: default
@@ -17,15 +17,15 @@ cmake:
 
 .PHONY: build
 build:
-	mycmake.sh --build
+	mycmake-build.sh
 
 .PHONY: clean
 clean:
-	mycmake.sh --build $(BUILD_SYS) $(BUILD_CONFIG) --target clean
+	mycmake-build.sh --target clean
 
 .PHONY: install
 install:
-	mycmake.sh --build $(BUILD_SYS) $(BUILD_CONFIG) --target install
+	mycmake-build.sh --target install
 
 #------------------------------------------------------
 .PHONY: android
@@ -57,6 +57,9 @@ all.run:
 
 #------------------------------------------------------
 env:
-	@echo "PATH: $(PATH)"
-	@echo "which python: $(shell which python)"
+	@echo "MY_BUILD_SYS    : $(MY_BUILD_SYS)"
+	@echo "MY_BUILD_CONFIG : $(MY_BUILD_CONFIG)"
+	@echo "MY_BUILD_DIR    : $(MY_BUILD_DIR)"
+	@echo "PATH            : $(PATH)"
+	@echo "which python    : $(shell which python)"
 
