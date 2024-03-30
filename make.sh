@@ -3,30 +3,16 @@
 #======================================================
 # variables
 #======================================================
-TAGS_DIR="\
-cpp/*.cpp \
-cpp_lib/*.cpp \
-opencv/*.cpp \
-py/*.py \
-py/cv/*.py \
-py/numpy/*.py \
-vim/*.vim \
-sh/*.sh \
-bat/*.bat \
-"
 
 #======================================================
 # functions
 #======================================================
 f_tags() {
-  memotags.sh 'sample:' $TAGS_DIR > tags
+  memotags.sh 'sample:' $(fdfind -e cpp -e py -e vim -e sh -e bat) > tags
 }
 
 #======================================================
 # main
 #======================================================
-f_fzf_default() {
-  f_tags
-}
-
+f_fzf_default() { f_tags; }
 f_fzf_main "$@"
