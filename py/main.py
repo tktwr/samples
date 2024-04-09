@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import tt_util as ut
+from sample_sys import *
 from sample_syntax import *
-from sample_syntax_dict import *
-from sample_syntax_list import *
+from sample_dict import *
+from sample_list import *
+from sample_class import *
 
 
 if __name__ == '__main__':

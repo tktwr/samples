@@ -2,11 +2,18 @@
 # -*- coding: utf-8 -*-
 
 import os
+import glob
 import shutil
 import tt_util as ut
 
 
 OUTPUT_DIR = '_output'
+
+
+# *sample:py.os.glob*
+def f_glob():
+    files = glob.glob('*.py')
+    print(f"files = {files}")
 
 
 # *sample:py.os.mkdir*

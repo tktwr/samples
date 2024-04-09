@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
-import re
-import parse
 import tt_util as ut
 
 
@@ -104,66 +101,5 @@ def f_join():
     print(f'lst = {lst}')
     s = '/'.join(lst)
     print(f's = {s}')
-
-
-def _f_expand_env(s):
-    r = re.search(r'\$\w+', s)
-    if r is not None:
-        matched = r.group()
-        env_var = matched[1:]
-        if os.getenv(env_var) is not None:
-            s = s.replace(matched, os.environ[env_var])
-    return s
-
-
-# *sample:py.string.re*
-def f_re():
-    in_s = '1, 1.5, 2, 2.5:str'
-    out_s = re.split(r',\s+|:', in_s)
-    print(f'in_s: {in_s}')
-    print(f'out_s: {out_s}')
-
-    s = '$USERPROFILE/tmp'
-    # s = '$USERPROFILE'
-    # s = '/a/b/c'
-    r = re.search(r'\$\w+', s)
-    if r is not None:
-        print(f'r: {r}')
-        print(f'r.group(): {r.group()}')
-        print(f'r.start(): {r.start()}')
-        print(f'r.end(): {r.end()}')
-        print(f'r.span(): {r.span()}')
-
-    o = _f_expand_env(s)
-    print(f'o: {o}')
-
-
-# *sample:py.string.re.sub*
-def f_re_sub():
-    s = ' aa bb  cc    dd  '
-    o = re.sub(r'\s+', ' ', s)
-    print(f's: [{s}]')
-    print(f'o: [{o}]')
-
-
-# *sample:py.string.parse*
-def f_parse():
-    filename = 'img123_5.png'
-    result = parse.parse('img{nr:d}_{label:d}.png', filename)
-    print(f'nr, label: {result["nr"]}, {result["label"]}')
-
-    in_s = '123 str1 str2 12.34'
-    out_s = parse.parse('{:d} str1 {:w} {:f}', in_s)
-    print(f'in_s: {in_s}')
-    print(f'out_s: {out_s}')
-    print(f'out_s[0]: {out_s[0]}')
-
-    in_s = '123 str1 str2 12.34'
-    out_s = parse.parse('{var1:d} str1 {:w} {var2}', in_s)
-    print(f'in_s: {in_s}')
-    print(f'out_s: {out_s}')
-    print(f'out_s["var1"]: {out_s["var1"]}')
-    print(f'out_s["var2"]: {out_s["var2"]}')
-    print(f'out_s[0]: {out_s[0]}')
 
 

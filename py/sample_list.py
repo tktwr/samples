@@ -4,7 +4,7 @@
 import tt_util as ut
 
 
-# *sample:py.syntax.list*
+# *sample:py.list*
 def f_list():
     lst = [0, 1, 2, 3, 4, 5]
 
@@ -23,7 +23,7 @@ def f_list():
     print(f'lst.pop(2)             = {lst}')
 
 
-# *sample:py.syntax.list_op*
+# *sample:py.list_op*
 def f_list_op():
     lst1 = [1] * 2
     lst2 = [2] * 3
@@ -31,7 +31,7 @@ def f_list_op():
     print(f'lst      = {lst}')
 
 
-# *sample:py.syntax.list.slice*
+# *sample:py.list_slice*
 def f_list_slice():
     lst = ['zero', 1, 'two', 3, 'four', 5]
     print(f'lst        = {lst}')
