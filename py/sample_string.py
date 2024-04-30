@@ -4,7 +4,7 @@
 import tt_util as ut
 
 
-# *sample:py.string*
+# *memo:sample:py.string*
 def f_string():
     s = 'hello world'
 
@@ -15,7 +15,7 @@ def f_string():
     print(f's[1:4] = {s[1:4]}')
 
 
-# *sample:py.string.fstring*
+# *memo:sample:py.string.fstring*
 def f_fstring():
     # f-string (python >= 3.6)
     ival = 2
@@ -38,7 +38,7 @@ def f_fstring():
     print(word)
 
 
-# *sample:py.string.if*
+# *memo:sample:py.string.if*
 def f_if():
     s = 'hello'
     if s == 'hello':
@@ -47,7 +47,7 @@ def f_if():
         print('!world')
 
 
-# *sample:py.string.with*
+# *memo:sample:py.string.with*
 def f_with():
     s = 'hello'
     if s.startswith('he'):
@@ -56,7 +56,7 @@ def f_with():
         print('o')
 
 
-# *sample:py.string.in*
+# *memo:sample:py.string.in*
 def f_in():
     s = 'hello'
     if 'el' in s:
@@ -65,7 +65,7 @@ def f_in():
         print('!aa')
 
 
-# *sample:py.string.strip*
+# *memo:sample:py.string.strip*
 def f_strip():
     s = '  aaa 123  '
     print(f's = "{s}"')
@@ -73,7 +73,7 @@ def f_strip():
     print(f's = "{s}"')
 
 
-# *sample:py.string.replace*
+# *memo:sample:py.string.replace*
 def f_replace():
     s = f'images/img123_5.png'
     print(f's = {s}')
@@ -81,7 +81,7 @@ def f_replace():
     print(f's = {s}')
 
 
-# *sample:py.string.split*
+# *memo:sample:py.string.split*
 def f_split():
     s = 'abc,' + 'def,' + str(100)
     print(f's = {s}')
@@ -95,7 +95,7 @@ def f_split():
     print(f'filename = {filename}')
 
 
-# *sample:py.string.join*
+# *memo:sample:py.string.join*
 def f_join():
     lst = ['aaa', 'bbb', 'ccc']
     print(f'lst = {lst}')

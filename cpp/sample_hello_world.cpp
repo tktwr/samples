@@ -1,4 +1,4 @@
-// *sample:cpp.hello_world*
+// *memo:sample:cpp.hello_world*
 #include <iostream>
 #include <stdio.h>
 

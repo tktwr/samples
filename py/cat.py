@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *sample:py.fileinput*
+# *memo:sample:py.fileinput*
 
 import argparse
 import fileinput

@@ -4,7 +4,7 @@
 import tt_util as ut
 
 
-# *sample:py.dict*
+# *memo:sample:py.dict*
 def f_dict():
     d = {
         "aaa": 123,

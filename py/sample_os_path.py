@@ -5,7 +5,7 @@ import os
 import tt_util as ut
 
 
-# *sample:py.os.path*
+# *memo:sample:py.os.path*
 def f_path():
     path       = '~/Desktop/a.txt'
     expanduser = os.path.expanduser(path)
@@ -24,7 +24,7 @@ def f_path():
     print(f'join       = {join}')
 
 
-# *sample:py.os.path.test*
+# *memo:sample:py.os.path.test*
 def f_path_test():
     file = '/etc/hosts'
     dir = '/etc'

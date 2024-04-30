@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *sample:py.syntax*
+# *memo:sample:py.syntax*
 
 import sys
 import math
@@ -8,7 +8,7 @@ import tt_util as ut
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.comment*
+# *memo:sample:py.syntax.comment*
 def f_comment():
     # comment
     '''
@@ -17,7 +17,7 @@ def f_comment():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.encoding*
+# *memo:sample:py.syntax.encoding*
 def f_encoding():
     print(f"sys.stdin.encoding  = {sys.stdin.encoding}")
     print(f"sys.stdout.encoding = {sys.stdout.encoding}")
@@ -25,7 +25,7 @@ def f_encoding():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.input*
+# *memo:sample:py.syntax.input*
 def f_input():
     print(f"input: ", end="")
     s = input()
@@ -33,14 +33,14 @@ def f_input():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.print*
+# *memo:sample:py.syntax.print*
 def f_print():
     print("Hello")
     print("こんにちは")
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.if*
+# *memo:sample:py.syntax.if*
 def f_if():
     l = [0, 1, 2, 3, 4]
     i = 1
@@ -75,7 +75,7 @@ def f_if():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.for*
+# *memo:sample:py.syntax.for*
 def f_for():
     for i in range(5):
         print(f"{i} ", end="")
@@ -96,7 +96,7 @@ def f_for():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.while*
+# *memo:sample:py.syntax.while*
 def f_while():
     i = 0
     while i < 5:
@@ -106,7 +106,7 @@ def f_while():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.func*
+# *memo:sample:py.syntax.func*
 def _f_add(a, b):
     return a + b
 
@@ -117,7 +117,7 @@ def f_func():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.func_args*
+# *memo:sample:py.syntax.func_args*
 def _f_args(a, b):
     print(f"a, b: {a} {b}")
 
@@ -129,7 +129,7 @@ def f_func_args():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.type*
+# *memo:sample:py.syntax.type*
 def f_type():
     n = None
     b = True
@@ -148,7 +148,7 @@ def f_type():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.tuple*
+# *memo:sample:py.syntax.tuple*
 def f_tuple():
     # tuple is read only
     t = (1, 3, 5, 7, 9)
@@ -159,14 +159,14 @@ def f_tuple():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.set*
+# *memo:sample:py.syntax.set*
 def f_set():
     s = {1, 2, 3}
     print(f's = {s}')
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.range*
+# *memo:sample:py.syntax.range*
 def f_range():
     print(f'list(range(6))       = {list(range(6))}')
     print(f'list(range(0, 6))    = {list(range(0, 6))}')
@@ -175,7 +175,7 @@ def f_range():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.zip*
+# *memo:sample:py.syntax.zip*
 def f_zip():
     l1 = [1, 2, 3, 4]
     l2 = [0.1, 0.2, 0.3, 0.4]
@@ -184,7 +184,7 @@ def f_zip():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.color*
+# *memo:sample:py.syntax.color*
 def f_color():
     color = {
         "Red"    : "fb4934",
@@ -207,7 +207,7 @@ def f_color():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.math*
+# *memo:sample:py.syntax.math*
 def f_math():
     print(f" 5  / 2 = { 5  / 2}")
     print(f" 5 // 2 = { 5 // 2}")
@@ -236,8 +236,8 @@ def f_math():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.in*
-# *sample:py.syntax.not_in*
+# *memo:sample:py.syntax.in*
+# *memo:sample:py.syntax.not_in*
 def f_in():
     a = 123
 
@@ -265,14 +265,14 @@ def f_in():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.func_object*
+# *memo:sample:py.syntax.func_object*
 def f_func_object():
     func = f_print
     func()
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.eval*
+# *memo:sample:py.syntax.eval*
 def f_eval():
     func = 'f_print'
     eval(f'{func}()')

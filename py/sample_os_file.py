@@ -10,26 +10,26 @@ import tt_util as ut
 OUTPUT_DIR = '_output'
 
 
-# *sample:py.os.glob*
+# *memo:sample:py.os.glob*
 def f_glob():
     files = glob.glob('*.py')
     print(f"files = {files}")
 
 
-# *sample:py.os.mkdir*
+# *memo:sample:py.os.mkdir*
 def f_mkdir():
     shutil.rmtree(OUTPUT_DIR)
     os.mkdir(OUTPUT_DIR)
 
 
-# *sample:py.os.chdir*
+# *memo:sample:py.os.chdir*
 def f_chdir():
     print(f'dir = {os.getcwd()}')
     os.chdir(OUTPUT_DIR)
     print(f'dir = {os.getcwd()}')
 
 
-# *sample:py.os.shutil.dir*
+# *memo:sample:py.os.shutil.dir*
 def f_shutil_dir():
     os.makedirs('_test_dir/a/b/c', exist_ok=True)
 
@@ -41,7 +41,7 @@ def f_shutil_dir():
     shutil.rmtree('_test_dir')
 
 
-# *sample:py.os.shutil.file*
+# *memo:sample:py.os.shutil.file*
 def f_shutil_file():
     with open('_test.txt', 'w') as f:
         f.write('')

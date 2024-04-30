@@ -15,7 +15,7 @@ def _f_expand_env(s):
     return s
 
 
-# *sample:py.re*
+# *memo:sample:py.re*
 def f_re():
     in_s = '1, 1.5, 2, 2.5:str'
     out_s = re.split(r',\s+|:', in_s)
@@ -37,7 +37,7 @@ def f_re():
     print(f'o: {o}')
 
 
-# *sample:py.re.sub*
+# *memo:sample:py.re.sub*
 def f_re_sub():
     s = ' aa bb  cc    dd  '
     o = re.sub(r'\s+', ' ', s)

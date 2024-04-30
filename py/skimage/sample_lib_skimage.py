@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *sample:py.skimage*
+# *memo:sample:py.skimage*
 
 from skimage import io, color
 from io import BytesIO

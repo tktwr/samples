@@ -5,7 +5,7 @@ import sys
 import os
 
 
-# *sample:py.sys*
+# *memo:sample:py.sys*
 def f_sys():
     print(sys.argv)
 

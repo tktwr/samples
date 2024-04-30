@@ -1,4 +1,4 @@
-// *sample:cpp.fstream*
+// *memo:sample:cpp.fstream*
 #include <fstream>
 #include <iostream>
 #include <string>

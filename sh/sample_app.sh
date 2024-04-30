@@ -1,5 +1,5 @@
 #!/bin/sh
-# *sample:sh.app*
+# *memo:sample:sh.app*
 
 bin_name=`basename $0`
 

@@ -4,7 +4,7 @@
 import parse
 
 
-# *sample:py.parse*
+# *memo:sample:py.parse*
 def f_parse():
     filename = 'img123_5.png'
     result = parse.parse('img{nr:d}_{label:d}.png', filename)

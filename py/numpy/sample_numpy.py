@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *sample:py.numpy*
+# *memo:sample:py.numpy*
 
 import sys
 import numpy as np
 import tt_util as ut
 
 
-# *sample:py.numpy.init*
+# *memo:sample:py.numpy.init*
 def f_init():
     x = np.array([[0, 1, 2],
                   [3, 4, 5]])
@@ -20,7 +20,7 @@ def f_init():
     print(f"eye(3)           = \n{np.eye(3)}")
 
 
-# *sample:py.numpy.array_1d*
+# *memo:sample:py.numpy.array_1d*
 def f_array_1d():
     x = np.array([0, 1, 2])
 
@@ -32,7 +32,7 @@ def f_array_1d():
     print(f"x.max() = {x.max()}")
 
 
-# *sample:py.numpy.array_1d_float*
+# *memo:sample:py.numpy.array_1d_float*
 def f_array_1d_float():
     x = np.array([0, 1, 2], dtype='float32')
 
@@ -44,7 +44,7 @@ def f_array_1d_float():
     print(f"x.max() = {x.max()}")
 
 
-# *sample:py.numpy.array_2d*
+# *memo:sample:py.numpy.array_2d*
 def f_array_2d():
     x = np.array([[0, 1, 2],
                   [3, 4, 5]])
@@ -57,7 +57,7 @@ def f_array_2d():
     print(f"x.max() = {x.max()}")
 
 
-# *sample:py.numpy.array_3d*
+# *memo:sample:py.numpy.array_3d*
 def f_array_3d():
     x = np.array([[[0, 1], [2, 3], [4, 5]],
                   [[6, 7], [8, 9], [10, 11]]])
@@ -79,7 +79,7 @@ def f_array_3d():
     print(f"x[:,:,1].max() = {x[:,:,1].max()}")
 
 
-# *sample:py.numpy.array_op*
+# *memo:sample:py.numpy.array_op*
 def f_array_op():
     x = np.array([0, 1, 2])
     y = np.array([3, 4, 5])
@@ -91,7 +91,7 @@ def f_array_op():
     print(f"np.append(x, y) = {np.append(x, y)}")
 
 
-# *sample:py.numpy.arange*
+# *memo:sample:py.numpy.arange*
 # https://note.nkmk.me/python-numpy-arange-linspace/
 def f_arange():
     # int
@@ -115,13 +115,13 @@ def f_arange():
     print(np.arange(24).reshape(2, 3, 4))
 
 
-# *sample:py.numpy.linspace*
+# *memo:sample:py.numpy.linspace*
 # https://note.nkmk.me/python-numpy-arange-linspace/
 def f_linspace():
     print(np.linspace(0.0, 1.0, 5))
 
 
-# *sample:py.numpy.reshape*
+# *memo:sample:py.numpy.reshape*
 def f_reshape():
     x = np.arange(6)
     print(f"x = {x}")
@@ -129,7 +129,7 @@ def f_reshape():
     print(f"x.reshape(-1, 2) =\n{x.reshape(-1, 2)}")
 
 
-# *sample:py.numpy.list_2d*
+# *memo:sample:py.numpy.list_2d*
 def f_list_2d():
     l1 = [1, 2, 3, 4]
     l2 = [0.1, 0.2, 0.3, 0.4]

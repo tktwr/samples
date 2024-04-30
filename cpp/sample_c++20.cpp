@@ -1,4 +1,4 @@
-// *sample:cpp.20*
+// *memo:sample:cpp.20*
 #include <iostream>
 #ifdef USE_CPP20
 #include <format>
@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// *sample:cpp.20.format*
+// *memo:sample:cpp.20.format*
 void f_format() {
 #ifdef USE_CPP20
     std::string message = std::format("The answer is {}.", 42);

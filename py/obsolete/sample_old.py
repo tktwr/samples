@@ -4,7 +4,7 @@
 import sys
 
 
-# *sample:py.syntax.print_format*
+# *memo:sample:py.syntax.print_format*
 def f_print_format():
     # str.format() method (python >= 2.6)
     print("{} {} {}".format(0, 1, 2))
@@ -13,7 +13,7 @@ def f_print_format():
 
 
 # -----------------------------------------------------
-# *sample:py.syntax.print_operator*
+# *memo:sample:py.syntax.print_operator*
 def f_print_operator():
     # % operator (old)
     print("%d " % 0)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *sample:py.matplotlib*
+# *memo:sample:py.matplotlib*
 
 import sys
 import numpy as np

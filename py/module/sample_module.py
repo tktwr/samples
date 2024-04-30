@@ -7,14 +7,14 @@ import mod_b
 from mypackage import mymodule as mymod
 
 
-# *sample:py.syntax.module*
+# *memo:sample:py.syntax.module*
 def f_module():
     print("=== f_module() ===")
     mod_a.DICT['aa'] = 100
     mod_a.myfunc()
 
 
-# *sample:py.syntax.package*
+# *memo:sample:py.syntax.package*
 def f_package():
     print("=== f_package() ===")
     mymod.myfunc()

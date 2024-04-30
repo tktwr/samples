@@ -1,4 +1,4 @@
-// *sample:cpp_lib.eigen*
+// *memo:sample:cpp_lib.eigen*
 #define _USE_MATH_DEFINES
 #include <cmath>
 

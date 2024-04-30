@@ -1,4 +1,4 @@
-// *sample:cpp.11.move*
+// *memo:sample:cpp.11.move*
 #include <iostream>
 #include <utility>
 

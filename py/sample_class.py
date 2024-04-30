@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# *sample:py.class*
+# *memo:sample:py.class*
 class MyClass():
     def __init__(self):
         print(f"MyClass.__init__")
@@ -46,7 +46,7 @@ def f_class():
 
 
 # -----------------------------------------------------
-# *sample:py.subclass*
+# *memo:sample:py.subclass*
 class MySubClass(MyClass):
     def f(self, x):
         print(f"MySubClass.f: {x}")

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// *sample:cpp.string*
+// *memo:sample:cpp.string*
 void f_string() {
     std::string s = "hello world";
 
@@ -12,8 +12,8 @@ void f_string() {
     std::cout << "s.size() = " << s.size() << std::endl;
 }
 
-// *sample:cpp.string.match*
-// *sample:cpp.string.find*
+// *memo:sample:cpp.string.match*
+// *memo:sample:cpp.string.find*
 bool f_string_match() {
     std::string s = "hello world";
     std::string m = "world";
@@ -27,8 +27,8 @@ bool f_string_match() {
     return true;
 }
 
-// *sample:cpp.string.transform*
-// *sample:cpp.string.tolower*
+// *memo:sample:cpp.string.transform*
+// *memo:sample:cpp.string.tolower*
 void f_string_transform() {
     std::string s = "Hello WORLD";
 
@@ -37,7 +37,7 @@ void f_string_transform() {
     std::cout << "s = " << s << std::endl;
 }
 
-// *sample:cpp.string.substr*
+// *memo:sample:cpp.string.substr*
 void f_string_substr() {
     std::string s = "0123456789";
     std::string ss;
@@ -49,7 +49,7 @@ void f_string_substr() {
     std::cout << "ss       = " << ss << std::endl;
 }
 
-// *sample:cpp.string.path*
+// *memo:sample:cpp.string.path*
 void f_string_path() {
     std::string fname = "C:\\a\\b\\c\\d.txt";
     std::replace(fname.begin(), fname.end(), '\\', '/');
