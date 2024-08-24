@@ -16,13 +16,13 @@ f_print() {
 }
 
 f_clean_n() {
-  myclean.sh --output-dir
-  myclean.sh --pycache-dir
+  clean-fdfind.sh --output-dir
+  clean-fdfind.sh --pycache-dir
 }
 
 f_clean() {
-  myclean.sh --output-dir -rm
-  myclean.sh --pycache-dir -rm
+  clean-fdfind.sh --output-dir -rm
+  clean-fdfind.sh --pycache-dir -rm
 }
 
 #======================================================

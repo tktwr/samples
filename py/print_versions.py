@@ -1,30 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import PIL
-import cv2
-import numpy
-import matplotlib
-import sklearn
-import tkinter
-import torch
-# import tensorflow
-# import skimage
+from importlib.metadata import version
 
 
-def version():
-    print(f"PIL {PIL.__version__}")
-    print(f"cv2 {cv2.__version__}")
-    print(f"numpy {numpy.__version__}")
-    print(f"matplotlib {matplotlib.__version__}")
-    print(f"sklearn {sklearn.__version__}")
-    print(f"tkinter {tkinter.Tcl().eval('info patchlevel')}")
-    print(f"torch {torch.__version__}")
-    if torch.cuda.is_available():
-        print(f"  cuda is available")
-    # print(f"tensorflow {tensorflow.__version__}")
-    # print(f"skimage {skimage.__version__}")
+lst_pkg = [
+    'numpy',
+    'opencv-python',
+    'pillow',
+    'torch',
+]
 
+for i in lst_pkg:
+    try:
+        print(f'{i:20s}: {version(i)}')
+    except Exception as e:
+        print(f'{i:20s}: Exception: {e}')
 
-if __name__ == "__main__":
-    version()
