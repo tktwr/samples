@@ -1,28 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# *memo:sample:py:re*
 
-import os
 import re
+import tt_util as ut
 
 
-def _f_expand_env(s):
-    r = re.search(r'\$\w+', s)
-    if r is not None:
-        matched = r.group()
-        env_var = matched[1:]
-        if os.getenv(env_var) is not None:
-            s = s.replace(matched, os.environ[env_var])
-    return s
-
-
-# *memo:sample:py.re*
-def f_re():
-    in_s = '1, 1.5, 2, 2.5:str'
-    out_s = re.split(r',\s+|:', in_s)
-    print(f'in_s: {in_s}')
-    print(f'out_s: {out_s}')
-
-    s = '$USERPROFILE/tmp'
+def f_re_search():
+    s = '$HOME/tmp'
     # s = '$USERPROFILE'
     # s = '/a/b/c'
     r = re.search(r'\$\w+', s)
@@ -33,15 +18,32 @@ def f_re():
         print(f'r.end(): {r.end()}')
         print(f'r.span(): {r.span()}')
 
-    o = _f_expand_env(s)
-    print(f'o: {o}')
+
+def f_expand_env():
+    istr = '$HOME/tmp'
+    ostr = ut.expand_env(istr)
+    print(f'istr: {istr}')
+    print(f'ostr: {ostr}')
 
 
-# *memo:sample:py.re.sub*
 def f_re_sub():
-    s = ' aa bb  cc    dd  '
-    o = re.sub(r'\s+', ' ', s)
-    print(f's: [{s}]')
-    print(f'o: [{o}]')
+    istr = ' aa bb  cc    dd  '
+    ostr = re.sub(r'\s+', ' ', istr)
+    ostr = ostr.strip()
+    print(f'istr: "{istr}"')
+    print(f'ostr: "{ostr}"')
 
 
+def f_re_split():
+    istr = '1, 1.5 ; 2,  2.5; str'
+    olst = re.split(r',|;', istr)
+    olst = [i.strip() for i in olst]
+    print(f'istr: {istr}')
+    print(f'olst: {olst}')
+
+
+if __name__ == '__main__':
+    func_lst = ut.get_all_funcs(globals().keys())
+    for func in func_lst:
+        ut.log_title(f' [{func}] ')
+        eval(f'{func}()')

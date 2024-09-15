@@ -8,7 +8,8 @@
 # functions
 #======================================================
 f_tags() {
-  memotags.sh 'memo:sample:' $(fdfind -e cpp -e py -e vim -e sh -e bat) > tags
+  memotags.sh 'memo:' $(fdfind -e cpp -e py -e vim -e sh -e bat) > tags.memo
+  ctags -o tags -R py
 }
 
 #======================================================

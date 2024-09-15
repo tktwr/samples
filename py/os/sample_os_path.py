@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# *memo:sample:py:os_path*
 
 import os
 import tt_util as ut
 
 
-# *memo:sample:py.os.path*
 def f_path():
     path       = '~/Desktop/a.txt'
     expanduser = os.path.expanduser(path)
@@ -24,12 +24,20 @@ def f_path():
     print(f'join       = {join}')
 
 
-# *memo:sample:py.os.path.test*
-def f_path_test():
-    file = '/etc/hosts'
-    dir = '/etc'
+def f_FileName():
+    path = '~/Desktop/a.txt'
+    fn = ut.FileName(path)
 
-    print(f'isfile(file) : {os.path.isfile(file)}')
-    print(f'isdir(dir)   : {os.path.isdir(dir)}')
+    print(f'origname = {fn.origname()}')
+    print(f'dirname  = {fn.dirname()}')
+    print(f'dirname  = {fn.dirname(expand=True)}')
+    print(f'filename = {fn.filename()}')
+    print(f'name     = {fn.name()}')
+    print(f'ext      = {fn.ext()}')
 
 
+if __name__ == '__main__':
+    func_lst = ut.get_all_funcs(globals().keys())
+    for func in func_lst:
+        ut.log_title(f' [{func}] ')
+        eval(f'{func}()')

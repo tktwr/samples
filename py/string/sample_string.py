@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# *memo:sample:py:string*
 
-import tt_util as ut
 
-
-# *memo:sample:py.string*
-def f_string():
+def f_sample_py_string():
     s = 'hello world'
 
     print(f's      = {s}')
@@ -15,31 +13,7 @@ def f_string():
     print(f's[1:4] = {s[1:4]}')
 
 
-# *memo:sample:py.string.fstring*
-def f_fstring():
-    # f-string (python >= 3.6)
-    ival = 2
-    fval = 1 / 3
-    word = "hello"
-    width = 10
-
-    print(f"1+1         = {1+1}")
-    print(f"1+0.5       = {1+0.5}")
-    print(f"ival        = {ival}")
-    print(f"ival:3d     = {ival:3d}")
-    print(f"ival:03d    = {ival:03d}")
-    print(f"ival**10:,d = {ival**10:,d}")
-    print(f"fval        = {fval}")
-    print(f"fval:.3f    = {fval:.3f}")
-    print(f"word:<10s   = [{word:<{width}s}]")
-    print(f"word:^10s   = [{word:^{width}s}]")
-    print(f"word:>10s   = [{word:>{width}s}]")
-    print(f"word        = ", end='')
-    print(word)
-
-
-# *memo:sample:py.string.if*
-def f_if():
+def f_sample_py_string_if():
     s = 'hello'
     if s == 'hello':
         print('hello')
@@ -47,8 +21,7 @@ def f_if():
         print('!world')
 
 
-# *memo:sample:py.string.with*
-def f_with():
+def f_sample_py_string_with():
     s = 'hello'
     if s.startswith('he'):
         print('he')
@@ -56,8 +29,7 @@ def f_with():
         print('o')
 
 
-# *memo:sample:py.string.in*
-def f_in():
+def f_sample_py_string_in():
     s = 'hello'
     if 'el' in s:
         print('el')
@@ -65,24 +37,21 @@ def f_in():
         print('!aa')
 
 
-# *memo:sample:py.string.strip*
-def f_strip():
+def f_sample_py_string_strip():
     s = '  aaa 123  '
     print(f's = "{s}"')
     s = s.strip()
     print(f's = "{s}"')
 
 
-# *memo:sample:py.string.replace*
-def f_replace():
+def f_sample_py_string_replace():
     s = f'images/img123_5.png'
     print(f's = {s}')
     s = s.replace('_', '-')
     print(f's = {s}')
 
 
-# *memo:sample:py.string.split*
-def f_split():
+def f_sample_py_string_split():
     s = 'abc,' + 'def,' + str(100)
     print(f's = {s}')
     lst = s.split(',')
@@ -95,8 +64,7 @@ def f_split():
     print(f'filename = {filename}')
 
 
-# *memo:sample:py.string.join*
-def f_join():
+def f_sample_py_string_join():
     lst = ['aaa', 'bbb', 'ccc']
     print(f'lst = {lst}')
     s = '/'.join(lst)

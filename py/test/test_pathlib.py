@@ -5,7 +5,7 @@ import os
 import sys
 import re
 import pathlib
-import tt_path_util as ttp
+import tt_util as ut
 
 
 def f1():
@@ -21,9 +21,9 @@ def f1():
 
 
 def f2():
-    p = ttp.expand_env("$HOME")
-    print(f'ttp.expand_env("$HOME"): {p}')
-    up = ttp.path_unix(p)
+    p = ut.expand_env("$HOME")
+    print(f'ut.expand_env("$HOME"): {p}')
+    up = ut.path_unix(p)
     print(f'up: {up}')
 
     fname = '$AAA_AAA/bb/cc/$DDD_DDD'
@@ -34,12 +34,12 @@ def f2():
 
 def f3():
     p = 'C:/aa/bb/cc/dd.txt'
-    print(f'ttp.path_unix(p): {ttp.path_unix(p, "/mnt")}')
+    print(f'ut.path_unix(p): {ut.path_unix(p, "/mnt")}')
     p = '$aa/bb/cc/dd.txt'
-    print(f'ttp.path_unix(p): {ttp.path_unix(p, "/mnt")}')
+    print(f'ut.path_unix(p): {ut.path_unix(p, "/mnt")}')
 
 
-#f1()
+f1()
 #f2()
-f3()
+#f3()
 

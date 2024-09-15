@@ -13,3 +13,4 @@ def f_today():
     print(f'time_stamp = {time_stamp}')
 
 
+f_today()

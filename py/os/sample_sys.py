@@ -14,4 +14,4 @@ def f_sys():
     for i in sys.path:
         print(i)
 
-
+f_sys()

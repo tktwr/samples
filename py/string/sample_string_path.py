@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo:sample:py.path*
+# *memo:sample:py:string_path*
 
 import re
 
