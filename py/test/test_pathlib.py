@@ -8,16 +8,27 @@ import pathlib
 import tt_util as ut
 
 
-def f1():
-    p = os.path.expandvars("$HOME")
-    print(f'$HOME: {p}')
+def f_test_expand():
+    print(os.path.expandvars("~/WinHome"))
+    print(os.path.expanduser("~/WinHome"))
+    print(os.path.expandvars("$HOME"))
+    print(os.path.expandvars("$MY_ETC/tmp"))
+    print(os.path.expandvars("${MY_ETC}/tmp"))
+    print(os.path.expandvars("$MY_NOENV/tmp"))
+    print(os.environ["HOME"])
+
+
+def f_test_pathlib():
+    p = os.path.expandvars("$HOME/WinHome")
+    p = os.path.realpath(p)
+    print(p)
+
     wp = pathlib.PureWindowsPath(p)
     print(f'PureWindowsPath: {wp}')
     print(f'as_posix(): {wp.as_posix()}')
+
     up = pathlib.PurePosixPath(p)
     print(f'PurePosixPath: {up}')
-
-    print(f'os.environ["HOME"]: {os.environ["HOME"]}')
 
 
 def f2():
@@ -39,7 +50,8 @@ def f3():
     print(f'ut.path_unix(p): {ut.path_unix(p, "/mnt")}')
 
 
-f1()
+f_test_expand()
+f_test_pathlib()
 #f2()
 #f3()
 

@@ -25,12 +25,13 @@ def f_path():
 
 
 def f_FileName():
-    path = '~/Desktop/a.txt'
+    path = '~/MyConfig/a.txt'
     fn = ut.FileName(path)
 
     print(f'origname = {fn.origname()}')
     print(f'dirname  = {fn.dirname()}')
     print(f'dirname  = {fn.dirname(expand=True)}')
+    print(f'dirname  = {fn.dirname(expand=True, realpath=True)}')
     print(f'filename = {fn.filename()}')
     print(f'name     = {fn.name()}')
     print(f'ext      = {fn.ext()}')
