@@ -37,8 +37,13 @@ def f_FileName():
     print(f'ext      = {fn.ext()}')
 
 
-if __name__ == '__main__':
+# -----------------------------------------------------
+def run_funcs():
     func_lst = ut.get_all_funcs(globals().keys())
     for func in func_lst:
         ut.log_title(f' [{func}] ')
         eval(f'{func}()')
+
+
+if __name__ == '__main__':
+    run_funcs()
