@@ -3,30 +3,23 @@
 #======================================================
 # variables
 #======================================================
+I_DIR=$MY_SAMPLES/data/images
 
 #======================================================
 # functions
 #======================================================
-f_py() {
-  mkdir -p _output/py
-  cd _output/py
-  ../../test_image.py
+f_test_fname() {
+  ./test_fname.py
 }
-
+f_test_cv_util() {
+  ./test_cv_util.py
+}
 #------------------------------------------------------
-f_help() {
-  echo "py"
-  echo "help"
+f_all() {
+  f_test_fname
 }
-
-f_default() {
-  f_py
-}
-
 #======================================================
 # main
 #======================================================
-func_name=${1:-"default"}
-shift
-eval "f_$func_name $@"
-
+f_fzf_default() { f_all; }
+f_fzf_main "$@"
