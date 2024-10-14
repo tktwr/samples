@@ -16,38 +16,38 @@ def f_img_new():
     dtype = 'uint8'
     bgr = (255, 0, 0)
 
-    img = cu.cv_create_img(shape, dtype, bgr)
+    img = cu.img_create(shape, dtype, bgr)
 
-    cu.cv_save(f'{O_DIR}/new_c3_{dtype}.png', img)
+    cu.imgfile_save(f'{O_DIR}/new_c3_{dtype}.png', img)
 
 
 def f_img_lab():
-    img = cu.cv_load(I_FILE)
-    img = cu.cv_img_bgr2lab(img)
-    cu.cv_save(f'{O_DIR}/lab.png', img)
+    img = cu.imgfile_load(I_FILE)
+    img = cu.img_bgr_to_lab(img)
+    cu.imgfile_save(f'{O_DIR}/lab.png', img)
 
-    img_l, img_a, img_b = cu.cv_split_img(img)
-    cu.cv_save(f'{O_DIR}/lab_l.png', img_l)
-    cu.cv_save(f'{O_DIR}/lab_a.png', img_a)
-    cu.cv_save(f'{O_DIR}/lab_b.png', img_b)
+    img_l, img_a, img_b = cu.img_split(img)
+    cu.imgfile_save(f'{O_DIR}/lab_l.png', img_l)
+    cu.imgfile_save(f'{O_DIR}/lab_a.png', img_a)
+    cu.imgfile_save(f'{O_DIR}/lab_b.png', img_b)
 
 
 def f_img_op():
-    img = cu.cv_load(I_FILE)
+    img = cu.imgfile_load(I_FILE)
     img = cu.img_u8_to_f32(img)
 
-    img = cu.cv_channel_img(img, 0)
+    img = cu.img_channel(img, 0)
     one_img = np.ones_like(img)
     oimg = one_img - img
 
     oimg = cu.img_f32_to_u8(oimg)
-    cu.cv_save(f'{O_DIR}/op01.png', oimg)
+    cu.imgfile_save(f'{O_DIR}/op01.png', oimg)
 
 
 def f_img_scale():
-    img = cu.cv_load(I_FILE)
+    img = cu.imgfile_load(I_FILE)
     oimg = nu.img_scale(img, [600, 600])
-    cu.cv_save(f'{O_DIR}/scale01.png', oimg)
+    cu.imgfile_save(f'{O_DIR}/scale01.png', oimg)
 
 
 # -----------------------------------------------------

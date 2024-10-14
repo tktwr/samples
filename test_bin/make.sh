@@ -65,6 +65,7 @@ f_image_op() {
   image-op.py --split grad01_u8_c3_hgrad.png
   image-op.py --merge -o merge.png grad01_u8_c3_hgrad_?.png
   image-op.py --diff -o diff.png grad01_u8_c3_hgrad.png grad01_u8_c3_hgrad.png
+  image-op.py --diff -o diff2.png grad01_u8_c3_hgrad_0.png grad01_u8_c3_hgrad_1.png -sc 1
   _leave_output
 }
 
