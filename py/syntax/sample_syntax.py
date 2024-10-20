@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# *memo:sample:py.syntax*
+# *memo:sample:py:syntax*
 
 import sys
 import math
@@ -8,8 +8,7 @@ import tt_util as ut
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.comment*
-def f_comment():
+def f_syntax_comment():
     # comment
     '''
     comment
@@ -17,31 +16,27 @@ def f_comment():
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.encoding*
-def f_encoding():
+def f_syntax_encoding():
     print(f"sys.stdin.encoding  = {sys.stdin.encoding}")
     print(f"sys.stdout.encoding = {sys.stdout.encoding}")
     print(f"sys.stderr.encoding = {sys.stderr.encoding}")
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.input*
-def f_input():
+def f_syntax_input():
     print(f"input: ", end="")
     s = input()
     print(f"s: {s}")
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.print*
-def f_print():
+def f_syntax_print():
     print("Hello")
     print("こんにちは")
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.if*
-def f_if():
+def f_syntax_if():
     l = [0, 1, 2, 3, 4]
     i = 1
 
@@ -75,8 +70,7 @@ def f_if():
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.for*
-def f_for():
+def f_syntax_for():
     for i in range(5):
         print(f"{i} ", end="")
     print()
@@ -96,8 +90,7 @@ def f_for():
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.while*
-def f_while():
+def f_syntax_while():
     i = 0
     while i < 5:
         print(f"{i} ", end="")
@@ -106,31 +99,28 @@ def f_while():
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.func*
-def _f_add(a, b):
+def _f_syntax_add(a, b):
     return a + b
 
 
-def f_func():
-    x = _f_add(1, 2)
+def f_syntax_func():
+    x = _f_syntax_add(1, 2)
     print(f"x: {x}")
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.func_args*
-def _f_args(a, b):
+def _f_syntax_args(a, b):
     print(f"a, b: {a} {b}")
 
 
-def f_func_args():
-    _f_args(1, 2)
-    _f_args(2, 1)
-    _f_args(b=2, a=1)
+def f_syntax_func_args():
+    _f_syntax_args(1, 2)
+    _f_syntax_args(2, 1)
+    _f_syntax_args(b=2, a=1)
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.type*
-def f_type():
+def f_syntax_type():
     n = None
     b = True
     b = False
@@ -148,8 +138,7 @@ def f_type():
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.tuple*
-def f_tuple():
+def f_syntax_tuple():
     # tuple is read only
     t = (1, 3, 5, 7, 9)
     print(f"t = {t}")
@@ -159,15 +148,13 @@ def f_tuple():
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.set*
-def f_set():
+def f_syntax_set():
     s = {1, 2, 3}
     print(f's = {s}')
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.range*
-def f_range():
+def f_syntax_range():
     print(f'list(range(6))       = {list(range(6))}')
     print(f'list(range(0, 6))    = {list(range(0, 6))}')
     print(f'list(range(0, 6, 1)) = {list(range(0, 6, 1))}')
@@ -175,8 +162,7 @@ def f_range():
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.zip*
-def f_zip():
+def f_syntax_zip():
     l1 = [1, 2, 3, 4]
     l2 = [0.1, 0.2, 0.3, 0.4]
     l = list(zip(l1, l2))
@@ -184,8 +170,7 @@ def f_zip():
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.color*
-def f_color():
+def f_syntax_color():
     color = {
         "Red"    : "fb4934",
         "Green"  : "b8bb26",
@@ -207,8 +192,7 @@ def f_color():
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.math*
-def f_math():
+def f_syntax_math():
     print(f" 5  / 2 = { 5  / 2}")
     print(f" 5 // 2 = { 5 // 2}")
     print(f" 5  / 3 = { 5  / 3}")
@@ -236,9 +220,7 @@ def f_math():
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.in*
-# *memo:sample:py.syntax.not_in*
-def f_in():
+def f_syntax_in():
     a = 123
 
     print(f"locals()             = {locals()}")
@@ -265,16 +247,31 @@ def f_in():
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.func_object*
-def f_func_object():
-    func = f_print
+def f_syntax_func_object():
+    func = f_syntax_print
     func()
 
 
 # -----------------------------------------------------
-# *memo:sample:py.syntax.eval*
-def f_eval():
-    func = 'f_print'
+def f_syntax_eval():
+    func = 'f_syntax_print'
     eval(f'{func}()')
 
 
+# -----------------------------------------------------
+def f_syntax_enumerate():
+    xy = [[10, 10], [11, 11]]
+    for i, (x, y) in enumerate(xy):
+        print(f'{i} {x} {y}')
+
+
+# -----------------------------------------------------
+def run_funcs():
+    func_lst = ut.get_all_funcs(globals().keys())
+    for func in func_lst:
+        ut.log_title(f' [{func}] ')
+        eval(f'{func}()')
+
+
+if __name__ == '__main__':
+    run_funcs()
