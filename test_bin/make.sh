@@ -80,7 +80,7 @@ f_image_tile_samples() {
   image-tile.py -o $O_DIR/tile%02d_Y2.jpg     -nx 2 $I_DIR/sample*.jpg BLACK WHITE BLACK WHITE -O Y
   image-tile.py -o $O_DIR/tile%02d_FILE.jpg   -nx 2 $I_DIR/sample*.jpg -L FILE
   image-tile.py -o $O_DIR/tile%02d_NUM.jpg    -nx 2 $I_DIR/sample*.jpg -L NUM
-  image-tile.py -o $O_DIR/tile%02d_ALPHA.jpg  -nx 2 $I_DIR/sample*.jpg -L ALPHA
+  image-tile.py -o $O_DIR/tile%02d_ALPHA.jpg  -nx 2 $I_DIR/sample*.jpg -L ALPHA -b 2 -t 'Left;Right'
 }
 f_image_conv() {
   _enter_output

@@ -21,11 +21,12 @@ def f_read_data(fname):
     return (x, y)
 
 
-def f_plot_data(x, y):
+def f_plot_data(title, x, y):
     fig, ax = plt.subplots()
     ax.plot(x, y, "o")
     ax.set_xlabel('x axis')
     ax.set_ylabel('y axis')
+    ax.set_title(title)
     plt.savefig('_output/plot_data.png')
     plt.show()
 
@@ -33,4 +34,4 @@ def f_plot_data(x, y):
 x = np.random.rand(100)
 y = np.random.rand(100)
 #x, y = f_read_data("../../data/plot_data.txt")
-f_plot_data(x, y)
+f_plot_data('xy', x, y)
