@@ -28,6 +28,12 @@ _leave_output() {
   _print_output "Leave"
 }
 #------------------------------------------------------
+f_image_create_new_icon() {
+  image-create.py -a new -o $O_DIR/icon256_blue.png  -s 256 256 -ch 4 -ty uint8   -c0 1 0 0 1
+  image-create.py -a new -o $O_DIR/icon256_green.png -s 256 256 -ch 4 -ty uint8   -c0 0 1 0 1
+  image-create.py -a new -o $O_DIR/icon256_red.png   -s 256 256 -ch 4 -ty uint8   -c0 0 0 1 1
+}
+
 f_image_create_new() {
   image-create.py -a new -o $O_DIR/new01_u8_c1.png  -s 300 200 -ch 1 -ty uint8   -c0 1
   image-create.py -a new -o $O_DIR/new01_u8_c3.png  -s 300 200 -ch 3 -ty uint8   -c0 1 0 0
